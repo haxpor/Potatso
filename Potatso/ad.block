@@ -1,0 +1,67 @@
+## 视频网站
+# 优酷土豆
+ad\.api\.3g\.youku\.com
+atm\.youku\.com
+ad\.api\.3g\.tudou\.com
+
+# 腾讯视频
+lives\.l\.qq\.com
+
+# 乐视
+ark\.letv\.com
+
+# PPTV
+asimgs\.pplive\.cn
+
+# 搜狐视频
+agn\.aty\.sohu\.com
+
+# 芒果 tv
+x\.da\.hunantv\.com
+
+## App 内广告
+
+# 网易
+^(https?:\/\/)?([^/:]*\.)?163\.com\/madr
+
+# 下厨房
+^(https?:\/\/)?api\.xiachufang\.com\/v\d\/ad\/show\.json
+
+# 微博
+^(https?:\/\/)?(.*)[weibo|sina](.*)\/interface\/(.*)\/(.*)ad.php
+
+# 联通 DNS
+124.160.194.11:8080
+
+## 广告联盟
+
+# 秒针
+miaozhen\.com
+
+# 百度
+^(https?:\/\/)?(.*)?ads(.*)?\.baidu\.com
+
+# Google(AdMob)
+^(https?:\/\/)?(.*)ads\.g\.doubleclick\.net
+
+# Inmobi
+^(https?:\/\/)?([^/:]*\.)?inmob\.com
+
+# 易传媒（AdChina）
+^(https?:\/\/)?amob\.acs86\.com
+
+# 多盟
+^(https?:\/\/)?([^/:]*\.)?domob(cdn)?\.[cn|com]
+^(https?:\/\/)?([^/:]*\.)?duomeng\.[net|cn|org]
+
+# MoPub
+^(https?:\/\/)?([^/:]*\.)?ads\.mopub\.[com|cn]
+
+# Unity
+^(https?:\/\/)?impact\.applifier\.com
+
+# 腾讯 广点通
+^(https?:\/\/)?(.*)?gdt\.qq\.com
+
+# 忘了
+^(https?:\/\/)?(.*)?litchix\.com

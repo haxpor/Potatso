@@ -1,0 +1,11 @@
+map_key_1: map_value_1
+map_key_2:
+  - sequence item 1
+  - sequence item 2
+  - sequence item 3
+map_key_3:
+  map_key_3_1: map_value_3_1
+map_key_4: |-
+  block value
+  multiline
+

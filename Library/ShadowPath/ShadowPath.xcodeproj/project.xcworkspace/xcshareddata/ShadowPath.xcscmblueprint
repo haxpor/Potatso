@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "528A44C792D831E954301CCD04DB5EA3BB641A18",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "528A44C792D831E954301CCD04DB5EA3BB641A18" : 0,
+    "88EA2772244A30DC9C9F9C8CF4484193B457DACA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "453CDC53-27A2-491C-8E8F-E7045069042B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "528A44C792D831E954301CCD04DB5EA3BB641A18" : "iOS\/",
+    "88EA2772244A30DC9C9F9C8CF4484193B457DACA" : "iOS\/Library\/ShadowPath\/ShadowPath\/shadowsocks-libev\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ShadowPath",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Library\/ShadowPath\/ShadowPath.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:iCodesign\/Potatso.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "528A44C792D831E954301CCD04DB5EA3BB641A18"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:shadowsocks\/shadowsocks-libev.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "88EA2772244A30DC9C9F9C8CF4484193B457DACA"
+    }
+  ]
+}

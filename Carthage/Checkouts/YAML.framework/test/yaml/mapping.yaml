@@ -1,0 +1,68 @@
+# http://yaml.kwiki.org/index.cgi?YtsBlockMapping
+
+---
+type: meta
+description: |
+    This is the most basic basic YAML unit. The top level mapping.
+default-type: load-expect
+perl: fail
+
+# The tests themselves come below. One per YAML document.
+---
+name: One Element Mapping
+brief: |
+    A mapping with one key/value pair
+yaml: |
+    ---
+    foo: bar
+perl: |
+    {foo => 'bar'}
+
+---
+name: Multi Element Mapping
+brief: |
+    More than one key/value pair
+yaml: |
+    ---
+    red: baron
+    white: walls
+    blue: berries
+perl: |
+    {
+     red => 'baron',
+     white => 'walls',
+     blue => 'berries',
+    }
+
+---
+name: Values aligned
+brief: |
+    Often times human editors of documents will align the values even
+    though YAML emitters generally don't.
+yaml: |
+    ---
+    red:   baron
+    white: walls
+    blue:  berries
+perl: |
+    {
+     red => 'baron',
+     white => 'walls',
+     blue => 'berries',
+    }
+
+---
+name: Colons aligned
+brief: |
+    Spaces can come before the ': ' key/value separator.
+yaml: |
+    ---
+    red   : baron
+    white : walls
+    blue  : berries
+perl: |
+    {
+     red => 'baron',
+     white => 'walls',
+     blue => 'berries',
+    }
