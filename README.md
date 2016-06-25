@@ -8,6 +8,12 @@ Currently, Potatso is compatible with following proxies:
 
 - [Shadowsocks](https://shadowsocks.org)
 
+[Subscribe Telegram Channel](https://telegram.me/potatso) to get updates of Potatso. 
+
+[Join Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) to chat with users.
+
+Author: [icodesign](https://twitter.com/icodesign_me)
+
 ## Guide
 
 // TODO
@@ -27,7 +33,6 @@ There're two ways you can support us:
 - [Download Potatso from Apple Store](https://itunes.apple.com/us/app/id1070901416). (**Recommended**) 
 
 - Donate with Alipay. (Account: **leewongstudio.com@gmail.com**)
-
 
 ## Acknowlegements
 
