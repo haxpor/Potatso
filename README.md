@@ -31,7 +31,7 @@ There're two ways you can support us:
 
 ## Acknowlegements
 
-We use the following services or open-sourced libraries. So we'd like show them highest respect and thank for bringing those great projects:
+We use the following services or open-source libraries. So we'd like show them highest respect and thank for bringing those great projects:
 
 Services:
 
@@ -39,7 +39,7 @@ Services:
 - [Reveal](http://revealapp.com/)
 - [realm](https://realm.io/)
 
-Open-sourced Libraries:
+Open-source Libraries:
 
 - [KissXML](https://github.com/robbiehanson/KissXML)
 - [MMWormhole](https://github.com/mutualmobile/MMWormhole)
