@@ -1,8 +1,8 @@
 # Potatso ![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
-<a href="https://itunes.apple.com/us/app/id1070901416">![](https://github.com/iCodesign/Potatso-iOS/raw/master/Download.svg)</a>
+<a href="https://itunes.apple.com/us/app/id1070901416">![](https://cdn.rawgit.com/iCodesign/test/master/Download.svg)</a>
 
-Potatso is an iOS client that implements custom proxies with the leverage of Network Extension framework, introduced by Apple since iOS 9.
+Potatso is an iOS client that implements custom proxies with the leverage of Network Extension framework introduced by Apple since iOS 9.
 
 Currently, Potatso is compatible with following proxies:
 
@@ -20,7 +20,7 @@ Currently, Potatso is compatible with following proxies:
 
 ## Support Us
 
-The development covers a lot of complicated work and costs not only money but also time.
+The development covers a lot of complicated work, costing not only money but also time.
 
 There're two ways you can support us:
 
@@ -31,7 +31,7 @@ There're two ways you can support us:
 
 ## Acknowlegements
 
-We use the following services or open-sourced libraries. So we'd like to show our highest respect and thank them for bringing those great projects:
+We use the following services or open-sourced libraries. So we'd like show them highest respect and thank for bringing those great projects:
 
 Services:
 
@@ -66,7 +66,8 @@ Also we'd like to thank people that helped with the project or donated us:
 - [@Blankwonder](https://twitter.com/Blankwonder)
 - [@龙七](#)
 
-And also thank all TestFlight users and [Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) users who provide feedbacks.
+And also thank all TestFlight Users and [Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) Users.
+
 
 Thanks again!
 
