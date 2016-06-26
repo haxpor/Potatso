@@ -16,7 +16,7 @@ Author: [icodesign](https://twitter.com/icodesign_me)
 
 ## Guide
 
-// TODO
+See [Setup Guide](../../wiki/Setup-Guide) for details.
 
 
 ## How To Contribute
