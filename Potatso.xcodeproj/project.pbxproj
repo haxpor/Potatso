@@ -2525,7 +2525,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9dd1eb88e3ce406adfaeb7af1844ed7e370e8e03 222d2a70ba9fd03693ac526038967af529bc74fbb4aafb83b1845a0bb1e50e3a";
+			shellScript = "FABRIC_SECRET=$(/usr/libexec/PlistBuddy -c \"Print :FabricSecret\" \"${PROJECT_DIR}/Confidential/env.plist\")\n\"${PODS_ROOT}/Fabric/run\" 9dd1eb88e3ce406adfaeb7af1844ed7e370e8e03 ${FABRIC_SECRET}";
 		};
 		9B9E946C1CBA6F0A003FBC47 /* Cartahge */ = {
 			isa = PBXShellScriptBuildPhase;
