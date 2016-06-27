@@ -50,7 +50,7 @@ const char deanimate_h_rcs[] = DEANIMATE_H_VERSION;
 
 /*********************************************************************
  *
- * Function    :  buf_free
+ * Function    :  binbuf_free
  *
  * Description :  Safely frees a struct binbuffer
  *
@@ -60,7 +60,7 @@ const char deanimate_h_rcs[] = DEANIMATE_H_VERSION;
  * Returns     :  N/A
  *
  *********************************************************************/
-void buf_free(struct binbuffer *buf)
+void binbuf_free(struct binbuffer *buf)
 {
    if (buf == NULL) return;
 
@@ -457,7 +457,7 @@ int gif_deanimate(struct binbuffer *src, struct binbuffer *dst, int get_first_im
     */
 
 failed:
-   buf_free(image);
+   binbuf_free(image);
    return 1;
 
    /*
@@ -468,7 +468,7 @@ write:
    if (buf_copy(image, dst, image->size)) goto failed;
    if (buf_extend(dst, 1)) goto failed;
    *(dst->buffer + dst->offset++) = 0x3b;
-   buf_free(image);
+   binbuf_free(image);
    return 0;
 
 }

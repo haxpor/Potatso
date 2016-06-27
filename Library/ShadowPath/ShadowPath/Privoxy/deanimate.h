@@ -58,7 +58,7 @@ struct binbuffer
  * Function prototypes
  */
 extern int gif_deanimate(struct binbuffer *src, struct binbuffer *dst, int get_first_image);
-extern void buf_free(struct binbuffer *buf);
+extern void binbuf_free(struct binbuffer *buf);
 
 /*
  * Revision control strings from this header and associated .c file
