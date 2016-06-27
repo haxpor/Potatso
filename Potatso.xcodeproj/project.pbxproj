@@ -2083,9 +2083,9 @@
 				9B8193AE1CBCFEE700BE320D /* Sources */,
 				9B8193AF1CBCFEE700BE320D /* Frameworks */,
 				9B8193B01CBCFEE700BE320D /* Resources */,
-				9B8193EB1CBE37BB00BE320D /* Framework Hack */,
 				284504308BFDFBB533314E62 /* [CP] Embed Pods Frameworks */,
 				0C0171FD77CBD077C0B79F2C /* [CP] Copy Pods Resources */,
+				9B8193EB1CBE37BB00BE320D /* Framework Hack */,
 			);
 			buildRules = (
 			);
@@ -2104,9 +2104,9 @@
 				9B8705F61C1D788F00651424 /* Sources */,
 				9B8705F71C1D788F00651424 /* Frameworks */,
 				9B8705F81C1D788F00651424 /* Resources */,
-				9BC858AF1C34C5AA00992032 /* Framework Hack */,
 				DAE9B2814A9510C221B3EECC /* [CP] Embed Pods Frameworks */,
 				46E2C5B0876EEEFA2316E577 /* [CP] Copy Pods Resources */,
+				9BC858AF1C34C5AA00992032 /* Framework Hack */,
 			);
 			buildRules = (
 			);
@@ -2165,6 +2165,7 @@
 				9BC6FFE71CB28B4B00E5EA61 /* Headers */,
 				9BC6FFE81CB28B4B00E5EA61 /* Resources */,
 				337A8A0CFB5E8647AF33D41C /* [CP] Copy Pods Resources */,
+				B84B4E341D2176D6002B946A /* Framework Hack */,
 			);
 			buildRules = (
 			);
@@ -2631,6 +2632,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		B84B4E341D2176D6002B946A /* Framework Hack */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Framework Hack";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\nrm -fr Frameworks\nfi";
 		};
 		BA4C15DFC5B5BB3A0133C8EF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3334,10 +3349,10 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3366,10 +3381,10 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3398,11 +3413,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PotatsoBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -3425,10 +3440,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PotatsoBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -3451,12 +3466,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -3483,11 +3499,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -3512,11 +3529,11 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3553,10 +3570,10 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 88;
+				CURRENT_PROJECT_VERSION = 89;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 88;
+				DYLIB_CURRENT_VERSION = 89;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
