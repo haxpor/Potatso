@@ -80,9 +80,6 @@ extension RuleSet {
     
 }
 
-extension RuleSet: Equatable {}
-
-
 public func ==(lhs: RuleSet, rhs: RuleSet) -> Bool {
     return lhs.uuid == rhs.uuid
 }
