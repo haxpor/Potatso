@@ -128,8 +128,8 @@ extension Proxy {
                 if !(pc1 < pcm && pcm < pc2) {
                     throw ProxyError.InvalidUri
                 }
-                let fullAuthscheme = proxyString.substringWithRange(proxyString.startIndex..<pc1)
-                if let pOTA = proxyString.rangeOfString("-auth", options: .BackwardsSearch)?.startIndex {
+                let fullAuthscheme = proxyString.lowercaseString.substringWithRange(proxyString.startIndex..<pc1)
+                if let pOTA = fullAuthscheme.rangeOfString("-auth", options: .BackwardsSearch)?.startIndex {
                     self.authscheme = fullAuthscheme.substringToIndex(pOTA)
                     self.ota = true
                 }else {
