@@ -128,6 +128,8 @@ static int max_log_clients_count = 50;
 static int log_clients_count = 0;
 struct file_list     files[1];
 
+struct forward_spec *proxy_list;
+
 #ifdef FEATURE_STATISTICS
 int urls_read     = 0;     /* total nr of urls read inc rejected */
 int urls_rejected = 0;     /* total nr of urls rejected */
@@ -3190,9 +3192,11 @@ static void initialize_mutexes(void)
  *                "File", "Exit" menu option.
  *
  *********************************************************************/
-int shadowpath_main(char *conf_path, shadowpath_cb cb, void *data)
+int shadowpath_main(char *conf_path, struct forward_spec *forward_proxy_list, shadowpath_cb cb, void *data)
 {
     unsigned int random_seed;
+
+    proxy_list = forward_proxy_list;
 
     configfile = conf_path;
 

@@ -88,7 +88,7 @@ void unload_current_re_filterfile(void);
 
 void unload_forward_spec(struct forward_spec *fwd);
 
-void unload_forward_ip_spec(struct forward_ip_spec *fwd);
+void unload_forward_ip_spec(struct forward_spec *fwd);
 
 extern void add_loader(int (*loader)(struct client_state *),
                        struct configuration_spec * config);

@@ -108,7 +108,7 @@ extern privoxy_mutex_t rand_mutex;
 
 typedef void (*shadowpath_cb) (int fd, void*);
 
-int shadowpath_main(char *conf_path, shadowpath_cb cb, void *data);
+extern int shadowpath_main(char *conf_path, struct forward_spec *forward_proxy_list, shadowpath_cb cb, void *data);
 
 extern struct log_client_states *log_clients;
 

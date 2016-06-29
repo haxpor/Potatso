@@ -508,6 +508,11 @@ struct iob
 
 #define ACTION_FORWARD_RESOLVED_IP                   0x10000000UL
 
+#define ACTION_FORWARD_RULE                          0x20000000UL
+
+#define ACTION_PROXY                                 0x40000000UL
+
+
 /** Action string index: How to deanimate GIFs */
 #define ACTION_STRING_DEANIMATE             0
 /** Action string index: Replacement for "From:" header */
@@ -546,9 +551,12 @@ struct iob
 #define ACTION_STRING_CHANGE_X_FORWARDED_FOR 17
 /** Action string index: how many minutes cookies should be valid. */
 #define ACTION_STRING_LIMIT_COOKIE_LIFETIME 18
+/** Action string index: forward resolved ip. */
 #define ACTION_STRING_FORWARD_RESOLVED_IP    19
+/** Action string index: forward rule. */
+#define ACTION_STRING_FORWARD_RULE          20
 /** Number of string actions. */
-#define ACTION_STRING_COUNT                20
+#define ACTION_STRING_COUNT                21
 
 
 
@@ -636,6 +644,8 @@ struct action_spec
 struct url_actions
 {
    struct pattern_spec url[1]; /**< The URL or tag pattern. */
+
+    char *rule;
 
     radix_tree_t *tree;
 
@@ -1165,21 +1175,25 @@ struct forward_spec
    /** Next entry in the linked list. */
    struct forward_spec *next;
 
-    int is_default;
+   int is_default;
 };
 
-struct forward_ip_spec {
-    /** Connection type.  Must be SOCKS_NONE, SOCKS_4, SOCKS_4A or SOCKS_5. */
-    enum forwarder_type type;
-    /** SOCKS server hostname.  Only valid if "type" is SOCKS_4 or SOCKS_4A. */
-    char *gateway_host;
-    /** SOCKS server port. */
-    int   gateway_port;
-    /** Parent HTTP proxy hostname, or NULL for none. */
-    char *forward_host;
-    /** Parent HTTP proxy port. */
-    int   forward_port;
-};
+extern struct forward_spec *proxy_list;
+
+extern struct forward_spec fwd_default[1]; /* Zero'ed due to being static. */
+
+//struct forward_ip_spec {
+//    /** Connection type.  Must be SOCKS_NONE, SOCKS_4, SOCKS_4A or SOCKS_5. */
+//    enum forwarder_type type;
+//    /** SOCKS server hostname.  Only valid if "type" is SOCKS_4 or SOCKS_4A. */
+//    char *gateway_host;
+//    /** SOCKS server port. */
+//    int   gateway_port;
+//    /** Parent HTTP proxy hostname, or NULL for none. */
+//    char *forward_host;
+//    /** Parent HTTP proxy port. */
+//    int   forward_port;
+//};
 
 /* Supported filter types */
 enum filter_type
@@ -1380,7 +1394,7 @@ struct configuration_spec
    /** Information about parent proxies (forwarding). */
    struct forward_spec *forward;
 
-    struct forward_ip_spec *default_route;
+   int global_mode;
 
    /** Number of retries in case a forwarded connection attempt fails */
    int forwarded_connect_retries;

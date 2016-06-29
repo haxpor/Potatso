@@ -137,9 +137,9 @@ extension Rule {
     public var pattern: String {
         switch type {
         case .DomainMatch:
-            return "*\(value)*"
+            return ".\(value)."
         case .DomainSuffix:
-            return ".\(value)/"
+            return ".\(value)"
         default:
             return value
         }
@@ -174,6 +174,7 @@ extension Rule {
         self.type = type
         self.content = [ruleActionKey: action.rawValue, ruleValueKey: value].jsonString() ?? ""
     }
+
     public override var description: String {
         return "\(type), \(value), \(action)"
     }

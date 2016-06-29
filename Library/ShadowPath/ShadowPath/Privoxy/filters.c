@@ -41,6 +41,8 @@ const char filters_rcs[] = "$Id: filters.c,v 1.199 2016/01/16 12:33:35 fabiankei
 #include <ctype.h>
 #include <string.h>
 #include <assert.h>
+#include <inttypes.h>
+#include <sys/errno.h>
 
 #ifndef _WIN32
 #ifndef __OS2__
@@ -81,6 +83,8 @@ typedef char *(*filter_function_ptr)();
 static filter_function_ptr get_filter_function(const struct client_state *csp);
 static jb_err remove_chunked_transfer_coding(char *buffer, size_t *size);
 static jb_err prepare_for_filtering(struct client_state *csp);
+
+struct forward_spec fwd_default[1];
 
 #ifdef FEATURE_ACL
 
@@ -2620,7 +2624,7 @@ struct forward_ip_spec *get_forward_ip_settings(struct client_state *csp)
     char forward_settings[BUFFER_SIZE];
     char *http_parent = NULL;
     /* variable names were chosen for consistency reasons. */
-    struct forward_ip_spec *fwd = NULL;
+    struct forward_spec *fwd = NULL;
     int vec_count;
     char *vec[3];
 
@@ -2637,6 +2641,24 @@ struct forward_ip_spec *get_forward_ip_settings(struct client_state *csp)
          * leaks when the show-url-info cgi page is visited.
          */
         unload_forward_ip_spec(csp->fwd_ip);
+    }
+
+    if (forward_settings == NULL || strlen(forward_settings) == 0) {
+        return fwd_default;
+    }else {
+        uintmax_t num = strtoumax(forward_settings, NULL, 10);
+        if (num == UINTMAX_MAX && errno == ERANGE) {
+            log_error(LOG_LEVEL_FATAL,
+                      "Invalid forward-resolved-ip syntax in: %s", forward_override_line);
+        }else {
+            fwd = proxy_list;
+            while (num --) {
+                if (fwd->next) {
+                    fwd = fwd->next;
+                }
+            }
+            return fwd;
+        }
     }
 
     /*
@@ -2745,11 +2767,9 @@ struct forward_ip_spec *get_forward_ip_settings(struct client_state *csp)
 struct forward_spec *forward_url(struct client_state *csp,
                                        const struct http_request *http)
 {
-    static struct forward_spec fwd_default[1]; /* Zero'ed due to being static. */
-
     fwd_default->is_default = 1;
 
-   struct forward_spec *fwd = csp->config->forward;
+    struct forward_spec *fwd = csp->config->forward;
 
    if (csp->action->flags & ACTION_FORWARD_OVERRIDE)
    {

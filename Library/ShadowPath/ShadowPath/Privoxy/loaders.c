@@ -1034,7 +1034,7 @@ void unload_forward_spec(struct forward_spec *fwd)
    return;
 }
 
-void unload_forward_ip_spec(struct forward_ip_spec *fwd)
+void unload_forward_ip_spec(struct forward_spec *fwd)
 {
     freez(fwd->gateway_host);
     freez(fwd->forward_host);
