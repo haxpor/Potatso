@@ -43,24 +43,24 @@ class UIManager: NSObject, AppLifeCycleProtocol {
     
     func makeChildViewControllers() -> [UIViewController] {
         CurrentGroupManager.shared.group = Manager.sharedManager.defaultConfigGroup
-        let inset = UIEdgeInsetsMake(6, 0, -6, 0)
-        let cons: [(UIViewController.Type, String)] = [(HomeVC.self, "Home"), (RecentRequestsViewController.self, "Dashboard"), (CollectionViewController.self, "Config"), (SettingsViewController.self, "More")]
+//        let inset = UIEdgeInsetsMake(6, 0, -6, 0)
+        let cons: [(UIViewController.Type, String, String)] = [(HomeVC.self, "Home".localized(), "Home"), (RecentRequestsViewController.self, "Statistics".localized(), "Dashboard"), (CollectionViewController.self, "Manage".localized(), "Config"), (SettingsViewController.self, "More".localized(), "More")]
         return cons.map {
             let vc = UINavigationController(rootViewController: $0.init())
-            vc.tabBarItem = UITabBarItem(title: "", image: $1.originalImage, selectedImage: $1.templateImage)
-            vc.tabBarItem.imageInsets = inset
+            vc.tabBarItem = UITabBarItem(title: $1, image: $2.originalImage, selectedImage: $2.templateImage)
+//            vc.tabBarItem.imageInsets = inset
             return vc
         }
     }
     
 }
 
-extension UITabBar {
-    
-    override public func sizeThatFits(size: CGSize) -> CGSize {
-        super.sizeThatFits(size)
-        var sizeThatFits = super.sizeThatFits(size)
-        sizeThatFits.height = 44
-        return sizeThatFits
-    }
-}
+//extension UITabBar {
+//    
+//    override public func sizeThatFits(size: CGSize) -> CGSize {
+//        super.sizeThatFits(size)
+//        var sizeThatFits = super.sizeThatFits(size)
+//        sizeThatFits.height = 44
+//        return sizeThatFits
+//    }
+//}
