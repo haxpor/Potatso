@@ -170,9 +170,6 @@
         NSLog(@"system dns servers: %@", dnsServers);
     }
     NSMutableArray *excludedRoutes = [NSMutableArray array];
-    for (NSString *server in dnsServers) {
-        [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:[server stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] subnetMask:@"255.255.255.255"]];
-    }
     [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"192.168.0.0" subnetMask:@"255.255.0.0"]];
     [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"10.0.0.0" subnetMask:@"255.0.0.0"]];
     [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"172.16.0.0" subnetMask:@"255.240.0.0"]];
@@ -191,7 +188,9 @@
     proxySettings.HTTPSServer = [[NEProxyServer alloc] initWithAddress:proxyServerName port:proxyServerPort];
     proxySettings.excludeSimpleHostnames = YES;
     settings.proxySettings = proxySettings;
-    settings.DNSSettings = [[NEDNSSettings alloc] initWithServers:dnsServers];
+    NEDNSSettings *dnsSettings = [[NEDNSSettings alloc] initWithServers:dnsServers];
+    dnsSettings.matchDomains = @[@""];
+    settings.DNSSettings = dnsSettings;
     [self setTunnelNetworkSettings:settings completionHandler:^(NSError * _Nullable error) {
         if (error) {
             if (completionHandler) {
