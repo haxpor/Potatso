@@ -73,6 +73,13 @@
                 d[[NSString stringWithFormat:@"time%d", i]] = @(client->timestamp[i]);
             }
             d[@"version"] = @(client->http->ver);
+            for (int i = 0; i < ACTION_MULTI_COUNT; i++)
+            {
+                struct list *action_list = client->action->multi[i];
+
+
+            }
+
 //            if (p->headers) {
 //                d[@"headers"] = [NSString stringWithCString:p->headers->string encoding:NSUTF8StringEncoding];
 //            }

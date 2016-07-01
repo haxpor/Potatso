@@ -128,7 +128,7 @@ static int max_log_clients_count = 50;
 static int log_clients_count = 0;
 struct file_list     files[1];
 
-struct forward_spec *proxy_list;
+struct forward_spec *proxy_list = NULL;
 
 #ifdef FEATURE_STATISTICS
 int urls_read     = 0;     /* total nr of urls read inc rejected */

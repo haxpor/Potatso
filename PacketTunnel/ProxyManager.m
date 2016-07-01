@@ -156,6 +156,7 @@ int sock_port (int fd) {
 
 - (void)_startHttpProxy: (NSURL *)confURL {
     struct forward_spec *proxy = (malloc(sizeof(struct forward_spec)));
+    memset(proxy, sizeof(struct forward_spec), 0);
     proxy->type = SOCKS_5;
     proxy->gateway_host = "127.0.0.1";
     proxy->gateway_port = self.shadowsocksProxyPort;

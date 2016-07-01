@@ -293,7 +293,7 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
            struct forward_spec *fwd = NULL;
            if (csp->fwd_ip) {
                fwd = csp->fwd_ip;
-           }else if (csp->config->global_mode) {
+           }else if (csp->config->global_mode && proxy_list != NULL) {
                fwd = proxy_list;
            }
            if (fwd) {

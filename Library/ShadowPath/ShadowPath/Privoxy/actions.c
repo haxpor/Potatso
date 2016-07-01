@@ -543,7 +543,7 @@ jb_err get_actions(char *line,
                            "block action without reason found. This may "
                            "become a fatal error in future versions.");
                      }
-                     else if (0 == strcmpic(action->name, "+forward-url") || 0 == strcmpic(action->name, "+forward-resolved-ip"))
+                     else if (0 == strcmpic(action->name, "+forward-rule") || 0 == strcmpic(action->name, "+forward-resolved-ip"))
                      {
                          value = "";
                      }

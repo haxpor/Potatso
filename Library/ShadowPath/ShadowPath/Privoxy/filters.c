@@ -2384,7 +2384,11 @@ void get_url_actions(struct client_state *csp, struct http_request *http)
          return;
       }
 
-      apply_url_actions(csp->action, http, b);
+       int isRuleAction = b->action && (b->action->add & ACTION_FORWARD_RULE);
+       if (isRuleAction && csp->rule != NULL) {
+           continue;
+       }
+       apply_url_actions(csp->action, csp, b);
    }
 
    return;
@@ -2405,9 +2409,14 @@ void get_ip_actions(struct client_state *csp, struct sockaddr_storage addr)
         {
             return;
         }
-
+        int isRuleAction = b->action && (b->action->add & ACTION_FORWARD_RULE);
+        if (isRuleAction && csp->rule != NULL) {
+            continue;
+        }
         if (apply_ip_actions(csp->action, addr, b) > 0) {
-            break;
+            if (b->rule) {
+                csp->rule = b->rule;
+            }
         }
     }
 
@@ -2433,23 +2442,33 @@ void get_ip_actions(struct client_state *csp, struct sockaddr_storage addr)
  * Returns     :  N/A
  *
  *********************************************************************/
-void apply_url_actions(struct current_action_spec *action,
-                       struct http_request *http,
+int apply_url_actions(struct current_action_spec *action,
+                       struct client_state *csp,
                        struct url_actions *b)
 {
    if (b == NULL)
    {
       /* Should never happen */
-      return;
+      return 0;
    }
 
-   for (b = b->next; NULL != b; b = b->next)
-   {
-      if (url_match(b->url, http))
-      {
-         merge_current_action(action, b->action);
-      }
-   }
+    for (b = b->next; NULL != b; b = b->next)
+    {
+        int have_rule_action = action->string[ACTION_STRING_FORWARD_RULE] != NULL;
+        int is_rule_action = b->action && (b->action->add & ACTION_FORWARD_RULE);
+        if (have_rule_action && is_rule_action) {
+            continue;
+        }
+        if (url_match(b->url, csp->http))
+        {
+            merge_current_action(action, b->action);
+            if (is_rule_action && b->rule) {
+                csp->rule = b->rule;
+            }
+        }
+    }
+    return 0;
+
 }
 
 int apply_ip_actions(struct current_action_spec *action,
@@ -2617,6 +2636,50 @@ static struct forward_spec *get_forward_override_settings(struct client_state *c
    return fwd;
 }
 
+static struct forward_spec *get_forward_rule_settings(struct client_state *csp)
+{
+    const char *forward_override_line = csp->action->string[ACTION_STRING_FORWARD_RULE];
+    char forward_settings[BUFFER_SIZE];
+    char *http_parent = NULL;
+    /* variable names were chosen for consistency reasons. */
+    struct forward_spec *fwd = NULL;
+
+    assert(csp->action->flags & ACTION_FORWARD_RULE);
+    /* Should be enforced by load_one_actions_file() */
+    assert(strlen(forward_override_line) < sizeof(forward_settings) - 1);
+
+    /* Create a copy ssplit can modify */
+    strlcpy(forward_settings, forward_override_line, sizeof(forward_settings));
+
+    if (NULL != csp->fwd)
+    {
+        /*
+         * XXX: Currently necessary to prevent memory
+         * leaks when the show-url-info cgi page is visited.
+         */
+        unload_forward_spec(csp->fwd);
+    }
+
+    if (forward_settings == NULL || strlen(forward_settings) == 0) {
+        return fwd_default;
+    }else {
+        uintmax_t num = strtoumax(forward_settings, NULL, 10);
+        if (num == UINTMAX_MAX && errno == ERANGE) {
+            log_error(LOG_LEVEL_FATAL,
+                      "Invalid forward-resolved-ip syntax in: %s", forward_override_line);
+        }else {
+            fwd = proxy_list;
+            while (num --) {
+                if (fwd->next) {
+                    fwd = fwd->next;
+                }
+            }
+            
+            return fwd;
+        }
+    }
+    return NULL;
+}
 
 struct forward_ip_spec *get_forward_ip_settings(struct client_state *csp)
 {
@@ -2775,6 +2838,11 @@ struct forward_spec *forward_url(struct client_state *csp,
    {
       return get_forward_override_settings(csp);
    }
+
+    if (csp->action->flags & ACTION_FORWARD_RULE)
+    {
+        return get_forward_rule_settings(csp);
+    }
 
    if (fwd == NULL)
    {

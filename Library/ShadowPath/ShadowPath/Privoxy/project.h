@@ -510,8 +510,6 @@ struct iob
 
 #define ACTION_FORWARD_RULE                          0x20000000UL
 
-#define ACTION_PROXY                                 0x40000000UL
-
 
 /** Action string index: How to deanimate GIFs */
 #define ACTION_STRING_DEANIMATE             0
@@ -965,6 +963,8 @@ struct client_state
    struct forward_spec * fwd;
 
    struct forward_ip_spec * fwd_ip;
+
+   char *rule;
 
    int forwarded;
 
