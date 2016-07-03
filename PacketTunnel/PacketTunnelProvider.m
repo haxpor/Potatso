@@ -76,7 +76,7 @@
             if (client->rule && client->rule->rule) {
                 d[@"rule"] = [NSString stringWithCString:client->rule->rule encoding:NSUTF8StringEncoding];
             }
-            d[@"global"] = @(client->config->global_mode);
+            d[@"global"] = @(global_mode);
 //            if (p->headers) {
 //                d[@"headers"] = [NSString stringWithCString:p->headers->string encoding:NSUTF8StringEncoding];
 //            }
@@ -111,32 +111,38 @@
     __block NSError *proxyError;
     dispatch_group_t g = dispatch_group_create();
     dispatch_group_enter(g);
+    NSLog(@"starting shadowsocks....");
     [[ProxyManager sharedManager] startShadowsocks:^(int port, NSError *error) {
         proxyError = error;
         dispatch_group_leave(g);
     }];
     dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
     if (proxyError) {
+        NSLog(@"shadowsocks error: %@", [proxyError localizedDescription]);
         exit(1);
         return;
     }
     dispatch_group_enter(g);
+    NSLog(@"starting http proxy....");
     [[ProxyManager sharedManager] startHttpProxy:^(int port, NSError *error) {
         proxyError = error;
         dispatch_group_leave(g);
     }];
     dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
     if (proxyError) {
+        NSLog(@"http proxy error: %@", [proxyError localizedDescription]);
         exit(1);
         return;
     }
     dispatch_group_enter(g);
+    NSLog(@"starting socks proxy....");
     [[ProxyManager sharedManager] startSocksProxy:^(int port, NSError *error) {
         proxyError = error;
         dispatch_group_leave(g);
     }];
     dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
     if (proxyError) {
+        NSLog(@"socks proxy error: %@", [proxyError localizedDescription]);
         exit(1);
         return;
     }

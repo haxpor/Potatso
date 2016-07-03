@@ -60,8 +60,10 @@ const char actions_rcs[] = "$Id: actions.c,v 1.95 2016/01/16 12:33:35 fabiankeil
 const char actions_h_rcs[] = ACTIONS_H_VERSION;
 
 struct url_actions *po_url_rules = NULL;
+struct url_actions *po_url_rules_tail = NULL;
 
 struct url_actions *po_ip_rules = NULL;
+struct url_actions *po_ip_rules_tail = NULL;
 
 /*
  * We need the main list of options.
@@ -1653,16 +1655,20 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
              }
           }
           if (cur_action->add & ACTION_FORWARD_RULE) {
-              if (po_url_rules) {
-                  po_url_rules->next = perm;
+              if (po_url_rules_tail) {
+                  po_url_rules_tail->next = perm;
+                  po_url_rules_tail = perm;
               }else {
                   po_url_rules = perm;
+                  po_url_rules_tail = po_url_rules;
               }
           }if (cur_action->add & ACTION_FORWARD_RESOLVED_IP) {
-              if (po_ip_rules) {
-                  po_ip_rules->next = perm;
+              if (po_ip_rules_tail) {
+                  po_ip_rules_tail->next = perm;
+                  po_ip_rules_tail = perm;
               }else {
                   po_ip_rules = perm;
+                  po_ip_rules_tail = po_ip_rules;
               }
           }else {
              /* add it to the list */

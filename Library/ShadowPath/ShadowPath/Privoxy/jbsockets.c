@@ -290,7 +290,7 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
        if (csp->fwd->type == SOCKS_NONE && csp->fwd->forward_host == NULL && !csp->forward_determined) {
            csp->forward_determined = 1;
            struct forward_spec *fwd = forward_ip(csp, dst->addr);
-           if (fwd == NULL && csp->config->global_mode) {
+           if (fwd == NULL && global_mode) {
                fwd = proxy_list;
            }
            if (fwd) {

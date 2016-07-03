@@ -1386,8 +1386,6 @@ struct configuration_spec
    /** Information about parent proxies (forwarding). */
    struct forward_spec *forward;
 
-   int global_mode;
-
    /** Number of retries in case a forwarded connection attempt fails */
    int forwarded_connect_retries;
 
@@ -1419,6 +1417,8 @@ struct configuration_spec
    int (*loaders[NLOADERS])(struct client_state *);
 
 };
+
+extern int global_mode;
 
 /** Calculates the number of elements in an array, using sizeof. */
 #define SZ(X)  (sizeof(X) / sizeof(*X))

@@ -36,6 +36,8 @@
 #include "expat.h"
 #endif
 #include "fmemopen.h"
+#include "project.h"
+#include "filters.h"
 
 XML_Parser p;
 
@@ -1265,19 +1267,47 @@ config_isallowed (config_t * conf, conn_t * conn, chain_t ** chain)
         unsigned long ip;
         char *addrtmp = conn->dest.address;
         memcpy (&ip, addrtmp, 4);
-//        ip = ip);
-//        struct in_addr connaddr = { ip };
-//        char *address = strdup(inet_ntoa(connaddr));
-//        PolipoRuleAction action = actionForIP(address, strlen(address));
-//        if (action == RULE_ACTION_BLOCK) {
-//            ret = 2;
-//        }else if (socksParentProxy && (action == RULE_ACTION_PROXY || (action == RULE_ACTION_NONE && defaultToProxy))) {
-//            ret = 3;
-//            *chain = conf->chains;
-//        }else {
-//            ret = 1;
-//        }
-//        free(address);
+
+        struct forward_spec *fwd = NULL;
+
+        if (conn->dest.address_type != AF_INET)
+        {
+            // IPV6
+            return TRUE;
+        }
+        struct sockaddr_in sin;
+        memset(&sin, 0, sizeof(struct sockaddr_in));
+        sin.sin_family = AF_INET;
+        sin.sin_port = htons(conn->dest.port);
+        sin.sin_addr.s_addr = ip;
+
+        char *address = strdup(inet_ntoa(sin.sin_addr));
+
+        NSLog(@"antinat ip: %@", [NSString stringWithCString:address encoding:NSUTF8StringEncoding]);
+
+        struct url_actions *action = po_ip_rules;
+        while (action != NULL) {
+            if (action->tree && radix32tree_find(action->tree, ntohl(sin.sin_addr.s_addr)) != RADIX_NO_VALUE) {
+                fwd = get_forward_rule_settings_by_action(action, ACTION_STRING_FORWARD_RESOLVED_IP);
+                break;
+            }
+            action = action->next;
+        }
+        if (fwd && fwd->type == SOCKS_5 && proxy_list) {
+            ret = 3;
+            *chain = conf->chains;
+        }else {
+            if (action && action->block == 1) {
+                ret = 2;
+            }else {
+                if (global_mode) {
+                    ret = 3;
+                    *chain = conf->chains;
+                }else {
+                    ret = 1;
+                }
+            }
+        }
     }
     
 	if (ret == 1 || ret == 3)

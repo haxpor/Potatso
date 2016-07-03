@@ -94,6 +94,8 @@ extern struct forward_spec *get_forward_ip_settings(struct client_state *csp);
 
 static struct forward_spec *get_forward_rule_settings(struct client_state *csp, struct url_actions *url_action, int which);
 
+extern struct forward_spec *get_forward_rule_settings_by_action(struct url_actions *url_action, int which);
+
 /*
  * Content modification
  */

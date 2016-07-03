@@ -98,6 +98,8 @@ const char *configfile  = NULL;
 
 static struct file_list *current_configfile = NULL;
 
+int global_mode = 0;
+
 
 /*
  * This takes the "cryptic" hash of each keyword and aliases them to
@@ -1154,7 +1156,7 @@ struct configuration_spec * load_config(void)
             break;
 
           case hash_global_mode:
-              config->global_mode = parse_toggle_state(cmd, arg);
+              global_mode = parse_toggle_state(cmd, arg);
               break;
 
 
