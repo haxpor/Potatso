@@ -317,46 +317,34 @@ extension Manager {
         var actionContent: [String] = []
         let rules = defaultConfigGroup.ruleSets.map({ $0.rules }).flatMap({ $0 })
         for rule in rules {
-            if rule.type == .GeoIP {
+            let directRule = "DIRECT@@\(rule.description)"
+            let proxyRule = "PROXY@@\(rule.description)"
+            let blockRule = "BLOCK@@\(rule.description)"
+            switch rule.type {
+            case .GeoIP, .IPCIDR:
+                var action: String
                 switch rule.action {
                 case .Direct:
-                    if (!actionContent.contains(rule.httpProxyRule)) {
-                        actionContent.append("{+forward-resolved-ip}")
-                        actionContent.append(rule.httpProxyRule)
-                    }
+                    action = "{+forward-resolved-ip{\(directRule)}}"
                 case .Proxy:
-                    if (!actionContent.contains(rule.httpProxyRule)) {
-                        actionContent.append("{+forward-resolved-ip{0}}")
-                        actionContent.append(rule.httpProxyRule)
-                    }
+                    action = "{+forward-resolved-ip{\(proxyRule)}}"
                 case .Reject:
-                    break
+                    action = "{+forward-resolved-ip{\(blockRule)}}"
                 }
-            }else if (rule.type == .IPCIDR) {
+                actionContent.append(action)
+                actionContent.append(rule.pattern)
+            default:
+                var action: String
                 switch rule.action {
                 case .Direct:
-                    actionContent.append("{+forward-resolved-ip}")
-                    actionContent.append(rule.httpProxyRule)
+                    action = "{+forward-rule{\(directRule)}}"
                 case .Proxy:
-                    actionContent.append("{+forward-resolved-ip{0}}")
-                    actionContent.append(rule.httpProxyRule)
+                    action = "{+forward-rule{\(proxyRule)}}"
                 case .Reject:
-                    break
+                    action = "{+forward-rule{\(blockRule)}}"
                 }
-            }else {
-                switch rule.action {
-                case .Direct:
-                    actionContent.append("{+forward-rule}")
-                    actionContent.append(rule.httpProxyRule)
-                    break
-                case .Proxy:
-                    actionContent.append("{+forward-rule{0}}")
-                    actionContent.append(rule.httpProxyRule)
-                    break
-                case .Reject:
-                    actionContent.append("{+block{Blocked} +handle-as-empty-document}")
-                    actionContent.append(rule.httpProxyRule)
-                }
+                actionContent.append(action)
+                actionContent.append(rule.pattern)
             }
         }
 
@@ -365,7 +353,7 @@ extension Manager {
 
         // DNS pollution
         if let _ = upstreamProxy {
-            actionContent.append("{+forward-resolved-ip{1}}")
+            actionContent.append("{+forward-resolved-ip{PROXY@@DNS Pollution}}")
             actionContent.appendContentsOf(Pollution.dnsList.map({ $0 + "/32" }))
         }
 
@@ -507,9 +495,3 @@ extension Manager {
     }
 }
 
-extension Rule {
-
-    public var httpProxyRule: String {
-        return "\(pattern)@@\(description)"
-    }
-}

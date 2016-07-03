@@ -59,6 +59,9 @@ const char actions_rcs[] = "$Id: actions.c,v 1.95 2016/01/16 12:33:35 fabiankeil
 
 const char actions_h_rcs[] = ACTIONS_H_VERSION;
 
+struct url_actions *po_url_rules = NULL;
+
+struct url_actions *po_ip_rules = NULL;
 
 /*
  * We need the main list of options.
@@ -542,10 +545,6 @@ jb_err get_actions(char *line,
                         log_error(LOG_LEVEL_ERROR,
                            "block action without reason found. This may "
                            "become a fatal error in future versions.");
-                     }
-                     else if (0 == strcmpic(action->name, "+forward-rule") || 0 == strcmpic(action->name, "+forward-resolved-ip"))
-                     {
-                         value = "";
                      }
                      else
                      {
@@ -1579,15 +1578,6 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
 
          perm->action = cur_action;
          cur_action_used = 1;
-         char *vec[3];
-         char *pattern = NULL, *rule = NULL;
-         int vec_count = ssplit(buf, "@@", vec, SZ(vec));
-         if (vec_count == 1) {
-            pattern = strdup(vec[0]);
-         }else {
-            pattern = strdup(vec[0]);
-            rule = strdup(vec[1]);
-         }
           if (cur_action->add & ACTION_FORWARD_RESOLVED_IP) {
               if (!perm->tree) {
                   radix_tree_t *tree;
@@ -1602,11 +1592,11 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                   perm->tree = tree;
               }
 
-              if (strlen(pattern) <= 4) {
+              if (strlen(buf) <= 4) {
                   // country
                   FILE *geo_fp;
                   char file_name[100];
-                  sprintf(file_name, "geoip-%s.data", pattern);
+                  sprintf(file_name, "geoip-%s.data", buf);
                   char *file_path = make_path(csp->config->confdir, file_name);
                   if ((geo_fp = fopen(file_path, "r")) == NULL)
                   {
@@ -1638,7 +1628,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
               }else {
                   // CIDR
                   struct access_control_addr addr;
-                  if (acl_addr(pattern, &addr) < 0) {
+                  if (acl_addr(buf, &addr) < 0) {
                       log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, port or netmask "
                                 "for geo-ip data in file: \"%s\"", csp->config->actions_file[fileid]);
                       return 1;
@@ -1653,7 +1643,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
               }
           }else {
              /* Save the URL pattern */
-             if (create_pattern_spec(perm->url, pattern))
+             if (create_pattern_spec(perm->url, buf))
              {
                 fclose(fp);
                 log_error(LOG_LEVEL_FATAL,
@@ -1662,11 +1652,23 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                 return 1; /* never get here */
              }
           }
-          perm->rule = rule;
-
-         /* add it to the list */
-         last_perm->next = perm;
-         last_perm = perm;
+          if (cur_action->add & ACTION_FORWARD_RULE) {
+              if (po_url_rules) {
+                  po_url_rules->next = perm;
+              }else {
+                  po_url_rules = perm;
+              }
+          }if (cur_action->add & ACTION_FORWARD_RESOLVED_IP) {
+              if (po_ip_rules) {
+                  po_ip_rules->next = perm;
+              }else {
+                  po_ip_rules = perm;
+              }
+          }else {
+             /* add it to the list */
+             last_perm->next = perm;
+             last_perm = perm;
+          }
       }
       else if (mode == MODE_START_OF_FILE)
       {

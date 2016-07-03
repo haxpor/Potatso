@@ -1804,9 +1804,7 @@ static void chat(struct client_state *csp)
       /* Never get here - LOG_LEVEL_FATAL causes program exit */
       return;
    }
-    csp->fwd = fwd;
-
-
+   csp->fwd = fwd;
 
    /*
     * build the http request to send to the server
@@ -2762,11 +2760,11 @@ static void prepare_csp_for_next_request(struct client_state *csp)
    destroy_list(csp->headers);
    destroy_list(csp->tags);
    free_current_action(csp->action);
-//   if (NULL != csp->fwd && !csp->fwd->is_default)
-//   {
-//      unload_forward_spec(csp->fwd);
-//   }
-    csp->fwd = NULL;
+   if (NULL != csp->fwd && csp->fwd->should_unload)
+   {
+      unload_forward_spec(csp->fwd);
+   }
+   csp->fwd = NULL;
    /* XXX: Store per-connection flags someplace else. */
    csp->flags = (CSP_FLAG_ACTIVE | CSP_FLAG_REUSED_CLIENT_CONNECTION);
    if (toggled_on_flag_set)

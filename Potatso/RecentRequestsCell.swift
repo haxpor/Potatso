@@ -18,8 +18,8 @@ extension RuleAction {
             return "Proxy".image
         case .Reject:
             return "Reject".image
-        default:
-            return nil
+        case .Direct:
+            return "Direct".image
         }
     }
     
@@ -76,14 +76,12 @@ class RecentRequestsCell: UITableViewCell {
             timeLabel.text = nil
         }
         if let rule = request.rule {
-            actionImageView.hidden = false
             actionImageView.image = rule.action.image
         }else {
-            if (request.defaultToProxy) {
+            if (request.globalMode) {
                 actionImageView.image = "Proxy".image
-                actionImageView.hidden = false
             }else {
-                actionImageView.hidden = true
+                actionImageView.image = "Direct".image
             }
         }
         if let version = request.version {
@@ -190,7 +188,6 @@ class RecentRequestsCell: UITableViewCell {
     lazy var actionImageView: UIImageView = {
         let v = UIImageView()
         v.contentMode = .ScaleAspectFit
-        v.hidden = true
         return v
     }()
     

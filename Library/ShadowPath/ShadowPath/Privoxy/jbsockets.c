@@ -287,16 +287,14 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
             gai_strerror(retval));
          continue;
       }
-       if (csp->fwd->type == SOCKS_NONE && csp->fwd->forward_host == NULL && !csp->forwarded) {
-           csp->forwarded = 1;
-           get_ip_actions(csp, dst->addr);
-           struct forward_spec *fwd = NULL;
-           if (csp->fwd_ip) {
-               fwd = csp->fwd_ip;
-           }else if (csp->config->global_mode && proxy_list != NULL) {
+       if (csp->fwd->type == SOCKS_NONE && csp->fwd->forward_host == NULL && !csp->forward_determined) {
+           csp->forward_determined = 1;
+           struct forward_spec *fwd = forward_ip(csp, dst->addr);
+           if (fwd == NULL && csp->config->global_mode) {
                fwd = proxy_list;
            }
            if (fwd) {
+               csp->fwd = fwd;
                int should_direct = 0;
                const char *dest_host;
                int dest_port;

@@ -73,13 +73,10 @@
                 d[[NSString stringWithFormat:@"time%d", i]] = @(client->timestamp[i]);
             }
             d[@"version"] = @(client->http->ver);
-            for (int i = 0; i < ACTION_MULTI_COUNT; i++)
-            {
-                struct list *action_list = client->action->multi[i];
-
-
+            if (client->rule && client->rule->rule) {
+                d[@"rule"] = [NSString stringWithCString:client->rule->rule encoding:NSUTF8StringEncoding];
             }
-
+            d[@"global"] = @(client->config->global_mode);
 //            if (p->headers) {
 //                d[@"headers"] = [NSString stringWithCString:p->headers->string encoding:NSUTF8StringEncoding];
 //            }

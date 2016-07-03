@@ -129,7 +129,7 @@ struct Request {
     var version: String?
     var responseCode: HTTPResponseCode?
     var headers: String?
-    var defaultToProxy: Bool = false
+    var globalMode: Bool = false
     
     init?(dict: [String: AnyObject]) {
         guard let _ = dict["time0"] as? Double, url = dict["url"] as? String, m = dict["method"] as? String, method = HTTPMethod(rawValue: m) else {
@@ -161,11 +161,15 @@ struct Request {
             self.version = v
         }
         self.headers = dict["headers"] as? String
-        if let ruleTypeIntValue = dict["ruleType"] as? Int, ruleType = RuleType.fromInt(ruleTypeIntValue), actionIntValue = dict["ruleAction"] as? Int, action = RuleAction.fromInt(actionIntValue),value = dict["ruleValue"] as? String {
-            self.rule = Rule(type: ruleType, action: action, value: value)
+        if let rule = dict["rule"] as? String {
+            let comps = rule.componentsSeparatedByString("@@")
+            if comps.count == 2 {
+                self.rule = try? Rule(str: comps[1])
+            }
         }
         if let c = dict["responseCode"] as? Int, code = HTTPResponseCode(rawValue: c) {
             self.responseCode = code
         }
+        self.globalMode = dict["global"] as? Bool ?? false
     }
 }
