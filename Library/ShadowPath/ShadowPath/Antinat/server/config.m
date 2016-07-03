@@ -1283,8 +1283,6 @@ config_isallowed (config_t * conf, conn_t * conn, chain_t ** chain)
 
         char *address = strdup(inet_ntoa(sin.sin_addr));
 
-        NSLog(@"antinat ip: %@", [NSString stringWithCString:address encoding:NSUTF8StringEncoding]);
-
         struct url_actions *action = po_ip_rules;
         while (action != NULL) {
             if (action->tree && radix32tree_find(action->tree, ntohl(sin.sin_addr.s_addr)) != RADIX_NO_VALUE) {
