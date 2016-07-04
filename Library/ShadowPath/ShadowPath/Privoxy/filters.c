@@ -2571,80 +2571,56 @@ static struct forward_spec *get_forward_override_settings(struct client_state *c
     return fwd;
 }
 
-static struct forward_spec *get_forward_rule_settings(struct client_state *csp, struct url_actions *url_action, int which)
+//static struct forward_spec *get_forward_rule_settings(struct client_state *csp, struct url_actions *url_action, int which)
+//{
+//    const char *forward_override_line = url_action->action->string[which];
+//    char forward_settings[BUFFER_SIZE];
+//    char *http_parent = NULL;
+//    /* variable names were chosen for consistency reasons. */
+//    struct forward_spec *fwd = NULL;
+//    int vec_count;
+//    char *vec[3];
+//
+//    /* Should be enforced by load_one_actions_file() */
+//    assert(strlen(forward_override_line) < sizeof(forward_settings) - 1);
+//
+//    /* Create a copy ssplit can modify */
+//    strlcpy(forward_settings, forward_override_line, sizeof(forward_settings));
+//
+//    if (NULL != csp->fwd && csp->fwd->should_unload)
+//    {
+//        /*
+//         * XXX: Currently necessary to prevent memory
+//         * leaks when the show-url-info cgi page is visited.
+//         */
+//        unload_forward_spec(csp->fwd);
+//    }
+//
+//    vec_count = ssplit(forward_settings, "@@", vec, SZ(vec));
+//    if (vec_count != 2)
+//    {
+//        log_error(LOG_LEVEL_FATAL,
+//                  "Invalid forward-url syntax in: %s", forward_override_line);
+//        return NULL;
+//    }else {
+//        url_action->rule = forward_override_line;
+//        if (!strcasecmp(vec[0], "PROXY")) {
+//            return proxy_list;
+//        }else if (!strcasecmp(vec[0], "BLOCK")) {
+////            url_action->block = 1;
+//            csp->action->flags |= (ACTION_BLOCK | ACTION_HANDLE_AS_EMPTY_DOCUMENT);
+//            return NULL;
+//        }
+//    }
+//    return NULL;
+//}
+
+struct forward_spec *get_forward_rule_settings_by_action(struct url_actions *url_action)
 {
-    const char *forward_override_line = url_action->action->string[which];
-    char forward_settings[BUFFER_SIZE];
-    char *http_parent = NULL;
-    /* variable names were chosen for consistency reasons. */
-    struct forward_spec *fwd = NULL;
-    int vec_count;
-    char *vec[3];
-
-    /* Should be enforced by load_one_actions_file() */
-    assert(strlen(forward_override_line) < sizeof(forward_settings) - 1);
-
-    /* Create a copy ssplit can modify */
-    strlcpy(forward_settings, forward_override_line, sizeof(forward_settings));
-
-    if (NULL != csp->fwd && csp->fwd->should_unload)
-    {
-        /*
-         * XXX: Currently necessary to prevent memory
-         * leaks when the show-url-info cgi page is visited.
-         */
-        unload_forward_spec(csp->fwd);
-    }
-
-    vec_count = ssplit(forward_settings, "@@", vec, SZ(vec));
-    if (vec_count != 2)
-    {
-        log_error(LOG_LEVEL_FATAL,
-                  "Invalid forward-url syntax in: %s", forward_override_line);
-        return NULL;
-    }else {
-        url_action->rule = forward_override_line;
-        if (!strcasecmp(vec[0], "PROXY")) {
-            return proxy_list;
-        }else if (!strcasecmp(vec[0], "BLOCK")) {
-            url_action->block = 1;
-            csp->action->flags |= (ACTION_BLOCK | ACTION_HANDLE_AS_EMPTY_DOCUMENT);
-            return NULL;
-        }
-    }
-    return NULL;
-}
-
-struct forward_spec *get_forward_rule_settings_by_action(struct url_actions *url_action, int which)
-{
-    const char *forward_override_line = url_action->action->string[which];
-    char forward_settings[BUFFER_SIZE];
-    char *http_parent = NULL;
-    /* variable names were chosen for consistency reasons. */
-    struct forward_spec *fwd = NULL;
-    int vec_count;
-    char *vec[3];
-
-    /* Should be enforced by load_one_actions_file() */
-    assert(strlen(forward_override_line) < sizeof(forward_settings) - 1);
-
-    /* Create a copy ssplit can modify */
-    strlcpy(forward_settings, forward_override_line, sizeof(forward_settings));
-
-    vec_count = ssplit(forward_settings, "@@", vec, SZ(vec));
-    if (vec_count != 2)
-    {
-        log_error(LOG_LEVEL_FATAL,
-                  "Invalid forward-url syntax in: %s", forward_override_line);
-        return NULL;
-    }else {
-        url_action->rule = forward_override_line;
-        if (!strcasecmp(vec[0], "PROXY")) {
-            return proxy_list;
-        }else if (!strcasecmp(vec[0], "BLOCK")) {
-            url_action->block = 1;
-            return NULL;
-        }
+    if (url_action->routing == ROUTE_PROXY) {
+        return proxy_list;
+    } else if (url_action->routing == ROUTE_DIRECT) {
+        return fwd_default;
     }
     return NULL;
 }
@@ -2691,7 +2667,7 @@ struct forward_spec *forward_url(struct client_state *csp,
         if (url_match(action->url, http))
         {
             csp->rule = action;
-            fwd = get_forward_rule_settings(csp, action, ACTION_STRING_FORWARD_RULE);
+            fwd = get_forward_rule_settings_by_action(action);
             break;
         }
         action = action->next;
@@ -2721,7 +2697,7 @@ struct forward_ip_spec *forward_ip(struct client_state *csp, struct sockaddr_sto
     while (action != NULL) {
         if (action->tree && radix32tree_find(action->tree, ntohl(sin->sin_addr.s_addr)) != RADIX_NO_VALUE) {
             csp->rule = action;
-            fwd = get_forward_rule_settings(csp, action, ACTION_STRING_FORWARD_RESOLVED_IP);
+            fwd = get_forward_rule_settings_by_action(action);
             break;
         }
         action = action->next;

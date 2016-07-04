@@ -3193,7 +3193,6 @@ static void initialize_mutexes(void)
 int shadowpath_main(char *conf_path, struct forward_spec *forward_proxy_list, shadowpath_cb cb, void *data)
 {
     unsigned int random_seed;
-
     proxy_list = forward_proxy_list;
 
     configfile = conf_path;
@@ -3412,7 +3411,9 @@ static void listen_loop(shadowpath_cb cb, void *data)
 
     bind_ports_helper(config, bfds);
 
+
     cb(bfds[0], data);
+
 
 #ifdef FEATURE_GRACEFUL_TERMINATION
     while (!g_terminate)

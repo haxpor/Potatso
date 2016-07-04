@@ -314,48 +314,39 @@ extension Manager {
                                              ("actionsfile", "user.action"),
                                              ("global-mode", defaultToProxy),
                                              ]
-        var actionContent: [String] = []
-        let rules = defaultConfigGroup.ruleSets.map({ $0.rules }).flatMap({ $0 })
-        for rule in rules {
-            let directRule = "DIRECT@@\(rule.description)"
-            let proxyRule = "PROXY@@\(rule.description)"
-            let blockRule = "BLOCK@@\(rule.description)"
-            switch rule.type {
-            case .GeoIP, .IPCIDR:
-                var action: String
-                switch rule.action {
-                case .Direct:
-                    action = "{+forward-resolved-ip{\(directRule)}}"
-                case .Proxy:
-                    action = "{+forward-resolved-ip{\(proxyRule)}}"
-                case .Reject:
-                    action = "{+forward-resolved-ip{\(blockRule)}}"
-                }
-                actionContent.append(action)
-                actionContent.append(rule.pattern)
-            default:
-                var action: String
-                switch rule.action {
-                case .Direct:
-                    action = "{+forward-rule{\(directRule)}}"
-                case .Proxy:
-                    action = "{+forward-rule{\(proxyRule)}}"
-                case .Reject:
-                    action = "{+forward-rule{\(blockRule)}}"
-                }
-                actionContent.append(action)
-                actionContent.append(rule.pattern)
-            }
-        }
 
         let mainContent = mainConf.map { "\($0) \($1)"}.joinWithSeparator("\n")
         try mainContent.writeToURL(Potatso.sharedHttpProxyConfUrl(), atomically: true, encoding: NSUTF8StringEncoding)
 
-        // DNS pollution
-        if let _ = upstreamProxy {
-            actionContent.append("{+forward-resolved-ip{PROXY@@DNS Pollution}}")
-            actionContent.appendContentsOf(Pollution.dnsList.map({ $0 + "/32" }))
+
+        var actionContent: [String] = []
+        var forwardRules: [String] = []
+        let rules = defaultConfigGroup.ruleSets.map({ $0.rules }).flatMap({ $0 })
+        var hasGEOIPRule = false
+        for rule in rules {
+            switch rule.type {
+            case .GeoIP, .IPCIDR:
+                if rule.type == .GeoIP {
+                    if hasGEOIPRule {
+                        continue
+                    }
+                    hasGEOIPRule = true
+                }
+                actionContent.append("{+forward-rule}")
+                actionContent.append(rule.description)
+            default:
+                forwardRules.append(rule.description)
+            }
         }
+
+        actionContent.append("{+forward-rule}")
+        actionContent.appendContentsOf(forwardRules)
+
+        // DNS pollution
+//        if let _ = upstreamProxy {
+//            actionContent.append("{+forward-rule}")
+//            actionContent.appendContentsOf(Pollution.dnsList.map({ "IP-CIDR, \($0)/32, PROXY" }))
+//        }
 
         let userActionString = actionContent.joinWithSeparator("\n")
         let userActionUrl = confDirUrl.URLByAppendingPathComponent("user.action")

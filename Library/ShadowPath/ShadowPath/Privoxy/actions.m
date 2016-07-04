@@ -56,6 +56,7 @@ const char actions_rcs[] = "$Id: actions.c,v 1.95 2016/01/16 12:33:35 fabiankeil
 #include "cgi.h"
 #include "ssplit.h"
 #include "filters.h"
+#include <Foundation/Foundation.h>
 
 const char actions_h_rcs[] = ACTIONS_H_VERSION;
 
@@ -534,11 +535,11 @@ jb_err get_actions(char *line,
             case AV_ADD_STRING:
                {
                   /* add single string. */
-
                   if ((value == NULL) || (*value == '\0'))
                   {
-                     if (0 == strcmpic(action->name, "+block"))
-                     {
+
+                        if (0 == strcmpic(action->name, "+block"))
+                        {
                         /*
                          * XXX: Temporary backwards compatibility hack.
                          * XXX: should include line number.
@@ -547,11 +548,15 @@ jb_err get_actions(char *line,
                         log_error(LOG_LEVEL_ERROR,
                            "block action without reason found. This may "
                            "become a fatal error in future versions.");
-                     }
-                     else
-                     {
+                        }
+                        else if (0 == strcmpic(action->name, "+forward-resolved-ip") || 0 == strcmpic(action->name, "+forward-rule") )
+                        {
+                            value = "";
+                        }
+                        else
+                        {
                         return JB_ERR_PARSE;
-                     }
+                        }
                   }
                   /* FIXME: should validate option string here */
                   freez (cur_action->string[action->index]);
@@ -1161,20 +1166,58 @@ static int action_spec_is_valid(struct client_state *csp, const struct action_sp
 
 }
 
-static void separatePattern(const char *buf, char *pattern, char *rule) {
-    pattern = buf;
-    rule = "";
-    char *token;
-    int i = 0;
-    while ((token = strsep(&buf, "@@")) != NULL)
+static void loadGEOIP(char *file_path, radix_tree_t *tree) {
+    FILE *geo_fp;
+    if ((geo_fp = fopen(file_path, "r")) == NULL)
     {
-        if (i==0) {
-            pattern = strdup(token);
-        }else if (i == 2){
-            rule = strdup(token);
-        }
-        i++;
+        log_error(LOG_LEVEL_ERROR, "can't load geoip data file '%s': error opening file: %E",
+                  file_path);
+        freez(file_path);
+        return;
     }
+    unsigned long geo_linenum = 0;
+    char *geo_buf;
+    while (read_config_line(geo_fp, &geo_linenum, &geo_buf) != NULL)
+    {
+        struct access_control_addr addr;
+        if (acl_addr(geo_buf, &addr) < 0) {
+            log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, port or netmask "
+                      "for geo-ip data in file: \"%s\"", file_path);
+            freez(geo_buf);
+            fclose(geo_fp);
+            freez(file_path);
+            return ;
+        }
+        if (addr.addr.ss_family != AF_INET && addr.mask.ss_family != AF_INET) {
+            log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, ipv6 not supported in file: \"%s\"", file_path);
+            freez(geo_buf);
+            fclose(geo_fp);
+            freez(file_path);
+            return ;
+        }
+        struct sockaddr_in *sin = (struct sockaddr_in *)&addr.addr;
+        struct sockaddr_in *mask = (struct sockaddr_in *)&addr.mask;
+        radix32tree_insert(tree, ntohl(sin->sin_addr.s_addr), ntohl(mask->sin_addr.s_addr), 1);
+        freez(geo_buf);
+    }
+    fclose(geo_fp);
+    freez(file_path);
+}
+
+static void loadIPCIDR(char *ipcidr, radix_tree_t *tree) {
+    struct access_control_addr addr;
+    if (acl_addr(ipcidr, &addr) < 0) {
+        log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, port or netmask for geo-ip data ");
+        return ;
+    }
+    if (addr.addr.ss_family != AF_INET && addr.mask.ss_family != AF_INET) {
+        log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, ipv6 not supported ");
+        return ;
+    }
+    struct sockaddr_in *sin = (struct sockaddr_in *)&addr.addr;
+    struct sockaddr_in *mask = (struct sockaddr_in *)&addr.mask;
+    radix32tree_insert(tree, ntohl(sin->sin_addr.s_addr), ntohl(mask->sin_addr.s_addr), 1);
+    freez(ipcidr);
 }
 
 
@@ -1218,6 +1261,8 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
    struct action_alias * alias_list = NULL;
    unsigned long linenum = 0;
    mode = MODE_START_OF_FILE;
+
+    int size = sizeof(struct url_actions);
 
 //    if (current_actions_file[fileid]) {
 //        csp->actions_list[fileid] = current_actions_file[fileid];
@@ -1580,7 +1625,42 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
 
          perm->action = cur_action;
          cur_action_used = 1;
-          if (cur_action->add & ACTION_FORWARD_RESOLVED_IP) {
+          int vec_count;
+          char *vec[3];
+          char desc[BUFFER_SIZE];
+
+          /* Create a copy ssplit can modify */
+          strlcpy(desc, buf, sizeof(desc));
+          perm->rule = strdup_or_die(buf);
+
+          vec_count = ssplit(desc, ", ", vec, SZ(vec));
+
+          if (vec_count != 3) {
+              if (create_pattern_spec(perm->url, buf))
+              {
+                  log_error(LOG_LEVEL_ERROR,
+                            "can't load actions file '%s': line %lu: cannot create URL or TAG pattern from: %s",
+                            csp->config->actions_file[fileid], linenum, buf);
+                  continue;
+              }
+              /* add it to the list */
+              last_perm->next = perm;
+              last_perm = perm;
+              continue;
+          }
+          if (!strcmpic(vec[2], "PROXY")) {
+              perm->routing = ROUTE_PROXY;
+          }else if (!strcmpic(vec[2], "DIRECT")) {
+              perm->routing = ROUTE_DIRECT;
+          }else if (!strcmpic(vec[2], "REJECT")) {
+              perm->routing = ROUTE_BLOCK;
+          }else {
+              log_error(LOG_LEVEL_ERROR,
+                        "can't load actions file '%s': line %lu: cannot parse rule action from: %s",
+                        csp->config->actions_file[fileid], linenum, buf);
+              continue;
+          }
+          if (!strcmpic(vec[0], "GEOIP") || !strcmpic(vec[0], "IP-CIDR")) {
               if (!perm->tree) {
                   radix_tree_t *tree;
                   if ((tree = radix_tree_create()) == NULL)
@@ -1593,76 +1673,21 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                   }
                   perm->tree = tree;
               }
-
-              if (strlen(buf) <= 4) {
-                  // country
-                  FILE *geo_fp;
+              if (!strcmpic(vec[0], "GEOIP")) {
                   char file_name[100];
-                  sprintf(file_name, "geoip-%s.data", buf);
+                  sprintf(file_name, "geoip-%s.data", vec[1]);
                   char *file_path = make_path(csp->config->confdir, file_name);
-                  if ((geo_fp = fopen(file_path, "r")) == NULL)
-                  {
-                      log_error(LOG_LEVEL_ERROR, "can't load geoip data file '%s': error opening file: %E",
-                                file_path);
-                      continue;
-                  }
-                  unsigned long geo_linenum = 0;
-                  char *geo_buf;
-                  while (read_config_line(geo_fp, &geo_linenum, &geo_buf) != NULL)
-                  {
-                      struct access_control_addr addr;
-                      if (acl_addr(geo_buf, &addr) < 0) {
-                          log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, port or netmask "
-                                     "for geo-ip data in file: \"%s\"", file_path);
-                          return 1;
-                      }
-                      if (addr.addr.ss_family != AF_INET && addr.mask.ss_family != AF_INET) {
-                          log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, ipv6 not supported in file: \"%s\"", file_path);
-                          return 1;
-                      }
-                      struct sockaddr_in *sin = (struct sockaddr_in *)&addr.addr;
-                      struct sockaddr_in *mask = (struct sockaddr_in *)&addr.mask;
-                      radix32tree_insert(perm->tree, ntohl(sin->sin_addr.s_addr), ntohl(mask->sin_addr.s_addr), 1);
-                      freez(geo_buf);
-                  }
-                  fclose(geo_fp);
-                  freez(file_path);
-              }else {
+
+                  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                      loadGEOIP(file_path, perm->tree);
+                  });
+              } else if (!strcmpic(vec[0], "IP-CIDR")) {
                   // CIDR
-                  struct access_control_addr addr;
-                  if (acl_addr(buf, &addr) < 0) {
-                      log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, port or netmask "
-                                "for geo-ip data in file: \"%s\"", csp->config->actions_file[fileid]);
-                      return 1;
-                  }
-                  if (addr.addr.ss_family != AF_INET && addr.mask.ss_family != AF_INET) {
-                      log_error(LOG_LEVEL_ERROR, "Invalid ip cidr address, ipv6 not supported in file: \"%s\"", csp->config->actions_file[fileid]);
-                      return 1;
-                  }
-                  struct sockaddr_in *sin = (struct sockaddr_in *)&addr.addr;
-                  struct sockaddr_in *mask = (struct sockaddr_in *)&addr.mask;
-                  radix32tree_insert(perm->tree, ntohl(sin->sin_addr.s_addr), ntohl(mask->sin_addr.s_addr), 1);
+                  char *ipcidr = strdup_or_die(vec[1]);
+                  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                      loadIPCIDR(ipcidr, perm->tree);
+                  });
               }
-          }else {
-             /* Save the URL pattern */
-             if (create_pattern_spec(perm->url, buf))
-             {
-                fclose(fp);
-                log_error(LOG_LEVEL_FATAL,
-                   "can't load actions file '%s': line %lu: cannot create URL or TAG pattern from: %s",
-                   csp->config->actions_file[fileid], linenum, buf);
-                return 1; /* never get here */
-             }
-          }
-          if (cur_action->add & ACTION_FORWARD_RULE) {
-              if (po_url_rules_tail) {
-                  po_url_rules_tail->next = perm;
-                  po_url_rules_tail = perm;
-              }else {
-                  po_url_rules = perm;
-                  po_url_rules_tail = po_url_rules;
-              }
-          }if (cur_action->add & ACTION_FORWARD_RESOLVED_IP) {
               if (po_ip_rules_tail) {
                   po_ip_rules_tail->next = perm;
                   po_ip_rules_tail = perm;
@@ -1670,10 +1695,34 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                   po_ip_rules = perm;
                   po_ip_rules_tail = po_ip_rules;
               }
-          }else {
-             /* add it to the list */
-             last_perm->next = perm;
-             last_perm = perm;
+          }else if (!strcmpic(vec[0], "DOMAIN") || !strcmpic(vec[0], "DOMAIN-MATCH") || !strcmpic(vec[0], "URL") || !strcmpic(vec[0], "DOMAIN-SUFFIX")){
+              char pattern[500];
+              if (!strcmpic(vec[0], "DOMAIN-MATCH")) {
+                  sprintf(pattern, ".%s.", vec[1]);
+              }else if (!strcmpic(vec[0], "DOMAIN-SUFFIX")) {
+                  sprintf(pattern, ".%s", vec[1]);
+              }else{
+                  sprintf(pattern, "%s", vec[1]);
+              }
+              if (create_pattern_spec(perm->url, pattern))
+              {
+                  log_error(LOG_LEVEL_ERROR,
+                            "can't load actions file '%s': line %lu: cannot create URL or TAG pattern from: %s",
+                            csp->config->actions_file[fileid], linenum, buf);
+                  continue;
+              }
+              if (po_url_rules_tail) {
+                  po_url_rules_tail->next = perm;
+                  po_url_rules_tail = perm;
+              }else {
+                  po_url_rules = perm;
+                  po_url_rules_tail = po_url_rules;
+              }
+          }else{
+              log_error(LOG_LEVEL_ERROR,
+                        "can't load actions file '%s': line %lu: cannot parse IP rule type from: %s",
+                        csp->config->actions_file[fileid], linenum, buf);
+              continue;
           }
       }
       else if (mode == MODE_START_OF_FILE)

@@ -140,23 +140,12 @@ int sock_port (int fd) {
 
 - (void)startHttpProxy:(HttpProxyCompletion)completion {
     self.httpCompletion = [completion copy];
-//    NSURL *newConfURL = [[Potatso sharedUrl] URLByAppendingPathComponent:@"http.xxx"];
-    NSURL *confURL = [Potatso sharedHttpProxyConfUrl];
-    NSString *content = [NSString stringWithContentsOfURL:confURL encoding:NSUTF8StringEncoding error:nil];
-    content = [content stringByReplacingOccurrencesOfString:@"${ssport}" withString:[NSString stringWithFormat:@"%d", self.shadowsocksProxyPort]];
-    [content writeToURL:confURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-
-    NSURL *actionURL = [[Potatso sharedUrl] URLByAppendingPathComponent:@"httpconf/user.action"];
-    content = [NSString stringWithContentsOfURL:actionURL encoding:NSUTF8StringEncoding error:nil];
-    content = [content stringByReplacingOccurrencesOfString:@"${ssport}" withString:[NSString stringWithFormat:@"%d", self.shadowsocksProxyPort]];
-    [content writeToURL:actionURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-
-    [NSThread detachNewThreadSelector:@selector(_startHttpProxy:) toTarget:self withObject:confURL];
+    [NSThread detachNewThreadSelector:@selector(_startHttpProxy:) toTarget:self withObject:[Potatso sharedHttpProxyConfUrl]];
 }
 
 - (void)_startHttpProxy: (NSURL *)confURL {
     struct forward_spec *proxy = (malloc(sizeof(struct forward_spec)));
-    memset(proxy, sizeof(struct forward_spec), 0);
+    memset(proxy, 0, sizeof(struct forward_spec));
     proxy->type = SOCKS_5;
     proxy->gateway_host = "127.0.0.1";
     proxy->gateway_port = self.shadowsocksProxyPort;

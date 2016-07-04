@@ -162,10 +162,7 @@ struct Request {
         }
         self.headers = dict["headers"] as? String
         if let rule = dict["rule"] as? String {
-            let comps = rule.componentsSeparatedByString("@@")
-            if comps.count == 2 {
-                self.rule = try? Rule(str: comps[1])
-            }
+            self.rule = try? Rule(str: rule)
         }
         if let c = dict["responseCode"] as? Int, code = HTTPResponseCode(rawValue: c) {
             self.responseCode = code

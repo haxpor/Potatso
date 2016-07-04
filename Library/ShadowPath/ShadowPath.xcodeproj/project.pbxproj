@@ -31,7 +31,7 @@
 		B82847791CEB109700820456 /* ssplit.h in Headers */ = {isa = PBXBuildFile; fileRef = B82847771CEB109700820456 /* ssplit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B828477C1CEB10AA00820456 /* jbsockets.c in Sources */ = {isa = PBXBuildFile; fileRef = B828477A1CEB10AA00820456 /* jbsockets.c */; };
 		B828477D1CEB10AA00820456 /* jbsockets.h in Headers */ = {isa = PBXBuildFile; fileRef = B828477B1CEB10AA00820456 /* jbsockets.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B82847801CEB10B800820456 /* actions.c in Sources */ = {isa = PBXBuildFile; fileRef = B828477E1CEB10B800820456 /* actions.c */; };
+		B82847801CEB10B800820456 /* actions.m in Sources */ = {isa = PBXBuildFile; fileRef = B828477E1CEB10B800820456 /* actions.m */; };
 		B82847811CEB10B800820456 /* actions.h in Headers */ = {isa = PBXBuildFile; fileRef = B828477F1CEB10B800820456 /* actions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82847841CEB10BF00820456 /* cgi.c in Sources */ = {isa = PBXBuildFile; fileRef = B82847821CEB10BF00820456 /* cgi.c */; };
 		B82847851CEB10BF00820456 /* cgi.h in Headers */ = {isa = PBXBuildFile; fileRef = B82847831CEB10BF00820456 /* cgi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -378,7 +378,7 @@
 		B82847771CEB109700820456 /* ssplit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssplit.h; sourceTree = "<group>"; };
 		B828477A1CEB10AA00820456 /* jbsockets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jbsockets.c; sourceTree = "<group>"; };
 		B828477B1CEB10AA00820456 /* jbsockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jbsockets.h; sourceTree = "<group>"; };
-		B828477E1CEB10B800820456 /* actions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = actions.c; sourceTree = "<group>"; };
+		B828477E1CEB10B800820456 /* actions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = actions.m; sourceTree = "<group>"; };
 		B828477F1CEB10B800820456 /* actions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = actions.h; sourceTree = "<group>"; };
 		B82847821CEB10BF00820456 /* cgi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cgi.c; sourceTree = "<group>"; };
 		B82847831CEB10BF00820456 /* cgi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cgi.h; sourceTree = "<group>"; };
@@ -749,7 +749,7 @@
 			children = (
 				B828475D1CEB0E1D00820456 /* pcre */,
 				B828478E1CEB10E200820456 /* actionlist.h */,
-				B828477E1CEB10B800820456 /* actions.c */,
+				B828477E1CEB10B800820456 /* actions.m */,
 				B828477F1CEB10B800820456 /* actions.h */,
 				B82847821CEB10BF00820456 /* cgi.c */,
 				B82847831CEB10BF00820456 /* cgi.h */,
@@ -1631,7 +1631,7 @@
 				B86B05681D17DABB00613014 /* read.c in Sources */,
 				B8D0CD691CF1AF60007282A7 /* radix.c in Sources */,
 				B86B07E51D17DABB00613014 /* udns_misc.c in Sources */,
-				B82847801CEB10B800820456 /* actions.c in Sources */,
+				B82847801CEB10B800820456 /* actions.m in Sources */,
 				B82847841CEB10BF00820456 /* cgi.c in Sources */,
 				B82D7D7F1CEC6BCE00357F5F /* AntinatServer.m in Sources */,
 				B82847881CEB10C900820456 /* deanimate.c in Sources */,
@@ -1894,6 +1894,7 @@
 		B8DEFD841CE9C923003FC706 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

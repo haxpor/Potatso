@@ -630,6 +630,12 @@ struct action_spec
    struct list multi_add[ACTION_MULTI_COUNT][1];
 };
 
+enum forward_routing {
+    ROUTE_PROXY =  0,
+    ROUTE_DIRECT = 1,
+    ROUTE_BLOCK = 2,
+};
+
 
 /**
  * This structure is used to store action files.
@@ -641,19 +647,19 @@ struct action_spec
  */
 struct url_actions
 {
-   struct pattern_spec url[1]; /**< The URL or tag pattern. */
+    struct pattern_spec url[1]; /**< The URL or tag pattern. */
 
     char *rule;
 
-    int block;
+    enum forward_routing routing;
 
     radix_tree_t *tree;
 
-   struct action_spec *action; /**< Action settings that might be shared with
+    struct action_spec *action; /**< Action settings that might be shared with
                                     the list entry before or after the current
                                     one and can't be free'd willy nilly. */
 
-   struct url_actions *next;   /**< Next action section in file, or NULL. */
+    struct url_actions *next;   /**< Next action section in file, or NULL. */
 };
 
 enum forwarder_type {

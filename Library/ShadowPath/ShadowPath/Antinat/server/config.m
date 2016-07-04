@@ -1286,16 +1286,16 @@ config_isallowed (config_t * conf, conn_t * conn, chain_t ** chain)
         struct url_actions *action = po_ip_rules;
         while (action != NULL) {
             if (action->tree && radix32tree_find(action->tree, ntohl(sin.sin_addr.s_addr)) != RADIX_NO_VALUE) {
-                fwd = get_forward_rule_settings_by_action(action, ACTION_STRING_FORWARD_RESOLVED_IP);
+                fwd = get_forward_rule_settings_by_action(action);
                 break;
             }
             action = action->next;
         }
-        if (fwd && fwd->type == SOCKS_5 && proxy_list) {
+        if (fwd && fwd->type == SOCKS_5) {
             ret = 3;
             *chain = conf->chains;
         }else {
-            if (action && action->block == 1) {
+            if (action && action->routing == ROUTE_BLOCK) {
                 ret = 2;
             }else {
                 if (global_mode) {
