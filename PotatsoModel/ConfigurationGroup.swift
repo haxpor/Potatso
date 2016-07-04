@@ -33,7 +33,7 @@ extension ConfigurationGroupError: CustomStringConvertible {
 public class ConfigurationGroup: BaseModel {
     public dynamic var editable = true
     public dynamic var name = ""
-    public dynamic var defaultToProxy = true
+    public dynamic var defaultToProxy = false
     public dynamic var dns = ""
     public let proxies = List<Proxy>()
     public let ruleSets = List<RuleSet>()

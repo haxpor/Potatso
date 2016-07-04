@@ -220,7 +220,7 @@ extension Manager {
     }
     
     var defaultToProxy: Bool {
-        return defaultConfigGroup.defaultToProxy ?? false
+        return upstreamProxy != nil && defaultConfigGroup.defaultToProxy
     }
     
     func generateGeneralConfig() throws {
@@ -318,7 +318,6 @@ extension Manager {
         let mainContent = mainConf.map { "\($0) \($1)"}.joinWithSeparator("\n")
         try mainContent.writeToURL(Potatso.sharedHttpProxyConfUrl(), atomically: true, encoding: NSUTF8StringEncoding)
 
-
         var actionContent: [String] = []
         var forwardRules: [String] = []
         let rules = defaultConfigGroup.ruleSets.map({ $0.rules }).flatMap({ $0 })
@@ -343,10 +342,10 @@ extension Manager {
         actionContent.appendContentsOf(forwardRules)
 
         // DNS pollution
-//        if let _ = upstreamProxy {
-//            actionContent.append("{+forward-rule}")
-//            actionContent.appendContentsOf(Pollution.dnsList.map({ "IP-CIDR, \($0)/32, PROXY" }))
-//        }
+        if let _ = upstreamProxy {
+            actionContent.append("{+forward-rule}")
+            actionContent.appendContentsOf(Pollution.dnsList.map({ "IP-CIDR, \($0)/32, PROXY" }))
+        }
 
         let userActionString = actionContent.joinWithSeparator("\n")
         let userActionUrl = confDirUrl.URLByAppendingPathComponent("user.action")

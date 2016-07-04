@@ -144,11 +144,14 @@ int sock_port (int fd) {
 }
 
 - (void)_startHttpProxy: (NSURL *)confURL {
-    struct forward_spec *proxy = (malloc(sizeof(struct forward_spec)));
-    memset(proxy, 0, sizeof(struct forward_spec));
-    proxy->type = SOCKS_5;
-    proxy->gateway_host = "127.0.0.1";
-    proxy->gateway_port = self.shadowsocksProxyPort;
+    struct forward_spec *proxy = NULL;
+    if (self.shadowsocksProxyPort > 0) {
+        proxy = (malloc(sizeof(struct forward_spec)));
+        memset(proxy, 0, sizeof(struct forward_spec));
+        proxy->type = SOCKS_5;
+        proxy->gateway_host = "127.0.0.1";
+        proxy->gateway_port = self.shadowsocksProxyPort;
+    }
     shadowpath_main(strdup([[confURL path] UTF8String]), proxy, http_proxy_handler, (__bridge void *)self);
 }
 

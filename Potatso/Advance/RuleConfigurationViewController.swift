@@ -67,7 +67,7 @@ class RuleConfigurationViewController: FormViewController {
             <<< PushRow<RuleType>(kRuleFormType) {
                 $0.title = "Type".localized()
                 $0.selectorTitle = "Choose type of rule".localized()
-                $0.options = [RuleType.URL, RuleType.DomainSuffix, RuleType.DomainMatch, RuleType.IPCIDR, RuleType.GeoIP]
+                $0.options = [RuleType.URL, RuleType.DomainSuffix, RuleType.DomainMatch, RuleType.Domain, RuleType.IPCIDR, RuleType.GeoIP]
                 $0.value = self.rule.type
                 $0.disabled = Condition(booleanLiteral: !editable)
                 }.cellSetup({ (cell, row) -> () in

@@ -604,7 +604,7 @@ struct http_response *block_url(struct client_state *csp)
    /*
     * If it's not blocked, don't block it ;-)
     */
-   if ((csp->action->flags & ACTION_BLOCK) == 0)
+   if ((csp->action->flags & ACTION_BLOCK) == 0 && !(csp->rule != NULL && csp->rule->routing == ROUTE_BLOCK))
    {
       return NULL;
    }
@@ -686,7 +686,7 @@ struct http_response *block_url(struct client_state *csp)
    }
    else
 #endif /* def FEATURE_IMAGE_BLOCKING */
-   if (csp->action->flags & ACTION_HANDLE_AS_EMPTY_DOCUMENT)
+   if (csp->action->flags & ACTION_HANDLE_AS_EMPTY_DOCUMENT || (csp->rule != NULL && csp->rule->routing == ROUTE_BLOCK))
    {
      /*
       *  Send empty document.
