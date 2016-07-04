@@ -1,6 +1,6 @@
 # Potatso ![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
-<a href="https://itunes.apple.com/us/app/id1070901416">![](https://cdn.rawgit.com/iCodesign/test/master/Download.svg)</a>
+<a href="https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8">![](https://cdn.rawgit.com/iCodesign/test/master/Download.svg)</a>
 
 Potatso is an iOS client that implements custom proxies with the leverage of Network Extension framework introduced by Apple since iOS 9.
 
@@ -30,7 +30,7 @@ The development covers a lot of complicated work, costing not only money but als
 
 There're two ways you can support us:
 
-- [Download Potatso from Apple Store](https://itunes.apple.com/us/app/id1070901416). (**Recommended**) 
+- [Download Potatso from Apple Store](https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8). (**Recommended**) 
 
 - Donate with Alipay. (Account: **leewongstudio.com@gmail.com**)
 
