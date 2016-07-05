@@ -11,9 +11,11 @@
 
 #import <asl.h>
 #import "HMScannerViewController.h"
+#import "Receipt.h"
 @import CocoaLumberjack;
 @import PotatsoLibrary;
 @import PotatsoModel;
 @import Appirater;
+@import Crashlytics;
 
 #endif /* Potatso_Bridge_Header_h */

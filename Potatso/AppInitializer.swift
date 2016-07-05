@@ -10,7 +10,6 @@ import Foundation
 import ICSMainFramework
 import Appirater
 import Fabric
-import Crashlytics
 
 let appID = "1070901416"
 

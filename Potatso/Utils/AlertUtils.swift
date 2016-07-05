@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Alert {
-    
-    static func show(vc: UIViewController, title: String? = nil, message: String? = nil, confirmCallback: (() -> Void)?, cancelCallback: (() -> Void)?) {
+class Alert: NSObject {
+
+    static func show(vc: UIViewController, title: String? = nil, message: String? = nil, confirmMessage: String = "OK".localized(), confirmCallback: (() -> Void)?, cancelMessage: String = "CANCEL".localized(), cancelCallback: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK".localized(), style: .Default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: confirmMessage, style: .Default, handler: { (action) in
             confirmCallback?()
         }))
-        alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .Cancel, handler: { (action) in
+        alert.addAction(UIAlertAction(title: cancelMessage, style: .Cancel, handler: { (action) in
             cancelCallback?()
         }))
         vc.presentViewController(alert, animated: true, completion: nil)

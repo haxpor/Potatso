@@ -30,6 +30,7 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        Receipt.shared.validate()
         deleteOrphanRules()
         let uuids = defaultRealm.objects(RuleSet).filter("isSubscribe = true").map({$0.uuid})
         API.updateRuleSetListDetail(uuids) { (response) in
