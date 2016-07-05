@@ -1291,14 +1291,16 @@ config_isallowed (config_t * conf, conn_t * conn, chain_t ** chain)
             }
             action = action->next;
         }
-        if (fwd && fwd->type == SOCKS_5) {
+        if (fwd && fwd->type == SOCKS_5 && proxy_list) {
             ret = 3;
             *chain = conf->chains;
         }else {
             if (action && action->routing == ROUTE_BLOCK) {
                 ret = 2;
             }else {
-                if (global_mode) {
+                if (fwd && fwd->type == SOCKS_NONE) {
+                    ret = 1;
+                }else if (global_mode && proxy_list) {
                     ret = 3;
                     *chain = conf->chains;
                 }else {
