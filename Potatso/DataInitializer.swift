@@ -29,8 +29,11 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
         _ = try? Manager.sharedManager.regenerateConfigFiles()
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationWillEnterForeground(application: UIApplication) {
         Receipt.shared.validate()
+    }
+
+    func applicationDidBecomeActive(application: UIApplication) {
         deleteOrphanRules()
         let uuids = defaultRealm.objects(RuleSet).filter("isSubscribe = true").map({$0.uuid})
         API.updateRuleSetListDetail(uuids) { (response) in

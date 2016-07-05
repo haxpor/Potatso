@@ -25,6 +25,13 @@
 				<string>Potatso.DataInitializer</string>
 			</dict>
 		</array>
+		<key>willEnterForeground</key>
+		<array>
+			<dict>
+				<key>object</key>
+				<string>Potatso.DataInitializer</string>
+			</dict>
+		</array>
 		<key>didReceiveRemoteNotificationFetchCompletionHandler</key>
 		<array>
 			<dict>

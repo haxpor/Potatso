@@ -64,7 +64,7 @@ class Receipt: NSObject, SKRequestDelegate {
 
     // MARK: - SKRequestDelegate
 
-    private func requestDidFinish(request: SKRequest) {
+    @objc func requestDidFinish(request: SKRequest) {
         guard let receiptPath = NSBundle.mainBundle().appStoreReceiptURL?.path where NSFileManager.defaultManager().fileExistsAtPath(receiptPath) else {
             failAndTerminate()
             return
@@ -72,7 +72,7 @@ class Receipt: NSObject, SKRequestDelegate {
         validateReceipt(receiptPath, tryAgain: false)
     }
 
-    private func request(request: SKRequest, didFailWithError error: NSError) {
+    @objc func request(request: SKRequest, didFailWithError error: NSError) {
         failAndTerminate()
     }
 
