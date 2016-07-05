@@ -1698,7 +1698,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
           }else if (!strcmpic(vec[0], "DOMAIN") || !strcmpic(vec[0], "DOMAIN-MATCH") || !strcmpic(vec[0], "URL") || !strcmpic(vec[0], "DOMAIN-SUFFIX")){
               char pattern[500];
               if (!strcmpic(vec[0], "DOMAIN-MATCH")) {
-                  sprintf(pattern, ".%s.", vec[1]);
+                  sprintf(pattern, ".*%s*.", vec[1]);
               }else if (!strcmpic(vec[0], "DOMAIN-SUFFIX")) {
                   sprintf(pattern, ".%s", vec[1]);
               }else{

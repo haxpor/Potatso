@@ -18,9 +18,5 @@ enum Event: String {
 }
 
 func logEvent(event: Event, attributes: [String: AnyObject]?) {
-    #if DEBUG
-        // Don't log
-    #else
-        Answers.logCustomEventWithName(event.rawValue, customAttributes: attributes)
-    #endif
+    Answers.logCustomEventWithName(event.rawValue, customAttributes: attributes)
 }

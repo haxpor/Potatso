@@ -17,7 +17,11 @@ class AppInitializer: NSObject, AppLifeCycleProtocol {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         configLogging()
-        Fabric.with([Answers.self, Crashlytics.self])
+        #if DEBUG
+            // Don't log
+        #else
+            Fabric.with([Answers.self, Crashlytics.self])
+        #endif
         configAppirater()
         return true
     }

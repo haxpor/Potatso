@@ -134,16 +134,6 @@ extension Rule {
         return json?[ruleValueKey] as? String ?? ""
     }
 
-    public var pattern: String {
-        switch type {
-        case .DomainMatch:
-            return ".\(value)."
-        case .DomainSuffix:
-            return ".\(value)"
-        default:
-            return value
-        }
-    }
 }
 
 extension Rule {
