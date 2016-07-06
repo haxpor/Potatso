@@ -1,0 +1,3 @@
+/Library/* linguist-vendored=true
+/PacketProcessor/tun2socks-iOS/* linguist-vendored=true
+/Carthage/* linguist-vendored=true

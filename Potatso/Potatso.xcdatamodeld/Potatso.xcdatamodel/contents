@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="ConfigurationGroup" representedClassName="ConfigurationGroup" syncable="YES">
+        <attribute name="createAt" attributeType="Date" syncable="YES"/>
+        <attribute name="defaultToProxy" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="dns" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="editable" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="proxies" toMany="YES" deletionRule="Nullify" destinationEntity="Proxy" inverseName="groups" inverseEntity="Proxy" syncable="YES"/>
+        <relationship name="ruleSets" toMany="YES" deletionRule="Nullify" destinationEntity="RuleSet" inverseName="groups" inverseEntity="RuleSet" syncable="YES"/>
+    </entity>
+    <entity name="Proxy" representedClassName="Proxy" syncable="YES">
+        <attribute name="authscheme" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createAt" attributeType="Date" syncable="YES"/>
+        <attribute name="host" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="port" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groups" toMany="YES" deletionRule="Nullify" destinationEntity="ConfigurationGroup" inverseName="proxies" inverseEntity="ConfigurationGroup" syncable="YES"/>
+    </entity>
+    <entity name="Rule" representedClassName="Rule" syncable="YES">
+        <attribute name="createAt" attributeType="Date" syncable="YES"/>
+        <attribute name="script" attributeType="String" syncable="YES"/>
+        <attribute name="values" attributeType="String" syncable="YES"/>
+        <relationship name="ruleSets" toMany="YES" deletionRule="Nullify" destinationEntity="RuleSet" inverseName="rules" inverseEntity="RuleSet" syncable="YES"/>
+    </entity>
+    <entity name="RuleSet" representedClassName="RuleSet" syncable="YES">
+        <attribute name="createAt" attributeType="Date" syncable="YES"/>
+        <attribute name="editable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="groups" toMany="YES" deletionRule="Nullify" destinationEntity="ConfigurationGroup" inverseName="ruleSets" inverseEntity="ConfigurationGroup" syncable="YES"/>
+        <relationship name="rules" toMany="YES" deletionRule="Nullify" destinationEntity="Rule" inverseName="ruleSets" inverseEntity="Rule" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ConfigurationGroup" positionX="117" positionY="-54" width="128" height="150"/>
+        <element name="Proxy" positionX="-54" positionY="-9" width="128" height="178"/>
+        <element name="Rule" positionX="187" positionY="287" width="128" height="103"/>
+        <element name="RuleSet" positionX="349" positionY="62" width="128" height="120"/>
+    </elements>
+</model>

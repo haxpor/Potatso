@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Potatso
+
+  Created by LEI on 4/19/16.
+  Copyright © 2016 TouchingApp. All rights reserved.
+*/
+
+"widget.none" = "无";
+"widget.connect" = "连接";
+"widget.disconnect" = "关闭";
