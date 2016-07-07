@@ -99,7 +99,24 @@ class ProxyConfigurationViewController: FormViewController {
             }
             <<< PushRow<String>(kProxyFormEncryption) {
                 $0.title = "Encryption".localized()
-                $0.options = ["rc4-md5", "table", "salsa20", "chacha20", "aes-256-cfb", "aes-192-cfb", "aes-128-cfb", "bf-cfb", "cast5-cfb", "des-cfb", "rc2-cfb", "rc4", "seed-cfb"]
+                $0.options = ["table",
+                              "rc4",
+                              "rc4-md5",
+                              "aes-128-cfb",
+                              "aes-192-cfb",
+                              "aes-256-cfb",
+                              "bf-cfb",
+                              "camellia-128-cfb",
+                              "camellia-192-cfb",
+                              "camellia-256-cfb",
+                              "cast5-cfb",
+                              "des-cfb",
+                              "idea-cfb",
+                              "rc2-cfb",
+                              "seed-cfb",
+                              "salsa20",
+                              "chacha20",
+                              "chacha20-ietf"]
                 $0.value = self.upstreamProxy.authscheme ?? $0.options[0]
                 $0.selectorTitle = "Choose encryption method".localized()
                 $0.hidden = Condition.Function([kProxyFormType]) { form in
