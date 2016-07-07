@@ -68,7 +68,7 @@ extension RuleSet {
         }
         self.name = name
         if realm.objects(RuleSet).filter("name = '\(name)'").first != nil {
-            self.name = RuleSet.dateFormatter.stringFromDate(NSDate())
+            self.name = "\(name) \(RuleSet.dateFormatter.stringFromDate(NSDate()))"
         }
         guard let rulesStr = dictionary["rules"] as? [String] else {
             throw RuleSetError.InvalidRuleSet

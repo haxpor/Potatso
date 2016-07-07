@@ -9,7 +9,8 @@
 import RealmSwift
 
 public enum ProxyType: String {
-    case Shadowsocks = "SHADOWSOCKS"
+    case Shadowsocks = "SS"
+    case ShadowsocksR = "SSR"
     case Https = "HTTPS"
     case Socks5 = "SOCKS5"
     case None = "NONE"
@@ -19,6 +20,10 @@ extension ProxyType: CustomStringConvertible {
     
     public var description: String {
         return rawValue
+    }
+
+    public var isShadowsocks: Bool {
+        return self == .Shadowsocks || self == .ShadowsocksR
     }
     
 }
@@ -64,10 +69,16 @@ public class Proxy: BaseModel {
     public dynamic var name = ""
     public dynamic var host = ""
     public dynamic var port = 0
-    public dynamic var authscheme: String?
+    public dynamic var authscheme: String?  // method in SS
     public dynamic var user: String?
     public dynamic var password: String?
     public dynamic var ota: Bool = false
+    public dynamic var ssrProtocol: String?
+    public dynamic var ssrObfs: String?
+    public dynamic var ssrObfsParam: String?
+
+    static let ssUriPrefix = "ss://"
+    static let ssrUriPrefix = "ssr://"
 
     public func validate(inRealm realm: Realm) throws {
         guard let _ = ProxyType(rawValue: typeRaw)else {
@@ -86,7 +97,7 @@ public class Proxy: BaseModel {
             throw ProxyError.InvalidPort
         }
         switch type {
-        case .Shadowsocks:
+        case .Shadowsocks, .ShadowsocksR:
             guard let _ = authscheme else {
                 throw ProxyError.InvalidAuthScheme
             }
@@ -119,9 +130,16 @@ extension Proxy {
     public convenience init(dictionary: [String: AnyObject], inRealm realm: Realm) throws {
         self.init()
         if let uriString = dictionary["uri"] as? String {
-            if uriString.lowercaseString.hasPrefix("ss://") {
+            guard let name = dictionary["name"] as? String else{
+                throw ProxyError.InvalidName
+            }
+            self.name = name
+            if uriString.lowercaseString.hasPrefix(Proxy.ssUriPrefix) {
                 // Shadowsocks
-                let proxyString = uriString.substringFromIndex(uriString.startIndex.advancedBy(5))
+                let undecodedString = uriString.substringFromIndex(uriString.startIndex.advancedBy(Proxy.ssUriPrefix.characters.count))
+                guard let proxyString = base64DecodeIfNeeded(undecodedString), _ = proxyString.rangeOfString(":")?.startIndex else {
+                    throw ProxyError.InvalidUri
+                }
                 guard let pc1 = proxyString.rangeOfString(":")?.startIndex, pc2 = proxyString.rangeOfString(":", options: .BackwardsSearch)?.startIndex, pcm = proxyString.rangeOfString("@", options: .BackwardsSearch)?.startIndex else {
                     throw ProxyError.InvalidUri
                 }
@@ -142,14 +160,52 @@ extension Proxy {
                 }
                 self.port = p
                 self.type = .Shadowsocks
+            }else if uriString.lowercaseString.hasPrefix(Proxy.ssrUriPrefix) {
+                let undecodedString = uriString.substringFromIndex(uriString.startIndex.advancedBy(Proxy.ssrUriPrefix.characters.count))
+                guard let proxyString = base64DecodeIfNeeded(undecodedString), _ = proxyString.rangeOfString(":")?.startIndex else {
+                    throw ProxyError.InvalidUri
+                }
+                var hostString: String = proxyString
+                var queryString: String = ""
+                if let queryMarkIndex = proxyString.rangeOfString("?", options: .BackwardsSearch)?.startIndex {
+                    hostString = proxyString.substringToIndex(queryMarkIndex)
+                    queryString = proxyString.substringFromIndex(queryMarkIndex.successor())
+                }
+                if let hostSlashIndex = hostString.rangeOfString("/", options: .BackwardsSearch)?.startIndex {
+                    hostString = hostString.substringToIndex(hostSlashIndex)
+                }
+                let hostComps = hostString.componentsSeparatedByString(":")
+                guard hostComps.count == 6 else {
+                    throw ProxyError.InvalidUri
+                }
+                self.host = hostComps[0]
+                guard let p = Int(hostComps[1]) else {
+                    throw ProxyError.InvalidPort
+                }
+                self.port = p
+                self.ssrProtocol = hostComps[2]
+                self.authscheme = hostComps[3]
+                self.ssrObfs = hostComps[4]
+                self.password = base64DecodeIfNeeded(hostComps[5])
+                for queryComp in queryString.componentsSeparatedByString("&") {
+                    let comps = queryComp.componentsSeparatedByString("=")
+                    guard comps.count == 2 else {
+                        continue
+                    }
+                    switch comps[0] {
+                    case "obfsparam":
+                        self.ssrObfsParam = comps[1]
+                    case "remarks":
+                        self.name = comps[1]
+                    default:
+                        continue
+                    }
+                }
+                self.type = .ShadowsocksR
             }else {
                 // Not supported yet
                 throw ProxyError.InvalidUri
             }
-            guard let name = dictionary["name"] as? String else{
-                throw ProxyError.InvalidName
-            }
-            self.name = name
         }else {
             guard let name = dictionary["name"] as? String else{
                 throw ProxyError.InvalidName
@@ -176,16 +232,34 @@ extension Proxy {
             self.name = name
             self.type = type
         }
-        if realm.objects(RuleSet).filter("name = '\(name)'").first != nil {
-            self.name = Proxy.dateFormatter.stringFromDate(NSDate())
+        if realm.objects(Proxy).filter("name = '\(name)'").first != nil {
+            self.name = "\(name) \(Proxy.dateFormatter.stringFromDate(NSDate()))"
         }
         try validate(inRealm: realm)
     }
-    
+
+    private func base64DecodeIfNeeded(proxyString: String) -> String? {
+        if let _ = proxyString.rangeOfString(":")?.startIndex {
+            return proxyString
+        }
+        let base64String = proxyString.stringByReplacingOccurrencesOfString("-", withString: "+").stringByReplacingOccurrencesOfString("_", withString: "/")
+        let padding = base64String.characters.count + (base64String.characters.count % 4 != 0 ? (4 - base64String.characters.count % 4) : 0)
+        if let decodedData = NSData(base64EncodedString: base64String.stringByPaddingToLength(padding, withString: "=", startingAtIndex: 0), options: NSDataBase64DecodingOptions(rawValue: 0)), decodedString = NSString(data: decodedData, encoding: NSUTF8StringEncoding) {
+            return decodedString as String
+        }
+        return nil
+    }
+
+    public class func uriIsShadowsocks(uri: String) -> Bool {
+        return uri.lowercaseString.hasPrefix(Proxy.ssUriPrefix) || uri.lowercaseString.hasPrefix(Proxy.ssrUriPrefix)
+    }
+
+
+
 }
 
 extension Proxy {
-    
+
     public var uri: String {
         switch type {
         case .Shadowsocks:

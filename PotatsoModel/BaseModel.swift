@@ -9,7 +9,7 @@
 import RealmSwift
 import PotatsoBase
 
-private let version: UInt64 = 7
+private let version: UInt64 = 9
 public var defaultRealm = try! Realm()
 
 public func setupDefaultReaml() {
@@ -41,7 +41,7 @@ public class BaseModel: Object {
     
     static var dateFormatter: NSDateFormatter {
         let f = NSDateFormatter()
-        f.dateFormat = "yyyy-MM-dd HH:mm:ss.FFF"
+        f.dateFormat = "MM-dd HH:mm:ss"
         return f
     }
 

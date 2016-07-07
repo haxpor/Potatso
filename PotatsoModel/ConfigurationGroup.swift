@@ -65,7 +65,7 @@ extension ConfigurationGroup {
         }
         self.name = name
         if realm.objects(RuleSet).filter("name = '\(name)'").first != nil {
-            self.name = ConfigurationGroup.dateFormatter.stringFromDate(NSDate())
+            self.name = "\(name) \(ConfigurationGroup.dateFormatter.stringFromDate(NSDate()))"
         }
         if let proxyName = dictionary["proxy"] as? String, proxy = realm.objects(Proxy).filter("name = '\(proxyName)'").first {
             self.proxies.removeAll()
