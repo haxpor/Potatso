@@ -179,12 +179,7 @@
         dnsServers = [DNSConfig getSystemDnsServers];
         NSLog(@"system dns servers: %@", dnsServers);
     }
-    NSMutableArray *excludedRoutes = [NSMutableArray array];
-    [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"192.168.0.0" subnetMask:@"255.255.0.0"]];
-    [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"10.0.0.0" subnetMask:@"255.0.0.0"]];
-    [excludedRoutes addObject:[[NEIPv4Route alloc] initWithDestinationAddress:@"172.16.0.0" subnetMask:@"255.240.0.0"]];
     ipv4Settings.includedRoutes = @[[NEIPv4Route defaultRoute]];
-    ipv4Settings.excludedRoutes = excludedRoutes;
     NEPacketTunnelNetworkSettings *settings = [[NEPacketTunnelNetworkSettings alloc] initWithTunnelRemoteAddress:@"192.0.2.2"];
     settings.IPv4Settings = ipv4Settings;
     settings.MTU = @(TunnelMTU);
