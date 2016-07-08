@@ -142,29 +142,36 @@ class ProxyConfigurationViewController: FormViewController {
                     return false
                 }
             }
-            <<< TextRow(kProxyFormProtocol) {
+            <<< PushRow<String>(kProxyFormProtocol) {
                 $0.title = "Protocol".localized()
                 $0.value = self.upstreamProxy.ssrProtocol
+                $0.options = ["origin",
+                              "verify_simple",
+                              "auth_simple",
+                              "auth_sha1",
+                              "auth_sha1_v2"]
+                $0.selectorTitle = "Choose SSR protocol".localized()
                 $0.hidden = Condition.Function([kProxyFormType]) { form in
                     if let r1 : PushRow<ProxyType> = form.rowByTag(kProxyFormType) {
                         return r1.value != ProxyType.ShadowsocksR
                     }
                     return false
                 }
-            }.cellSetup { cell, row in
-                cell.textField.placeholder = "SSR Protocol".localized()
             }
-            <<< TextRow(kProxyFormObfs) {
+            <<< PushRow<String>(kProxyFormObfs) {
                 $0.title = "Obfs".localized()
                 $0.value = self.upstreamProxy.ssrObfs
+                $0.options = ["plain",
+                              "http_simple",
+                              "tls1.0_session_auth",
+                              "tls1.2_ticket_auth"]
+                $0.selectorTitle = "Choose SSR obfs".localized()
                 $0.hidden = Condition.Function([kProxyFormType]) { form in
                     if let r1 : PushRow<ProxyType> = form.rowByTag(kProxyFormType) {
                         return r1.value != ProxyType.ShadowsocksR
                     }
                     return false
                 }
-            }.cellSetup { cell, row in
-                cell.textField.placeholder = "SSR Obfs".localized()
             }
             <<< TextRow(kProxyFormObfsParam) {
                 $0.title = "Obfs Param".localized()
