@@ -231,31 +231,31 @@ extension Manager {
     
     func generateSocksConfig() throws {
         let root = NSXMLElement.elementWithName("antinatconfig") as! NSXMLElement
-        let interface = NSXMLElement.elementWithName("interface", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "127.0.0.1")]) as! NSXMLElement
+        let interface = NSXMLElement.elementWithName("interface", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "127.0.0.1") as! DDXMLNode]) as! NSXMLElement
         root.addChild(interface)
         
-        let port = NSXMLElement.elementWithName("port", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "0")])  as! NSXMLElement
+        let port = NSXMLElement.elementWithName("port", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "0") as! DDXMLNode])  as! NSXMLElement
         root.addChild(port)
         
-        let maxbindwait = NSXMLElement.elementWithName("maxbindwait", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "10")]) as! NSXMLElement
+        let maxbindwait = NSXMLElement.elementWithName("maxbindwait", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "10") as! DDXMLNode]) as! NSXMLElement
         root.addChild(maxbindwait)
         
         
         let authchoice = NSXMLElement.elementWithName("authchoice") as! NSXMLElement
-        let select = NSXMLElement.elementWithName("select", children: nil, attributes: [NSXMLNode.attributeWithName("mechanism", stringValue: "anonymous")])  as! NSXMLElement
+        let select = NSXMLElement.elementWithName("select", children: nil, attributes: [NSXMLNode.attributeWithName("mechanism", stringValue: "anonymous") as! DDXMLNode])  as! NSXMLElement
         
         authchoice.addChild(select)
         root.addChild(authchoice)
         
         let filter = NSXMLElement.elementWithName("filter") as! NSXMLElement
         if let upstreamProxy = upstreamProxy {
-            let chain = NSXMLElement.elementWithName("chain", children: nil, attributes: [NSXMLNode.attributeWithName("name", stringValue: upstreamProxy.name)]) as! NSXMLElement
+            let chain = NSXMLElement.elementWithName("chain", children: nil, attributes: [NSXMLNode.attributeWithName("name", stringValue: upstreamProxy.name) as! DDXMLNode]) as! NSXMLElement
             switch upstreamProxy.type {
             case .Shadowsocks:
                 let uriString = "socks5://127.0.0.1:${ssport}"
-                let uri = NSXMLElement.elementWithName("uri", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: uriString)]) as! NSXMLElement
+                let uri = NSXMLElement.elementWithName("uri", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: uriString) as! DDXMLNode]) as! NSXMLElement
                 chain.addChild(uri)
-                let authscheme = NSXMLElement.elementWithName("authscheme", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "anonymous")]) as! NSXMLElement
+                let authscheme = NSXMLElement.elementWithName("authscheme", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "anonymous") as! DDXMLNode]) as! NSXMLElement
                 chain.addChild(authscheme)
             default:
                 break
@@ -267,7 +267,7 @@ extension Manager {
         filter.addChild(accept)
         root.addChild(filter)
         
-        let socksConf = root.XMLString()
+        let socksConf = root.XMLString
         try socksConf.writeToURL(Potatso.sharedSocksConfUrl(), atomically: true, encoding: NSUTF8StringEncoding)
     }
     
@@ -432,7 +432,7 @@ extension Manager {
                 manager.protocolConfiguration?.serverAddress = AppEnv.appName
                 manager.onDemandEnabled = true
                 let quickStartRule = NEOnDemandRuleEvaluateConnection()
-                quickStartRule.connectionRules = [NEEvaluateConnectionRule(matchDomains: ["potatso.com"], andAction: NEEvaluateConnectionRuleAction.ConnectIfNeeded)]
+                quickStartRule.connectionRules = [NEEvaluateConnectionRule(matchDomains: ["connect.potatso.com"], andAction: NEEvaluateConnectionRuleAction.ConnectIfNeeded)]
                 manager.onDemandRules = [quickStartRule]
                 manager.saveToPreferencesWithCompletionHandler({ (error) -> Void in
                     if let error = error {
