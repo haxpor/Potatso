@@ -84,7 +84,7 @@ class DashboardVC: FormViewController {
     }
 
     func generateLogSection() -> Section {
-        let section = Section("Connection".localized())
+        let section = Section()
         section <<< LabelRow() {
             $0.title = "Recent Requests".localized()
         }.cellSetup({ (cell, row) -> () in
