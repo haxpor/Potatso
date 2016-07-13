@@ -1758,53 +1758,53 @@ static jb_err parse_client_request(struct client_state *csp)
  *********************************************************************/
 static void chat(struct client_state *csp)
 {
-   char buf[BUFFER_SIZE];
-   char *hdr;
-   char *p;
-   fd_set rfds;
-   int n;
-   jb_socket maxfd;
-   int server_body;
-   int ms_iis5_hack = 0;
-   unsigned long long byte_count = 0;
-   struct forward_spec *fwd;
-   struct http_request *http;
-   long len = 0; /* for buffer sizes (and negative error codes) */
-   int buffer_and_filter_content = 0;
+    char buf[BUFFER_SIZE];
+    char *hdr;
+    char *p;
+    fd_set rfds;
+    int n;
+    jb_socket maxfd;
+    int server_body;
+    int ms_iis5_hack = 0;
+    unsigned long long byte_count = 0;
+    struct forward_spec *fwd;
+    struct http_request *http;
+    long len = 0; /* for buffer sizes (and negative error codes) */
+    int buffer_and_filter_content = 0;
 
-   /* Skeleton for HTTP response, if we should intercept the request */
-   struct http_response *rsp;
-   struct timeval timeout;
-#ifdef FEATURE_CONNECTION_KEEP_ALIVE
-   int watch_client_socket;
-#endif
+    /* Skeleton for HTTP response, if we should intercept the request */
+    struct http_response *rsp;
+    struct timeval timeout;
+    #ifdef FEATURE_CONNECTION_KEEP_ALIVE
+    int watch_client_socket;
+    #endif
 
-   memset(buf, 0, sizeof(buf));
+    memset(buf, 0, sizeof(buf));
 
-   http = csp->http;
+    http = csp->http;
 
-   if (receive_client_request(csp) != JB_ERR_OK)
-   {
+    if (receive_client_request(csp) != JB_ERR_OK)
+    {
       return;
-   }
-   if (parse_client_request(csp) != JB_ERR_OK)
-   {
+    }
+    if (parse_client_request(csp) != JB_ERR_OK)
+    {
       return;
-   }
+    }
 
     lock_log_request();
     add_log_csp(csp);
     unlock_log_request();
 
-   /* decide how to route the HTTP request */
-   fwd = forward_url(csp, http);
-   if (NULL == fwd)
-   {
-      log_error(LOG_LEVEL_FATAL, "gateway spec is NULL!?!?  This can't happen!");
-      /* Never get here - LOG_LEVEL_FATAL causes program exit */
-      return;
-   }
-   csp->fwd = fwd;
+    /* decide how to route the HTTP request */
+    fwd = forward_url(csp, http);
+    if (NULL == fwd)
+    {
+        log_error(LOG_LEVEL_FATAL, "gateway spec is NULL!?!?  This can't happen!");
+        /* Never get here - LOG_LEVEL_FATAL causes program exit */
+        return;
+    }
+    csp->fwd = fwd;
 
    /*
     * build the http request to send to the server

@@ -972,6 +972,8 @@ struct client_state
 
     struct url_actions *rule;
 
+    enum forward_routing routing;
+
     int forward_determined;
 
     /** An I/O buffer used for buffering data read from the server */

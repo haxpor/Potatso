@@ -287,61 +287,64 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
             gai_strerror(retval));
          continue;
       }
-       if (csp->fwd->type == SOCKS_NONE && csp->fwd->forward_host == NULL && !csp->forward_determined) {
-           csp->forward_determined = 1;
-           struct forward_spec *fwd = forward_ip(csp, dst->addr);
-           if (fwd == NULL && global_mode) {
-               fwd = proxy_list;
-           }
-           if (fwd) {
-               csp->fwd = fwd;
-               int should_direct = 0;
-               const char *dest_host;
-               int dest_port;
-               /* Figure out if we need to connect to the web server or a HTTP proxy. */
-               if (fwd->forward_host)
-               {
-                   /* HTTP proxy */
-                   dest_host = fwd->forward_host;
-                   dest_port = fwd->forward_port;
+       if (dst->addr.ss_family == AF_INET) {
+           // IPv4
+           if (csp->fwd->type == SOCKS_NONE && csp->fwd->forward_host == NULL && !csp->forward_determined) {
+               csp->forward_determined = 1;
+               struct forward_spec *fwd = forward_ip(csp, dst->addr);
+               if (fwd == NULL && global_mode) {
+                   fwd = proxy_list;
+                   csp->routing = ROUTE_PROXY;
                }
-               else
-               {
-                   /* Web server */
-                   dest_host = csp->http->host;
-                   dest_port = csp->http->port;
-                   if (fwd->type == SOCKS_NONE) {
-                       should_direct = 1;
-                   }
-               }
-
-               if (!should_direct) {
-                   /* Connect, maybe using a SOCKS proxy */
-                   logRequestStatus(csp, CONN_STATUS_REMOTE);
-                   switch (fwd->type)
+               if (fwd) {
+                   csp->fwd = fwd;
+                   int should_direct = 0;
+                   const char *dest_host;
+                   int dest_port;
+                   /* Figure out if we need to connect to the web server or a HTTP proxy. */
+                   if (fwd->forward_host)
                    {
-                       case SOCKS_NONE:
-                       case FORWARD_WEBSERVER:
-                           return connect_to(dest_host, dest_port, csp);
-                           break;
-                       case SOCKS_4:
-                       case SOCKS_4A:
-                           return socks4_connect(fwd->gateway_host, fwd->gateway_port, fwd->type, dest_host, dest_port, csp);
-                           break;
-                       case SOCKS_5:
-                       case SOCKS_5T:
-                           return socks5_connect(fwd->gateway_host, fwd->gateway_port, fwd->type, dest_host, dest_port, csp);
-                           break;
-                       default:
-                           /* Should never get here */
-                           log_error(LOG_LEVEL_FATAL,
-                                     "Internal error in rfc2553_connect_to() ip. Bad proxy type: %d", fwd->type);
-                           return JB_INVALID_SOCKET;
+                       /* HTTP proxy */
+                       dest_host = fwd->forward_host;
+                       dest_port = fwd->forward_port;
+                   }
+                   else
+                   {
+                       /* Web server */
+                       dest_host = csp->http->host;
+                       dest_port = csp->http->port;
+                       if (fwd->type == SOCKS_NONE) {
+                           should_direct = 1;
+                       }
+                   }
+
+                   if (!should_direct) {
+                       /* Connect, maybe using a SOCKS proxy */
+                       logRequestStatus(csp, CONN_STATUS_REMOTE);
+                       switch (fwd->type)
+                       {
+                           case SOCKS_NONE:
+                           case FORWARD_WEBSERVER:
+                               return connect_to(dest_host, dest_port, csp);
+                               break;
+                           case SOCKS_4:
+                           case SOCKS_4A:
+                               return socks4_connect(fwd->gateway_host, fwd->gateway_port, fwd->type, dest_host, dest_port, csp);
+                               break;
+                           case SOCKS_5:
+                           case SOCKS_5T:
+                               return socks5_connect(fwd->gateway_host, fwd->gateway_port, fwd->type, dest_host, dest_port, csp);
+                               break;
+                           default:
+                               /* Should never get here */
+                               log_error(LOG_LEVEL_FATAL,
+                                         "Internal error in rfc2553_connect_to() ip. Bad proxy type: %d", fwd->type);
+                               return JB_INVALID_SOCKET;
+                       }
                    }
                }
            }
        }
-       logRequestStatus(csp, CONN_STATUS_REMOTE);
 
       fd = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
 #ifdef _WIN32
@@ -472,7 +475,7 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
    }
    log_error(LOG_LEVEL_CONNECT, "Connected to %s[%s]:%s.",
       host, csp->http->host_ip_addr_str, service);
-
+   logRequestStatus(csp, CONN_STATUS_REMOTE);
    return(fd);
 
 }

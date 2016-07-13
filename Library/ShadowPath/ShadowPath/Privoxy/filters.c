@@ -2674,9 +2674,10 @@ struct forward_spec *forward_url(struct client_state *csp,
     }
 
     if (fwd != NULL) {
+        csp->routing = action->routing;
         return fwd;
     }
-
+    csp->routing = ROUTE_DIRECT;
     return fwd_default;
 }
 

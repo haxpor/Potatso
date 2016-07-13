@@ -77,6 +77,7 @@
                 d[@"rule"] = [NSString stringWithCString:client->rule->rule encoding:NSUTF8StringEncoding];
             }
             d[@"global"] = @(global_mode);
+            d[@"routing"] = @(client->routing);
 //            if (p->headers) {
 //                d[@"headers"] = [NSString stringWithCString:p->headers->string encoding:NSUTF8StringEncoding];
 //            }
