@@ -10,7 +10,7 @@ import Foundation
 import Cartography
 import PotatsoModel
 
-extension RuleAction {
+extension RequestRouting {
     
     var image: UIImage? {
         switch self {
@@ -75,15 +75,7 @@ class RecentRequestsCell: UITableViewCell {
         }else {
             timeLabel.text = nil
         }
-        if let rule = request.rule {
-            actionImageView.image = rule.action.image
-        }else {
-            if (request.globalMode) {
-                actionImageView.image = "Proxy".image
-            }else {
-                actionImageView.image = "Direct".image
-            }
-        }
+        actionImageView.image = request.routing.image
         if let version = request.version {
             httpVersionLabel.text = version
             httpVersionLabel.hidden = false

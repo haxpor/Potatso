@@ -631,8 +631,8 @@ struct action_spec
 };
 
 enum forward_routing {
-    ROUTE_PROXY =  0,
-    ROUTE_DIRECT = 1,
+    ROUTE_DIRECT = 0,
+    ROUTE_PROXY =  1,
     ROUTE_BLOCK = 2,
 };
 

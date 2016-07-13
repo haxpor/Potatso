@@ -107,6 +107,12 @@ enum RequestEventType: Int {
     case Closed
 }
 
+enum RequestRouting: Int {
+    case Direct = 0
+    case Proxy
+    case Reject
+}
+
 struct RequestEvent {
     let type: RequestEventType
     let timestamp: NSTimeInterval
@@ -130,6 +136,7 @@ struct Request {
     var responseCode: HTTPResponseCode?
     var headers: String?
     var globalMode: Bool = false
+    var routing: RequestRouting = .Direct
     
     init?(dict: [String: AnyObject]) {
         guard let _ = dict["time0"] as? Double, url = dict["url"] as? String, m = dict["method"] as? String, method = HTTPMethod(rawValue: m) else {
@@ -168,5 +175,8 @@ struct Request {
             self.responseCode = code
         }
         self.globalMode = dict["global"] as? Bool ?? false
+        if let c = dict["routing"] as? Int, r = RequestRouting(rawValue: c) {
+            self.routing = r
+        }
     }
 }
