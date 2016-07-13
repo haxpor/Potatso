@@ -9,7 +9,7 @@
 import RealmSwift
 import PotatsoBase
 
-private let version: UInt64 = 9
+private let version: UInt64 = 10
 public var defaultRealm = try! Realm()
 
 public func setupDefaultReaml() {

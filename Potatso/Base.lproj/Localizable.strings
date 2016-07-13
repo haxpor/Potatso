@@ -13,11 +13,14 @@
 "Add Rule" = "Add Rule";
 "Add Rule Set" = "Add Rule Set";
 "Add a new proxy" = "Add a new proxy";
+"BUY" = "BUY";
 "CANCEL" = "CANCEL";
 "Cancel" = "Cancel";
 "Choose Proxy" = "Choose Proxy";
 "Choose Proxy Type" = "Choose Proxy Type";
 "Choose Rule Set" = "Choose Rule Set";
+"Choose SSR obfs" = "Choose SSR obfs";
+"Choose SSR protocol" = "Choose SSR protocol";
 "Choose action for rule" = "Choose action for rule";
 "Choose encryption method" = "Choose encryption method";
 "Choose type of rule" = "Choose type of rule";
@@ -30,6 +33,7 @@
 "DNS" = "DNS";
 "DNS Request" = "DNS Request";
 "DNS should be valid ip addresses (separated by commas if multiple). e.g.: 8.8.8.8,8.8.4.4" = "DNS should be valid ip addresses (separated by commas if multiple). e.g.: 8.8.8.8,8.8.4.4";
+"Default" = "Default";
 "Detail" = "Detail";
 "Disconnect" = "Disconnect";
 "Duration" = "Duration";
@@ -51,6 +55,7 @@
 "Follow on Twitter" = "Follow on Twitter";
 "Follow on Weibo" = "Follow on Weibo";
 "Global Mode" = "Global Mode";
+"Home" = "Home";
 "Host" = "Host";
 "Host can't be empty" = "Host can't be empty";
 "Import Config From URL" = "Import Config From URL";
@@ -64,6 +69,7 @@
 "Invalid port" = "Invalid port";
 "Logging is disabled" = "Logging is disabled";
 "Logs" = "Logs";
+"Manage" = "Manage";
 "More" = "More";
 "Name" = "Name";
 "Name already exists" = "Name already exists";
@@ -71,6 +77,8 @@
 "No more data" = "No more data";
 "None" = "None";
 "OK" = "OK";
+"Obfs" = "Obfs";
+"Obfs Param" = "Obfs Param";
 "One Time Auth" = "One Time Auth";
 "PLEASE DO NOT DELETE INFO BELOW" = "PLEASE DO NOT DELETE INFO BELOW";
 "Password" = "Password";
@@ -80,6 +88,7 @@
 "Port can't be empty" = "Port can't be empty";
 "Potatso Feedback" = "Potatso Feedback";
 "Potatso is not connected" = "Potatso is not connected";
+"Protocol" = "Protocol";
 "Proxy" = "Proxy";
 "Proxy Name" = "Proxy Name";
 "Proxy Password" = "Proxy Password";
@@ -87,6 +96,7 @@
 "Proxy Server Port" = "Proxy Server Port";
 "Proxy Type" = "Proxy Type";
 "Rate on App Store" = "Rate on App Store";
+"Receipt Validation Error" = "Receipt Validation Error";
 "Recent Requests" = "Recent Requests";
 "Request Detail" = "Request Detail";
 "Request finished" = "Request finished";
@@ -94,12 +104,15 @@
 "Rule Set" = "Rule Set";
 "Rule Set Name" = "Rule Set Name";
 "Rules" = "Rules";
+"SSR Obfs Param" = "SSR Obfs Param";
 "Share with friends" = "Share with friends";
 "Start Request" = "Start Request";
+"Statistics" = "Statistics";
 "Subscribe" = "Subscribe";
 "Success" = "Success";
 "System DNS" = "System DNS";
 "Telegram Channel" = "Telegram Channel";
+"The app is only made for App Store users. Please try again." = "The app is only made for App Store users. Please try again.";
 "Type" = "Type";
 "Unkown error" = "Unkown error";
 "Unsubscribe" = "Unsubscribe";
