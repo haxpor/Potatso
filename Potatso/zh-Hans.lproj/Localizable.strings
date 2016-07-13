@@ -28,6 +28,7 @@
 "Cloud Set" = "云集";
 "Connect" = "连接";
 "Connected" = "已连接";
+"Connection" = "连接";
 "Connection established" = "连接建立";
 "Connection to remote" = "连接服务器";
 "DNS" = "DNS";
@@ -106,6 +107,7 @@
 "Rules" = "规则";
 "SSR Obfs Param" = "SSR Obfs 参数";
 "Share with friends" = "分享给朋友";
+"Start" = "开始";
 "Start Request" = "开始请求";
 "Statistics" = "数据";
 "Subscribe" = "订阅";
@@ -116,6 +118,7 @@
 "Type" = "类型";
 "Unkown error" = "未知错误";
 "Unsubscribe" = "退订";
+"Up Time" = "持续时间";
 "User Manual" = "使用手册";
 "Value" = "值";
 "Value can't be empty" = "值不能为空";

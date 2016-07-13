@@ -43,13 +43,8 @@ class RecentRequestsViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: "Log".image, style: .Plain, target: self, action: #selector(showLogs))
         appear = true
         onVPNStatusChanged()
-    }
-    
-    func showLogs() {
-        navigationController?.pushViewController(LogDetailViewController(), animated: true)
     }
     
     func refresh() {

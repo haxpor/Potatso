@@ -33,7 +33,7 @@
 
 - (void)startTunnelWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler {
     [self openLog];
-
+    [[Settings shared] setStartTime:[NSDate date]];
     NSLog(@"starting potatso tunnel...");
     NSError *error = [TunnelInterface setupWithPacketTunnelFlow:self.packetFlow];
     if (error) {

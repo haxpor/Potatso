@@ -15,6 +15,7 @@
 @import CocoaLumberjack;
 @import PotatsoLibrary;
 @import PotatsoModel;
+@import PotatsoBase;
 @import Appirater;
 @import Crashlytics;
 

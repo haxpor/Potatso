@@ -28,6 +28,7 @@
 "Cloud Set" = "Cloud Set";
 "Connect" = "Connect";
 "Connected" = "Connected";
+"Connection" = "Connection";
 "Connection established" = "Connection established";
 "Connection to remote" = "Connection to remote";
 "DNS" = "DNS";
@@ -106,6 +107,7 @@
 "Rules" = "Rules";
 "SSR Obfs Param" = "SSR Obfs Param";
 "Share with friends" = "Share with friends";
+"Start" = "Start";
 "Start Request" = "Start Request";
 "Statistics" = "Statistics";
 "Subscribe" = "Subscribe";
@@ -116,6 +118,7 @@
 "Type" = "Type";
 "Unkown error" = "Unkown error";
 "Unsubscribe" = "Unsubscribe";
+"Up Time" = "Up Time";
 "User Manual" = "User Manual";
 "Value" = "Value";
 "Value can't be empty" = "Value can't be empty";

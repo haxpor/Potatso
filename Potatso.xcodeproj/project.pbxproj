@@ -188,6 +188,9 @@
 		B8CCC6E51CFDCFD8000E7E2E /* RuleSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6E41CFDCFD8000E7E2E /* RuleSetCell.swift */; };
 		B8CCC6E71CFDD99E000E7E2E /* ProxyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6E61CFDD99E000E7E2E /* ProxyListViewController.swift */; };
 		B8CCC6EB1CFF1501000E7E2E /* ProxyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6EA1CFF1501000E7E2E /* ProxyRow.swift */; };
+		B8F7845C1D36760D00F02FF5 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */; };
+		B8F784671D3678B400F02FF5 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F784651D3678B400F02FF5 /* Settings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8F784681D3678B400F02FF5 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F784661D3678B400F02FF5 /* Settings.m */; };
 		FE9B3692D19B03821360B886 /* Pods_PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAF05C4CA29869A03E25A65 /* Pods_PotatsoLibrary.framework */; };
 /* End PBXBuildFile section */
 
@@ -863,6 +866,9 @@
 		B8CCC6E41CFDCFD8000E7E2E /* RuleSetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleSetCell.swift; sourceTree = "<group>"; };
 		B8CCC6E61CFDD99E000E7E2E /* ProxyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyListViewController.swift; sourceTree = "<group>"; };
 		B8CCC6EA1CFF1501000E7E2E /* ProxyRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProxyRow.swift; path = ../ProxyRow.swift; sourceTree = "<group>"; };
+		B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		B8F784651D3678B400F02FF5 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		B8F784661D3678B400F02FF5 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		DFAF05C4CA29869A03E25A65 /* Pods_PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F5D562F9497CEBA25A466F /* Pods-PotatsoLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1198,6 +1204,7 @@
 		9BB3F74D1CC6303700C2DD05 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */,
 				9BB3F74E1CC6308000C2DD05 /* RecentRequestsViewController.swift */,
 				9BB3F73B1CC3D3DE00C2DD05 /* RecentRequestsCell.swift */,
 				9B88109D1CCF58820033EA20 /* RequestDetailViewController.swift */,
@@ -1214,6 +1221,8 @@
 				9BC6001F1CB2921C00E5EA61 /* PotatsoBase.h */,
 				9BC600291CB2922E00E5EA61 /* Potatso.h */,
 				9BC6002A1CB2922E00E5EA61 /* Potatso.m */,
+				B8F784651D3678B400F02FF5 /* Settings.h */,
+				B8F784661D3678B400F02FF5 /* Settings.m */,
 				9BC6002D1CB299DE00E5EA61 /* JSONUtils.h */,
 				9BC6002E1CB299DE00E5EA61 /* JSONUtils.m */,
 				9BC6002F1CB299DE00E5EA61 /* NSError+Helper.h */,
@@ -1987,6 +1996,7 @@
 			files = (
 				9BC600331CB299DE00E5EA61 /* NSError+Helper.h in Headers */,
 				9BC600311CB299DE00E5EA61 /* JSONUtils.h in Headers */,
+				B8F784671D3678B400F02FF5 /* Settings.h in Headers */,
 				9BC600201CB2921C00E5EA61 /* PotatsoBase.h in Headers */,
 				9BC6002B1CB2922E00E5EA61 /* Potatso.h in Headers */,
 			);
@@ -2813,6 +2823,7 @@
 				9B82854B1CE20DE40027D15C /* HMScannerMaskView.m in Sources */,
 				B83D3E791D2BA689007655CE /* Event.swift in Sources */,
 				9B17F8EB1C53379700679FCB /* SettingsViewController.swift in Sources */,
+				B8F7845C1D36760D00F02FF5 /* DashboardVC.swift in Sources */,
 				B803A6981D02B768003EA9AA /* API.swift in Sources */,
 				9B8285491CE20DE40027D15C /* HMScannerBorder.m in Sources */,
 				9B76EEB71C90740C002BF5D1 /* RuleSetsSelectionViewController.swift in Sources */,
@@ -2869,6 +2880,7 @@
 			files = (
 				9BC6002C1CB2922E00E5EA61 /* Potatso.m in Sources */,
 				9BC600341CB299DE00E5EA61 /* NSError+Helper.m in Sources */,
+				B8F784681D3678B400F02FF5 /* Settings.m in Sources */,
 				9BC600321CB299DE00E5EA61 /* JSONUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
