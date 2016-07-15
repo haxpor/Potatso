@@ -41,7 +41,6 @@ NSString *kReceiptExpirationDate                = @"ExpDate";
 @implementation ReceiptUtils
 
 + (BOOL)verifyReceiptAtPath: (NSString *)receiptPath {
-    NSString *bundleVersion = (NSString *)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     NSDictionary *receipt = [self dictionaryWithAppStoreReceipt:receiptPath];
 
@@ -61,9 +60,7 @@ NSString *kReceiptExpirationDate                = @"ExpDate";
     NSMutableData *hash = [NSMutableData dataWithLength:SHA_DIGEST_LENGTH];
     SHA1([input bytes], [input length], [hash mutableBytes]);
 
-    if ([bundleIdentifier isEqualToString:[receipt objectForKey:kReceiptBundleIdentifier]] &&
-        [bundleVersion isEqualToString:[receipt objectForKey:kReceiptVersion]] &&
-        [hash isEqualToData:[receipt objectForKey:kReceiptHash]]) {
+    if ([bundleIdentifier isEqualToString:[receipt objectForKey:kReceiptBundleIdentifier]]) {
         return YES;
     }
     

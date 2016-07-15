@@ -15,12 +15,14 @@ class Receipt: NSObject, SKRequestDelegate {
     private override init() {}
 
     func validate() {
-        logEvent(.ReceiptValidation, attributes: nil)
-        guard let receiptPath = NSBundle.mainBundle().appStoreReceiptURL?.path where NSFileManager.defaultManager().fileExistsAtPath(receiptPath) else {
-            requestNewReceipt()
-            return
-        }
-        validateReceipt(receiptPath, tryAgain: true)
+        #if !DEBUG
+            logEvent(.ReceiptValidation, attributes: nil)
+            guard let receiptPath = NSBundle.mainBundle().appStoreReceiptURL?.path where NSFileManager.defaultManager().fileExistsAtPath(receiptPath) else {
+                failAndTerminate()
+                return
+            }
+            validateReceipt(receiptPath, tryAgain: true)
+        #endif
     }
 
     private func requestNewReceipt() {
