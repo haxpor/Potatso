@@ -2677,7 +2677,11 @@ struct forward_spec *forward_url(struct client_state *csp,
         csp->routing = action->routing;
         return fwd;
     }
-    csp->routing = ROUTE_DIRECT;
+    if (action && action->routing == ROUTE_BLOCK) {
+        csp->routing = ROUTE_BLOCK;
+    }else {
+        csp->routing = ROUTE_DIRECT;
+    }
     return fwd_default;
 }
 
