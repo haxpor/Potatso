@@ -290,6 +290,9 @@ struct http_request
    char *hostport; /**< host[:port] */
    int   ssl;      /**< Flag if protocol is https */
 
+   char *remote_host_ip_addr_str; /**< String with dotted decimal representation
+                             of remote host's IP. NULL before connect_to() */
+
    char *host_ip_addr_str; /**< String with dotted decimal representation
                                 of host's IP. NULL before connect_to() */
 
@@ -631,9 +634,10 @@ struct action_spec
 };
 
 enum forward_routing {
-    ROUTE_DIRECT = 0,
-    ROUTE_PROXY =  1,
-    ROUTE_BLOCK = 2,
+    ROUTE_NONE = 0,
+    ROUTE_DIRECT,
+    ROUTE_PROXY,
+    ROUTE_BLOCK,
 };
 
 
@@ -663,7 +667,7 @@ struct url_actions
 };
 
 enum forwarder_type {
-   /**< Don't use a SOCKS server, forward to a HTTP proxy directly */
+//   /**< Don't use a SOCKS server, forward to a HTTP proxy directly */
    SOCKS_NONE =  0,
    /**< original SOCKS 4 protocol              */
    SOCKS_4    = 40,
@@ -911,15 +915,43 @@ struct reusable_connection
  */
 #define MAX_LISTENING_SOCKETS 10
 
-#define STATUS_COUNT 6
+enum time_stage {
+    TIME_STAGE_INIT = 0,
+    TIME_STAGE_CLOSED,
+    TIME_STAGE_URL_RULE_MATCH_START,
+    TIME_STAGE_URL_RULE_MATCH_END,
+    TIME_STAGE_IP_RULE_MATCH_START,
+    TIME_STAGE_IP_RULE_MATCH_END,
+    TIME_STAGE_DNS_IP_RULE_MATCH_START,
+    TIME_STAGE_DNS_IP_RULE_MATCH_END,
 
-typedef enum _ConnectionStatus {
-    CONN_STATUS_INIT = 0,
-    CONN_STATUS_DNS,
-    CONN_STATUS_REMOTE,
-    CONN_STATUS_OPEN,
-    CONN_STATUS_CLOSED,
-} ConnectionStatus;
+    TIME_STAGE_DNS_START,
+    TIME_STAGE_DNS_FAIL,
+    TIME_STAGE_DNS_END,
+    TIME_STAGE_REMOTE_START,
+    TIME_STAGE_REMOTE_CONNECTED,
+
+    TIME_STAGE_GLOBAL_MODE,
+    TIME_STAGE_NON_GLOBAL_MODE,
+
+    TIME_STAGE_PROXY_DNS_START,
+    TIME_STAGE_PROXY_DNS_FAIL,
+    TIME_STAGE_PROXY_DNS_END,
+    TIME_STAGE_PROXY_START,
+    TIME_STAGE_PROXY_CONNECTED,
+
+    TIME_STAGE_IPV6,
+
+    TIME_STAGE_COUNT
+};
+
+enum forward_stage {
+    FORWARD_STAGE_NONE = 0,
+    FORWARD_STAGE_URL,
+    FORWARD_STAGE_IP,
+    FORWARD_STAGE_DNS_POLLUTION,
+    FORWARD_STAGE_DNS_FAILURE,
+};
 
 /**
  * The state of a Privoxy processing thread.
@@ -960,17 +992,20 @@ struct client_state
     /** The URL that was requested */
     struct http_request http[1];
 
-    double timestamp[STATUS_COUNT];
+    // Time Logging
+    enum time_stage current_time_stage;
+    double time_stages[TIME_STAGE_COUNT];
 
-    ConnectionStatus status;
     /*
     * The final forwarding settings.
     * XXX: Currently this is only used for forward-override,
     * so we can free the space in sweep.
     */
     struct forward_spec *fwd;
+    enum forward_stage current_forward_stage;
+    int is_ipv6;
 
-    struct url_actions *rule;
+    char *rule;
 
     enum forward_routing routing;
 
@@ -1029,6 +1064,8 @@ struct client_state
 
 extern struct url_actions *po_url_rules;
 extern struct url_actions *po_ip_rules;
+extern struct url_actions *po_dns_ip_rules;
+extern struct url_actions *po_dns_ip_rules_tail;
 
 /**
  * List of client states so the main thread can keep

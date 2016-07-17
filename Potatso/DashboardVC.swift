@@ -111,7 +111,7 @@ class DashboardVC: FormViewController {
     }
 
     func showRecentRequests() {
-        let vc = RecentRequestsViewController()
+        let vc = RecentRequestsVC()
         navigationController?.pushViewController(vc, animated: true)
     }
 

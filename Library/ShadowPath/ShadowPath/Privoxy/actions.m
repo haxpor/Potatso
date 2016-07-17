@@ -66,6 +66,9 @@ struct url_actions *po_url_rules_tail = NULL;
 struct url_actions *po_ip_rules = NULL;
 struct url_actions *po_ip_rules_tail = NULL;
 
+struct url_actions *po_dns_ip_rules = NULL;
+struct url_actions *po_dns_ip_rules_tail = NULL;
+
 /*
  * We need the main list of options.
  *
@@ -1660,7 +1663,7 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                         csp->config->actions_file[fileid], linenum, buf);
               continue;
           }
-          if (!strcmpic(vec[0], "GEOIP") || !strcmpic(vec[0], "IP-CIDR")) {
+          if (!strcmpic(vec[0], "GEOIP") || !strcmpic(vec[0], "IP-CIDR") || !strcmpic(vec[0], "DNS-IP-CIDR")) {
               if (!perm->tree) {
                   radix_tree_t *tree;
                   if ((tree = radix_tree_create()) == NULL)
@@ -1681,20 +1684,41 @@ static int load_one_actions_file(struct client_state *csp, int fileid)
                   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                       loadGEOIP(file_path, perm->tree);
                   });
+                  if (po_ip_rules_tail) {
+                      po_ip_rules_tail->next = perm;
+                      po_ip_rules_tail = perm;
+                  }else {
+                      po_ip_rules = perm;
+                      po_ip_rules_tail = po_ip_rules;
+                  }
               } else if (!strcmpic(vec[0], "IP-CIDR")) {
                   // CIDR
                   char *ipcidr = strdup_or_die(vec[1]);
                   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                       loadIPCIDR(ipcidr, perm->tree);
                   });
+                  if (po_ip_rules_tail) {
+                      po_ip_rules_tail->next = perm;
+                      po_ip_rules_tail = perm;
+                  }else {
+                      po_ip_rules = perm;
+                      po_ip_rules_tail = po_ip_rules;
+                  }
+              } else if (!strcmpic(vec[0], "DNS-IP-CIDR")) {
+                  // DNS CIDR
+                  char *ipcidr = strdup_or_die(vec[1]);
+                  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                      loadIPCIDR(ipcidr, perm->tree);
+                  });
+                  if (po_dns_ip_rules_tail) {
+                      po_dns_ip_rules_tail->next = perm;
+                      po_dns_ip_rules_tail = perm;
+                  }else {
+                      po_dns_ip_rules = perm;
+                      po_dns_ip_rules_tail = po_dns_ip_rules;
+                  }
               }
-              if (po_ip_rules_tail) {
-                  po_ip_rules_tail->next = perm;
-                  po_ip_rules_tail = perm;
-              }else {
-                  po_ip_rules = perm;
-                  po_ip_rules_tail = po_ip_rules;
-              }
+
           }else if (!strcmpic(vec[0], "DOMAIN") || !strcmpic(vec[0], "DOMAIN-MATCH") || !strcmpic(vec[0], "URL") || !strcmpic(vec[0], "DOMAIN-SUFFIX")){
               char pattern[500];
               if (!strcmpic(vec[0], "DOMAIN-MATCH")) {

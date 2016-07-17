@@ -52,7 +52,6 @@
 		9B87060B1C1DBCCD00651424 /* dns.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87060A1C1DBCCD00651424 /* dns.m */; };
 		9B87060D1C1DBDD400651424 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B87060C1C1DBDD400651424 /* libresolv.tbd */; };
 		9B8750551CC761D000A11715 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8750541CC761D000A11715 /* RequestModel.swift */; };
-		9B88109E1CCF58820033EA20 /* RequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B88109D1CCF58820033EA20 /* RequestDetailViewController.swift */; };
 		9B9B15C01C21595B000B6541 /* PotatsoLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B9B15BF1C21595B000B6541 /* PotatsoLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B9B15C41C21595B000B6541 /* PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9B15BD1C21595B000B6541 /* PotatsoLibrary.framework */; };
 		9B9B15C51C21595B000B6541 /* PotatsoLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9B15BD1C21595B000B6541 /* PotatsoLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -61,7 +60,7 @@
 		9BB3F7421CC60B5300C2DD05 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F73F1CC60B5300C2DD05 /* Localized.swift */; };
 		9BB3F7441CC60B6F00C2DD05 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F7431CC60B6F00C2DD05 /* Error.swift */; };
 		9BB3F7471CC60CBE00C2DD05 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB3F7491CC60CBE00C2DD05 /* Localizable.strings */; };
-		9BB3F74F1CC6308000C2DD05 /* RecentRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F74E1CC6308000C2DD05 /* RecentRequestsViewController.swift */; };
+		9BB3F74F1CC6308000C2DD05 /* RecentRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F74E1CC6308000C2DD05 /* RecentRequestsVC.swift */; };
 		9BB62FA31C8FFC1D002ADC54 /* RuleSetConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB62FA21C8FFC1D002ADC54 /* RuleSetConfigurationViewController.swift */; };
 		9BC215B91CB4DA9E002AADD1 /* Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC215B81CB4DA9E002AADD1 /* Proxy.swift */; };
 		9BC215BB1CB4DAE6002AADD1 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC215BA1CB4DAE6002AADD1 /* BaseModel.swift */; };
@@ -154,7 +153,6 @@
 		9BF303461CC8A1F60096588E /* LogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF303451CC8A1F60096588E /* LogDetailViewController.swift */; };
 		9BF3034B1CCA1B060096588E /* BaseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3034A1CCA1B060096588E /* BaseEmptyView.swift */; };
 		9BF3034D1CCA20D80096588E /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3034C1CCA20D80096588E /* Logging.swift */; };
-		9BFE21C21CD0E35D001AB019 /* DetailRawTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE21C11CD0E35D001AB019 /* DetailRawTextCell.swift */; };
 		A4564DF27925368D6CA67F7D /* Pods_PacketTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03E5F0D3FAB0B3302CA1A4E /* Pods_PacketTunnel.framework */; };
 		A5E749DA2197E384CBCBA84B /* Pods_PacketProcessor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310645853592796E08924EB3 /* Pods_PacketProcessor.framework */; };
 		B344F7C30FF7755C7EA32B8C /* Pods_PotatsoLibraryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A27A0B817AADB557908316E3 /* Pods_PotatsoLibraryTests.framework */; };
@@ -164,6 +162,9 @@
 		B8319A0A1D1B975C001E50C2 /* RegexUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8319A091D1B975C001E50C2 /* RegexUtils.swift */; };
 		B8319A0D1D1BD696001E50C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8319A0F1D1BD696001E50C2 /* Localizable.strings */; };
 		B8367A811D1B6D5400D50C25 /* BaseButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8367A801D1B6D5400D50C25 /* BaseButtonRow.swift */; };
+		B83AA5701D38E6F7007905B4 /* RequestDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AA56F1D38E6F7007905B4 /* RequestDetailVC.swift */; };
+		B83AA5741D38E728007905B4 /* SegmentPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AA5731D38E728007905B4 /* SegmentPageVC.swift */; };
+		B83AA5761D38E98A007905B4 /* RequestOverviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AA5751D38E98A007905B4 /* RequestOverviewVC.swift */; };
 		B83D3E791D2BA689007655CE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D3E781D2BA689007655CE /* Event.swift */; };
 		B83D3E7D1D2BA8C8007655CE /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D3E7C1D2BA8C8007655CE /* Receipt.swift */; };
 		B84551401CF83D07005779CD /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845513F1CF83D07005779CD /* HomeVC.swift */; };
@@ -171,6 +172,8 @@
 		B86B08EC1D17F85800613014 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
 		B86B08ED1D17FB9B00613014 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
 		B87A043A1D193ABC001132F2 /* LoggerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A04391D193ABC001132F2 /* LoggerUtils.swift */; };
+		B87B98041D3B423B00FA66BF /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87B98031D3B423B00FA66BF /* PaddingLabel.swift */; };
+		B87B980A1D3B64BE00FA66BF /* RequestEventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87B98091D3B64BE00FA66BF /* RequestEventRow.swift */; };
 		B88096B01D0579F5008BEB87 /* CloudDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88096AF1D0579F5008BEB87 /* CloudDetailViewController.swift */; };
 		B88096B21D0652F0008BEB87 /* RuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88096B11D0652F0008BEB87 /* RuleCell.swift */; };
 		B8822CCD1D2AA70A00AD252C /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = B8822CCC1D2AA70A00AD252C /* Receipt.m */; };
@@ -376,7 +379,6 @@
 		9B87060A1C1DBCCD00651424 /* dns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dns.m; sourceTree = "<group>"; };
 		9B87060C1C1DBDD400651424 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		9B8750541CC761D000A11715 /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
-		9B88109D1CCF58820033EA20 /* RequestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailViewController.swift; sourceTree = "<group>"; };
 		9B9B15BD1C21595B000B6541 /* PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9B15BF1C21595B000B6541 /* PotatsoLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PotatsoLibrary.h; sourceTree = "<group>"; };
 		9B9B15C11C21595B000B6541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -386,7 +388,7 @@
 		9BB3F7431CC60B6F00C2DD05 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		9BB3F7481CC60CBE00C2DD05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9BB3F74A1CC60CBF00C2DD05 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		9BB3F74E1CC6308000C2DD05 /* RecentRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentRequestsViewController.swift; sourceTree = "<group>"; };
+		9BB3F74E1CC6308000C2DD05 /* RecentRequestsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentRequestsVC.swift; sourceTree = "<group>"; };
 		9BB62FA21C8FFC1D002ADC54 /* RuleSetConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleSetConfigurationViewController.swift; path = Advance/RuleSetConfigurationViewController.swift; sourceTree = "<group>"; };
 		9BC215B81CB4DA9E002AADD1 /* Proxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Proxy.swift; sourceTree = "<group>"; };
 		9BC215BA1CB4DAE6002AADD1 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
@@ -831,7 +833,6 @@
 		9BF303451CC8A1F60096588E /* LogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDetailViewController.swift; sourceTree = "<group>"; };
 		9BF3034A1CCA1B060096588E /* BaseEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEmptyView.swift; sourceTree = "<group>"; };
 		9BF3034C1CCA20D80096588E /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
-		9BFE21C11CD0E35D001AB019 /* DetailRawTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRawTextCell.swift; sourceTree = "<group>"; };
 		9E603B577575916EC652D04D /* Pods-PotatsoLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.debug.xcconfig"; sourceTree = "<group>"; };
 		A27A0B817AADB557908316E3 /* Pods_PotatsoLibraryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibraryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77B9512684E7D83890CCE80 /* Pods-PotatsoLibraryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibraryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -845,12 +846,17 @@
 		B8319A0E1D1BD696001E50C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B8319A101D1BD699001E50C2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B8367A801D1B6D5400D50C25 /* BaseButtonRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseButtonRow.swift; sourceTree = "<group>"; };
+		B83AA56F1D38E6F7007905B4 /* RequestDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDetailVC.swift; sourceTree = "<group>"; };
+		B83AA5731D38E728007905B4 /* SegmentPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentPageVC.swift; sourceTree = "<group>"; };
+		B83AA5751D38E98A007905B4 /* RequestOverviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestOverviewVC.swift; sourceTree = "<group>"; };
 		B83D3E781D2BA689007655CE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B83D3E7C1D2BA8C8007655CE /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		B845513F1CF83D07005779CD /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B84551411CF878BD005779CD /* ConfigGroupChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigGroupChooseVC.swift; sourceTree = "<group>"; };
 		B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShadowPath.xcodeproj; path = Library/ShadowPath/ShadowPath.xcodeproj; sourceTree = SOURCE_ROOT; };
 		B87A04391D193ABC001132F2 /* LoggerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerUtils.swift; sourceTree = "<group>"; };
+		B87B98031D3B423B00FA66BF /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		B87B98091D3B64BE00FA66BF /* RequestEventRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestEventRow.swift; sourceTree = "<group>"; };
 		B88096AF1D0579F5008BEB87 /* CloudDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudDetailViewController.swift; sourceTree = "<group>"; };
 		B88096B11D0652F0008BEB87 /* RuleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCell.swift; sourceTree = "<group>"; };
 		B8822CCB1D2AA70A00AD252C /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
@@ -1205,10 +1211,10 @@
 			isa = PBXGroup;
 			children = (
 				B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */,
-				9BB3F74E1CC6308000C2DD05 /* RecentRequestsViewController.swift */,
+				9BB3F74E1CC6308000C2DD05 /* RecentRequestsVC.swift */,
+				B83AA56F1D38E6F7007905B4 /* RequestDetailVC.swift */,
+				B83AA5751D38E98A007905B4 /* RequestOverviewVC.swift */,
 				9BB3F73B1CC3D3DE00C2DD05 /* RecentRequestsCell.swift */,
-				9B88109D1CCF58820033EA20 /* RequestDetailViewController.swift */,
-				9BFE21C11CD0E35D001AB019 /* DetailRawTextCell.swift */,
 				9B8750541CC761D000A11715 /* RequestModel.swift */,
 				9BF303451CC8A1F60096588E /* LogDetailViewController.swift */,
 			);
@@ -1254,6 +1260,7 @@
 				9BC858A41C33D30100992032 /* BaseSafariViewController.swift */,
 				9BF3034A1CCA1B060096588E /* BaseEmptyView.swift */,
 				B8367A841D1B6D6800D50C25 /* Row */,
+				B83AA5731D38E728007905B4 /* SegmentPageVC.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1936,6 +1943,7 @@
 			isa = PBXGroup;
 			children = (
 				B8CCC6EA1CFF1501000E7E2E /* ProxyRow.swift */,
+				B87B98091D3B64BE00FA66BF /* RequestEventRow.swift */,
 				B8367A801D1B6D5400D50C25 /* BaseButtonRow.swift */,
 			);
 			name = Row;
@@ -1954,6 +1962,7 @@
 			isa = PBXGroup;
 			children = (
 				B8C256AD1D1A93DA0074D3B1 /* FlatButton.swift */,
+				B87B98031D3B423B00FA66BF /* PaddingLabel.swift */,
 			);
 			name = View;
 			path = ..;
@@ -2780,10 +2789,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83AA5701D38E6F7007905B4 /* RequestDetailVC.swift in Sources */,
 				B83D3E7D1D2BA8C8007655CE /* Receipt.swift in Sources */,
 				B8CCC6DD1CFD5D5D000E7E2E /* CollectionViewController.swift in Sources */,
 				B88096B21D0652F0008BEB87 /* RuleCell.swift in Sources */,
 				9B17F8F01C533BBF00679FCB /* Color.swift in Sources */,
+				B83AA5761D38E98A007905B4 /* RequestOverviewVC.swift in Sources */,
 				9B5C00261CBFB35C008DDE7A /* ConfigGroupCell.swift in Sources */,
 				B8C256AE1D1A93DA0074D3B1 /* FlatButton.swift in Sources */,
 				9B8193ED1CBE4DCA00BE320D /* UrlHandler.swift in Sources */,
@@ -2799,18 +2810,17 @@
 				9B0CFA0F1C1C0B1B007BD7C6 /* AppDelegate.swift in Sources */,
 				9BB3F73C1CC3D3DE00C2DD05 /* RecentRequestsCell.swift in Sources */,
 				9BD4CACA1CB9600D00F99BF9 /* AlertUtils.swift in Sources */,
+				B87B98041D3B423B00FA66BF /* PaddingLabel.swift in Sources */,
 				B8CCC6E51CFDCFD8000E7E2E /* RuleSetCell.swift in Sources */,
 				9B82854C1CE20DE40027D15C /* HMScannerViewController.m in Sources */,
 				B803A6961D0165EA003EA9AA /* CloudViewController.swift in Sources */,
 				9BC858A51C33D30100992032 /* BaseSafariViewController.swift in Sources */,
 				B84551421CF878BD005779CD /* ConfigGroupChooseVC.swift in Sources */,
-				9B88109E1CCF58820033EA20 /* RequestDetailViewController.swift in Sources */,
 				B88096B01D0579F5008BEB87 /* CloudDetailViewController.swift in Sources */,
 				B8319A0A1D1B975C001E50C2 /* RegexUtils.swift in Sources */,
 				B84551401CF83D07005779CD /* HomeVC.swift in Sources */,
 				B8CCC6E71CFDD99E000E7E2E /* ProxyListViewController.swift in Sources */,
 				9B76EEB91C911CBF002BF5D1 /* ProxySelectionViewController.swift in Sources */,
-				9BFE21C21CD0E35D001AB019 /* DetailRawTextCell.swift in Sources */,
 				9BF303461CC8A1F60096588E /* LogDetailViewController.swift in Sources */,
 				9B1D9B7B1CA4C45F0078D814 /* HUDUtils.swift in Sources */,
 				B8822CCD1D2AA70A00AD252C /* Receipt.m in Sources */,
@@ -2820,6 +2830,7 @@
 				9BF3034B1CCA1B060096588E /* BaseEmptyView.swift in Sources */,
 				9B5E13BA1C897870007DFE0A /* ProxyConfigurationViewController.swift in Sources */,
 				B8367A811D1B6D5400D50C25 /* BaseButtonRow.swift in Sources */,
+				B87B980A1D3B64BE00FA66BF /* RequestEventRow.swift in Sources */,
 				9B82854B1CE20DE40027D15C /* HMScannerMaskView.m in Sources */,
 				B83D3E791D2BA689007655CE /* Event.swift in Sources */,
 				9B17F8EB1C53379700679FCB /* SettingsViewController.swift in Sources */,
@@ -2827,7 +2838,8 @@
 				B803A6981D02B768003EA9AA /* API.swift in Sources */,
 				9B8285491CE20DE40027D15C /* HMScannerBorder.m in Sources */,
 				9B76EEB71C90740C002BF5D1 /* RuleSetsSelectionViewController.swift in Sources */,
-				9BB3F74F1CC6308000C2DD05 /* RecentRequestsViewController.swift in Sources */,
+				B83AA5741D38E728007905B4 /* SegmentPageVC.swift in Sources */,
+				9BB3F74F1CC6308000C2DD05 /* RecentRequestsVC.swift in Sources */,
 				9B8285481CE20DE40027D15C /* HMScanner.m in Sources */,
 				9BB3F7441CC60B6F00C2DD05 /* Error.swift in Sources */,
 				9B76EEAD1C9005D2002BF5D1 /* RuleConfigurationViewController.swift in Sources */,
@@ -3408,10 +3420,10 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3440,10 +3452,10 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3472,11 +3484,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PotatsoBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -3499,10 +3511,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PotatsoBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -3525,11 +3537,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3558,10 +3570,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3588,11 +3600,11 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3629,10 +3641,10 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 106;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 105;
+				DYLIB_CURRENT_VERSION = 106;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (

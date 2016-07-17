@@ -33,6 +33,8 @@
 
 - (void)startTunnelWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler {
     [self openLog];
+    [[Potatso sharedUserDefaults] removeObjectForKey:@"requestsCached"];
+    [[Potatso sharedUserDefaults] synchronize];
     [[Settings shared] setStartTime:[NSDate date]];
     NSLog(@"starting potatso tunnel...");
     NSError *error = [TunnelInterface setupWithPacketTunnelFlow:self.packetFlow];
@@ -69,15 +71,19 @@
             }
             d[@"url"] = [NSString stringWithCString:url encoding:NSUTF8StringEncoding];
             d[@"method"] = @(client->http->gpc);
-            for (int i=0; i < STATUS_COUNT; i++) {
-                d[[NSString stringWithFormat:@"time%d", i]] = @(client->timestamp[i]);
+            for (int i=0; i < TIME_STAGE_COUNT; i++) {
+                d[[NSString stringWithFormat:@"time%d", i]] = @(client->time_stages[i]);
             }
             d[@"version"] = @(client->http->ver);
-            if (client->rule && client->rule->rule) {
-                d[@"rule"] = [NSString stringWithCString:client->rule->rule encoding:NSUTF8StringEncoding];
+            if (client->rule) {
+                d[@"rule"] = [NSString stringWithCString:client->rule encoding:NSUTF8StringEncoding];
             }
             d[@"global"] = @(global_mode);
             d[@"routing"] = @(client->routing);
+            d[@"forward_stage"] = @(client->current_forward_stage);
+            if (client->http->remote_host_ip_addr_str) {
+                d[@"ip"] = [NSString stringWithCString:client->http->remote_host_ip_addr_str encoding:NSUTF8StringEncoding];
+            }
 //            if (p->headers) {
 //                d[@"headers"] = [NSString stringWithCString:p->headers->string encoding:NSUTF8StringEncoding];
 //            }

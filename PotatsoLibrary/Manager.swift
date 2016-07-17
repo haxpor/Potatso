@@ -330,10 +330,8 @@ extension Manager {
         actionContent.appendContentsOf(forwardRules)
 
         // DNS pollution
-        if let _ = upstreamProxy {
-            actionContent.append("{+forward-rule}")
-            actionContent.appendContentsOf(Pollution.dnsList.map({ "IP-CIDR, \($0)/32, PROXY" }))
-        }
+        actionContent.append("{+forward-rule}")
+        actionContent.appendContentsOf(Pollution.dnsList.map({ "DNS-IP-CIDR, \($0)/32, PROXY" }))
 
         let userActionString = actionContent.joinWithSeparator("\n")
         let userActionUrl = confDirUrl.URLByAppendingPathComponent("potatso.action")

@@ -604,7 +604,7 @@ struct http_response *block_url(struct client_state *csp)
    /*
     * If it's not blocked, don't block it ;-)
     */
-   if ((csp->action->flags & ACTION_BLOCK) == 0 && !(csp->rule != NULL && csp->rule->routing == ROUTE_BLOCK))
+   if ((csp->action->flags & ACTION_BLOCK) == 0 && !(csp->routing == ROUTE_BLOCK))
    {
       return NULL;
    }
@@ -686,7 +686,7 @@ struct http_response *block_url(struct client_state *csp)
    }
    else
 #endif /* def FEATURE_IMAGE_BLOCKING */
-   if (csp->action->flags & ACTION_HANDLE_AS_EMPTY_DOCUMENT || (csp->rule != NULL && csp->rule->routing == ROUTE_BLOCK))
+   if (csp->action->flags & ACTION_HANDLE_AS_EMPTY_DOCUMENT || (csp->routing == ROUTE_BLOCK))
    {
      /*
       *  Send empty document.
@@ -2619,7 +2619,7 @@ struct forward_spec *get_forward_rule_settings_by_action(struct url_actions *url
 {
     if (url_action->routing == ROUTE_PROXY) {
         return proxy_list;
-    } else if (url_action->routing == ROUTE_DIRECT) {
+    }else if (url_action->routing == ROUTE_DIRECT) {
         return fwd_default;
     }
     return NULL;
@@ -2642,67 +2642,101 @@ struct forward_spec *forward_url(struct client_state *csp,
                                        const struct http_request *http)
 {
     fwd_default->is_default = 1;
-    struct forward_spec *fwd = csp->config->forward;
+    csp->routing = ROUTE_NONE;
+    csp->current_forward_stage = FORWARD_STAGE_NONE;
+    struct forward_spec *fwd = NULL;
 
-    if (csp->action->flags & ACTION_FORWARD_OVERRIDE)
-    {
-        return get_forward_override_settings(csp);
-    }
-
-    while (fwd != NULL)
-    {
-        if (url_match(fwd->url, http))
-        {
-            return fwd;
-        }
-        fwd = fwd->next;
-    }
-
-    if (fwd != NULL) {
-        return fwd;
-    }
-
+    // Match forward in potatso.action
+    log_time_stage(csp, TIME_STAGE_URL_RULE_MATCH_START);
     struct url_actions *action = po_url_rules;
     while (action != NULL) {
         if (url_match(action->url, http))
         {
-            csp->rule = action;
-            fwd = get_forward_rule_settings_by_action(action);
             break;
         }
         action = action->next;
     }
+    log_time_stage(csp, TIME_STAGE_URL_RULE_MATCH_END);
+
+    if (action) {
+        csp->routing = action->routing;
+        char *rule = strdup_or_die(action->rule);
+        fwd = get_forward_rule_settings_by_action(action);
+        if (action->routing == ROUTE_PROXY && fwd == NULL) {
+            csp->routing = ROUTE_NONE;
+            if (string_append(&rule, " (Ignore. No Proxy Provided.)") != JB_ERR_OK) {
+                log_error(LOG_LEVEL_ERROR,
+                          "Failed to append string when ignoring rule: memory issue");
+            }
+        }
+        csp->rule = rule;
+        csp->current_forward_stage = FORWARD_STAGE_URL;
+    }
 
     if (fwd != NULL) {
-        csp->routing = action->routing;
         return fwd;
     }
-    if (action && action->routing == ROUTE_BLOCK) {
-        csp->routing = ROUTE_BLOCK;
-    }else {
-        csp->routing = ROUTE_DIRECT;
-    }
+
     return fwd_default;
 }
 
 
-struct forward_ip_spec *forward_ip(struct client_state *csp, struct sockaddr_storage addr)
+struct forward_spec *forward_ip(struct client_state *csp, struct sockaddr_storage addr)
 {
-    struct forward_ip_spec *fwd = NULL;
-
-    if (addr.ss_family != AF_INET)
-    {
-        /* Should never happen */
-        return NULL;
-    }
+    struct forward_spec *fwd = NULL;
 
     struct sockaddr_in *sin = (struct sockaddr_in *)&addr;
 
     struct url_actions *action = po_ip_rules;
     while (action != NULL) {
         if (action->tree && radix32tree_find(action->tree, ntohl(sin->sin_addr.s_addr)) != RADIX_NO_VALUE) {
-            csp->rule = action;
+            csp->routing = action->routing;
+            csp->current_forward_stage = FORWARD_STAGE_IP;
             fwd = get_forward_rule_settings_by_action(action);
+            char *rule = strdup_or_die(action->rule);
+            if (action->routing == ROUTE_PROXY && fwd == NULL) {
+                csp->routing = ROUTE_NONE;
+                if (string_append(&rule, " (Ignore. No Proxy Provided.)") != JB_ERR_OK) {
+                    log_error(LOG_LEVEL_ERROR,
+                              "Failed to append string when ignoringg IP: memory issue");
+                }
+            }
+            csp->rule = rule;
+            break;
+        }
+        action = action->next;
+    }
+
+    return fwd;
+}
+
+struct forward_spec *forward_dns_pollution_ip(struct client_state *csp, struct sockaddr_storage addr) {
+    struct forward_spec *fwd = NULL;
+
+    struct sockaddr_in *sin = (struct sockaddr_in *)&addr;
+
+    struct url_actions *action = po_dns_ip_rules;
+    while (action != NULL) {
+        if (action->tree && radix32tree_find(action->tree, ntohl(sin->sin_addr.s_addr)) != RADIX_NO_VALUE) {
+            csp->routing = action->routing;
+            csp->current_forward_stage = FORWARD_STAGE_DNS_POLLUTION;
+            fwd = get_forward_rule_settings_by_action(action);
+            char *rule = strdup_or_die("DNS Polluted");
+            if (action->routing == ROUTE_PROXY) {
+                if (fwd == NULL) {
+                    csp->routing = ROUTE_NONE;
+                    if (string_append(&rule, " (Ignore. No Proxy Provided.)") != JB_ERR_OK) {
+                        log_error(LOG_LEVEL_ERROR,
+                                  "Failed to append string when ignoring dns: memory issue");
+                    }
+                }else {
+                    if (string_append(&rule, ". PROXY.") != JB_ERR_OK) {
+                        log_error(LOG_LEVEL_ERROR,
+                                  "Failed to append string when ignoring dns: memory issue");
+                    }
+                }
+            }
+            csp->rule = rule;
             break;
         }
         action = action->next;
