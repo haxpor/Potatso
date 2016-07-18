@@ -20,8 +20,8 @@
 "Choose Proxy" = "选择代理";
 "Choose Proxy Type" = "选择代理类型";
 "Choose Rule Set" = "选择规则组";
-"Choose SSR obfs" = "选择 SSR obfs";
-"Choose SSR protocol" = "选择 SSR protocol";
+"Choose SSR obfs" = "选择 SSR 混淆插件";
+"Choose SSR protocol" = "选择 SSR 协议插件";
 "Choose action for rule" = "选择操作";
 "Choose encryption method" = "选择加密";
 "Choose type of rule" = "选择类型";
@@ -84,8 +84,8 @@
 "No more data" = "没有更多数据了";
 "None" = "无";
 "OK" = "OK";
-"Obfs" = "Obfs";
-"Obfs Param" = "Obfs 参数";
+"Obfs" = "混淆插件(obfs)";
+"Obfs Param" = "混淆插件参数";
 "One Time Auth" = "一次认证";
 "PLEASE DO NOT DELETE INFO BELOW" = "请不要移除以下内容";
 "Password" = "密码";
@@ -95,7 +95,7 @@
 "Port can't be empty" = "端口不能为空";
 "Potatso Feedback" = "Potatso 反馈";
 "Potatso is not connected" = "Potatso 已断开";
-"Protocol" = "Protocol";
+"Protocol" = "协议插件(protocol)";
 "Proxy" = "代理";
 "Proxy Connection" = "代理连接";
 "Proxy Connection Established" = "代理连接建立成功";
@@ -116,7 +116,7 @@
 "Rule Set" = "规则组";
 "Rule Set Name" = "规则组名称";
 "Rules" = "规则";
-"SSR Obfs Param" = "SSR Obfs 参数";
+"SSR Obfs Param" = "SSR 混淆插件参数";
 "Share with friends" = "分享给朋友";
 "Start" = "开始";
 "Start DNS Query" = "开始 DNS 查询";
