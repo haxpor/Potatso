@@ -137,6 +137,8 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
             $0.value = presenter.group.dns
         }.cellSetup { cell, row in
             cell.textField.placeholder = "System DNS".localized()
+            cell.textField.autocorrectionType = .No
+            cell.textField.autocapitalizationType = .None
         }
         return proxySection
     }

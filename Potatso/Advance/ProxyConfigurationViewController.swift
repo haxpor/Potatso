@@ -83,6 +83,8 @@ class ProxyConfigurationViewController: FormViewController {
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "Proxy Server Host".localized()
                 cell.textField.keyboardType = .URL
+                cell.textField.autocorrectionType = .No
+                cell.textField.autocapitalizationType = .None
             }
             <<< IntRow(kProxyFormPort) {
                 $0.title = "Port".localized()
@@ -160,6 +162,8 @@ class ProxyConfigurationViewController: FormViewController {
                 }
             }.cellSetup { cell, row in
                 cell.textField.placeholder = "SSR Obfs Param".localized()
+                cell.textField.autocorrectionType = .No
+                cell.textField.autocapitalizationType = .None
             }
 
     }
