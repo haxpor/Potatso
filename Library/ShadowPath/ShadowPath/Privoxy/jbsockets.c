@@ -348,7 +348,7 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
         if (!is_proxy) {
             if (dst->addr.ss_family == AF_INET) {
                 // IPv4
-                if (csp->fwd->type == SOCKS_NONE && csp->fwd->forward_host == NULL && !csp->forward_determined) {
+                if (csp->current_forward_stage == FORWARD_STAGE_NONE && !csp->forward_determined) {
                     log_time_stage(csp, TIME_STAGE_IP_RULE_MATCH_START);
                     struct forward_spec *fwd = forward_ip(csp, dst->addr);
                     log_time_stage(csp, TIME_STAGE_IP_RULE_MATCH_END);
