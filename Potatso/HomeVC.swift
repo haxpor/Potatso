@@ -58,6 +58,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationItem.titleView = titleButton
         // Post an empty message so we could attach to packet tunnel process
         Manager.sharedManager.postMessage()
         handleRefreshUI()
@@ -78,7 +79,9 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
     }
 
     func updateTitle() {
-        navigationItem.title = presenter.group.name
+        titleButton.setTitle(presenter.group.name, forState: .Normal)
+        titleButton.sizeToFit()
+//        navigationItem.title = presenter.group.name
     }
 
     func updateForm() {
@@ -165,13 +168,17 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     // MARK: - Private Actions
 
-    func switchVPN() {
+    func handleConnectButtonPressed() {
         if status == .On {
             status = .Disconnecting
         }else {
             status = .Connecting
         }
         presenter.switchVPN()
+    }
+
+    func handleTitleButtonPressed() {
+        presenter.changeGroupName()
     }
 
     // MARK: - TableView
@@ -239,8 +246,18 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     lazy var connectButton: FlatButton = {
         let v = FlatButton(frame: CGRect.zero)
-        v.addTarget(self, action: #selector(switchVPN), forControlEvents: .TouchUpInside)
+        v.addTarget(self, action: #selector(HomeVC.handleConnectButtonPressed), forControlEvents: .TouchUpInside)
         return v
+    }()
+
+    lazy var titleButton: UIButton = {
+        let b = UIButton(type: .Custom)
+        b.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        b.addTarget(self, action: #selector(HomeVC.handleTitleButtonPressed), forControlEvents: .TouchUpInside)
+        if let titleLabel = b.titleLabel {
+            titleLabel.font = UIFont.boldSystemFontOfSize(titleLabel.font.pointSize)
+        }
+        return b
     }()
 
 }
