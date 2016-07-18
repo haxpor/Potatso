@@ -166,7 +166,7 @@ class HomePresenter: NSObject {
 
     func changeGroupName() {
         var urlTextField: UITextField?
-        let alert = UIAlertController(title: "Change Config Group's Name".localized(), message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Change Name".localized(), message: nil, preferredStyle: .Alert)
         alert.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Input New Name".localized()
             urlTextField = textField
