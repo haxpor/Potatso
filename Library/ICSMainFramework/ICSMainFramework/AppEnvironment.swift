@@ -35,6 +35,10 @@ public struct AppEnv {
     public static var appName: String {
         return NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as! String
     }
+
+    public static var isTestFlight: Bool {
+        return NSBundle.mainBundle().appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+    }
     
     
 }

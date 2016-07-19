@@ -872,6 +872,7 @@
 		B8CCC6E41CFDCFD8000E7E2E /* RuleSetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleSetCell.swift; sourceTree = "<group>"; };
 		B8CCC6E61CFDD99E000E7E2E /* ProxyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyListViewController.swift; sourceTree = "<group>"; };
 		B8CCC6EA1CFF1501000E7E2E /* ProxyRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProxyRow.swift; path = ../ProxyRow.swift; sourceTree = "<group>"; };
+		B8CF2F991D3DF69E009C9FF3 /* Confidential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Confidential.h; sourceTree = "<group>"; };
 		B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		B8F784651D3678B400F02FF5 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B8F784661D3678B400F02FF5 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
@@ -1060,6 +1061,7 @@
 				9B17F8EC1C53392D00679FCB /* Utils */,
 				9B8705F51C1D77CE00651424 /* Potatso.entitlements */,
 				9B1F745D1C2F83AD0028C1A6 /* config.plist */,
+				B8CF2F991D3DF69E009C9FF3 /* Confidential.h */,
 				9B0CFA151C1C0B1B007BD7C6 /* Assets.xcassets */,
 				9B0CFA171C1C0B1B007BD7C6 /* LaunchScreen.storyboard */,
 				9B0CFA1A1C1C0B1B007BD7C6 /* Info.plist */,
@@ -2058,10 +2060,11 @@
 			buildConfigurationList = 9B0CFA281C1C0B1B007BD7C6 /* Build configuration list for PBXNativeTarget "Potatso" */;
 			buildPhases = (
 				D693559CB9C3A77E754FCAC3 /* [CP] Check Pods Manifest.lock */,
+				B8CF2F9A1D3DF6C7009C9FF3 /* Confidential */,
 				9B0CFA071C1C0B1A007BD7C6 /* Sources */,
 				9B0CFA081C1C0B1A007BD7C6 /* Frameworks */,
 				9B0CFA091C1C0B1A007BD7C6 /* Resources */,
-				B830CC631D2CF55A00FA8E37 /* Confidential */,
+				B830CC631D2CF55A00FA8E37 /* Custom Data */,
 				9B8706081C1D788F00651424 /* Embed App Extensions */,
 				9B9B15821C1ECADF000B6541 /* Embed Frameworks */,
 				9B9E946C1CBA6F0A003FBC47 /* Cartahge */,
@@ -2169,8 +2172,8 @@
 			buildConfigurationList = 9BC600281CB2921D00E5EA61 /* Build configuration list for PBXNativeTarget "PotatsoBase" */;
 			buildPhases = (
 				9BC600181CB2921C00E5EA61 /* Sources */,
-				9BC600191CB2921C00E5EA61 /* Frameworks */,
 				9BC6001A1CB2921C00E5EA61 /* Headers */,
+				9BC600191CB2921C00E5EA61 /* Frameworks */,
 				9BC6001B1CB2921C00E5EA61 /* Resources */,
 			);
 			buildRules = (
@@ -2656,19 +2659,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B830CC631D2CF55A00FA8E37 /* Confidential */ = {
+		B830CC631D2CF55A00FA8E37 /* Custom Data */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Confidential;
+			name = "Custom Data";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "src=\"${PROJECT_DIR}/Confidential/\"\nif [ -d $src ]\nthen\n    echo \"Confidential found.\"\n    fabric=\"env.plist\"\n    BUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n    rsync -av --exclude .DS_Store --exclude $fabric $src $BUILD_APP_DIR\nelse\n    echo \"Confidential not found.\"\nfi";
+			shellScript = "src=\"${PROJECT_DIR}/Confidential/\"\nif [ -d $src ]\nthen\n    echo \"Confidential found.\"\n    fabric=\"env.plist\"\n    thirdKeys=\"ThirdKeys.h\"\n    BUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n    rsync -av --exclude .DS_Store --exclude $fabric --exclude $thirdKeys $src $BUILD_APP_DIR\nelse\n    echo \"Confidential not found.\"\nfi";
 		};
 		B84B4E341D2176D6002B946A /* Framework Hack */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2683,6 +2686,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\nrm -fr Frameworks\nfi";
+		};
+		B8CF2F9A1D3DF6C7009C9FF3 /* Confidential */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Confidential;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "file=\"${PROJECT_DIR}/Potatso/Confidential.h\"\nif [ -f $file ]\nthen\n    echo \"Confidential.h found.\"\nelse\n    echo \"Confidential.h not found.\"\n    src=\"${PROJECT_DIR}/Potatso/DefaultConfidential.h\"\n    rsync -av $src $file\nfi";
 		};
 		BA4C15DFC5B5BB3A0133C8EF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3211,7 +3228,10 @@
 				INFOPLIST_FILE = Potatso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @rpath/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
+					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3252,7 +3272,10 @@
 				INFOPLIST_FILE = Potatso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @rpath/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
+					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
