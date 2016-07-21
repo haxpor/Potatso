@@ -72,6 +72,7 @@ const char filters_rcs[] = "$Id: filters.c,v 1.199 2016/01/16 12:33:35 fabiankei
 #include "deanimate.h"
 #include "urlmatch.h"
 #include "loaders.h"
+#include "maxminddb.h"
 
 #ifdef _WIN32
 #include "win32.h"
@@ -85,6 +86,8 @@ static jb_err remove_chunked_transfer_coding(char *buffer, size_t *size);
 static jb_err prepare_for_filtering(struct client_state *csp);
 
 struct forward_spec fwd_default[1];
+
+MMDB_s mmdb;
 
 #ifdef FEATURE_ACL
 
@@ -2680,32 +2683,57 @@ struct forward_spec *forward_url(struct client_state *csp,
     return fwd_default;
 }
 
-
-struct forward_spec *forward_ip(struct client_state *csp, struct sockaddr_storage addr)
+struct url_actions *forward_ip_routing(struct sockaddr_in *addr)
 {
-    struct forward_spec *fwd = NULL;
-
-    struct sockaddr_in *sin = (struct sockaddr_in *)&addr;
-
     struct url_actions *action = po_ip_rules;
+
     while (action != NULL) {
-        if (action->tree && radix32tree_find(action->tree, ntohl(sin->sin_addr.s_addr)) != RADIX_NO_VALUE) {
-            csp->routing = action->routing;
-            csp->current_forward_stage = FORWARD_STAGE_IP;
-            fwd = get_forward_rule_settings_by_action(action);
-            char *rule = strdup_or_die(action->rule);
-            if (action->routing == ROUTE_PROXY && fwd == NULL) {
-                csp->routing = ROUTE_NONE;
-                if (string_append(&rule, " (Ignore. No Proxy Provided.)") != JB_ERR_OK) {
-                    log_error(LOG_LEVEL_ERROR,
-                              "Failed to append string when ignoringg IP: memory issue");
+        if (action->tree && radix32tree_find(action->tree, ntohl(addr->sin_addr.s_addr)) != RADIX_NO_VALUE) {
+            return action;
+        }else if (action->geoip != NULL) {
+            int mmdb_error;
+            MMDB_lookup_result_s result = MMDB_lookup_sockaddr(&mmdb, (struct sockaddr*)addr, &mmdb_error);
+            if (MMDB_SUCCESS == mmdb_error) {
+                MMDB_entry_data_s entry_data;
+                int status = MMDB_get_value(&result.entry, &entry_data, "country", "iso_code", NULL);
+                if (MMDB_SUCCESS == status) {
+                    if (entry_data.has_data) {
+                        if (strncmp(entry_data.utf8_string, action->geoip, entry_data.data_size) == 0) {
+                            return action;
+                        }
+                    }
                 }
             }
-            csp->rule = rule;
-            break;
         }
         action = action->next;
     }
+
+    return NULL;
+}
+
+
+struct forward_spec *forward_ip(struct client_state *csp, struct sockaddr_storage addr)
+{
+    struct url_actions *action = forward_ip_routing((struct sockaddr_in *)&addr);
+
+    if (action == NULL) {
+        return NULL;
+    }
+
+    struct forward_spec *fwd = NULL;
+
+    csp->routing = action->routing;
+    csp->current_forward_stage = FORWARD_STAGE_IP;
+    fwd = get_forward_rule_settings_by_action(action);
+    char *rule = strdup_or_die(action->rule);
+    if (action->routing == ROUTE_PROXY && fwd == NULL) {
+        csp->routing = ROUTE_NONE;
+        if (string_append(&rule, " (Ignore. No Proxy Provided.)") != JB_ERR_OK) {
+            log_error(LOG_LEVEL_ERROR,
+                      "Failed to append string when ignoringg IP: memory issue");
+        }
+    }
+    csp->rule = rule;
 
     return fwd;
 }

@@ -132,6 +132,9 @@ typedef int jb_socket;
 
 
 #include "radix.h"
+#include "maxminddb.h"
+
+extern MMDB_s mmdb;
 
 /**
  * A standard error code.  This should be JB_ERR_OK or one of the JB_ERR_xxx
@@ -656,6 +659,8 @@ struct url_actions
     char *rule;
 
     enum forward_routing routing;
+
+    char *geoip;
 
     radix_tree_t *tree;
 
@@ -1360,6 +1365,9 @@ struct configuration_spec
 
    /** The config file directory. */
    const char *confdir;
+
+    /** The mmdbpath. */
+    const char *mmdbpath;
 
    /** The directory for customized CGI templates. */
    const char *templdir;

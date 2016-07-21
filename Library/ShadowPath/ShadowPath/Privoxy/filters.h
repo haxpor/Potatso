@@ -88,6 +88,8 @@ extern struct re_filterfile_spec *get_filter(const struct client_state *csp,
 extern struct forward_spec *forward_url(struct client_state *csp,
                                               const struct http_request *http);
 
+struct url_actions *forward_ip_routing(struct sockaddr_in *addr);
+
 struct forward_spec *forward_ip(struct client_state *csp, struct sockaddr_storage addr);
 
 struct forward_spec *forward_dns_pollution_ip(struct client_state *csp, struct sockaddr_storage addr);
@@ -96,7 +98,7 @@ extern struct forward_spec *get_forward_ip_settings(struct client_state *csp);
 
 //static struct forward_spec *get_forward_rule_settings(struct client_state *csp, struct url_actions *url_action, int which);
 //
-extern struct forward_spec *get_forward_rule_settings_by_action(struct url_actions *url_action);
+//extern struct forward_spec *get_forward_rule_settings_by_action(struct url_actions *url_action);
 
 /*
  * Content modification

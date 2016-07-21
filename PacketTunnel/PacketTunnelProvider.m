@@ -9,6 +9,7 @@
 #import "PacketTunnelProvider.h"
 #import "ProxyManager.h"
 #import "TunnelInterface.h"
+#import "TunnelError.h"
 #import "dns.h"
 #import "PotatsoBase.h"
 #import <sys/syslog.h>
@@ -17,6 +18,8 @@
 #import <arpa/inet.h>
 @import MMWormhole;
 @import CocoaAsyncSocket;
+
+#define REQUEST_CACHED @"requestsCached"    // Indicate that recent requests need update
 
 @interface PacketTunnelProvider () <GCDAsyncSocketDelegate>
 @property (nonatomic) MMWormhole *wormhole;
@@ -33,10 +36,8 @@
 
 - (void)startTunnelWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler {
     [self openLog];
-    [[Potatso sharedUserDefaults] removeObjectForKey:@"requestsCached"];
-    [[Potatso sharedUserDefaults] synchronize];
-    [[Settings shared] setStartTime:[NSDate date]];
     NSLog(@"starting potatso tunnel...");
+    [self updateUserDefaults];
     NSError *error = [TunnelInterface setupWithPacketTunnelFlow:self.packetFlow];
     if (error) {
         completionHandler(error);
@@ -47,6 +48,12 @@
     [self startProxies];
     [self startPacketForwarders];
     [self setupWormhole];
+}
+
+- (void)updateUserDefaults {
+    [[Potatso sharedUserDefaults] removeObjectForKey:REQUEST_CACHED];
+    [[Potatso sharedUserDefaults] synchronize];
+    [[Settings shared] setStartTime:[NSDate date]];
 }
 
 - (void)setupWormhole {
@@ -84,15 +91,6 @@
             if (client->http->remote_host_ip_addr_str) {
                 d[@"ip"] = [NSString stringWithCString:client->http->remote_host_ip_addr_str encoding:NSUTF8StringEncoding];
             }
-//            if (p->headers) {
-//                d[@"headers"] = [NSString stringWithCString:p->headers->string encoding:NSUTF8StringEncoding];
-//            }
-//            if (p->rule) {
-//                d[@"ruleType"] = @(p->rule->type),
-//                d[@"ruleAction"] = @(p->rule->action),
-//                d[@"ruleValue"] = [NSString stringWithCString:p->rule->value encoding:NSUTF8StringEncoding];
-//            }
-            
             d[@"responseCode"] = @(client->http->status);
             [records addObject:d];
             p = p->next;
@@ -115,44 +113,56 @@
 }
 
 - (void)startProxies {
-    __block NSError *proxyError;
+    [self startShadowsocks];
+    [self startHttpProxy];
+    [self startSocksProxy];
+}
+
+- (void)syncStartProxy: (void(^)(dispatch_group_t g, NSError **proxyError))handler {
     dispatch_group_t g = dispatch_group_create();
+    __block NSError *proxyError;
     dispatch_group_enter(g);
-    NSLog(@"starting shadowsocks....");
-    [[ProxyManager sharedManager] startShadowsocks:^(int port, NSError *error) {
-        proxyError = error;
-        dispatch_group_leave(g);
-    }];
-    dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
+    handler(g, &proxyError);
+#if DEBUG
+    long res = dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
+#else
+    long res = dispatch_group_wait(g, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 2));
+#endif
+    if (res != 0) {
+        proxyError = [TunnelError errorWithMessage:@"timeout"];
+    }
     if (proxyError) {
-        NSLog(@"shadowsocks error: %@", [proxyError localizedDescription]);
+        NSLog(@"start proxy error: %@", [proxyError localizedDescription]);
         exit(1);
         return;
     }
-    dispatch_group_enter(g);
-    NSLog(@"starting http proxy....");
-    [[ProxyManager sharedManager] startHttpProxy:^(int port, NSError *error) {
-        proxyError = error;
-        dispatch_group_leave(g);
+}
+
+- (void)startShadowsocks {
+    [self syncStartProxy:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
+        [[ProxyManager sharedManager] startShadowsocks:^(int port, NSError *error) {
+            *proxyError = error;
+            dispatch_group_leave(g);
+        }];
     }];
-    dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
-    if (proxyError) {
-        NSLog(@"http proxy error: %@", [proxyError localizedDescription]);
-        exit(1);
-        return;
-    }
-    dispatch_group_enter(g);
-    NSLog(@"starting socks proxy....");
-    [[ProxyManager sharedManager] startSocksProxy:^(int port, NSError *error) {
-        proxyError = error;
-        dispatch_group_leave(g);
+}
+
+- (void)startHttpProxy {
+    [self syncStartProxy:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
+        [[ProxyManager sharedManager] startHttpProxy:^(int port, NSError *error) {
+            *proxyError = error;
+            dispatch_group_leave(g);
+        }];
     }];
-    dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
-    if (proxyError) {
-        NSLog(@"socks proxy error: %@", [proxyError localizedDescription]);
-        exit(1);
-        return;
-    }
+}
+
+- (void)startSocksProxy {
+    [self syncStartProxy:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
+        [[ProxyManager sharedManager] startSocksProxy:^(int port, NSError *error) {
+            *proxyError = error;
+            dispatch_group_leave(g);
+        }];
+    }];
 }
 
 - (void)startPacketForwarders {
