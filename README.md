@@ -66,10 +66,13 @@ Open-source Libraries:
 - [Antinat](http://antinat.sourceforge.net/)
 - [Privoxy](https://www.privoxy.org/)
 
-Also we'd like to thank people that helped with the project or donated us:
+Also we'd like to thank people that helped with the project:
 
 - [@Blankwonder](https://twitter.com/Blankwonder)
 - [@龙七](#)
+
+or donated us:
+- [@liqianyu](https://twitter.com/liqianyu)
 
 And also thank all TestFlight Users and [Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) Users.
 
