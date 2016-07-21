@@ -169,9 +169,9 @@ extension RequestTimeStage: CustomStringConvertible {
         case .REMOTE_CONNECTED:
             return "Remote Connection".localized()
         case .GLOBAL_MODE:
-            return "Global Mode Match".localized()
+            return "Default Route Match".localized()
         case .NON_GLOBAL_MODE:
-            return "Global Mode Match".localized()
+            return "Default Route Match".localized()
         case .PROXY_DNS_START:
             return "Proxy DNS Query".localized()
         case .PROXY_DNS_FAIL:
@@ -238,9 +238,9 @@ struct RequestEvent {
         case .REMOTE_CONNECTED:
             return "Remote Connection Established".localized()
         case .GLOBAL_MODE:
-            return "Fallback To Global Mode".localized()
+            return "Fallback To PROXY".localized()
         case .NON_GLOBAL_MODE:
-            return "Fallback To Non-Global Mode".localized()
+            return "Fallback To DIRECT".localized()
         case .PROXY_DNS_START:
             return "Start Proxy DNS Query".localized()
         case .PROXY_DNS_FAIL:

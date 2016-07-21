@@ -15,6 +15,7 @@
 "BUY" = "BUY";
 "CANCEL" = "CANCEL";
 "Cancel" = "Cancel";
+"Change Name" = "Change Name";
 "Check DNS Pollution" = "Check DNS Pollution";
 "Choose Proxy" = "Choose Proxy";
 "Choose Proxy Type" = "Choose Proxy Type";
@@ -34,6 +35,8 @@
 "DNS Query" = "DNS Query";
 "DNS should be valid ip addresses (separated by commas if multiple). e.g.: 8.8.8.8,8.8.4.4" = "DNS should be valid ip addresses (separated by commas if multiple). e.g.: 8.8.8.8,8.8.4.4";
 "Default" = "Default";
+"Default Route Match" = "Default Route Match";
+"Default To Proxy" = "Default To Proxy";
 "Detail" = "Detail";
 "Disconnect" = "Disconnect";
 "Edit Proxy" = "Edit Proxy";
@@ -44,7 +47,7 @@
 "Fail to add ruleset" = "Fail to add ruleset";
 "Fail to change dns" = "Fail to change dns";
 "Fail to delete item" = "Fail to delete item";
-"Fail to modify global mode" = "Fail to modify global mode";
+"Fail to modify default to proxy" = "Fail to modify default to proxy";
 "Fail to parse proxy config" = "Fail to parse proxy config";
 "Fail to save config." = "Fail to save config.";
 "Fail to subscribe" = "Fail to subscribe";
@@ -52,13 +55,11 @@
 "Fail to unsubscribe" = "Fail to unsubscribe";
 "Fail. (Try Proxy DNS Resolution)" = "Fail. (Try Proxy DNS Resolution)";
 "Failed to add config group" = "Failed to add config group";
-"Fallback To Global Mode" = "Fallback To Global Mode";
-"Fallback To Non-Global Mode" = "Fallback To Non-Global Mode";
+"Fallback To DIRECT" = "Fallback To DIRECT";
+"Fallback To PROXY" = "Fallback To PROXY";
 "Feedback" = "Feedback";
 "Follow on Twitter" = "Follow on Twitter";
 "Follow on Weibo" = "Follow on Weibo";
-"Global Mode" = "Global Mode";
-"Global Mode Match" = "Global Mode Match";
 "Home" = "Home";
 "Host" = "Host";
 "Host can't be empty" = "Host can't be empty";
@@ -68,6 +69,7 @@
 "Import From URL" = "Import From URL";
 "Import Success" = "Import Success";
 "Importing Config..." = "Importing Config...";
+"Input New Name" = "Input New Name";
 "Input URL" = "Input URL";
 "Input name" = "Input name";
 "Invalid DNS" = "Invalid DNS";
@@ -87,13 +89,11 @@
 "Obfs" = "Obfs";
 "Obfs Param" = "Obfs Param";
 "One Time Auth" = "One Time Auth";
-"PLEASE DO NOT DELETE INFO BELOW" = "PLEASE DO NOT DELETE INFO BELOW";
 "Password" = "Password";
 "Password can't be empty" = "Password can't be empty";
 "Please set name for the new proxy" = "Please set name for the new proxy";
 "Port" = "Port";
 "Port can't be empty" = "Port can't be empty";
-"Potatso Feedback" = "Potatso Feedback";
 "Potatso is not connected" = "Potatso is not connected";
 "Protocol" = "Protocol";
 "Proxy" = "Proxy";

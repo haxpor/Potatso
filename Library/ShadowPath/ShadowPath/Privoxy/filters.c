@@ -78,6 +78,8 @@ const char filters_rcs[] = "$Id: filters.c,v 1.199 2016/01/16 12:33:35 fabiankei
 #include "win32.h"
 #endif
 
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+
 const char filters_h_rcs[] = FILTERS_H_VERSION;
 
 typedef char *(*filter_function_ptr)();
@@ -2698,7 +2700,7 @@ struct url_actions *forward_ip_routing(struct sockaddr_in *addr)
                 int status = MMDB_get_value(&result.entry, &entry_data, "country", "iso_code", NULL);
                 if (MMDB_SUCCESS == status) {
                     if (entry_data.has_data) {
-                        if (strncmp(entry_data.utf8_string, action->geoip, entry_data.data_size) == 0) {
+                        if (strncmp(entry_data.utf8_string, action->geoip, MIN(entry_data.data_size, strlen(action->geoip))) == 0) {
                             return action;
                         }
                     }

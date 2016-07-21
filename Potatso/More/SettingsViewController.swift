@@ -38,6 +38,16 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
     func generateForm() {
         form +++ Section()
             <<< LabelRow() {
+                $0.title = "Feedback".localized()
+                }.cellSetup({ (cell, row) -> () in
+                    cell.selectionStyle = .Default
+                    cell.accessoryType = .DisclosureIndicator
+                }).onCellSelection({ [unowned self] (cell, row) -> () in
+                    cell.setSelected(false, animated: true)
+                    self.feedback()
+                    })
+        +++ Section()
+            <<< LabelRow() {
                 $0.title = "Import From URL".localized()
                 }.cellSetup({ (cell, row) -> () in
                     cell.selectionStyle = .Default
@@ -84,17 +94,7 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
 //                    self.showTextHUD("暂时不起作用", dismissAfterDelay: 1.0)
 //                }
 //            })
-        let feedbackSection = Section()
-        feedbackSection
-        <<< LabelRow() {
-            $0.title = "Feedback".localized()
-        }.cellSetup({ (cell, row) -> () in
-            cell.selectionStyle = .Default
-            cell.accessoryType = .DisclosureIndicator
-        }).onCellSelection({ [unowned self] (cell, row) -> () in
-            cell.setSelected(false, animated: true)
-            self.feedback()
-        })
+        +++ Section()
         <<< LabelRow() {
             $0.title = "Rate on App Store".localized()
         }.cellSetup({ (cell, row) -> () in
@@ -117,7 +117,6 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
             let shareVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
             self.presentViewController(shareVC, animated: true, completion: nil)
         })
-        form +++ feedbackSection
         form +++ Section()
             <<< LabelRow() {
                 $0.title = "Follow on Twitter".localized()
@@ -170,9 +169,13 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         let options = [
             "gotoConversationAfterContactUs": "YES"
         ]
+        let rulesets = Manager.sharedManager.defaultConfigGroup.ruleSets.map({ $0.name }).joinWithSeparator(", ")
+        let defaultToProxy = Manager.sharedManager.defaultConfigGroup.defaultToProxy
         HelpshiftSupport.setMetadataBlock { () -> [NSObject : AnyObject]! in
             return [
                 "Full Version": AppEnv.fullVersion,
+                "Default To Proxy": defaultToProxy,
+                "Rulesets": rulesets,
                 HelpshiftSupportTagsKey: [
                     "testflight"
                 ]

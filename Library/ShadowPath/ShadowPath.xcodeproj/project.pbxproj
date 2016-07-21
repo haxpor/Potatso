@@ -342,7 +342,6 @@
 		B8DEFEFA1CEA1D4C003FC706 /* jcc.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEF81CEA1D4C003FC706 /* jcc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8DEFEFC1CEA1DCE003FC706 /* sp_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEFB1CEA1DCE003FC706 /* sp_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8DEFEFE1CEA1EB7003FC706 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = B8DEFEFD1CEA1EB7003FC706 /* project.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8EAC63F1D40D01C0046963C /* maxmind_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5B21D40D01C0046963C /* maxmind_config.h */; };
 		B8EAC6501D40D01C0046963C /* maxminddb.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5C61D40D01C0046963C /* maxminddb.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8EAC6511D40D01C0046963C /* maxminddb_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5C71D40D01C0046963C /* maxminddb_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8EAC67F1D40D01C0046963C /* maxminddb-compat-util.h in Headers */ = {isa = PBXBuildFile; fileRef = B8EAC5FA1D40D01C0046963C /* maxminddb-compat-util.h */; };
@@ -714,7 +713,6 @@
 		B8DEFEF81CEA1D4C003FC706 /* jcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jcc.h; sourceTree = "<group>"; };
 		B8DEFEFB1CEA1DCE003FC706 /* sp_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sp_config.h; sourceTree = "<group>"; };
 		B8DEFEFD1CEA1EB7003FC706 /* project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = project.h; sourceTree = "<group>"; };
-		B8EAC5B21D40D01C0046963C /* maxmind_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxmind_config.h; sourceTree = "<group>"; };
 		B8EAC5C61D40D01C0046963C /* maxminddb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxminddb.h; sourceTree = "<group>"; };
 		B8EAC5C71D40D01C0046963C /* maxminddb_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxminddb_config.h; sourceTree = "<group>"; };
 		B8EAC5FA1D40D01C0046963C /* maxminddb-compat-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "maxminddb-compat-util.h"; sourceTree = "<group>"; };
@@ -1375,7 +1373,6 @@
 		B8EAC5971D40D01C0046963C /* libmaxminddb */ = {
 			isa = PBXGroup;
 			children = (
-				B8EAC5B21D40D01C0046963C /* maxmind_config.h */,
 				B8EAC5C51D40D01C0046963C /* include */,
 				B8EAC5F21D40D01C0046963C /* src */,
 			);
@@ -1444,7 +1441,6 @@
 				B81887A31D2BFC1B00E41C89 /* x509_vfy.h in Headers */,
 				B818888A1D2C09DA00E41C89 /* crypto_uint16.h in Headers */,
 				B81888661D2C09DA00E41C89 /* crypto_auth_hmacsha512256.h in Headers */,
-				B8EAC63F1D40D01C0046963C /* maxmind_config.h in Headers */,
 				B81887771D2BFC1B00E41C89 /* evp.h in Headers */,
 				B81887981D2BFC1B00E41C89 /* ssl23.h in Headers */,
 				B86B08441D17DABB00613014 /* acl.h in Headers */,

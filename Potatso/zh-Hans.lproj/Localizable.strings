@@ -16,6 +16,7 @@
 "BUY" = "购买";
 "CANCEL" = "取消";
 "Cancel" = "取消";
+"Change Name" = "修改名称";
 "Check DNS Pollution" = "检查 DNS 污染";
 "Choose Proxy" = "选择代理";
 "Choose Proxy Type" = "选择代理类型";
@@ -35,6 +36,8 @@
 "DNS" = "DNS";
 "DNS should be valid ip addresses (separated by commas if multiple). e.g.: 8.8.8.8,8.8.4.4" = "DNS 必须是有效的 IP 地址 (多个以逗号分隔). 例如: 8.8.8.8,8.8.4.4";
 "Default" = "默认";
+"Default Route Match" = "默认路由匹配";
+"Default To Proxy" = "默认走代理";
 "Detail" = "详情";
 "Disconnect" = "断开";
 "Edit Proxy" = "编辑代理";
@@ -45,7 +48,7 @@
 "Fail to add ruleset" = "添加规则组失败";
 "Fail to change dns" = "无法更改 DNS";
 "Fail to delete item" = "删除失败";
-"Fail to modify global mode" = "无法修改模式";
+"Fail to modify default to proxy" = "无法修改默认路由";
 "Fail to parse proxy config" = "无法解析代理配置";
 "Fail to save config." = "无法保存配置.";
 "Fail to subscribe" = "订阅失败";
@@ -53,13 +56,11 @@
 "Fail to unsubscribe" = "取消订阅失败";
 "Fail. (Try Proxy DNS Resolution)" = "失败. (尝试远程代理 DNS 解析)";
 "Failed to add config group" = "无法添加规则组";
-"Fallback To Global Mode" = "使用全局模式";
-"Fallback To Non-Global Mode" = "使用非全局模式";
+"Fallback To DIRECT" = "默认直连";
+"Fallback To PROXY" = "默认代理";
 "Feedback" = "反馈";
 "Follow on Twitter" = "关注 Twitter";
 "Follow on Weibo" = "关注微博";
-"Global Mode" = "全局模式";
-"Global Mode Match" = "全局模式匹配";
 "Home" = "首页";
 "Host" = "服务器";
 "Host can't be empty" = "服务器不能为空";
@@ -69,6 +70,7 @@
 "Import From URL" = "从 URL 导入";
 "Import Success" = "导入成功";
 "Importing Config..." = "正在导入配置...";
+"Input New Name" = "输入新名称";
 "Input URL" = "输入 URL";
 "Input name" = "输入名称";
 "Invalid DNS" = "无效的 DNS";
@@ -87,13 +89,11 @@
 "Obfs" = "混淆插件(obfs)";
 "Obfs Param" = "混淆插件参数";
 "One Time Auth" = "一次认证";
-"PLEASE DO NOT DELETE INFO BELOW" = "请不要移除以下内容";
 "Password" = "密码";
 "Password can't be empty" = "密码不能为空";
 "Please set name for the new proxy" = "请设置代理名称";
 "Port" = "端口";
 "Port can't be empty" = "端口不能为空";
-"Potatso Feedback" = "Potatso 反馈";
 "Potatso is not connected" = "Potatso 已断开";
 "Protocol" = "协议插件(protocol)";
 "Proxy" = "代理";

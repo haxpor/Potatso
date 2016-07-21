@@ -121,7 +121,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         }
 
         proxySection <<< SwitchRow(kFormDefaultToProxy) {
-            $0.title = "Global Mode".localized()
+            $0.title = "Default To Proxy".localized()
             $0.value = presenter.group.defaultToProxy
             $0.hidden = Condition.Function([kFormProxies]) { [unowned self] form in
                 return self.presenter.proxy == nil
@@ -132,7 +132,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
                     self.presenter.group.defaultToProxy = row.value ?? true
                 }
             }catch {
-                self.showTextHUD("\("Fail to modify global mode".localized()): \((error as NSError).localizedDescription)", dismissAfterDelay: 1.5)
+                self.showTextHUD("\("Fail to modify default to proxy".localized()): \((error as NSError).localizedDescription)", dismissAfterDelay: 1.5)
             }
         })
         <<< TextRow(kFormDNS) {
