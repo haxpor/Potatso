@@ -20,9 +20,9 @@ class Receipt: NSObject, SKRequestDelegate {
 
     func validate() {
         if AppEnv.isTestFlight {
-//            if !validateKeychainAppStore() {
-//                failAndTerminate()
-//            }
+            if !validateKeychainAppStore() {
+                failAndTerminate()
+            }
         } else if AppEnv.isAppStore {
             if isStoreReceiptValidate() {
                 markKeychainAppStore()

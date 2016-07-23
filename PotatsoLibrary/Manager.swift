@@ -285,6 +285,7 @@ extension Manager {
         let temporaryDirPath = rootUrl.URLByAppendingPathComponent("httptemporary").path!
         let logDir = rootUrl.URLByAppendingPathComponent("log").path!
         let maxminddbPath = Potatso.sharedUrl().URLByAppendingPathComponent("GeoLite2-Country.mmdb").path!
+        let userActionUrl = confDirUrl.URLByAppendingPathComponent("potatso.action")
         for p in [confDirUrl.path!, templateDirPath, temporaryDirPath, logDir] {
             if !NSFileManager.defaultManager().fileExistsAtPath(p) {
                 _ = try? NSFileManager.defaultManager().createDirectoryAtPath(p, withIntermediateDirectories: true, attributes: nil)
@@ -302,6 +303,7 @@ extension Manager {
 //        mainConf["debug"] = 1024+65536+1
 //        mainConf["debug"] = 131071
         mainConf["debug"] = mainConf["debug"] as! Int + 4096
+        mainConf["actionsfile"] = userActionUrl.path!
 
         let mainContent = mainConf.map { "\($0) \($1)"}.joinWithSeparator("\n")
         try mainContent.writeToURL(Potatso.sharedHttpProxyConfUrl(), atomically: true, encoding: NSUTF8StringEncoding)
@@ -342,7 +344,6 @@ extension Manager {
         actionContent.appendContentsOf(Pollution.dnsList.map({ "DNS-IP-CIDR, \($0)/32, PROXY" }))
 
         let userActionString = actionContent.joinWithSeparator("\n")
-        let userActionUrl = confDirUrl.URLByAppendingPathComponent("user.action")
         try userActionString.writeToFile(userActionUrl.path!, atomically: true, encoding: NSUTF8StringEncoding)
     }
 
