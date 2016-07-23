@@ -44,9 +44,6 @@
 		9B8193ED1CBE4DCA00BE320D /* UrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8193EC1CBE4DCA00BE320D /* UrlHandler.swift */; };
 		9B8285471CE20DE40027D15C /* HMScanner.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B82853B1CE20DE40027D15C /* HMScanner.bundle */; };
 		9B8285481CE20DE40027D15C /* HMScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82853D1CE20DE40027D15C /* HMScanner.m */; };
-		9B8285491CE20DE40027D15C /* HMScannerBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B82853F1CE20DE40027D15C /* HMScannerBorder.m */; };
-		9B82854B1CE20DE40027D15C /* HMScannerMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8285431CE20DE40027D15C /* HMScannerMaskView.m */; };
-		9B82854C1CE20DE40027D15C /* HMScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8285451CE20DE40027D15C /* HMScannerViewController.m */; };
 		9B8706001C1D788F00651424 /* PacketTunnelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8705FF1C1D788F00651424 /* PacketTunnelProvider.m */; };
 		9B8706041C1D788F00651424 /* PacketTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9B8705FA1C1D788F00651424 /* PacketTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9B87060B1C1DBCCD00651424 /* dns.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87060A1C1DBCCD00651424 /* dns.m */; };
@@ -159,6 +156,7 @@
 		B803A6961D0165EA003EA9AA /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6951D0165EA003EA9AA /* CloudViewController.swift */; };
 		B803A6981D02B768003EA9AA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6971D02B768003EA9AA /* API.swift */; };
 		B82574A91D1D98CF007BAF40 /* Pollution.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82574A81D1D98CF007BAF40 /* Pollution.swift */; };
+		B829C1721D4395BC00C17B82 /* QRCodeScannerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B829C1711D4395BC00C17B82 /* QRCodeScannerVC.m */; };
 		B8319A0A1D1B975C001E50C2 /* RegexUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8319A091D1B975C001E50C2 /* RegexUtils.swift */; };
 		B8319A0D1D1BD696001E50C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8319A0F1D1BD696001E50C2 /* Localizable.strings */; };
 		B8367A811D1B6D5400D50C25 /* BaseButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8367A801D1B6D5400D50C25 /* BaseButtonRow.swift */; };
@@ -365,12 +363,6 @@
 		9B82853B1CE20DE40027D15C /* HMScanner.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HMScanner.bundle; sourceTree = "<group>"; };
 		9B82853C1CE20DE40027D15C /* HMScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMScanner.h; sourceTree = "<group>"; };
 		9B82853D1CE20DE40027D15C /* HMScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMScanner.m; sourceTree = "<group>"; };
-		9B82853E1CE20DE40027D15C /* HMScannerBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMScannerBorder.h; sourceTree = "<group>"; };
-		9B82853F1CE20DE40027D15C /* HMScannerBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMScannerBorder.m; sourceTree = "<group>"; };
-		9B8285421CE20DE40027D15C /* HMScannerMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMScannerMaskView.h; sourceTree = "<group>"; };
-		9B8285431CE20DE40027D15C /* HMScannerMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMScannerMaskView.m; sourceTree = "<group>"; };
-		9B8285441CE20DE40027D15C /* HMScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMScannerViewController.h; sourceTree = "<group>"; };
-		9B8285451CE20DE40027D15C /* HMScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMScannerViewController.m; sourceTree = "<group>"; };
 		9B8705F51C1D77CE00651424 /* Potatso.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Potatso.entitlements; sourceTree = "<group>"; };
 		9B8705FA1C1D788F00651424 /* PacketTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PacketTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8705FD1C1D788F00651424 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
@@ -844,6 +836,8 @@
 		B803A6951D0165EA003EA9AA /* CloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		B803A6971D02B768003EA9AA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B82574A81D1D98CF007BAF40 /* Pollution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pollution.swift; sourceTree = "<group>"; };
+		B829C1701D4395BC00C17B82 /* QRCodeScannerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScannerVC.h; sourceTree = "<group>"; };
+		B829C1711D4395BC00C17B82 /* QRCodeScannerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScannerVC.m; sourceTree = "<group>"; };
 		B8319A091D1B975C001E50C2 /* RegexUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexUtils.swift; sourceTree = "<group>"; };
 		B8319A0E1D1BD696001E50C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B8319A101D1BD699001E50C2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1152,12 +1146,8 @@
 				9B82853B1CE20DE40027D15C /* HMScanner.bundle */,
 				9B82853C1CE20DE40027D15C /* HMScanner.h */,
 				9B82853D1CE20DE40027D15C /* HMScanner.m */,
-				9B82853E1CE20DE40027D15C /* HMScannerBorder.h */,
-				9B82853F1CE20DE40027D15C /* HMScannerBorder.m */,
-				9B8285421CE20DE40027D15C /* HMScannerMaskView.h */,
-				9B8285431CE20DE40027D15C /* HMScannerMaskView.m */,
-				9B8285441CE20DE40027D15C /* HMScannerViewController.h */,
-				9B8285451CE20DE40027D15C /* HMScannerViewController.m */,
+				B829C1701D4395BC00C17B82 /* QRCodeScannerVC.h */,
+				B829C1711D4395BC00C17B82 /* QRCodeScannerVC.m */,
 			);
 			path = QRCode;
 			sourceTree = "<group>";
@@ -2835,9 +2825,9 @@
 				9B0CFA0F1C1C0B1B007BD7C6 /* AppDelegate.swift in Sources */,
 				9BB3F73C1CC3D3DE00C2DD05 /* RecentRequestsCell.swift in Sources */,
 				9BD4CACA1CB9600D00F99BF9 /* AlertUtils.swift in Sources */,
+				B829C1721D4395BC00C17B82 /* QRCodeScannerVC.m in Sources */,
 				B87B98041D3B423B00FA66BF /* PaddingLabel.swift in Sources */,
 				B8CCC6E51CFDCFD8000E7E2E /* RuleSetCell.swift in Sources */,
-				9B82854C1CE20DE40027D15C /* HMScannerViewController.m in Sources */,
 				B803A6961D0165EA003EA9AA /* CloudViewController.swift in Sources */,
 				9BC858A51C33D30100992032 /* BaseSafariViewController.swift in Sources */,
 				B84551421CF878BD005779CD /* ConfigGroupChooseVC.swift in Sources */,
@@ -2856,13 +2846,11 @@
 				9B5E13BA1C897870007DFE0A /* ProxyConfigurationViewController.swift in Sources */,
 				B8367A811D1B6D5400D50C25 /* BaseButtonRow.swift in Sources */,
 				B87B980A1D3B64BE00FA66BF /* RequestEventRow.swift in Sources */,
-				9B82854B1CE20DE40027D15C /* HMScannerMaskView.m in Sources */,
 				B83D3E791D2BA689007655CE /* Event.swift in Sources */,
 				9B17F8EB1C53379700679FCB /* SettingsViewController.swift in Sources */,
 				B8F7845C1D36760D00F02FF5 /* DashboardVC.swift in Sources */,
 				B803A6981D02B768003EA9AA /* API.swift in Sources */,
 				B87A72B41D433ACA006C2A1B /* NotificationHandler.swift in Sources */,
-				9B8285491CE20DE40027D15C /* HMScannerBorder.m in Sources */,
 				9B76EEB71C90740C002BF5D1 /* RuleSetsSelectionViewController.swift in Sources */,
 				B83AA5741D38E728007905B4 /* SegmentPageVC.swift in Sources */,
 				9BB3F74F1CC6308000C2DD05 /* RecentRequestsVC.swift in Sources */,
