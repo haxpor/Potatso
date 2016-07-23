@@ -37,8 +37,22 @@ public struct AppEnv {
     }
 
     public static var isTestFlight: Bool {
+        return isAppStoreReceiptSandbox && !hasEmbeddedMobileProvision
+    }
+
+    public static var isAppStore: Bool {
+        if isAppStoreReceiptSandbox || hasEmbeddedMobileProvision {
+            return false
+        }
+        return true
+    }
+
+    private static var isAppStoreReceiptSandbox: Bool {
         return NSBundle.mainBundle().appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
     }
-    
-    
+
+    private static var hasEmbeddedMobileProvision: Bool {
+        return NSBundle.mainBundle().pathForResource("embedded", ofType: "mobileprovision") != nil
+    }
+
 }

@@ -171,14 +171,18 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         ]
         let rulesets = Manager.sharedManager.defaultConfigGroup.ruleSets.map({ $0.name }).joinWithSeparator(", ")
         let defaultToProxy = Manager.sharedManager.defaultConfigGroup.defaultToProxy
+        var tags: [String] = []
+        if AppEnv.isTestFlight {
+            tags.append("testflight")
+        } else if AppEnv.isAppStore {
+            tags.append("store")
+        }
         HelpshiftSupport.setMetadataBlock { () -> [NSObject : AnyObject]! in
             return [
                 "Full Version": AppEnv.fullVersion,
-                "Default To Proxy": defaultToProxy,
+                "Default To Proxy": defaultToProxy ? "true": "false",
                 "Rulesets": rulesets,
-                HelpshiftSupportTagsKey: [
-                    "testflight"
-                ]
+                HelpshiftSupportTagsKey: tags
             ]
         }
         HelpshiftSupport.showConversation(self, withOptions: options)
