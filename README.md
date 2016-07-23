@@ -1,12 +1,13 @@
 # Potatso ![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
-<a href="https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8">![](https://cdn.rawgit.com/iCodesign/test/master/Download.svg)</a>
+<a href="https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8">![](https://raw.githubusercontent.com/shadowsocks/potatso/master/Download.svg)</a>
 
 Potatso is an iOS client that implements custom proxies with the leverage of Network Extension framework introduced by Apple since iOS 9.
 
 Currently, Potatso is compatible with following proxies:
 
 - [Shadowsocks](https://shadowsocks.org)
+- [ShadowsocksR](https://github.com/breakwa11/shadowsocks-rss)
 
 [Subscribe Telegram Channel](https://telegram.me/potatso) to get updates of Potatso. 
 
