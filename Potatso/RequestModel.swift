@@ -226,7 +226,7 @@ struct RequestEvent {
         case .DNS_IP_RULE_MATCH_START:
             return "DNS Pollution".localized()
         case .DNS_IP_RULE_MATCH_END:
-            return request.forwardStage == .DNS_POLLUTION ? request.rule : "No Macth".localized()
+            return request.forwardStage == .DNS_POLLUTION ? request.rule : "No Match".localized()
         case .DNS_START:
             return "Start DNS Query".localized()
         case .DNS_FAIL:
