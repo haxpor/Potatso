@@ -44,6 +44,7 @@ Services:
 - [Fabric](https://get.fabric.io/)
 - [Reveal](http://revealapp.com/)
 - [realm](https://realm.io/)
+- [HelpShift](https://www.helpshift.com)
 
 Open-source Libraries:
 
