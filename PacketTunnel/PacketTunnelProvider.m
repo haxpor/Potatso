@@ -118,7 +118,7 @@
     [self startSocksProxy];
 }
 
-- (void)syncStartProxy: (void(^)(dispatch_group_t g, NSError **proxyError))handler {
+- (void)syncStartProxy: (NSString *)name completion: (void(^)(dispatch_group_t g, NSError **proxyError))handler {
     dispatch_group_t g = dispatch_group_create();
     __block NSError *proxyError;
     dispatch_group_enter(g);
@@ -132,14 +132,14 @@
         proxyError = [TunnelError errorWithMessage:@"timeout"];
     }
     if (proxyError) {
-        NSLog(@"start proxy error: %@", [proxyError localizedDescription]);
+        NSLog(@"start proxy: %@ error: %@", name, [proxyError localizedDescription]);
         exit(1);
         return;
     }
 }
 
 - (void)startShadowsocks {
-    [self syncStartProxy:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
+    [self syncStartProxy: @"shadowsocks" completion:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
         [[ProxyManager sharedManager] startShadowsocks:^(int port, NSError *error) {
             *proxyError = error;
             dispatch_group_leave(g);
@@ -148,7 +148,7 @@
 }
 
 - (void)startHttpProxy {
-    [self syncStartProxy:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
+    [self syncStartProxy: @"http" completion:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
         [[ProxyManager sharedManager] startHttpProxy:^(int port, NSError *error) {
             *proxyError = error;
             dispatch_group_leave(g);
@@ -157,7 +157,7 @@
 }
 
 - (void)startSocksProxy {
-    [self syncStartProxy:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
+    [self syncStartProxy: @"socks" completion:^(dispatch_group_t g, NSError *__autoreleasing *proxyError) {
         [[ProxyManager sharedManager] startSocksProxy:^(int port, NSError *error) {
             *proxyError = error;
             dispatch_group_leave(g);
