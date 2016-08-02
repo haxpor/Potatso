@@ -48,11 +48,15 @@ public struct AppEnv {
     }
 
     private static var isAppStoreReceiptSandbox: Bool {
-        return NSBundle.mainBundle().appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+        let b = NSBundle.mainBundle().appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+        NSLog("isAppStoreReceiptSandbox: \(b)")
+        return b
     }
 
     private static var hasEmbeddedMobileProvision: Bool {
-        return NSBundle.mainBundle().pathForResource("embedded", ofType: "mobileprovision") != nil
+        let b = NSBundle.mainBundle().pathForResource("embedded", ofType: "mobileprovision") != nil
+        NSLog("hasEmbeddedMobileProvision: \(b)")
+        return b
     }
 
 }
