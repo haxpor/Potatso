@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import CloudKit
 
 public enum ProxyType: String {
     case Shadowsocks = "SS"
@@ -140,6 +141,27 @@ public class Proxy: BaseModel {
         default:
             break
         }
+    }
+
+}
+
+extension Proxy: CloudKitRecord {
+
+    static var recordType: String {
+        return "Proxy"
+    }
+
+    var recordId: CKRecordID {
+        return CKRecordID(recordName: uuid)
+    }
+
+    public func toCloudKitRecord() -> CKRecord {
+        let record = CKRecord(recordType: Proxy.recordType, recordID: recordId)
+        fillInRecord(record)
+        for key in ["typeRaw", "name", "host", "port", "authscheme", "user", "password", "ota", "ssrProtocol", "ssrObfs", "ssrObfsParam"] {
+            record.setValue(self.valueForKey(key), forKey: key)
+        }
+        return record
     }
 
 }

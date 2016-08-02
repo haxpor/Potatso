@@ -9,6 +9,7 @@
 import UIKit
 import ICSMainFramework
 import NetworkExtension
+import CloudKit
 
 class DataInitializer: NSObject, AppLifeCycleProtocol {
     
@@ -52,9 +53,9 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
 
     func deleteOrphanRules() {
         let orphanRules = defaultRealm.objects(Rule).filter("rulesets.@count == 0")
-        _ = try? defaultRealm.write({
-            defaultRealm.delete(orphanRules)
-        })
+        if orphanRules.count > 0 {
+            _ = try? orphanRules.delete()
+        }
     }
 
 }
