@@ -54,7 +54,6 @@
 		9B9B15C51C21595B000B6541 /* PotatsoLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9B15BD1C21595B000B6541 /* PotatsoLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9BB3F73C1CC3D3DE00C2DD05 /* RecentRequestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F73B1CC3D3DE00C2DD05 /* RecentRequestsCell.swift */; };
 		9BB3F7411CC60B5300C2DD05 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F73E1CC60B5300C2DD05 /* Image.swift */; };
-		9BB3F7421CC60B5300C2DD05 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F73F1CC60B5300C2DD05 /* Localized.swift */; };
 		9BB3F7441CC60B6F00C2DD05 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F7431CC60B6F00C2DD05 /* Error.swift */; };
 		9BB3F7471CC60CBE00C2DD05 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB3F7491CC60CBE00C2DD05 /* Localizable.strings */; };
 		9BB3F74F1CC6308000C2DD05 /* RecentRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB3F74E1CC6308000C2DD05 /* RecentRequestsVC.swift */; };
@@ -191,6 +190,7 @@
 		B8CCC6E51CFDCFD8000E7E2E /* RuleSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6E41CFDCFD8000E7E2E /* RuleSetCell.swift */; };
 		B8CCC6E71CFDD99E000E7E2E /* ProxyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6E61CFDD99E000E7E2E /* ProxyListViewController.swift */; };
 		B8CCC6EB1CFF1501000E7E2E /* ProxyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CCC6EA1CFF1501000E7E2E /* ProxyRow.swift */; };
+		B8D8CC0A1D506CB900CE6C0D /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D8CC091D506CB900CE6C0D /* Localized.swift */; };
 		B8EAC5941D40BF310046963C /* TunnelError.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EAC5931D40BF310046963C /* TunnelError.m */; };
 		B8F7845C1D36760D00F02FF5 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */; };
 		B8F784671D3678B400F02FF5 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F784651D3678B400F02FF5 /* Settings.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -379,7 +379,6 @@
 		9B9B15C11C21595B000B6541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BB3F73B1CC3D3DE00C2DD05 /* RecentRequestsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentRequestsCell.swift; sourceTree = "<group>"; };
 		9BB3F73E1CC60B5300C2DD05 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		9BB3F73F1CC60B5300C2DD05 /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		9BB3F7431CC60B6F00C2DD05 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		9BB3F7481CC60CBE00C2DD05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9BB3F74A1CC60CBF00C2DD05 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -871,6 +870,7 @@
 		B8CCC6E61CFDD99E000E7E2E /* ProxyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyListViewController.swift; sourceTree = "<group>"; };
 		B8CCC6EA1CFF1501000E7E2E /* ProxyRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProxyRow.swift; path = ../ProxyRow.swift; sourceTree = "<group>"; };
 		B8CF2F991D3DF69E009C9FF3 /* Confidential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Confidential.h; sourceTree = "<group>"; };
+		B8D8CC091D506CB900CE6C0D /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		B8EAC5921D40BF310046963C /* TunnelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TunnelError.h; sourceTree = "<group>"; };
 		B8EAC5931D40BF310046963C /* TunnelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TunnelError.m; sourceTree = "<group>"; };
 		B8F7845B1D36760D00F02FF5 /* DashboardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
@@ -1202,7 +1202,6 @@
 				9BF3034C1CCA20D80096588E /* Logging.swift */,
 				9BC215C61CB51148002AADD1 /* Config.swift */,
 				9BB3F73E1CC60B5300C2DD05 /* Image.swift */,
-				9BB3F73F1CC60B5300C2DD05 /* Localized.swift */,
 				9B9B15C11C21595B000B6541 /* Info.plist */,
 				B82574A81D1D98CF007BAF40 /* Pollution.swift */,
 			);
@@ -1227,6 +1226,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC6001F1CB2921C00E5EA61 /* PotatsoBase.h */,
+				B8D8CC091D506CB900CE6C0D /* Localized.swift */,
 				9BC600291CB2922E00E5EA61 /* Potatso.h */,
 				9BC6002A1CB2922E00E5EA61 /* Potatso.m */,
 				B8F784651D3678B400F02FF5 /* Settings.h */,
@@ -2894,7 +2894,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BB3F7421CC60B5300C2DD05 /* Localized.swift in Sources */,
 				9BF3034D1CCA20D80096588E /* Logging.swift in Sources */,
 				9BC215CC1CB5E584002AADD1 /* Manager.swift in Sources */,
 				9BB3F7411CC60B5300C2DD05 /* Image.swift in Sources */,
@@ -2907,6 +2906,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8D8CC0A1D506CB900CE6C0D /* Localized.swift in Sources */,
 				9BC6002C1CB2922E00E5EA61 /* Potatso.m in Sources */,
 				9BC600341CB299DE00E5EA61 /* NSError+Helper.m in Sources */,
 				B8F784681D3678B400F02FF5 /* Settings.m in Sources */,
