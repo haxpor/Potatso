@@ -8,13 +8,11 @@
 
 import Foundation
 import ICSMainFramework
-import KeychainAccess
 
 class Receipt: NSObject, SKRequestDelegate {
 
     static let shared = Receipt()
 
-    private let keychain = Keychain(service: "com.touchingapp.potatso")
 
     private override init() {}
 

@@ -45,6 +45,7 @@ target "Potatso" do
     pod 'ObjectMapper'
     pod 'CocoaLumberjack/Swift'
     pod 'Helpshift', '5.6.1'
+    pod 'PSOperations', '~> 2.3'
     tunnel
     library
     fabric

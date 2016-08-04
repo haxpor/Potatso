@@ -81,16 +81,12 @@ extension RuleSet {
 
     static func addRemoteObject(ruleset: RuleSet, update: Bool = true) throws {
         ruleset.isSubscribe = true
-        try defaultRealm.write {
-            defaultRealm.add(ruleset, update: true)
-        }
+        try DBUtils.add(ruleset)
     }
 
     static func addRemoteArray(rulesets: [RuleSet], update: Bool = true) throws {
         rulesets.forEach({ $0.isSubscribe = true })
-        try defaultRealm.write {
-            defaultRealm.add(rulesets, update: true)
-        }
+        try DBUtils.add(rulesets)
     }
 
 }

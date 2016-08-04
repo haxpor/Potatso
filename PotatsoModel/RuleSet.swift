@@ -39,7 +39,7 @@ public final class RuleSet: BaseModel {
     public dynamic var isSubscribe = false
     public dynamic var isOfficial = false
 
-    public func validate(inRealm realm: Realm) throws {
+    public override func validate(inRealm realm: Realm) throws {
         guard name.characters.count > 0 else {
             throw RuleSetError.EmptyName
         }

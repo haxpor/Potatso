@@ -10,7 +10,7 @@ import RealmSwift
 import PotatsoBase
 import CloudKit
 
-private let version: UInt64 = 11
+private let version: UInt64 = 13
 public var defaultRealm = try! Realm()
 
 public func setupDefaultReaml() {
@@ -32,17 +32,13 @@ public func setupDefaultReaml() {
     Realm.Configuration.defaultConfiguration = config
 }
 
-protocol CloudKitRecord {
-    static var recordType: String { get }
-    var recordId: CKRecordID { get }
-    func toCloudKitRecord() -> CKRecord
-}
 
 public class BaseModel: Object {
     public dynamic var uuid = NSUUID().UUIDString
     public dynamic var createAt = NSDate().timeIntervalSince1970
     public dynamic var updatedAt = NSDate().timeIntervalSince1970
     public dynamic var deleted = false
+    public dynamic var synced = false
 
     override public static func primaryKey() -> String? {
         return "uuid"
@@ -54,10 +50,8 @@ public class BaseModel: Object {
         return f
     }
 
-    func fillInRecord(record: CKRecord) {
-        for key in ["uuid", "createAt", "updatedAt", "deleted"] {
-            record.setValue(self.valueForKey(key), forKey: key)
-        }
+    public func validate(inRealm realm: Realm) throws {
+        //
     }
 
 }

@@ -16,6 +16,7 @@ public enum SyncServiceType: String {
 
 public protocol SyncServiceProtocol {
     func setup(completion: (ErrorType? -> Void)?)
+    func sync()
 }
 
 public class SyncManager {
@@ -69,6 +70,10 @@ extension SyncManager {
 
     public func setup(completion: (ErrorType? -> Void)?) {
         getSelectedSyncService()?.setup(completion)
+    }
+
+    public func sync() {
+        getSelectedSyncService()?.sync()
     }
     
 }

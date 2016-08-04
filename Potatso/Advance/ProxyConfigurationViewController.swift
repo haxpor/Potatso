@@ -208,7 +208,6 @@ class ProxyConfigurationViewController: FormViewController {
                 break
             }
             let ota = values[kProxyFormOta] as? Bool ?? false
-            defaultRealm.beginWrite()
             upstreamProxy.type = type
             upstreamProxy.name = name
             upstreamProxy.host = host
@@ -220,8 +219,7 @@ class ProxyConfigurationViewController: FormViewController {
             upstreamProxy.ssrProtocol = values[kProxyFormProtocol] as? String
             upstreamProxy.ssrObfs = values[kProxyFormObfs] as? String
             upstreamProxy.ssrObfsParam = values[kProxyFormObfsParam] as? String
-            defaultRealm.add(upstreamProxy, update: true)
-            try defaultRealm.commitWrite()
+            try DBUtils.add(upstreamProxy)
             close()
         }catch {
             showTextHUD("\(error)", dismissAfterDelay: 1.0)

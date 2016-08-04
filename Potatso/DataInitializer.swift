@@ -12,6 +12,8 @@ import NetworkExtension
 import CloudKit
 
 class DataInitializer: NSObject, AppLifeCycleProtocol {
+
+    let s = ICloudSyncService()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         do {
@@ -19,6 +21,7 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
         }catch {
             error.log("Fail to setup manager")
         }
+        SyncManager.shared.sync()
         return true
     }
     
@@ -32,6 +35,7 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
 
     func applicationWillEnterForeground(application: UIApplication) {
         Receipt.shared.validate()
+        SyncManager.shared.sync()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -54,7 +58,7 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
     func deleteOrphanRules() {
         let orphanRules = defaultRealm.objects(Rule).filter("rulesets.@count == 0")
         if orphanRules.count > 0 {
-            _ = try? orphanRules.delete()
+            _ = try? DBUtils.delete(orphanRules)
         }
     }
 

@@ -42,11 +42,19 @@ public class ConfigurationGroup: BaseModel {
         return ["name"]
     }
     
-    public func validate(inRealm realm: Realm, includeSelf: Bool = false) throws {
+    public override func validate(inRealm realm: Realm) throws {
         guard name.characters.count > 0 else {
             throw ConfigurationGroupError.EmptyName
         }
-        guard realm.objects(ConfigurationGroup).filter("name = '\(name)'").count <= (includeSelf ? 1 : 0) else {
+        let count = realm.objects(ConfigurationGroup).filter("name = '\(name)'").count
+        if count == 1 {
+            let g = realm.objects(ConfigurationGroup).filter("name = '\(name)'").first!
+            if g.uuid != uuid {
+                throw ConfigurationGroupError.NameAlreadyExists
+            }
+        } else if count == 0 {
+
+        } else {
             throw ConfigurationGroupError.NameAlreadyExists
         }
     }
@@ -90,23 +98,6 @@ extension ConfigurationGroup {
     }
 
     
-}
-
-// API
-extension ConfigurationGroup {
-
-    public func changeName(name: String) throws {
-        defaultRealm.beginWrite()
-        self.name = name
-        do {
-            try validate(inRealm: defaultRealm, includeSelf: true)
-        }catch {
-            defaultRealm.cancelWrite()
-            throw error
-        }
-        try defaultRealm.commitWrite()
-    }
-
 }
 
 public func ==(lhs: ConfigurationGroup, rhs: ConfigurationGroup) -> Bool {
