@@ -42,9 +42,7 @@ public class SyncOperation: GroupOperation {
          objectClass: CloudKitRecord.Type,
          syncType: SyncType,
          completionHandler: () -> Void) {
-        
-        let zoneChangeToken = getZoneChangeToken(zoneID)
-        
+
         // Setup Conditions
         
         // ReachabilityCondition as written requires a URL so rather than rewriting, ping google
@@ -80,7 +78,7 @@ public class SyncOperation: GroupOperation {
                 finishOperation]
             
         case .FetchCloudChanges:
-            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass, previousServerChangeToken: zoneChangeToken)
+            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass)
             
             fetchCloudChangesOperation.addDependency(prepareZoneOperation)
             finishOperation.addDependency(fetchCloudChangesOperation)
@@ -92,7 +90,7 @@ public class SyncOperation: GroupOperation {
             
         case .FetchCloudChangesAndThenPushLocalChanges:
             pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID, objectClass: objectClass)
-            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass, previousServerChangeToken: zoneChangeToken)
+            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass)
             
             pushLocalChangesOperation.addDependency(prepareZoneOperation)
             fetchCloudChangesOperation.addDependency(pushLocalChangesOperation)

@@ -32,9 +32,9 @@ class PushLocalChangesOperation: Operation {
         
         // FIXME: Unsafe realm casting
         let toSyncObjects = realm.objects(self.objectClass as! BaseModel.Type)
-            .filter("synced == false")
+            .filter("synced == false && deleted == false")
         let toDeleteObjects = realm.objects(self.objectClass as! BaseModel.Type)
-            .filter("deleted == true")
+            .filter("synced == false && deleted == true")
         print("toSyncObjects: \(toSyncObjects.map({ $0.uuid }).joinWithSeparator(", "))")
         print("toDeleteObjects: \(toDeleteObjects.map({ $0.uuid }).joinWithSeparator(", "))")
 
@@ -63,7 +63,6 @@ class PushLocalChangesOperation: Operation {
             (savedRecords, deletedRecordIDs, nsError) -> Void in
             
             if let error = nsError {
-                
                 self.handleCloudKitPushError(
                     savedRecords,
                     deletedRecordIDs: deletedRecordIDs,

@@ -21,12 +21,13 @@ public protocol SyncServiceProtocol {
 
 public class SyncManager {
 
-    public static let shared = SyncManager()
+    static let shared = SyncManager()
 
+    public static let syncServiceChangedNotification = "syncServiceChangedNotification"
     private var services: [SyncServiceType: SyncServiceProtocol] = [:]
     private static let serviceTypeKey = "serviceTypeKey"
 
-    public var currentSyncServiceType: SyncServiceType {
+    var currentSyncServiceType: SyncServiceType {
         get {
             if let raw = NSUserDefaults.standardUserDefaults().objectForKey(SyncManager.serviceTypeKey) as? String, type = SyncServiceType(rawValue: raw) {
                 return type
@@ -39,17 +40,18 @@ public class SyncManager {
             }
             NSUserDefaults.standardUserDefaults().setObject(new.rawValue, forKey: SyncManager.serviceTypeKey)
             NSUserDefaults.standardUserDefaults().synchronize()
+            NSNotificationCenter.defaultCenter().postNotificationName(SyncManager.syncServiceChangedNotification, object: nil)
         }
     }
 
-    public var selectedSyncServiceType: SyncServiceType = .None
-
     init() {
-        selectedSyncServiceType = currentSyncServiceType
     }
 
-    public func getSelectedSyncService() -> SyncServiceProtocol? {
-        let type = selectedSyncServiceType
+    func getCurrentSyncService() -> SyncServiceProtocol? {
+        return getSyncService(forType: currentSyncServiceType)
+    }
+
+    func getSyncService(forType type: SyncServiceType) -> SyncServiceProtocol? {
         if let service = services[type] {
             return service
         }
@@ -64,16 +66,28 @@ public class SyncManager {
         return s
     }
 
+    func showSyncVC(inVC vc:UIViewController? = nil) {
+        guard let currentVC = vc ?? UIApplication.sharedApplication().keyWindow?.rootViewController else {
+            return
+        }
+        let syncVC = SyncVC()
+        currentVC.showViewController(syncVC, sender: self)
+    }
+
 }
 
 extension SyncManager {
 
-    public func setup(completion: (ErrorType? -> Void)?) {
-        getSelectedSyncService()?.setup(completion)
+    func setupNewService(type: SyncServiceType, completion: (ErrorType? -> Void)?) {
+        getSyncService(forType: type)?.setup(completion)
     }
 
-    public func sync() {
-        getSelectedSyncService()?.sync()
+    func setup(completion: (ErrorType? -> Void)?) {
+        getCurrentSyncService()?.setup(completion)
+    }
+
+    func sync() {
+        getCurrentSyncService()?.sync()
     }
     
 }

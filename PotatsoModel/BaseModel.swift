@@ -15,7 +15,12 @@ public var defaultRealm = try! Realm()
 
 public func setupDefaultReaml() {
     var config = Realm.Configuration()
-    let sharedURL = Potatso.sharedDatabaseUrl()
+//    #if DEBUG
+    let path = (NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString).stringByAppendingPathComponent("./potatso.realm")
+    let sharedURL = NSURL(string: path)!
+//    #else
+//    let sharedURL = Potatso.sharedDatabaseUrl()
+//    #endif
     if let originPath = config.fileURL?.path {
         if NSFileManager.defaultManager().fileExistsAtPath(originPath) {
             _ = try? NSFileManager.defaultManager().moveItemAtPath(originPath, toPath: sharedURL.path!)

@@ -20,7 +20,8 @@ class ICloudSyncService: SyncServiceProtocol {
     }
 
     func setup(completion: (ErrorType? -> Void)?) {
-
+        let setupOp = ICloudSetupOperation(completion: completion)
+        operationQueue.addOperation(setupOp)
     }
 
     func sync() {
@@ -30,15 +31,14 @@ class ICloudSyncService: SyncServiceProtocol {
         let ruleSyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: Rule.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
             print("sync rules completed")
         }
+        ruleSyncOp.addDependency(proxySyncOp)
         let ruleSetSyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: RuleSet.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
             print("sync rulesets completed")
         }
-        ruleSetSyncOp.addDependency(ruleSetSyncOp)
+        ruleSetSyncOp.addDependency(ruleSyncOp)
         let configGroupSyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: ConfigurationGroup.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
             print("sync config groups completed")
         }
-        configGroupSyncOp.addDependency(proxySyncOp)
-        configGroupSyncOp.addDependency(ruleSyncOp)
         configGroupSyncOp.addDependency(ruleSetSyncOp)
 
         operationQueue.addOperation(proxySyncOp)

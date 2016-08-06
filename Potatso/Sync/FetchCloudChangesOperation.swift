@@ -23,11 +23,9 @@ class FetchCloudChangesOperation: Operation {
     
     let objectClass: CloudKitRecord.Type
     
-    init(zoneID: CKRecordZoneID, objectClass: CloudKitRecord.Type, previousServerChangeToken: CKServerChangeToken?,
-         maximumRetryAttempts: Int = 3) {
+    init(zoneID: CKRecordZoneID, objectClass: CloudKitRecord.Type, maximumRetryAttempts: Int = 3) {
         self.zoneID = zoneID
         self.objectClass = objectClass
-        self.changeToken = previousServerChangeToken
         self.maximumRetryAttempts = maximumRetryAttempts
         
         super.init()
@@ -36,7 +34,8 @@ class FetchCloudChangesOperation: Operation {
     
     override func execute() {
         print("\(self.name!) started")
-        
+        changeToken = getZoneChangeToken(zoneID)
+
         fetchCloudChanges(changeToken) {
             (nsError) in
             self.finishWithError(nsError)

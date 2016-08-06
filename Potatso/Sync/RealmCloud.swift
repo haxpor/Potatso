@@ -147,7 +147,7 @@ public func createAlertOperation(error: NSError) -> AlertOperation {
         alert.message =
             "Cannot write data to iPhone." +
             "\n\n" +
-            "Error Code: RLMError.\(errorString)"
+            "Error Code: RLMError.\(errorString) (\(error.localizedDescription))"
         
     case CKErrorDomain:
         let ckErrorCode: CKErrorCode = CKErrorCode(rawValue: error.code)!
@@ -156,7 +156,7 @@ public func createAlertOperation(error: NSError) -> AlertOperation {
         alert.message =
             "Cannot complete sync operation. Try again later." +
             "\n\n" +
-            "Error Code: CKError.\(String(ckErrorCode))"
+            "Error Code: CKError.\(String(ckErrorCode)) (\(error.localizedDescription))"
         
     default:
         alert.title = "Error"
