@@ -12,7 +12,7 @@ struct FetchResults {
     }
 }
 
-class FetchCloudChangesOperation: Operation {
+class FetchCloudChangesOperation<T: BaseModel where T: CloudKitRecord>: Operation {
     
     let zoneID: CKRecordZoneID
     var changeToken: CKServerChangeToken?
@@ -21,20 +21,20 @@ class FetchCloudChangesOperation: Operation {
     let maximumRetryAttempts: Int
     var retryAttempts: Int = 0
     
-    let objectClass: CloudKitRecord.Type
+    let objectClass: T.Type
     
-    init(zoneID: CKRecordZoneID, objectClass: CloudKitRecord.Type, maximumRetryAttempts: Int = 3) {
+    init(zoneID: CKRecordZoneID, objectClass: T.Type, maximumRetryAttempts: Int = 3) {
         self.zoneID = zoneID
         self.objectClass = objectClass
         self.maximumRetryAttempts = maximumRetryAttempts
         
         super.init()
-        name = "Fetch Cloud Changes"
+        name = "Fetch Cloud Changes of \(objectClass)"
     }
     
     override func execute() {
-        print("\(self.name!) started")
         changeToken = getZoneChangeToken(zoneID)
+        print(">>>>>>>>> \(self.name!) started with token: \(changeToken)")
 
         fetchCloudChanges(changeToken) {
             (nsError) in
@@ -61,6 +61,9 @@ class FetchCloudChangesOperation: Operation {
             (recordID) in
             results.deletedRecordIDs.append(recordID)
         }
+
+        fetchOperation.database = potatsoDB
+        fetchOperation.recordZoneID = potatsoZoneId
         
         fetchOperation.fetchRecordChangesCompletionBlock = {
             (serverChangeToken, clientChangeToken, nsError) in

@@ -16,7 +16,8 @@ public enum SyncServiceType: String {
 
 public protocol SyncServiceProtocol {
     func setup(completion: (ErrorType? -> Void)?)
-    func sync()
+    func sync(manually: Bool)
+    func stop()
 }
 
 public class SyncManager {
@@ -38,6 +39,7 @@ public class SyncManager {
             guard currentSyncServiceType != new else {
                 return
             }
+            getCurrentSyncService()?.stop()
             NSUserDefaults.standardUserDefaults().setObject(new.rawValue, forKey: SyncManager.serviceTypeKey)
             NSUserDefaults.standardUserDefaults().synchronize()
             NSNotificationCenter.defaultCenter().postNotificationName(SyncManager.syncServiceChangedNotification, object: nil)
@@ -79,15 +81,19 @@ public class SyncManager {
 extension SyncManager {
 
     func setupNewService(type: SyncServiceType, completion: (ErrorType? -> Void)?) {
-        getSyncService(forType: type)?.setup(completion)
+        if let service = getSyncService(forType: type) {
+            service.setup(completion)
+        } else {
+            completion?(nil)
+        }
     }
 
     func setup(completion: (ErrorType? -> Void)?) {
         getCurrentSyncService()?.setup(completion)
     }
 
-    func sync() {
-        getCurrentSyncService()?.sync()
+    func sync(manually: Bool = false) {
+        getCurrentSyncService()?.sync(manually)
     }
     
 }

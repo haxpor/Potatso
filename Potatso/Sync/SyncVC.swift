@@ -47,25 +47,28 @@ class SyncVC: FormViewController {
                 $0.selectorTitle = "Choose Sync Service".localized()
             }.onChange({ [weak self] (row) in
                 if let type = row.value {
+                    self?.showProgreeHUD()
                     SyncManager.shared.setupNewService(type, completion: { (error) in
+                        self?.hideHUD()
                         if let error = error {
                             if let vc = self {
                                 Alert.show(vc, title: "Setup Failed", message: "\((error as NSError).localizedDescription)")
                             }
                         } else {
                             SyncManager.shared.currentSyncServiceType = type
+                            SyncManager.shared.sync(true)
                         }
                     })
                 }
             })
         section
             <<< ButtonRow {
-                $0.title = "Sync Now"
+                $0.title = "Sync Manually"
                 $0.hidden = Condition.Function([""]) { form in
                     return SyncManager.shared.currentSyncServiceType == .None
                 }
             }.onCellSelection({ (cell, row) in
-                SyncManager.shared.sync()
+                SyncManager.shared.sync(true)
             })
         return section
     }

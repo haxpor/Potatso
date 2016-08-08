@@ -13,13 +13,15 @@ import Realm
 import RealmSwift
 
 let potatsoZoneId = CKRecordZoneID(zoneName: "PotatsoCloud", ownerName: CKOwnerDefaultName)
+let potatsoDB = CKContainer.defaultContainer().privateCloudDatabase
+let potatsoSubscriptionId = "allSubscription"
 
 public protocol CloudKitRecord {
     static var recordType: String { get }
     static var keys: [String] { get }
     var recordId: CKRecordID { get }
     func toCloudKitRecord() -> CKRecord
-    static func fromCloudKitRecord(record: CKRecord) -> BaseModel
+    static func fromCloudKitRecord(record: CKRecord) -> Self
 }
 
 extension BaseModel {
@@ -52,8 +54,8 @@ extension Proxy: CloudKitRecord {
         return record
     }
 
-    public static func fromCloudKitRecord(record: CKRecord) -> BaseModel {
-        let proxy = Proxy()
+    public static func fromCloudKitRecord(record: CKRecord) -> Self {
+        let proxy = self.init()
         for key in Proxy.keys {
             if let v = record.valueForKey(key) {
                 proxy.setValue(v, forKey: key)
@@ -85,8 +87,8 @@ extension Rule: CloudKitRecord {
         return record
     }
 
-    public static func fromCloudKitRecord(record: CKRecord) -> BaseModel {
-        let rule = Rule()
+    public static func fromCloudKitRecord(record: CKRecord) -> Self {
+        let rule = self.init()
         for key in Rule.keys {
             if let v = record.valueForKey(key) {
                 rule.setValue(v, forKey: key)
@@ -103,7 +105,7 @@ extension RuleSet: CloudKitRecord {
     }
 
     public static var keys: [String] {
-        return basekeys + ["editable", "name", "updateAt", "desc", "ruleCount", "isSubscribe", "isOfficial"]
+        return basekeys + ["editable", "name", "remoteUpdatedAt", "desc", "ruleCount", "isSubscribe", "isOfficial"]
     }
 
     public var recordId: CKRecordID {
@@ -119,8 +121,8 @@ extension RuleSet: CloudKitRecord {
         return record
     }
 
-    public static func fromCloudKitRecord(record: CKRecord) -> BaseModel {
-        let ruleset = RuleSet()
+    public static func fromCloudKitRecord(record: CKRecord) -> Self {
+        let ruleset = self.init()
         for key in RuleSet.keys {
             if let v = record.valueForKey(key) {
                 ruleset.setValue(v, forKey: key)
@@ -160,8 +162,8 @@ extension ConfigurationGroup: CloudKitRecord {
         return record
     }
 
-    public static func fromCloudKitRecord(record: CKRecord) -> BaseModel {
-        let group = ConfigurationGroup()
+    public static func fromCloudKitRecord(record: CKRecord) -> Self {
+        let group = self.init()
         for key in ConfigurationGroup.keys {
             if let v = record.valueForKey(key) {
                 group.setValue(v, forKey: key)
@@ -182,38 +184,63 @@ extension ConfigurationGroup: CloudKitRecord {
     }
 }
 
+extension CKRecord {
 
-func changeLocalRecord(record: CKRecord, objectClass: CloudKitRecord.Type) throws {
+    var realmClassType: BaseModel.Type? {
+        let type: BaseModel.Type?
+        switch recordType {
+        case "Proxy":
+            type = Proxy.self
+        case "Rule":
+            type = Rule.self
+        case "RuleSet":
+            type = RuleSet.self
+        case "ConfigurationGroup":
+            type = ConfigurationGroup.self
+        default:
+            return nil
+        }
+        return type
+    }
+
+}
+
+func changeLocalRecord<T: BaseModel where T: CloudKitRecord>(record: CKRecord, objectClass: T.Type) throws {
     let realm = try! Realm()
     let realmObject: BaseModel
-    let local: BaseModel?
+    let local: T? = DBUtils.get(record.recordID.recordName, inRealm: realm)
     switch record.recordType {
     case "Proxy":
         realmObject = Proxy.fromCloudKitRecord(record)
         realmObject.synced = true
-        local = realm.objects(Proxy).filter("uuid = '\(realmObject.uuid)'").first
+    case "Rule":
+        realmObject = Rule.fromCloudKitRecord(record)
+        realmObject.synced = true
+    case "RuleSet":
+        realmObject = RuleSet.fromCloudKitRecord(record)
+        realmObject.synced = true
+    case "ConfigurationGroup":
+        realmObject = ConfigurationGroup.fromCloudKitRecord(record)
+        realmObject.synced = true
     default:
         return
     }
-    if let local = local {
+    if let local = local, type = record.realmClassType {
         if local.updatedAt > realmObject.updatedAt {
-            try DBUtils.mark(local, synced: false)
+            try DBUtils.mark(local.uuid, type: type, synced: false)
             return
         } else if local.updatedAt == realmObject.updatedAt {
-            try DBUtils.mark(local, synced: true)
+            try DBUtils.mark(local.uuid, type: type, synced: true)
             return
         }
     }
     try DBUtils.add(realmObject)
 }
 
-func deleteLocalRecord(recordID: CKRecordID, objectClass: CloudKitRecord.Type) throws {
-    let realm = try! Realm()
+func deleteLocalRecord<T: BaseModel where T: CloudKitRecord>(recordID: CKRecordID, objectClass: T.Type) throws {
     let id = recordID.recordName
     // FIXME: Unsafe realm casting
-    if let object = realm.objectForPrimaryKey(objectClass as! BaseModel.Type, key: id) {
-        print("Deleting local record.")
-        try DBUtils.delete(object)
-    }
+    print("Deleting local record.")
+    try DBUtils.hardDelete(id, type: objectClass)
 }
 

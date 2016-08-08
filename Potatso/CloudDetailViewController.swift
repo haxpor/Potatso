@@ -68,11 +68,9 @@ class CloudDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func subscribe() {
         let uuid = ruleSet.uuid
         if isExist(uuid) {
-            let sets = defaultRealm.objects(RuleSet).filter("uuid = %@", uuid)
+            let ids = defaultRealm.objects(RuleSet).filter("uuid = %@", uuid).map({ $0.uuid })
             do {
-                try defaultRealm.write {
-                    defaultRealm.delete(sets)
-                }
+                try DBUtils.softDelete(ids, type: RuleSet.self)
             }catch {
                 self.showTextHUD("Fail to unsubscribe".localized(), dismissAfterDelay: 1.0)
                 return

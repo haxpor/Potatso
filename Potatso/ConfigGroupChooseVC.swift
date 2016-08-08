@@ -158,9 +158,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
             }
             do {
                 groups.removeAtIndex(indexPath.row)
-                try defaultRealm.write {
-                    defaultRealm.delete(item)
-                }
+                try DBUtils.softDelete(item.uuid, type: ConfigurationGroup.self)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }catch {
                 self.showTextHUD("\("Fail to delete item".localized()): \((error as NSError).localizedDescription)", dismissAfterDelay: 1.5)

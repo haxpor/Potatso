@@ -9,26 +9,36 @@
 import Foundation
 import PSOperations
 import CloudKit
+import Async
 
-class ICloudSetupOperation: BlockOperation {
+class ICloudSetupOperation: GroupOperation {
 
     init(completion: (ErrorType? -> Void)? = nil) {
-        super.init(block: nil)
         let url = NSURL(string: "http://www.apple.com")!
         let reachabilityCondition = ReachabilityCondition(host: url)
 
         let container = CKContainer.defaultContainer()
         let iCloudCapability = Capability(iCloudContainer(container: container))
 
+        let dummyOp = BlockOperation(block: nil)
+
         let finishObserver = BlockObserver { operation, error in
             print("ICloudSetupOperation finished! \(error)")
-            completion?(error.first)
+            Async.main {
+                completion?(error.first)
+            }
         }
 
-        addCondition(reachabilityCondition)
-        addCondition(iCloudCapability)
+        let prepareZoneOperation = PrepareZoneOperation(zoneID: potatsoZoneId)
 
-        addObserver(finishObserver)
+        prepareZoneOperation.addCondition(reachabilityCondition)
+        prepareZoneOperation.addCondition(iCloudCapability)
+
+        prepareZoneOperation.addObserver(finishObserver)
+
+        dummyOp.addDependency(prepareZoneOperation)
+
+        super.init(operations: [prepareZoneOperation, dummyOp])
     }
 
 }

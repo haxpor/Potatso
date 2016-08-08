@@ -3,7 +3,7 @@ import RealmSwift
 import CloudKit
 import PSOperations
 
-class PushLocalChangesOperation: Operation {
+class PushLocalChangesOperation<T: BaseModel where T: CloudKitRecord>: Operation {
     
     let zoneID: CKRecordZoneID
     var recordsToSave: [CKRecord]?
@@ -13,36 +13,36 @@ class PushLocalChangesOperation: Operation {
     let maximumRetryAttempts: Int
     var retryAttempts: Int = 0
     
-    let objectClass: CloudKitRecord.Type
+    let objectClass: T.Type
     
-    init(zoneID: CKRecordZoneID, objectClass: CloudKitRecord.Type, maximumRetryAttempts: Int = 3) {
+    init(zoneID: CKRecordZoneID, objectClass: T.Type, maximumRetryAttempts: Int = 3) {
         self.zoneID = zoneID
         self.objectClass = objectClass
         self.maximumRetryAttempts = maximumRetryAttempts
         
         super.init()
-        name = "Push Local Changes"
+        name = "Push Local Changes of \(objectClass)"
     }
     
     override func execute() {
-        print("\(self.name!) started")
+        print(">>>>>>>>> \(self.name!) started")
         
         // Query records
         let realm = try! Realm()
         
         // FIXME: Unsafe realm casting
-        let toSyncObjects = realm.objects(self.objectClass as! BaseModel.Type)
+        let toSyncObjects = realm.objects(self.objectClass)
             .filter("synced == false && deleted == false")
-        let toDeleteObjects = realm.objects(self.objectClass as! BaseModel.Type)
+        let toDeleteObjects = realm.objects(self.objectClass)
             .filter("synced == false && deleted == true")
         print("toSyncObjects: \(toSyncObjects.map({ $0.uuid }).joinWithSeparator(", "))")
         print("toDeleteObjects: \(toDeleteObjects.map({ $0.uuid }).joinWithSeparator(", "))")
 
         self.recordsToSave = toSyncObjects.map {
-            ($0 as! CloudKitRecord).toCloudKitRecord()
+            $0.toCloudKitRecord()
         }
         self.recordIDsToDelete = toDeleteObjects.map {
-            ($0 as! CloudKitRecord).recordId
+            $0.recordId
         }
 
         modifyRecords(self.recordsToSave, recordIDsToDelete: self.recordIDsToDelete) {
@@ -58,11 +58,11 @@ class PushLocalChangesOperation: Operation {
         let modifyOperation = CKModifyRecordsOperation(
             recordsToSave: recordsToSave,
             recordIDsToDelete: recordIDsToDelete)
-        
+        modifyOperation.savePolicy = .ChangedKeys
         modifyOperation.modifyRecordsCompletionBlock = {
             (savedRecords, deletedRecordIDs, nsError) -> Void in
-            
             if let error = nsError {
+                print("modifyRecords error: \(error), \(savedRecords?.count), \(recordIDsToDelete?.count)")
                 self.handleCloudKitPushError(
                     savedRecords,
                     deletedRecordIDs: deletedRecordIDs,
@@ -70,17 +70,18 @@ class PushLocalChangesOperation: Operation {
                     completionHandler: completionHandler)
                 
             } else {
-                
                 do {
                     // Update local modified flag
                     if let savedRecords = savedRecords {
+                        print("savedRecords: \(savedRecords.map({ $0.recordID.recordName }).joinWithSeparator(", "))")
                         for record in savedRecords {
                             // FIXME: Unsafe realm casting
-                            try DBUtils.mark(type: self.objectClass as! BaseModel.Type, objectId: record.recordID.recordName, synced: true)
+                            try DBUtils.mark(record.recordID.recordName, type: self.objectClass, synced: true)
                         }
                     }
                     
                     if let recordIDsToDelete = recordIDsToDelete {
+                        print("recordIDsToDelete: \(recordIDsToDelete.map({ $0.recordName }).joinWithSeparator(", "))")
                         for recordID in recordIDsToDelete {
                             try deleteLocalRecord(recordID, objectClass: self.objectClass)
                         }

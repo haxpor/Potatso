@@ -23,9 +23,8 @@ class PrepareZoneOperation: Operation {
     }
     
     func prepareCKRecordZone(zoneID: CKRecordZoneID, completionHandler: (NSError!) -> ()) {
-        let privateDB = CKContainer.defaultContainer().privateCloudDatabase
         // Per CloudKitCatalog, not using NSOperation here
-        privateDB.fetchAllRecordZonesWithCompletionHandler {
+        potatsoDB.fetchAllRecordZonesWithCompletionHandler {
             (zones, nsError) in
             if nsError != nil {
                 print(nsError)
@@ -48,7 +47,7 @@ class PrepareZoneOperation: Operation {
                     // all user data from that zone to the cloud. To do so mark all
                     // live records as locally modified. Deleted records which have also
                     // been deleted locally will be gone forever.
-                    privateDB.saveRecordZone(CKRecordZone(zoneID: zoneID)) {
+                    potatsoDB.saveRecordZone(CKRecordZone(zoneID: zoneID)) {
                         (recordZone, nsError) in
                         // TODO: set a boolean NSUserDefault value equal to the
                         // zoneName to keep track of zones this device has previously used

@@ -9,12 +9,15 @@ import RealmSwift
  Set the `changeToken` for this `zoneID`.
  */
 public func setZoneChangeToken(zoneID: CKRecordZoneID, changeToken: CKServerChangeToken?) {
+    let key = "\(zoneID.zoneName)_serverChangeToken"
     if let changeToken = changeToken {
         NSUserDefaults.standardUserDefaults().setObject(
             NSKeyedArchiver.archivedDataWithRootObject(changeToken),
-            forKey:"\(zoneID.zoneName)_serverChangeToken")
-        NSUserDefaults.standardUserDefaults().synchronize()
+            forKey: key)
+    } else {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
     }
+    NSUserDefaults.standardUserDefaults().synchronize()
 }
 
 /**

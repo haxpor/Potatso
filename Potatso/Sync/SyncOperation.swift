@@ -34,34 +34,20 @@ public enum SyncType: CustomStringConvertible {
  - completionHandler
  
  */
-public class SyncOperation: GroupOperation {
+public class SyncOperation<T: BaseModel where T: CloudKitRecord>: GroupOperation {
     
     private var hasProducedAlert = false
     
     public init(zoneID: CKRecordZoneID,
-         objectClass: CloudKitRecord.Type,
+         objectClass: T.Type,
          syncType: SyncType,
          completionHandler: () -> Void) {
 
-        // Setup Conditions
-        
-        // ReachabilityCondition as written requires a URL so rather than rewriting, ping google
-        let url = NSURL(string: "http://www.apple.com")!
-        let reachabilityCondition = ReachabilityCondition(host: url)
-        
-        let container = CKContainer.defaultContainer()
-        let iCloudCapability = Capability(iCloudContainer(container: container))
-        
-        // Setup common operations
-        let prepareZoneOperation = PrepareZoneOperation(zoneID: zoneID)
         let finishOperation = NSBlockOperation(block: completionHandler)
-        
-        prepareZoneOperation.addCondition(reachabilityCondition)
-        prepareZoneOperation.addCondition(iCloudCapability)
-        
+
         // Setup operations relating to SyncType
-        let pushLocalChangesOperation: PushLocalChangesOperation
-        let fetchCloudChangesOperation: FetchCloudChangesOperation
+        let pushLocalChangesOperation: PushLocalChangesOperation<T>
+        let fetchCloudChangesOperation: FetchCloudChangesOperation<T>
         let operations: [NSOperation]
         
         switch syncType {
@@ -69,22 +55,18 @@ public class SyncOperation: GroupOperation {
             pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID,
                                                                   objectClass: objectClass)
             
-            pushLocalChangesOperation.addDependency(prepareZoneOperation)
             finishOperation.addDependency(pushLocalChangesOperation)
             
             operations = [
-                prepareZoneOperation,
                 pushLocalChangesOperation,
                 finishOperation]
             
         case .FetchCloudChanges:
             fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass)
             
-            fetchCloudChangesOperation.addDependency(prepareZoneOperation)
             finishOperation.addDependency(fetchCloudChangesOperation)
             
             operations = [
-                prepareZoneOperation,
                 fetchCloudChangesOperation,
                 finishOperation]
             
@@ -92,12 +74,10 @@ public class SyncOperation: GroupOperation {
             pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID, objectClass: objectClass)
             fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass)
             
-            pushLocalChangesOperation.addDependency(prepareZoneOperation)
             fetchCloudChangesOperation.addDependency(pushLocalChangesOperation)
             finishOperation.addDependency(fetchCloudChangesOperation)
             
             operations = [
-                prepareZoneOperation,
                 fetchCloudChangesOperation,
                 pushLocalChangesOperation,
                 finishOperation]

@@ -12,57 +12,93 @@ import RealmSwift
 
 public class DBUtils {
 
-    public static func add(object: BaseModel, update: Bool = true) throws {
-        let realm = try! Realm()
-        realm.beginWrite()
-        object.setModified()
-        realm.add(object, update: update)
-        try realm.commitWrite()
+    private static func currentRealm(realm: Realm?) -> Realm {
+        var mRealm = realm
+        if mRealm == nil {
+            mRealm = try! Realm()
+        }
+        return mRealm!
     }
 
-    public static func add<S: SequenceType where S.Generator.Element: BaseModel>(objects: S, update: Bool = true) throws {
-        let realm = try! Realm()
-        realm.beginWrite()
+    public static func add(object: BaseModel, update: Bool = true, inRealm realm: Realm? = nil) throws {
+        let mRealm = currentRealm(realm)
+        mRealm.beginWrite()
+        object.setModified()
+        mRealm.add(object, update: update)
+        try mRealm.commitWrite()
+    }
+
+    public static func add<S: SequenceType where S.Generator.Element: BaseModel>(objects: S, update: Bool = true, inRealm realm: Realm? = nil) throws {
+        let mRealm = currentRealm(realm)
+        mRealm.beginWrite()
         objects.forEach({
             $0.setModified()
         })
-        realm.add(objects, update: update)
-        try realm.commitWrite()
+        mRealm.add(objects, update: update)
+        try mRealm.commitWrite()
     }
 
-    public static func delete(object: BaseModel, update: Bool = true) throws {
-        let realm = try! Realm()
-        realm.beginWrite()
-        object.deleted = true
-        object.setModified()
-        try realm.commitWrite()
-    }
-
-    public static func delete<S: SequenceType where S.Generator.Element: BaseModel>(objects: S, update: Bool = true) throws {
-        let realm = try! Realm()
-        realm.beginWrite()
-        objects.forEach({
-            $0.deleted = true
-            $0.setModified()
-        })
-        try realm.commitWrite()
-    }
-
-    public static func mark(object: BaseModel, synced: Bool) throws {
-        let realm = try! Realm()
-        realm.beginWrite()
-        object.synced = synced
-        try realm.commitWrite()
-    }
-
-    public static func mark(type type: BaseModel.Type, objectId: String, synced: Bool) throws {
-        let realm = try! Realm()
-        guard let object = realm.objects(type).filter("uuid = '\(objectId)'").first else {
+    public static func softDelete<T: BaseModel>(id: String, type: T.Type, inRealm realm: Realm? = nil) throws {
+        let mRealm = currentRealm(realm)
+        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
             return
         }
-        try mark(object, synced: synced)
+        mRealm.beginWrite()
+        object.deleted = true
+        object.setModified()
+        try mRealm.commitWrite()
     }
 
+    public static func softDelete<T: BaseModel>(ids: [String], type: T.Type, inRealm realm: Realm? = nil) throws {
+        for id in ids {
+            try softDelete(id, type: type, inRealm: realm)
+        }
+    }
+
+    public static func hardDelete<T: BaseModel>(id: String, type: T.Type, inRealm realm: Realm? = nil) throws {
+        let mRealm = currentRealm(realm)
+        print(type)
+        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
+            return
+        }
+        mRealm.beginWrite()
+        mRealm.delete(object)
+        try mRealm.commitWrite()
+    }
+
+    public static func hardDelete<T: BaseModel>(ids: [String], type: T.Type, inRealm realm: Realm? = nil) throws {
+        for id in ids {
+            try hardDelete(id, type: type, inRealm: realm)
+        }
+    }
+
+    public static func mark<T: BaseModel>(id: String, type: T.Type, synced: Bool, inRealm realm: Realm? = nil) throws {
+        let mRealm = currentRealm(realm)
+        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
+            return
+        }
+        mRealm.beginWrite()
+        object.synced = synced
+        try mRealm.commitWrite()
+    }
+
+    public static func markAll(syncd: Bool) throws {
+        let mRealm = try! Realm()
+        mRealm.beginWrite()
+        for proxy in mRealm.objects(Proxy) {
+            proxy.synced = false
+        }
+        for rule in mRealm.objects(Rule) {
+            rule.synced = false
+        }
+        for ruleset in mRealm.objects(RuleSet) {
+            ruleset.synced = false
+        }
+        for group in mRealm.objects(ConfigurationGroup) {
+            group.synced = false
+        }
+        try mRealm.commitWrite()
+    }
 }
 
 
@@ -70,29 +106,27 @@ public class DBUtils {
 extension DBUtils {
 
     public static func get<T: BaseModel>(uuid: String, inRealm realm: Realm? = nil) -> T? {
-        var mRealm = realm
-        if mRealm == nil {
-            mRealm = try! Realm()
-        }
-        return mRealm?.objects(T).filter("uuid = '\(uuid)'").first
+        let mRealm = currentRealm(realm)
+        return mRealm.objects(T).filter("uuid = '\(uuid)'").first
     }
 
-    public static func modify<T: BaseModel>(type: T.Type, id: String, modifyBlock: ((Realm, T) -> ErrorType?)) throws {
-        let realm = try! Realm()
-        guard let object: T = DBUtils.get(id, inRealm: realm) else {
+    public static func modify<T: BaseModel>(type: T.Type, id: String, inRealm realm: Realm? = nil, modifyBlock: ((Realm, T) -> ErrorType?)) throws {
+        let mRealm = currentRealm(realm)
+        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
             return
         }
-        realm.beginWrite()
-        if let error = modifyBlock(realm, object) {
+        mRealm.beginWrite()
+        if let error = modifyBlock(mRealm, object) {
             throw error
         }
         do {
-            try object.validate(inRealm: realm)
+            try object.validate(inRealm: mRealm)
         }catch {
-            realm.cancelWrite()
+            mRealm.cancelWrite()
             throw error
         }
-        try realm.commitWrite()
+        object.setModified()
+        try mRealm.commitWrite()
     }
 
 }
