@@ -34,26 +34,22 @@ public enum SyncType: CustomStringConvertible {
  - completionHandler
  
  */
-public class SyncOperation<T: BaseModel where T: CloudKitRecord>: GroupOperation {
+public class SyncOperation: GroupOperation {
     
     private var hasProducedAlert = false
     
-    public init(zoneID: CKRecordZoneID,
-         objectClass: T.Type,
-         syncType: SyncType,
-         completionHandler: () -> Void) {
+    public init(zoneID: CKRecordZoneID, syncType: SyncType, completionHandler: () -> Void) {
 
         let finishOperation = NSBlockOperation(block: completionHandler)
 
         // Setup operations relating to SyncType
-        let pushLocalChangesOperation: PushLocalChangesOperation<T>
-        let fetchCloudChangesOperation: FetchCloudChangesOperation<T>
+        let pushLocalChangesOperation: PushLocalChangesOperation
+        let fetchCloudChangesOperation: FetchCloudChangesOperation
         let operations: [NSOperation]
         
         switch syncType {
         case .PushLocalChanges:
-            pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID,
-                                                                  objectClass: objectClass)
+            pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID)
             
             finishOperation.addDependency(pushLocalChangesOperation)
             
@@ -62,8 +58,7 @@ public class SyncOperation<T: BaseModel where T: CloudKitRecord>: GroupOperation
                 finishOperation]
             
         case .FetchCloudChanges:
-            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass)
-            
+            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID)
             finishOperation.addDependency(fetchCloudChangesOperation)
             
             operations = [
@@ -71,8 +66,8 @@ public class SyncOperation<T: BaseModel where T: CloudKitRecord>: GroupOperation
                 finishOperation]
             
         case .FetchCloudChangesAndThenPushLocalChanges:
-            pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID, objectClass: objectClass)
-            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID, objectClass: objectClass)
+            pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID)
+            fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID)
             
             fetchCloudChangesOperation.addDependency(pushLocalChangesOperation)
             finishOperation.addDependency(fetchCloudChangesOperation)

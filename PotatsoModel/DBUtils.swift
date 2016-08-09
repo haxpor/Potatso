@@ -40,7 +40,7 @@ public class DBUtils {
 
     public static func softDelete<T: BaseModel>(id: String, type: T.Type, inRealm realm: Realm? = nil) throws {
         let mRealm = currentRealm(realm)
-        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
+        guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) else {
             return
         }
         mRealm.beginWrite()
@@ -58,7 +58,7 @@ public class DBUtils {
     public static func hardDelete<T: BaseModel>(id: String, type: T.Type, inRealm realm: Realm? = nil) throws {
         let mRealm = currentRealm(realm)
         print(type)
-        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
+        guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) else {
             return
         }
         mRealm.beginWrite()
@@ -74,7 +74,7 @@ public class DBUtils {
 
     public static func mark<T: BaseModel>(id: String, type: T.Type, synced: Bool, inRealm realm: Realm? = nil) throws {
         let mRealm = currentRealm(realm)
-        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
+        guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) else {
             return
         }
         mRealm.beginWrite()
@@ -82,7 +82,7 @@ public class DBUtils {
         try mRealm.commitWrite()
     }
 
-    public static func markAll(syncd: Bool) throws {
+    public static func markAll(syncd syncd: Bool) throws {
         let mRealm = try! Realm()
         mRealm.beginWrite()
         for proxy in mRealm.objects(Proxy) {
@@ -105,14 +105,14 @@ public class DBUtils {
 // Query
 extension DBUtils {
 
-    public static func get<T: BaseModel>(uuid: String, inRealm realm: Realm? = nil) -> T? {
+    public static func get<T: BaseModel>(uuid: String, type: T.Type, inRealm realm: Realm? = nil) -> T? {
         let mRealm = currentRealm(realm)
-        return mRealm.objects(T).filter("uuid = '\(uuid)'").first
+        return mRealm.objects(type).filter("uuid = '\(uuid)'").first
     }
 
     public static func modify<T: BaseModel>(type: T.Type, id: String, inRealm realm: Realm? = nil, modifyBlock: ((Realm, T) -> ErrorType?)) throws {
         let mRealm = currentRealm(realm)
-        guard let object: T = DBUtils.get(id, inRealm: mRealm) else {
+        guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) else {
             return
         }
         mRealm.beginWrite()
@@ -129,6 +129,40 @@ extension DBUtils {
         try mRealm.commitWrite()
     }
 
+}
+
+// Sync
+extension DBUtils {
+
+    public static func allObjectsToSyncModified() -> [BaseModel] {
+        let mRealm = currentRealm(nil)
+        let filter = "synced == false && deleted == false"
+        let proxies = mRealm.objects(Proxy.self).filter(filter).map({ $0 })
+        let rules = mRealm.objects(Rule.self).filter(filter).map({ $0 })
+        let rulesets = mRealm.objects(RuleSet.self).filter(filter).map({ $0 })
+        let groups = mRealm.objects(ConfigurationGroup.self).filter(filter).map({ $0 })
+        var objects: [BaseModel] = []
+        objects.appendContentsOf(proxies as [BaseModel])
+        objects.appendContentsOf(rules as [BaseModel])
+        objects.appendContentsOf(rulesets as [BaseModel])
+        objects.appendContentsOf(groups as [BaseModel])
+        return objects
+    }
+
+    public static func allObjectsToSyncDeleted() -> [BaseModel] {
+        let mRealm = currentRealm(nil)
+        let filter = "synced == false && deleted == true"
+        let proxies = mRealm.objects(Proxy.self).filter(filter).map({ $0 })
+        let rules = mRealm.objects(Rule.self).filter(filter).map({ $0 })
+        let rulesets = mRealm.objects(RuleSet.self).filter(filter).map({ $0 })
+        let groups = mRealm.objects(ConfigurationGroup.self).filter(filter).map({ $0 })
+        var objects: [BaseModel] = []
+        objects.appendContentsOf(proxies as [BaseModel])
+        objects.appendContentsOf(rules as [BaseModel])
+        objects.appendContentsOf(rulesets as [BaseModel])
+        objects.appendContentsOf(groups as [BaseModel])
+        return objects
+    }
 }
 
 // BaseModel API
@@ -148,7 +182,7 @@ extension ConfigurationGroup {
     public static func changeProxy(forGroupId groupId: String, proxyId: String?) throws {
         try DBUtils.modify(ConfigurationGroup.self, id: groupId) { (realm, group) -> ErrorType? in
             group.proxies.removeAll()
-            if let proxyId = proxyId, proxy: Proxy = DBUtils.get(proxyId, inRealm: realm){
+            if let proxyId = proxyId, proxy = DBUtils.get(proxyId, type: Proxy.self, inRealm: realm){
                 group.proxies.append(proxy)
             }
             return nil
@@ -157,7 +191,7 @@ extension ConfigurationGroup {
 
     public static func appendRuleSet(forGroupId groupId: String, rulesetId: String) throws {
         try DBUtils.modify(ConfigurationGroup.self, id: groupId) { (realm, group) -> ErrorType? in
-            if let ruleset: RuleSet = DBUtils.get(rulesetId, inRealm: realm) {
+            if let ruleset = DBUtils.get(rulesetId, type: RuleSet.self, inRealm: realm) {
                 group.ruleSets.append(ruleset)
             }
             return nil
@@ -179,3 +213,4 @@ extension ConfigurationGroup {
     }
 
 }
+

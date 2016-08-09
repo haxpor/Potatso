@@ -205,10 +205,13 @@ extension CKRecord {
 
 }
 
-func changeLocalRecord<T: BaseModel where T: CloudKitRecord>(record: CKRecord, objectClass: T.Type) throws {
-    let realm = try! Realm()
+func changeLocalRecord(record: CKRecord) throws {
     let realmObject: BaseModel
-    let local: T? = DBUtils.get(record.recordID.recordName, inRealm: realm)
+    guard let type = record.realmClassType else {
+        return
+    }
+    let id = record.recordID.recordName
+    let local: BaseModel? = DBUtils.get(id, type: type)
     switch record.recordType {
     case "Proxy":
         realmObject = Proxy.fromCloudKitRecord(record)
@@ -237,10 +240,13 @@ func changeLocalRecord<T: BaseModel where T: CloudKitRecord>(record: CKRecord, o
     try DBUtils.add(realmObject)
 }
 
-func deleteLocalRecord<T: BaseModel where T: CloudKitRecord>(recordID: CKRecordID, objectClass: T.Type) throws {
+func deleteLocalRecord(recordID: CKRecordID) throws {
     let id = recordID.recordName
     // FIXME: Unsafe realm casting
     print("Deleting local record.")
-    try DBUtils.hardDelete(id, type: objectClass)
+    try DBUtils.hardDelete(id, type: Proxy.self)
+    try DBUtils.hardDelete(id, type: Rule.self)
+    try DBUtils.hardDelete(id, type: RuleSet.self)
+    try DBUtils.hardDelete(id, type: ConfigurationGroup.self)
 }
 

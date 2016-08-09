@@ -12,7 +12,7 @@ struct FetchResults {
     }
 }
 
-class FetchCloudChangesOperation<T: BaseModel where T: CloudKitRecord>: Operation {
+class FetchCloudChangesOperation: Operation {
     
     let zoneID: CKRecordZoneID
     var changeToken: CKServerChangeToken?
@@ -20,16 +20,13 @@ class FetchCloudChangesOperation<T: BaseModel where T: CloudKitRecord>: Operatio
     let delayOperationQueue = OperationQueue()
     let maximumRetryAttempts: Int
     var retryAttempts: Int = 0
-    
-    let objectClass: T.Type
-    
-    init(zoneID: CKRecordZoneID, objectClass: T.Type, maximumRetryAttempts: Int = 3) {
+
+    init(zoneID: CKRecordZoneID, maximumRetryAttempts: Int = 3) {
         self.zoneID = zoneID
-        self.objectClass = objectClass
         self.maximumRetryAttempts = maximumRetryAttempts
         
         super.init()
-        name = "Fetch Cloud Changes of \(objectClass)"
+        name = "Fetch Cloud Changes"
     }
     
     override func execute() {
@@ -102,12 +99,12 @@ class FetchCloudChangesOperation<T: BaseModel where T: CloudKitRecord>: Operatio
         do {
             print("changedRecords: \(results.changedRecords.map({ $0.recordID.recordName }))")
             for record in results.changedRecords {
-                try changeLocalRecord(record, objectClass: self.objectClass)
+                try changeLocalRecord(record)
             }
 
             print("deletedRecordIDs: \(results.deletedRecordIDs.map({ $0.recordName }))")
             for recordID in results.deletedRecordIDs {
-                try deleteLocalRecord(recordID, objectClass: self.objectClass)
+                try deleteLocalRecord(recordID)
             }
         } catch let realmError as NSError {
             error = realmError

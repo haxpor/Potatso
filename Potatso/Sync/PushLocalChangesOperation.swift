@@ -3,7 +3,7 @@ import RealmSwift
 import CloudKit
 import PSOperations
 
-class PushLocalChangesOperation<T: BaseModel where T: CloudKitRecord>: Operation {
+class PushLocalChangesOperation: Operation {
     
     let zoneID: CKRecordZoneID
     var recordsToSave: [CKRecord]?
@@ -12,37 +12,29 @@ class PushLocalChangesOperation<T: BaseModel where T: CloudKitRecord>: Operation
     let delayOperationQueue = OperationQueue()
     let maximumRetryAttempts: Int
     var retryAttempts: Int = 0
-    
-    let objectClass: T.Type
-    
-    init(zoneID: CKRecordZoneID, objectClass: T.Type, maximumRetryAttempts: Int = 3) {
+
+    init(zoneID: CKRecordZoneID, maximumRetryAttempts: Int = 3) {
         self.zoneID = zoneID
-        self.objectClass = objectClass
         self.maximumRetryAttempts = maximumRetryAttempts
         
         super.init()
-        name = "Push Local Changes of \(objectClass)"
+        name = "Push Local Changes"
     }
     
     override func execute() {
         print(">>>>>>>>> \(self.name!) started")
         
-        // Query records
-        let realm = try! Realm()
-        
         // FIXME: Unsafe realm casting
-        let toSyncObjects = realm.objects(self.objectClass)
-            .filter("synced == false && deleted == false")
-        let toDeleteObjects = realm.objects(self.objectClass)
-            .filter("synced == false && deleted == true")
+        let toSyncObjects = DBUtils.allObjectsToSyncModified()
+        let toDeleteObjects = DBUtils.allObjectsToSyncDeleted()
         print("toSyncObjects: \(toSyncObjects.map({ $0.uuid }).joinWithSeparator(", "))")
         print("toDeleteObjects: \(toDeleteObjects.map({ $0.uuid }).joinWithSeparator(", "))")
 
         self.recordsToSave = toSyncObjects.map {
-            $0.toCloudKitRecord()
+            ($0 as! CloudKitRecord).toCloudKitRecord()
         }
         self.recordIDsToDelete = toDeleteObjects.map {
-            $0.recordId
+            ($0 as! CloudKitRecord).recordId
         }
 
         modifyRecords(self.recordsToSave, recordIDsToDelete: self.recordIDsToDelete) {
@@ -76,14 +68,14 @@ class PushLocalChangesOperation<T: BaseModel where T: CloudKitRecord>: Operation
                         print("savedRecords: \(savedRecords.map({ $0.recordID.recordName }).joinWithSeparator(", "))")
                         for record in savedRecords {
                             // FIXME: Unsafe realm casting
-                            try DBUtils.mark(record.recordID.recordName, type: self.objectClass, synced: true)
+                            try DBUtils.mark(record.recordID.recordName, type: record.realmClassType!, synced: true)
                         }
                     }
                     
                     if let recordIDsToDelete = recordIDsToDelete {
                         print("recordIDsToDelete: \(recordIDsToDelete.map({ $0.recordName }).joinWithSeparator(", "))")
                         for recordID in recordIDsToDelete {
-                            try deleteLocalRecord(recordID, objectClass: self.objectClass)
+                            try deleteLocalRecord(recordID)
                         }
                     }
                     

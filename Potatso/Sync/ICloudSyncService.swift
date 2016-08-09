@@ -28,31 +28,15 @@ class ICloudSyncService: SyncServiceProtocol {
     func sync(manually: Bool = false) {
         if manually {
             setZoneChangeToken(potatsoZoneId, changeToken: nil)
-            _ = try? DBUtils.markAll(false)
+            _ = try? DBUtils.markAll(syncd: false)
         }
         let setupOp = ICloudSetupOperation(completion: nil)
-
-        let proxySyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: Proxy.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
-            print("<<<<<<<<< sync proxies completed")
+        let syncOp = SyncOperation(zoneID: potatsoZoneId, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
+            print("<<<<<<<<< sync completed")
         }
-        let ruleSyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: Rule.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
-            print("<<<<<<<<< sync rules completed")
-        }
-        ruleSyncOp.addDependency(proxySyncOp)
-        let ruleSetSyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: RuleSet.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
-            print("<<<<<<<<< sync rulesets completed")
-        }
-        ruleSetSyncOp.addDependency(ruleSyncOp)
-        let configGroupSyncOp = SyncOperation(zoneID: potatsoZoneId, objectClass: ConfigurationGroup.self, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
-            print("<<<<<<<<< sync config groups completed")
-        }
-        configGroupSyncOp.addDependency(ruleSetSyncOp)
-
+        
         operationQueue.addOperation(setupOp)
-        operationQueue.addOperation(proxySyncOp)
-        operationQueue.addOperation(ruleSyncOp)
-        operationQueue.addOperation(ruleSetSyncOp)
-        operationQueue.addOperation(configGroupSyncOp)
+        operationQueue.addOperation(syncOp)
     }
 
     func subscribe() {

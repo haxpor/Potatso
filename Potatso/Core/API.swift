@@ -82,7 +82,7 @@ extension RuleSet {
     static func addRemoteObject(ruleset: RuleSet, update: Bool = true) throws {
         ruleset.isSubscribe = true
         let id = ruleset.uuid
-        guard let local: RuleSet = DBUtils.get(id) else {
+        guard let local = DBUtils.get(id, type: RuleSet.self) else {
             try DBUtils.add(ruleset)
             return
         }
