@@ -67,7 +67,7 @@ class RuleConfigurationViewController: FormViewController {
             <<< PushRow<RuleType>(kRuleFormType) {
                 $0.title = "Type".localized()
                 $0.selectorTitle = "Choose type of rule".localized()
-                $0.options = [RuleType.URL, RuleType.DomainSuffix, RuleType.DomainMatch, RuleType.Domain, RuleType.IPCIDR, RuleType.GeoIP]
+                $0.options = [RuleType.DomainSuffix, RuleType.DomainMatch, RuleType.Domain, RuleType.IPCIDR, RuleType.GeoIP]
                 $0.value = self.rule.type
                 $0.disabled = Condition(booleanLiteral: !editable)
                 }.cellSetup({ (cell, row) -> () in
@@ -105,10 +105,8 @@ class RuleConfigurationViewController: FormViewController {
             guard let action = values[kRuleFormAction] as? RuleAction else {
                 throw "You must choose a action".localized()
             }
-            defaultRealm.beginWrite()
             rule.update(type, action: action, value: value)
-            defaultRealm.add(rule, update: true)
-            try defaultRealm.commitWrite()
+            try DBUtils.add(rule)
             callback?(rule)
             close()
         }catch {

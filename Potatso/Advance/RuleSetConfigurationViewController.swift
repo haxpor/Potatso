@@ -125,13 +125,10 @@ class RuleSetConfigurationViewController: FormViewController {
                     throw "Name already exists".localized()
                 }
             }
-            
-            defaultRealm.beginWrite()
             ruleSet.name = name
             ruleSet.rules.removeAll()
             ruleSet.rules.appendContentsOf(rules)
-            defaultRealm.add(ruleSet, update: true)
-            try defaultRealm.commitWrite()
+            try DBUtils.add(ruleSet)
             callback?(ruleSet)
             close()
         }catch {

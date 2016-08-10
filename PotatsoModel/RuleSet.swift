@@ -32,14 +32,14 @@ extension RuleSetError: CustomStringConvertible {
 public final class RuleSet: BaseModel {
     public dynamic var editable = true
     public dynamic var name = ""
-    public dynamic var updateAt = NSDate().timeIntervalSince1970
+    public dynamic var remoteUpdatedAt: NSTimeInterval = NSDate().timeIntervalSince1970
     public dynamic var desc = ""
     public dynamic var ruleCount = 0
     public let rules = List<Rule>()
     public dynamic var isSubscribe = false
     public dynamic var isOfficial = false
 
-    public func validate(inRealm realm: Realm) throws {
+    public override func validate(inRealm realm: Realm) throws {
         guard name.characters.count > 0 else {
             throw RuleSetError.EmptyName
         }

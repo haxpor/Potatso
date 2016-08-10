@@ -8,13 +8,19 @@
 
 import RealmSwift
 import PotatsoBase
+import CloudKit
 
-private let version: UInt64 = 11
+private let version: UInt64 = 14
 public var defaultRealm = try! Realm()
 
 public func setupDefaultReaml() {
     var config = Realm.Configuration()
-    let sharedURL = Potatso.sharedDatabaseUrl()
+//    #if DEBUG
+    let path = (NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as NSString).stringByAppendingPathComponent("./potatso.realm")
+    let sharedURL = NSURL(string: path)!
+//    #else
+//    let sharedURL = Potatso.sharedDatabaseUrl()
+//    #endif
     if let originPath = config.fileURL?.path {
         if NSFileManager.defaultManager().fileExistsAtPath(originPath) {
             _ = try? NSFileManager.defaultManager().moveItemAtPath(originPath, toPath: sharedURL.path!)
@@ -31,10 +37,14 @@ public func setupDefaultReaml() {
     Realm.Configuration.defaultConfiguration = config
 }
 
+
 public class BaseModel: Object {
     public dynamic var uuid = NSUUID().UUIDString
     public dynamic var createAt = NSDate().timeIntervalSince1970
-    
+    public dynamic var updatedAt = NSDate().timeIntervalSince1970
+    public dynamic var deleted = false
+    public dynamic var synced = false
+
     override public static func primaryKey() -> String? {
         return "uuid"
     }
@@ -43,6 +53,25 @@ public class BaseModel: Object {
         let f = NSDateFormatter()
         f.dateFormat = "MM-dd HH:mm:ss"
         return f
+    }
+
+    public func validate(inRealm realm: Realm) throws {
+        //
+    }
+
+}
+
+// API
+extension Results {
+
+    public func delete() throws {
+        defaultRealm.beginWrite()
+        for object in self {
+            if let m = object as? BaseModel {
+                m.deleted = true
+            }
+        }
+        try defaultRealm.commitWrite()
     }
 
 }

@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import CloudKit
 
 public enum ProxyType: String {
     case Shadowsocks = "SS"
@@ -116,7 +117,11 @@ public class Proxy: BaseModel {
         "chacha20-ietf"
     ]
 
-    public func validate(inRealm realm: Realm) throws {
+    public override static func indexedProperties() -> [String] {
+        return ["name"]
+    }
+
+    public override func validate(inRealm realm: Realm) throws {
         guard let _ = ProxyType(rawValue: typeRaw)else {
             throw ProxyError.InvalidType
         }
@@ -144,6 +149,7 @@ public class Proxy: BaseModel {
 
 }
 
+// Public Accessor
 extension Proxy {
     
     public var type: ProxyType {
@@ -155,12 +161,31 @@ extension Proxy {
         }
     }
     
-    public override static func indexedProperties() -> [String] {
-        return ["name"]
+    public var uri: String {
+        switch type {
+        case .Shadowsocks:
+            if let authscheme = authscheme, password = password {
+                return "ss://\(authscheme):\(password)@\(host):\(port)"
+            }
+        default:
+            break
+        }
+        return ""
+    }
+    public override var description: String {
+        return name
     }
     
 }
 
+// API
+extension Proxy {
+
+    
+
+}
+
+// Import
 extension Proxy {
     
     public convenience init(dictionary: [String: AnyObject], inRealm realm: Realm) throws {
@@ -290,26 +315,6 @@ extension Proxy {
         return uri.lowercaseString.hasPrefix(Proxy.ssUriPrefix) || uri.lowercaseString.hasPrefix(Proxy.ssrUriPrefix)
     }
 
-
-
-}
-
-extension Proxy {
-
-    public var uri: String {
-        switch type {
-        case .Shadowsocks:
-            if let authscheme = authscheme, password = password {
-                return "ss://\(authscheme):\(password)@\(host):\(port)"
-            }
-        default:
-            break
-        }
-        return ""
-    }
-    public override var description: String {
-        return name
-    }
 }
 
 public func ==(lhs: Proxy, rhs: Proxy) -> Bool {

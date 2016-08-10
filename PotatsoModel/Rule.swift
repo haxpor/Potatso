@@ -114,7 +114,7 @@ extension Rule {
     
     public var type : RuleType {
         get {
-            return RuleType(rawValue: typeRaw) ?? .URL
+            return RuleType(rawValue: typeRaw) ?? .DomainSuffix
         }
         set(v) {
             typeRaw = v.rawValue

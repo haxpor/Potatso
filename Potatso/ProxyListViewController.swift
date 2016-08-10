@@ -97,9 +97,7 @@ class ProxyListViewController: FormViewController {
             }
             do {
                 proxies.removeAtIndex(indexPath.row)
-                try defaultRealm.write {
-                    defaultRealm.delete(item)
-                }
+                try DBUtils.softDelete(item.uuid, type: Proxy.self)
                 form[indexPath].hidden = true
                 form[indexPath].evaluateHidden()
             }catch {

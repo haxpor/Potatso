@@ -102,9 +102,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
             }
             do {
                 ruleSets.removeAtIndex(indexPath.row)
-                try defaultRealm.write {
-                    defaultRealm.delete(item)
-                }
+                try DBUtils.softDelete(item.uuid, type: RuleSet.self)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             }catch {
                 self.showTextHUD("\("Fail to delete item".localized()): \((error as NSError).localizedDescription)", dismissAfterDelay: 1.5)

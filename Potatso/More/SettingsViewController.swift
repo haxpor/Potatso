@@ -32,160 +32,133 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "More".localized()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         generateForm()
     }
-    
+
     func generateForm() {
-        form +++ Section()
-            <<< LabelRow() {
-                $0.title = "Feedback".localized()
-                }.cellSetup({ (cell, row) -> () in
-                    cell.selectionStyle = .Default
-                    cell.accessoryType = .DisclosureIndicator
-                }).onCellSelection({ [unowned self] (cell, row) -> () in
-                    cell.setSelected(false, animated: true)
-                    self.feedback()
-                    })
-        +++ Section()
-            <<< LabelRow() {
-                $0.title = "Import From URL".localized()
-                }.cellSetup({ (cell, row) -> () in
-                    cell.selectionStyle = .Default
-                    cell.accessoryType = .DisclosureIndicator
-                }).onCellSelection({ (cell, row) -> () in
-                    cell.setSelected(false, animated: true)
-                    let importer = Importer(vc: self)
-                    importer.importConfigFromUrl()
-                })
-            <<< LabelRow() {
-                $0.title = "Import From QRCode".localized()
-                }.cellSetup({ (cell, row) -> () in
-                    cell.selectionStyle = .Default
-                    cell.accessoryType = .DisclosureIndicator
-                }).onCellSelection({ (cell, row) -> () in
-                    cell.setSelected(false, animated: true)
-                    let importer = Importer(vc: self)
-                    importer.importConfigFromQRCode()
-                })
-        +++ Section()
-            <<< ButtonRow() {
+        form.delegate = nil
+        form.removeAll()
+        form +++ generateManualSection()
+        form +++ generateSyncSection()
+        form +++ generateRateSection()
+        form +++ generateAboutSection()
+        form.delegate = self
+        tableView?.reloadData()
+    }
+
+    func generateManualSection() -> Section {
+        let section = Section()
+        section
+            <<< ActionRow {
                 $0.title = "User Manual".localized()
-                $0.presentationMode = PresentationMode.PresentModally(controllerProvider: ControllerProvider.Callback(builder: { [unowned self]() -> BaseSafariViewController in
-                    let url = "http://manual.potatso.com/"
-                    let vc = BaseSafariViewController(URL: NSURL(string: url)!, entersReaderIfAvailable: false)
-                    vc.delegate = self
-                    return vc
-                }), completionCallback: { (vc) -> () in
-                    
-                })
-            }
-//        +++ Section()
-//            <<< ActionSheetRow<LoggingLevel>() {
-//                $0.title = "Logging"
-//                $0.selectorTitle = "Logging"
-//                $0.options = [.OFF, .DEBUG]
-//                $0.value = LoggingLevel.currentLoggingLevel
-//            }.cellUpdate({ (cell, row) -> () in
-//                cell.accessoryType = .DisclosureIndicator
-//            }).onChange({ [unowned self] (row) in
-//                if let v = row.value {
-//                    LoggingLevel.currentLoggingLevel = v
-////                    self.showTextHUD("works after next restart", dismissAfterDelay: 1.0)
-//                    self.showTextHUD("暂时不起作用", dismissAfterDelay: 1.0)
-//                }
-//            })
-        +++ Section()
-        <<< LabelRow() {
-            $0.title = "Rate on App Store".localized()
-        }.cellSetup({ (cell, row) -> () in
-            cell.selectionStyle = .Default
-            cell.accessoryType = .DisclosureIndicator
-        }).onCellSelection({ (cell, row) -> () in
-            cell.setSelected(false, animated: true)
-            Appirater.rateApp()
-        })
-        <<< LabelRow() {
-            $0.title = "Share with friends".localized()
-        }.cellSetup({ (cell, row) -> () in
-            cell.selectionStyle = .Default
-            cell.accessoryType = .DisclosureIndicator
-        }).onCellSelection({ [unowned self] (cell, row) -> () in
-            cell.setSelected(false, animated: true)
-            var shareItems: [AnyObject] = []
-            shareItems.append("Potatso [https://itunes.apple.com/us/app/id1070901416]")
-            shareItems.append(UIImage(named: "AppIcon60x60")!)
-            let shareVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
-            self.presentViewController(shareVC, animated: true, completion: nil)
-        })
-        form +++ Section()
-            <<< LabelRow() {
+            }.onCellSelection({ [unowned self] (cell, row) in
+                self.showUserManual()
+            })
+            <<< ActionRow {
+                $0.title = "Feedback".localized()
+            }.onCellSelection({ (cell, row) in
+                FeedbackManager.shared.showFeedback()
+            })
+        return section
+    }
+
+    func generateSyncSection() -> Section {
+        let section = Section()
+        section
+            <<< ActionRow() {
+                $0.title = "Sync".localized()
+                $0.value = SyncManager.shared.currentSyncServiceType.rawValue
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                SyncManager.shared.showSyncVC(inVC: self)
+            })
+            <<< ActionRow() {
+                $0.title = "Import From URL".localized()
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                let importer = Importer(vc: self)
+                importer.importConfigFromUrl()
+            })
+            <<< ActionRow() {
+                $0.title = "Import From QRCode".localized()
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                let importer = Importer(vc: self)
+                importer.importConfigFromQRCode()
+            })
+        return section
+    }
+
+    func generateRateSection() -> Section {
+        let section = Section()
+        section
+            <<< ActionRow() {
+                $0.title = "Rate on App Store".localized()
+            }.onCellSelection({ (cell, row) -> () in
+                Appirater.rateApp()
+            })
+            <<< ActionRow() {
+                $0.title = "Share with friends".localized()
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                self.shareWithFriends()
+            })
+        return section
+    }
+
+    func generateAboutSection() -> Section {
+        let section = Section()
+        section
+            <<< ActionRow() {
                 $0.title = "Follow on Twitter".localized()
                 $0.value = "@PotatsoApp"
-            }.cellSetup({ (cell, row) -> () in
-                cell.selectionStyle = .Default
-                cell.accessoryType = .DisclosureIndicator
-            }).onCellSelection({ (cell, row) -> () in
-                cell.setSelected(false, animated: true)
-                UIApplication.sharedApplication().openURL(NSURL(string: "https://twitter.com/intent/user?screen_name=potatsoapp")!)
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                self.followTwitter()
             })
-            <<< LabelRow() {
+            <<< ActionRow() {
                 $0.title = "Follow on Weibo".localized()
                 $0.value = "@Potatso"
-                }.cellSetup({ (cell, row) -> () in
-                    cell.selectionStyle = .Default
-                    cell.accessoryType = .DisclosureIndicator
-                }).onCellSelection({ (cell, row) -> () in
-                    cell.setSelected(false, animated: true)
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://weibo.com/potatso")!)
-                })
-            <<< LabelRow() {
-                $0.title = "Telegram Channel".localized()
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                self.followWeibo()
+            })
+            <<< ActionRow() {
+                $0.title = "Join Telegram Group".localized()
                 $0.value = "@Potatso"
-                }.cellSetup({ (cell, row) -> () in
-                    cell.selectionStyle = .Default
-                    cell.accessoryType = .DisclosureIndicator
-                }).onCellSelection({ (cell, row) -> () in
-                    cell.setSelected(false, animated: true)
-                    UIApplication.sharedApplication().openURL(NSURL(string: "https://telegram.me/potatso")!)
-                })
-            <<< LabelRow() {
-                $0.title = "Website".localized()
-                $0.value = "http://potatso.com"
-                }.cellSetup({ (cell, row) -> () in
-                    cell.selectionStyle = .Default
-                    cell.accessoryType = .DisclosureIndicator
-                }).onCellSelection({ (cell, row) -> () in
-                    cell.setSelected(false, animated: true)
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://potatso.com")!)
-                })
+            }.onCellSelection({ [unowned self] (cell, row) -> () in
+                self.joinTelegramGroup()
+            })
             <<< LabelRow() {
                 $0.title = "Version".localized()
                 $0.value = AppEnv.fullVersion
             }
-
+        return section
     }
-    
-    func feedback() {
-        let options = [
-            "gotoConversationAfterContactUs": "YES"
-        ]
-        let rulesets = Manager.sharedManager.defaultConfigGroup.ruleSets.map({ $0.name }).joinWithSeparator(", ")
-        let defaultToProxy = Manager.sharedManager.defaultConfigGroup.defaultToProxy
-        var tags: [String] = []
-        if AppEnv.isTestFlight {
-            tags.append("testflight")
-        } else if AppEnv.isAppStore {
-            tags.append("store")
-        }
-        HelpshiftSupport.setMetadataBlock { () -> [NSObject : AnyObject]! in
-            return [
-                "Full Version": AppEnv.fullVersion,
-                "Default To Proxy": defaultToProxy ? "true": "false",
-                "Rulesets": rulesets,
-                HelpshiftSupportTagsKey: tags
-            ]
-        }
-        HelpshiftSupport.showConversation(self, withOptions: options)
+
+    func showUserManual() {
+        let url = "https://manual.potatso.com/"
+        let vc = BaseSafariViewController(URL: NSURL(string: url)!, entersReaderIfAvailable: false)
+        vc.delegate = self
+        presentViewController(vc, animated: true, completion: nil)
+    }
+
+    func followTwitter() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://twitter.com/intent/user?screen_name=potatsoapp")!)
+    }
+
+    func followWeibo() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://weibo.com/potatso")!)
+    }
+
+    func joinTelegramGroup() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ")!)
+    }
+
+    func shareWithFriends() {
+        var shareItems: [AnyObject] = []
+        shareItems.append("Potatso [https://itunes.apple.com/us/app/id1070901416]")
+        shareItems.append(UIImage(named: "AppIcon60x60")!)
+        let shareVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        self.presentViewController(shareVC, animated: true, completion: nil)
     }
 
     @objc func safariViewControllerDidFinish(controller: SFSafariViewController) {

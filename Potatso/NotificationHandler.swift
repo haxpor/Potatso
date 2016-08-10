@@ -8,6 +8,7 @@
 
 import Foundation
 import ICSMainFramework
+import CloudKit
 
 class NotificationHandler: NSObject, AppLifeCycleProtocol {
 
@@ -34,7 +35,7 @@ class NotificationHandler: NSObject, AppLifeCycleProtocol {
     }
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("didRegisterForRemoteNotificationsWithDeviceToken: \(deviceToken.hexString())")
+        DDLogInfo("didRegisterForRemoteNotificationsWithDeviceToken: \(deviceToken.hexString())")
         HelpshiftCore.registerDeviceToken(deviceToken)
     }
 
@@ -46,6 +47,13 @@ class NotificationHandler: NSObject, AppLifeCycleProtocol {
                 }
                 completionHandler(.NewData)
                 return
+            }
+        }
+        if let dict = userInfo as? [String: NSObject] {
+            let ckNotification = CKNotification(fromRemoteNotificationDictionary: dict)
+            if ckNotification.subscriptionID == potatsoSubscriptionId {
+                DDLogInfo("received a CKNotification")
+                SyncManager.shared.sync()
             }
         }
         completionHandler(.NoData)

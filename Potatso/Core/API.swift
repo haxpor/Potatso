@@ -70,7 +70,7 @@ extension RuleSet: Mappable {
         uuid      <- map["id"]
         name      <- map["name"]
         createAt  <- (map["created_at"], DateTransform())
-        updateAt  <- (map["updated_at"], DateTransform())
+        remoteUpdatedAt  <- (map["updated_at"], DateTransform())
         desc      <- map["description"]
         ruleCount <- map["rule_count"]
         isOfficial <- map["is_official"]
@@ -81,15 +81,20 @@ extension RuleSet {
 
     static func addRemoteObject(ruleset: RuleSet, update: Bool = true) throws {
         ruleset.isSubscribe = true
-        try defaultRealm.write {
-            defaultRealm.add(ruleset, update: true)
+        let id = ruleset.uuid
+        guard let local = DBUtils.get(id, type: RuleSet.self) else {
+            try DBUtils.add(ruleset)
+            return
         }
+        if local.remoteUpdatedAt == ruleset.remoteUpdatedAt {
+            return
+        }
+        try DBUtils.add(ruleset)
     }
 
     static func addRemoteArray(rulesets: [RuleSet], update: Bool = true) throws {
-        rulesets.forEach({ $0.isSubscribe = true })
-        try defaultRealm.write {
-            defaultRealm.add(rulesets, update: true)
+        for ruleset in rulesets {
+            try addRemoteObject(ruleset, update: update)
         }
     }
 
