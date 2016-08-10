@@ -21,8 +21,12 @@ class ICloudSyncService: SyncServiceProtocol {
 
     func setup(completion: (ErrorType? -> Void)?) {
         let setupOp = ICloudSetupOperation(completion: completion)
+        let subscribeOp = BlockOperation {
+            self.subscribe()
+        }
+        subscribeOp.addDependency(setupOp)
         operationQueue.addOperation(setupOp)
-        subscribe()
+        operationQueue.addOperation(subscribeOp)
     }
 
     func sync(manually: Bool = false) {
@@ -31,10 +35,15 @@ class ICloudSyncService: SyncServiceProtocol {
             _ = try? DBUtils.markAll(syncd: false)
         }
         let setupOp = ICloudSetupOperation(completion: nil)
+        let subscribeOp = BlockOperation {
+            self.subscribe()
+        }
         let syncOp = SyncOperation(zoneID: potatsoZoneId, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
             print("<<<<<<<<< sync completed")
         }
-        
+
+        subscribeOp.addDependency(setupOp)
+        operationQueue.addOperation(subscribeOp)
         operationQueue.addOperation(setupOp)
         operationQueue.addOperation(syncOp)
     }
@@ -42,7 +51,7 @@ class ICloudSyncService: SyncServiceProtocol {
     func subscribe() {
         let subscription = CKSubscription(zoneID: potatsoZoneId, subscriptionID: potatsoSubscriptionId, options: CKSubscriptionOptions(rawValue: 0))
         let info = CKNotificationInfo()
-        info.alertBody = "Potatso iCloud updated"
+        info.shouldSendContentAvailable = true
         subscription.notificationInfo = info
         
         potatsoDB.saveSubscription(subscription) { (sub, error) in

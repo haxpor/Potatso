@@ -3318,7 +3318,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "419c75b8-4b16-43ab-84ac-e4490e1db11d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Potatso/Potatso-Bridge-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -3361,7 +3361,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "419c75b8-4b16-43ab-84ac-e4490e1db11d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Potatso/Potatso-Bridge-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

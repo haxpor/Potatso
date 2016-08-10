@@ -132,9 +132,9 @@ public class Manager {
         }
         let toURL = Potatso.sharedUrl().URLByAppendingPathComponent("GeoLite2-Country.mmdb")
         if NSFileManager.defaultManager().fileExistsAtPath(fromURL.path!) {
-//            if NSFileManager.defaultManager().fileExistsAtPath(toURL.path!) {
-//                try NSFileManager.defaultManager().removeItemAtURL(toURL)
-//            }
+            if NSFileManager.defaultManager().fileExistsAtPath(toURL.path!) {
+                try NSFileManager.defaultManager().removeItemAtURL(toURL)
+            }
             try NSFileManager.defaultManager().copyItemAtURL(fromURL, toURL: toURL)
         }
     }
