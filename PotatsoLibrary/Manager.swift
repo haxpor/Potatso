@@ -46,7 +46,9 @@ public class Manager {
 
     var observerAdded: Bool = false
     
-    public private(set) var defaultConfigGroup: ConfigurationGroup!
+    public var defaultConfigGroup: ConfigurationGroup {
+        return getDefaultConfigGroup()
+    }
 
     private init() {
         loadProviderManager { (manager) -> Void in
@@ -117,15 +119,18 @@ public class Manager {
     
     public func setup() throws {
         setupDefaultReaml()
-        try initDefaultConfigGroup()
         do {
             try copyGEOIPData()
+        }catch{
+            print("copyGEOIPData fail")
+        }
+        do {
             try copyTemplateData()
         }catch{
-            print("copy fail")
+            print("copyTemplateData fail")
         }
     }
-    
+
     func copyGEOIPData() throws {
         guard let fromURL = NSBundle.mainBundle().URLForResource("GeoLite2-Country", withExtension: "mmdb") else {
             return
@@ -160,9 +165,9 @@ public class Manager {
         }
     }
 
-    public func initDefaultConfigGroup() throws {
-        if let groupUUID = Potatso.sharedUserDefaults().stringForKey(kDefaultGroupIdentifier), group = defaultRealm.objects(ConfigurationGroup).filter("uuid = '\(groupUUID)'").first{
-            try setDefaultConfigGroup(group)
+    private func getDefaultConfigGroup() -> ConfigurationGroup {
+        if let groupUUID = Potatso.sharedUserDefaults().stringForKey(kDefaultGroupIdentifier), group = DBUtils.get(groupUUID, type: ConfigurationGroup.self) {
+            return group
         }else {
             var group: ConfigurationGroup
             if let g = defaultRealm.objects(ConfigurationGroup).first {
@@ -171,23 +176,23 @@ public class Manager {
                 group = ConfigurationGroup()
                 group.name = "Default".localized()
                 do {
-                    try defaultRealm.write {
-                        defaultRealm.add(group)
-                    }
+                    try DBUtils.add(group)
                 }catch {
                     fatalError("Fail to generate default group")
                 }
             }
-            try setDefaultConfigGroup(group)
+            setDefaultConfigGroup(group.uuid, name: group.name)
+            return group
         }
     }
     
-    public func setDefaultConfigGroup(group: ConfigurationGroup) throws {
-        defaultConfigGroup = group
-        try regenerateConfigFiles()
-        let uuid = defaultConfigGroup.uuid
-        let name = defaultConfigGroup.name
-        Potatso.sharedUserDefaults().setObject(uuid, forKey: kDefaultGroupIdentifier)
+    public func setDefaultConfigGroup(id: String, name: String) {
+        do {
+            try regenerateConfigFiles()
+        } catch {
+
+        }
+        Potatso.sharedUserDefaults().setObject(id, forKey: kDefaultGroupIdentifier)
         Potatso.sharedUserDefaults().setObject(name, forKey: kDefaultGroupName)
         Potatso.sharedUserDefaults().synchronize()
     }

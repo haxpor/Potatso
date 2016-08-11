@@ -26,16 +26,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     var status: VPNStatus {
         didSet(o) {
-            connectButton.enabled = [VPNStatus.On, VPNStatus.Off].contains(status)
-            connectButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            switch status {
-            case .Connecting, .Disconnecting:
-                connectButton.animating = true
-            default:
-                connectButton.setTitle(status.hintDescription, forState: .Normal)
-                connectButton.animating = false
-            }
-            connectButton.backgroundColor = status.color
+            updateConnectButton()
         }
     }
 
@@ -81,7 +72,6 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
     func updateTitle() {
         titleButton.setTitle(presenter.group.name, forState: .Normal)
         titleButton.sizeToFit()
-//        navigationItem.title = presenter.group.name
     }
 
     func updateForm() {
@@ -91,6 +81,19 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         form +++ generateRuleSetSection()
         form.delegate = self
         tableView?.reloadData()
+    }
+
+    func updateConnectButton() {
+        connectButton.enabled = [VPNStatus.On, VPNStatus.Off].contains(status)
+        connectButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        switch status {
+        case .Connecting, .Disconnecting:
+            connectButton.animating = true
+        default:
+            connectButton.setTitle(status.hintDescription, forState: .Normal)
+            connectButton.animating = false
+        }
+        connectButton.backgroundColor = status.color
     }
 
     // MARK: - Form

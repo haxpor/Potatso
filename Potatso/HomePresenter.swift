@@ -34,6 +34,10 @@ class HomePresenter: NSObject {
         }
     }
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
     func bindToVC(vc: UIViewController) {
         self.vc = vc
     }
@@ -95,7 +99,7 @@ class HomePresenter: NSObject {
         let group = ConfigurationGroup()
         group.name = trimmedName
         try DBUtils.add(group)
-        CurrentGroupManager.shared.group = group
+        CurrentGroupManager.shared.groupUUID = group.uuid
     }
 
     func addRuleSet() {
@@ -180,13 +184,23 @@ class CurrentGroupManager {
 
     static let shared = CurrentGroupManager()
 
-    private init() {}
+    private init() {
+        groupUUID = Manager.sharedManager.defaultConfigGroup.uuid
+    }
 
     var onChange: (ConfigurationGroup? -> Void)?
 
-    var group: ConfigurationGroup! {
+    var groupUUID: String {
         didSet(o) {
             self.onChange?(group)
+        }
+    }
+
+    var group: ConfigurationGroup {
+        if let group = DBUtils.get(groupUUID, type: ConfigurationGroup.self) {
+            return group
+        } else {
+            return Manager.sharedManager.defaultConfigGroup
         }
     }
     

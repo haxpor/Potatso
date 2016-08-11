@@ -43,9 +43,6 @@ public final class RuleSet: BaseModel {
         guard name.characters.count > 0 else {
             throw RuleSetError.EmptyName
         }
-        guard realm.objects(RuleSet).filter("name = '\(name)'").first == nil else {
-            throw RuleSetError.NameAlreadyExists
-        }
     }
     
     

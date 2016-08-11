@@ -46,17 +46,6 @@ public class ConfigurationGroup: BaseModel {
         guard name.characters.count > 0 else {
             throw ConfigurationGroupError.EmptyName
         }
-        let count = realm.objects(ConfigurationGroup).filter("name = '\(name)'").count
-        if count == 1 {
-            let g = realm.objects(ConfigurationGroup).filter("name = '\(name)'").first!
-            if g.uuid != uuid {
-                throw ConfigurationGroupError.NameAlreadyExists
-            }
-        } else if count == 0 {
-
-        } else {
-            throw ConfigurationGroupError.NameAlreadyExists
-        }
     }
 
     public override var description: String {

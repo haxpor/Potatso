@@ -128,9 +128,6 @@ public class Proxy: BaseModel {
         guard name.characters.count > 0 else{
             throw ProxyError.InvalidName
         }
-        guard realm.objects(Proxy).filter("name = '\(name)'").first == nil else {
-            throw ProxyError.NameAlreadyExists
-        }
         guard host.characters.count > 0 else {
             throw ProxyError.InvalidHost
         }

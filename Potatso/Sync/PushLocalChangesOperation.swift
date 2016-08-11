@@ -149,7 +149,10 @@ class PushLocalChangesOperation: Operation {
             
         case .ChangeTokenExpired:
             // TODO: Determine correct handling
-            completionHandler(error)
+            setZoneChangeToken(potatsoZoneId, changeToken: nil)
+            retryPush(error,
+                      retryAfter: parseRetryTime(error),
+                      completionHandler: completionHandler)
         }
     }
     
