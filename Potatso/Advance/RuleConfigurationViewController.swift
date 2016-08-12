@@ -33,7 +33,7 @@ class RuleConfigurationViewController: FormViewController {
     
     init(rule: Rule?, callback: (Rule -> Void)?) {
         if let rule = rule {
-            self.rule = rule
+            self.rule = Rule(value: rule)
             isEdit = true
         }else {
             self.rule = Rule()

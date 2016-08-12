@@ -166,11 +166,11 @@ public class Manager {
     }
 
     private func getDefaultConfigGroup() -> ConfigurationGroup {
-        if let groupUUID = Potatso.sharedUserDefaults().stringForKey(kDefaultGroupIdentifier), group = DBUtils.get(groupUUID, type: ConfigurationGroup.self) {
+        if let groupUUID = Potatso.sharedUserDefaults().stringForKey(kDefaultGroupIdentifier), group = DBUtils.get(groupUUID, type: ConfigurationGroup.self) where !group.deleted {
             return group
         }else {
             var group: ConfigurationGroup
-            if let g = defaultRealm.objects(ConfigurationGroup).first {
+            if let g = DBUtils.allNotDeleted(ConfigurationGroup.self, sorted: "createAt").first {
                 group = g
             }else {
                 group = ConfigurationGroup()
@@ -181,7 +181,11 @@ public class Manager {
                     fatalError("Fail to generate default group")
                 }
             }
-            setDefaultConfigGroup(group.uuid, name: group.name)
+            let uuid = group.uuid
+            let name = group.name
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { 
+                self.setDefaultConfigGroup(uuid, name: name)
+            })
             return group
         }
     }

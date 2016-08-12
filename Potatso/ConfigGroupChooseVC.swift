@@ -72,13 +72,13 @@ class ConfigGroupChooseWindow: UIWindow {
 
 class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var groups: Results<ConfigurationGroup>
+    let groups: Results<ConfigurationGroup>
     let colors = ["3498DB", "E74C3C", "8E44AD", "16A085", "E67E22", "2C3E50"]
     var gesture: UITapGestureRecognizer?
     var token: RLMNotificationToken?
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        groups = DBUtils.all(ConfigurationGroup.self, sortedProperty: "createAt")
+        groups = DBUtils.allNotDeleted(ConfigurationGroup.self, sorted: "createAt")
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onVPNStatusChanged), name: kProxyServiceVPNStatusNotification, object: nil)
     }
@@ -100,6 +100,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.tableView.beginUpdates()
                 defer {
                     self.tableView.endUpdates()
+                    CurrentGroupManager.shared.setConfigGroupId(CurrentGroupManager.shared.group.uuid)
                 }
                 self.tableView.deleteRowsAtIndexPaths(deletions.map({ NSIndexPath(forRow: $0, inSection: 0) }), withRowAnimation: .Automatic)
                 self.tableView.insertRowsAtIndexPaths(insertions.map({ NSIndexPath(forRow: $0, inSection: 0) }), withRowAnimation: .Automatic)
@@ -124,7 +125,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func showConfigGroup(group: ConfigurationGroup, animated: Bool = true) {
-        CurrentGroupManager.shared.groupUUID = group.uuid
+        CurrentGroupManager.shared.setConfigGroupId(group.uuid)
         ConfigGroupChooseManager.shared.hide()
     }
 

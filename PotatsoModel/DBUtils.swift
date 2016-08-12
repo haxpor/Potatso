@@ -105,19 +105,38 @@ public class DBUtils {
 // Query
 extension DBUtils {
 
-    public static func all<T: BaseModel>(type: T.Type, deleted: Bool = false, sortedProperty: String? = nil, inRealm realm: Realm? = nil) -> Results<T> {
+    public static func allNotDeleted<T: BaseModel>(type: T.Type, filter: String? = nil, sorted: String? = nil, inRealm realm: Realm? = nil) -> Results<T> {
+        let deleteFilter = "deleted = false"
+        var mFilter = deleteFilter
+        if let filter = filter {
+            mFilter += " && " + filter
+        }
+        return all(type, filter: mFilter, sorted: sorted, inRealm: realm)
+    }
+
+    public static func all<T: BaseModel>(type: T.Type, filter: String? = nil, sorted: String? = nil, inRealm realm: Realm? = nil) -> Results<T> {
         let mRealm = currentRealm(realm)
-        let deleteFilter = "deleted = \(deleted ? "true" : "false")"
-        var res = mRealm.objects(type).filter(deleteFilter)
-        if let sorted = sortedProperty {
+        var res = mRealm.objects(type)
+        if let filter = filter {
+            res = res.filter(filter)
+        }
+        if let sorted = sorted {
             res = res.sorted(sorted)
         }
         return res
     }
 
-    public static func get<T: BaseModel>(uuid: String, type: T.Type, inRealm realm: Realm? = nil) -> T? {
+    public static func get<T: BaseModel>(uuid: String, type: T.Type, filter: String? = nil, sorted: String? = nil, inRealm realm: Realm? = nil) -> T? {
         let mRealm = currentRealm(realm)
-        return mRealm.objects(type).filter("uuid = '\(uuid)'").first
+        var mFilter = "uuid = '\(uuid)'"
+        if let filter = filter {
+            mFilter += " && " + filter
+        }
+        var res = mRealm.objects(type).filter(mFilter)
+        if let sorted = sorted {
+            res = res.sorted(sorted)
+        }
+        return res.first
     }
 
     public static func modify<T: BaseModel>(type: T.Type, id: String, inRealm realm: Realm? = nil, modifyBlock: ((Realm, T) -> ErrorType?)) throws {

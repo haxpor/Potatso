@@ -58,7 +58,7 @@ class HomePresenter: NSObject {
                 try ConfigurationGroup.changeProxy(forGroupId: self.group.uuid, proxyId: proxy?.uuid)
                 self.delegate?.handleRefreshUI()
             }catch {
-                self.vc.showTextHUD("\("Fail to add ruleset".localized()): \((error as NSError).localizedDescription)", dismissAfterDelay: 1.5)
+                self.vc.showTextHUD("\("Fail to change proxy".localized()): \((error as NSError).localizedDescription)", dismissAfterDelay: 1.5)
             }
         }
         vc.navigationController?.pushViewController(chooseVC, animated: true)
@@ -93,13 +93,10 @@ class HomePresenter: NSObject {
         if trimmedName.characters.count == 0 {
             throw "Name can't be empty".localized()
         }
-        if let _ = defaultRealm.objects(ConfigurationGroup).filter("name = '\(trimmedName)'").first {
-            throw "Name already exists".localized()
-        }
         let group = ConfigurationGroup()
         group.name = trimmedName
         try DBUtils.add(group)
-        CurrentGroupManager.shared.groupUUID = group.uuid
+        CurrentGroupManager.shared.setConfigGroupId(group.uuid)
     }
 
     func addRuleSet() {
@@ -185,22 +182,32 @@ class CurrentGroupManager {
     static let shared = CurrentGroupManager()
 
     private init() {
-        groupUUID = Manager.sharedManager.defaultConfigGroup.uuid
+        _groupUUID = Manager.sharedManager.defaultConfigGroup.uuid
     }
 
     var onChange: (ConfigurationGroup? -> Void)?
 
-    var groupUUID: String {
+    private var _groupUUID: String {
         didSet(o) {
             self.onChange?(group)
         }
     }
 
     var group: ConfigurationGroup {
-        if let group = DBUtils.get(groupUUID, type: ConfigurationGroup.self) {
+        if let group = DBUtils.get(_groupUUID, type: ConfigurationGroup.self, filter: "deleted = false") {
             return group
         } else {
-            return Manager.sharedManager.defaultConfigGroup
+            let defaultGroup = Manager.sharedManager.defaultConfigGroup
+            setConfigGroupId(defaultGroup.uuid)
+            return defaultGroup
+        }
+    }
+
+    func setConfigGroupId(id: String) {
+        if let _ = DBUtils.get(id, type: ConfigurationGroup.self, filter: "deleted = false") {
+            _groupUUID = id
+        } else {
+            _groupUUID = Manager.sharedManager.defaultConfigGroup.uuid
         }
     }
     

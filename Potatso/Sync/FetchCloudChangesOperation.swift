@@ -196,9 +196,7 @@ class FetchCloudChangesOperation: Operation {
         case .ChangeTokenExpired:
             // TODO: Determine correct handling
             // CK Docs: The previousServerChangeToken value is too old and the client must re-sync from scratch
-            setZoneChangeToken(potatsoZoneId, changeToken: nil)
-            self.changeToken = nil
-            retryFetch(error, retryAfter: parseRetryTime(error), completionHandler: completionHandler)
+            SyncManager.shared.sync(true)
         }
     }
 }
