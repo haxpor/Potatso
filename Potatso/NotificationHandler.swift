@@ -42,6 +42,7 @@ class NotificationHandler: NSObject, AppLifeCycleProtocol {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         if let origin = userInfo["origin"] as? String {
             if origin == "helpshift" {
+                DDLogInfo("received a helpshift notification")
                 if let rootVC = application.keyWindow?.rootViewController {
                     HelpshiftCore.handleRemoteNotification(userInfo, withController: rootVC)
                 }

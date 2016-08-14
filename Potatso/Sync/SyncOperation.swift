@@ -49,7 +49,7 @@ public class SyncOperation: GroupOperation {
         
         switch syncType {
         case .PushLocalChanges:
-            pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID)
+            pushLocalChangesOperation = PushLocalChangesOperation()
             
             finishOperation.addDependency(pushLocalChangesOperation)
             
@@ -66,7 +66,7 @@ public class SyncOperation: GroupOperation {
                 finishOperation]
             
         case .FetchCloudChangesAndThenPushLocalChanges:
-            pushLocalChangesOperation = PushLocalChangesOperation(zoneID: zoneID)
+            pushLocalChangesOperation = PushLocalChangesOperation()
             fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: zoneID)
             
             fetchCloudChangesOperation.addDependency(pushLocalChangesOperation)
@@ -85,10 +85,10 @@ public class SyncOperation: GroupOperation {
     
     override public func finished(errors: [NSError]) {
         if self.cancelled {
-            print("Sync operation was cancelled.")
+            DDLogWarn("Sync operation was cancelled.")
         }
     }
-    
+
     override public func operationDidFinish(operation: NSOperation, withErrors errors: [NSError]) {
         if let firstError = errors.first {
             produceAlert(firstError)

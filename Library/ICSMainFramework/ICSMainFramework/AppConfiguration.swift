@@ -60,7 +60,6 @@ public class AppConfig {
             var items = [AppLifeCycleItem]()
             if let itemArray = value as? [AnyObject] {
                 items = itemArray.map { AppLifeCycleItem(dictionary: $0 as! [String: AnyObject]) }.filter { $0 != nil }.map { $0! }
-                print("load config: key: \(key) items:\(items)")
             }
             lifeCycleConfig[key] = items
         }

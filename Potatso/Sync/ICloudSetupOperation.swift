@@ -23,17 +23,19 @@ class ICloudSetupOperation: GroupOperation {
         let dummyOp = BlockOperation(block: nil)
 
         let finishObserver = BlockObserver { operation, error in
-            print("ICloudSetupOperation finished! \(error)")
+            if let _ = error.first {
+                DDLogError("ICloudSetupOperation finished with error: \(error)")
+            } else {
+                DDLogInfo("ICloudSetupOperation finished")
+            }
             Async.main {
                 completion?(error.first)
             }
         }
 
         let prepareZoneOperation = PrepareZoneOperation(zoneID: potatsoZoneId)
-
         prepareZoneOperation.addCondition(reachabilityCondition)
         prepareZoneOperation.addCondition(iCloudCapability)
-
         prepareZoneOperation.addObserver(finishObserver)
 
         dummyOp.addDependency(prepareZoneOperation)

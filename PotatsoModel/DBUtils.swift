@@ -57,7 +57,6 @@ public class DBUtils {
 
     public static func hardDelete<T: BaseModel>(id: String, type: T.Type, inRealm realm: Realm? = nil) throws {
         let mRealm = currentRealm(realm)
-        print(type)
         guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) else {
             return
         }

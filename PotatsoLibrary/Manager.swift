@@ -117,7 +117,7 @@ public class Manager {
         }
     }
     
-    public func setup() throws {
+    public func setup() {
         setupDefaultReaml()
         do {
             try copyGEOIPData()

@@ -24,7 +24,6 @@ class FetchCloudChangesOperation: Operation {
     init(zoneID: CKRecordZoneID, maximumRetryAttempts: Int = 3) {
         self.zoneID = zoneID
         self.maximumRetryAttempts = maximumRetryAttempts
-        
         super.init()
         name = "Fetch Cloud Changes"
     }
@@ -32,7 +31,6 @@ class FetchCloudChangesOperation: Operation {
     override func execute() {
         changeToken = getZoneChangeToken(zoneID)
         print(">>>>>>>>> \(self.name!) started with token: \(changeToken)")
-
         fetchCloudChanges(changeToken) {
             (nsError) in
             self.finishWithError(nsError)
@@ -43,7 +41,7 @@ class FetchCloudChangesOperation: Operation {
                            completionHandler: (NSError!) -> ()) {
         
         let fetchOperation = CKFetchRecordChangesOperation(recordZoneID: zoneID, previousServerChangeToken: changeToken)
-        
+        fetchOperation.resultsLimit = CKQueryOperationMaximumResults
         var results = FetchResults()
         
         // Enable resultsLimit to test moreComing
@@ -81,7 +79,7 @@ class FetchCloudChangesOperation: Operation {
                     self.changeToken = serverChangeToken
                     
                     if fetchOperation.moreComing {
-                        print("  more coming...")
+                        print("\(self.name!) more coming...")
                         self.fetchCloudChanges(self.changeToken,
                                                completionHandler: completionHandler)
                     } else {
@@ -97,12 +95,12 @@ class FetchCloudChangesOperation: Operation {
         var error: NSError?
         
         do {
-            print("changedRecords: \(results.changedRecords.map({ $0.recordID.recordName }))")
+            print("****** \(self.name!) changedRecords: \(results.changedRecords.count)")
             for record in results.changedRecords {
                 try changeLocalRecord(record)
             }
 
-            print("deletedRecordIDs: \(results.deletedRecordIDs.map({ $0.recordName }))")
+            print("****** \(self.name!)  deletedRecordIDs: \(results.deletedRecordIDs.count)")
             for recordID in results.deletedRecordIDs {
                 try deleteLocalRecord(recordID)
             }

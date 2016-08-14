@@ -16,20 +16,10 @@ import Realm
 
 class DataInitializer: NSObject, AppLifeCycleProtocol {
 
-    let s = ICloudSyncService()
-    var token: RLMNotificationToken? = nil
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        do {
-            try Manager.sharedManager.setup()
-        }catch {
-            error.log("Fail to setup manager")
-        }
-        updateCloudSets()
+        Manager.sharedManager.setup()
+        CloudSetManager.shared.update()
         sync()
-//        token = defaultRealm.addNotificationBlock({ [weak self] (notification, realm) in
-//            self?.sync()
-//        })
         return true
     }
     
@@ -46,40 +36,24 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
         sync()
     }
 
-    func updateCloudSets() {
-        let uuids = defaultRealm.objects(RuleSet).filter("isSubscribe = true").map({$0.uuid})
-        Async.background(after: 1.5) {
-            API.updateRuleSetListDetail(uuids) { (response) in
-                if let sets = response.result.value {
-                    do {
-                        try RuleSet.addRemoteArray(sets)
-                    }catch {
-                        error.log("Unable to save updated rulesets")
-                        return
-                    }
-                }else {
-                    response.result.error?.log("Fail to update ruleset details")
-                }
-            }
+    func sync() {
+        deleteOrphanRules {
+            SyncManager.shared.sync()
         }
     }
 
-    func sync() {
-        cleanupData()
-        SyncManager.shared.sync()
-    }
 
-    func cleanupData() {
-        deleteOrphanRules()
-    }
-
-    func deleteOrphanRules() {
-        let orphanRules = defaultRealm.objects(Rule).filter("rulesets.@count == 0")
-        if orphanRules.count > 0 {
-            let ids = orphanRules.map({ $0.uuid })
-            for id in ids {
-                _ = try? DBUtils.softDelete(id, type: Rule.self)
+    func deleteOrphanRules(completion: (Void -> Void)?) {
+        Async.background {
+            let realm = try! Realm()
+            let orphanRules = realm.objects(Rule).filter("rulesets.@count == 0 && deleted == false")
+            if orphanRules.count > 0 {
+                let ids = orphanRules.map({ $0.uuid })
+                for id in ids {
+                    _ = try? DBUtils.softDelete(id, type: Rule.self)
+                }
             }
+            completion?()
         }
     }
 

@@ -242,8 +242,6 @@ func changeLocalRecord(record: CKRecord) throws {
 
 func deleteLocalRecord(recordID: CKRecordID) throws {
     let id = recordID.recordName
-    // FIXME: Unsafe realm casting
-    print("Deleting local record.")
     try DBUtils.hardDelete(id, type: Proxy.self)
     try DBUtils.hardDelete(id, type: Rule.self)
     try DBUtils.hardDelete(id, type: RuleSet.self)
