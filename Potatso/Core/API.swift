@@ -60,9 +60,11 @@ extension RuleSet: Mappable {
         guard let rulesJSON = map.JSONDictionary["rules"] as? [AnyObject] else {
             return
         }
+        var rules: [Rule] = []
         if let parsedObject = Mapper<Rule>().mapArray(rulesJSON){
             rules.appendContentsOf(parsedObject)
         }
+        self.rules = rules
     }
 
     // Mappable
@@ -81,12 +83,14 @@ extension RuleSet {
 
     static func addRemoteObject(ruleset: RuleSet, update: Bool = true) throws {
         ruleset.isSubscribe = true
+        ruleset.deleted = false
+        ruleset.editable = false
         let id = ruleset.uuid
         guard let local = DBUtils.get(id, type: RuleSet.self) else {
             try DBUtils.add(ruleset)
             return
         }
-        if local.remoteUpdatedAt == ruleset.remoteUpdatedAt {
+        if local.remoteUpdatedAt == ruleset.remoteUpdatedAt && local.deleted == ruleset.deleted {
             return
         }
         try DBUtils.add(ruleset)
@@ -103,22 +107,20 @@ extension RuleSet {
 extension Rule: Mappable {
 
     public convenience init?(_ map: Map) {
-        self.init()
         guard let pattern = map.JSONDictionary["pattern"] as? String else {
-            return
+            return nil
         }
         guard let actionStr = map.JSONDictionary["action"] as? String, action = RuleAction(rawValue: actionStr) else {
-            return
+            return nil
         }
         guard let typeStr = map.JSONDictionary["type"] as? String, type = RuleType(rawValue: typeStr) else {
-            return
+            return nil
         }
-        update(type, action: action, value: pattern)
+        self.init(type: type, action: action, value: pattern)
     }
 
     // Mappable
     public func mapping(map: Map) {
-        order <- map["order"]
     }
 }
 

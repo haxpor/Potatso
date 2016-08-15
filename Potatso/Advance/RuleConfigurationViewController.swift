@@ -33,10 +33,10 @@ class RuleConfigurationViewController: FormViewController {
     
     init(rule: Rule?, callback: (Rule -> Void)?) {
         if let rule = rule {
-            self.rule = Rule(value: rule)
+            self.rule = rule
             isEdit = true
         }else {
-            self.rule = Rule()
+            self.rule = Rule(type: RuleType.DomainSuffix, action: RuleAction.Proxy, value: "")
             isEdit = false
         }
         self.callback = callback
@@ -105,8 +105,9 @@ class RuleConfigurationViewController: FormViewController {
             guard let action = values[kRuleFormAction] as? RuleAction else {
                 throw "You must choose a action".localized()
             }
-            rule.update(type, action: action, value: value)
-            try DBUtils.add(rule)
+            rule.type = type
+            rule.value = value
+            rule.action = action
             callback?(rule)
             close()
         }catch {

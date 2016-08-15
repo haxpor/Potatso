@@ -62,15 +62,14 @@ class CloudDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func isExist(uuid: String) -> Bool {
-        return defaultRealm.objects(RuleSet).filter("uuid = %@", uuid).count > 0
+        return defaultRealm.objects(RuleSet).filter("uuid == '\(uuid)' && deleted == false").count > 0
     }
 
     func subscribe() {
         let uuid = ruleSet.uuid
         if isExist(uuid) {
-            let ids = defaultRealm.objects(RuleSet).filter("uuid = %@", uuid).map({ $0.uuid })
             do {
-                try DBUtils.softDelete(ids, type: RuleSet.self)
+                try DBUtils.softDelete([uuid], type: RuleSet.self)
             }catch {
                 self.showTextHUD("Fail to unsubscribe".localized(), dismissAfterDelay: 1.0)
                 return

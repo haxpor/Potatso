@@ -95,19 +95,20 @@ class FetchCloudChangesOperation: Operation {
         var error: NSError?
         
         do {
-            print("****** \(self.name!) changedRecords: \(results.changedRecords.count)")
+            print("****** \(self.name!) processFetchResults changedRecords: \(results.changedRecords.count)")
             for record in results.changedRecords {
                 try changeLocalRecord(record)
             }
 
-            print("****** \(self.name!)  deletedRecordIDs: \(results.deletedRecordIDs.count)")
+            print("****** \(self.name!) processFetchResults deletedRecordIDs: \(results.deletedRecordIDs.count)")
             for recordID in results.deletedRecordIDs {
                 try deleteLocalRecord(recordID)
             }
         } catch let realmError as NSError {
             error = realmError
+            print("****** \(self.name!) processFetchResults error: \(error)")
         }
-        
+
         return error
     }
     

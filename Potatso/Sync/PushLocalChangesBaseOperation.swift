@@ -46,7 +46,7 @@ class PushLocalChangesBaseOperation: Operation {
         modifyOperation.modifyRecordsCompletionBlock = {
             (savedRecords, deletedRecordIDs, nsError) -> Void in
             if let error = nsError {
-                error.log("\(self.name!) error")
+                DDLogError("\(self.name!) error: \(error)")
                 self.handleCloudKitPushError(savedRecords, deletedRecordIDs: deletedRecordIDs, error: error, completionHandler: completionHandler)
             } else {
                 do {

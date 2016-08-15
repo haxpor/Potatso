@@ -87,9 +87,6 @@ public class DBUtils {
         for proxy in mRealm.objects(Proxy) {
             proxy.synced = false
         }
-        for rule in mRealm.objects(Rule) {
-            rule.synced = false
-        }
         for ruleset in mRealm.objects(RuleSet) {
             ruleset.synced = false
         }
@@ -166,12 +163,10 @@ extension DBUtils {
         let mRealm = currentRealm(nil)
         let filter = "synced == false && deleted == false"
         let proxies = mRealm.objects(Proxy.self).filter(filter).map({ $0 })
-        let rules = mRealm.objects(Rule.self).filter(filter).map({ $0 })
         let rulesets = mRealm.objects(RuleSet.self).filter(filter).map({ $0 })
         let groups = mRealm.objects(ConfigurationGroup.self).filter(filter).map({ $0 })
         var objects: [BaseModel] = []
         objects.appendContentsOf(proxies as [BaseModel])
-        objects.appendContentsOf(rules as [BaseModel])
         objects.appendContentsOf(rulesets as [BaseModel])
         objects.appendContentsOf(groups as [BaseModel])
         return objects
@@ -181,12 +176,10 @@ extension DBUtils {
         let mRealm = currentRealm(nil)
         let filter = "synced == false && deleted == true"
         let proxies = mRealm.objects(Proxy.self).filter(filter).map({ $0 })
-        let rules = mRealm.objects(Rule.self).filter(filter).map({ $0 })
         let rulesets = mRealm.objects(RuleSet.self).filter(filter).map({ $0 })
         let groups = mRealm.objects(ConfigurationGroup.self).filter(filter).map({ $0 })
         var objects: [BaseModel] = []
         objects.appendContentsOf(proxies as [BaseModel])
-        objects.appendContentsOf(rules as [BaseModel])
         objects.appendContentsOf(rulesets as [BaseModel])
         objects.appendContentsOf(groups as [BaseModel])
         return objects

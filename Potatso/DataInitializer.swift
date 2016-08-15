@@ -37,24 +37,7 @@ class DataInitializer: NSObject, AppLifeCycleProtocol {
     }
 
     func sync() {
-        deleteOrphanRules {
-            SyncManager.shared.sync()
-        }
-    }
-
-
-    func deleteOrphanRules(completion: (Void -> Void)?) {
-        Async.background {
-            let realm = try! Realm()
-            let orphanRules = realm.objects(Rule).filter("rulesets.@count == 0 && deleted == false")
-            if orphanRules.count > 0 {
-                let ids = orphanRules.map({ $0.uuid })
-                for id in ids {
-                    _ = try? DBUtils.softDelete(id, type: Rule.self)
-                }
-            }
-            completion?()
-        }
+        SyncManager.shared.sync()
     }
 
 }

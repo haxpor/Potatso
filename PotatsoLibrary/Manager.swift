@@ -321,8 +321,9 @@ extension Manager {
         var forwardURLRules: [String] = []
         var forwardIPRules: [String] = []
         var forwardGEOIPRules: [String] = []
-        let rules = defaultConfigGroup.ruleSets.map({ $0.rules }).flatMap({ $0 })
+        let rules = defaultConfigGroup.ruleSets.flatMap({ $0.rules })
         for rule in rules {
+            
             switch rule.type {
             case .GeoIP:
                 forwardGEOIPRules.append(rule.description)
