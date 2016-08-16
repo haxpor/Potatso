@@ -123,11 +123,7 @@
     __block NSError *proxyError;
     dispatch_group_enter(g);
     handler(g, &proxyError);
-#if DEBUG
-    long res = dispatch_group_wait(g, DISPATCH_TIME_FOREVER);
-#else
     long res = dispatch_group_wait(g, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * 2));
-#endif
     if (res != 0) {
         proxyError = [TunnelError errorWithMessage:@"timeout"];
     }

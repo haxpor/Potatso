@@ -18,8 +18,8 @@ class SyncVC: FormViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserverForName(SyncManager.syncServiceChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [unowned self] (noti) in
-            self.generateForm()
+        NSNotificationCenter.defaultCenter().addObserverForName(SyncManager.syncServiceChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] (noti) in
+            self?.generateForm()
         }
         generateForm()
     }
