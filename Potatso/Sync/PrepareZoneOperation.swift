@@ -16,20 +16,22 @@ class PrepareZoneOperation: Operation {
     }
     
     override func execute() {
-        print("\(self.name!) started")
+        DDLogInfo("\(self.name!) started")
         prepareCKRecordZone(self.zoneID) { (nsError) in
             self.finishWithError(nsError)
         }
     }
     
-    func prepareCKRecordZone(zoneID: CKRecordZoneID, completionHandler: (NSError!) -> ()) {
+    func prepareCKRecordZone(zoneID: CKRecordZoneID, completionHandler: (NSError? -> ())) {
         // Per CloudKitCatalog, not using NSOperation here
         potatsoDB.fetchAllRecordZonesWithCompletionHandler {
             (zones, nsError) in
-            if nsError != nil {
-                print(nsError)
+            if let nsError = nsError {
+                DDLogError("prepareCKRecordZone error: \(nsError)")
                 completionHandler(nsError)
-            } else if let zones = zones {
+                return
+            }
+            if let zones = zones {
                 var foundZone = false
                 for zone in zones {
                     if zone.zoneID == zoneID {
@@ -37,10 +39,10 @@ class PrepareZoneOperation: Operation {
                     }
                 }
                 if foundZone {
-                    print("Zone \(zoneID.zoneName) exists, nothing to do here.")
+                    DDLogInfo("prepareCKRecordZone: Zone \(zoneID.zoneName) exists, nothing to do here.")
                     completionHandler(nsError)
                 } else {
-                    print("Zone \(zoneID.zoneName) does not exist. Creating it now.")
+                    DDLogWarn("prepareCKRecordZone: Zone \(zoneID.zoneName) does not exist. Creating it now.")
                     // TODO: check NSUserDefault boolean value for the zoneName.
                     // If it exists and we are here then the user must have deleted their
                     // cloud data. If so we need to recreate that zone and reupload
@@ -54,6 +56,9 @@ class PrepareZoneOperation: Operation {
                         completionHandler(nsError)
                     }
                 }
+            } else {
+                DDLogError("prepareCKRecordZone: unknown error")
+                completionHandler(nil)
             }
         }
     }

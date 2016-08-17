@@ -20,19 +20,23 @@ public class DBUtils {
         return mRealm!
     }
 
-    public static func add(object: BaseModel, update: Bool = true, inRealm realm: Realm? = nil) throws {
+    public static func add(object: BaseModel, update: Bool = true, setModified: Bool = true, inRealm realm: Realm? = nil) throws {
         let mRealm = currentRealm(realm)
         mRealm.beginWrite()
-        object.setModified()
+        if setModified {
+            object.setModified()
+        }
         mRealm.add(object, update: update)
         try mRealm.commitWrite()
     }
 
-    public static func add<S: SequenceType where S.Generator.Element: BaseModel>(objects: S, update: Bool = true, inRealm realm: Realm? = nil) throws {
+    public static func add<S: SequenceType where S.Generator.Element: BaseModel>(objects: S, update: Bool = true, setModified: Bool = true, inRealm realm: Realm? = nil) throws {
         let mRealm = currentRealm(realm)
         mRealm.beginWrite()
         objects.forEach({
-            $0.setModified()
+            if setModified {
+                $0.setModified()
+            }
         })
         mRealm.add(objects, update: update)
         try mRealm.commitWrite()

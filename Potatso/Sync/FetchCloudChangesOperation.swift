@@ -30,7 +30,7 @@ class FetchCloudChangesOperation: Operation {
     
     override func execute() {
         changeToken = getZoneChangeToken(zoneID)
-        print(">>>>>>>>> \(self.name!) started with token: \(changeToken)")
+        DDLogInfo(">>> \(self.name!) started with token: \(changeToken)")
         fetchCloudChanges(changeToken) {
             (nsError) in
             self.finishWithError(nsError)
@@ -79,7 +79,7 @@ class FetchCloudChangesOperation: Operation {
                     self.changeToken = serverChangeToken
                     
                     if fetchOperation.moreComing {
-                        print("\(self.name!) more coming...")
+                        DDLogInfo("\(self.name!) more coming...")
                         self.fetchCloudChanges(self.changeToken,
                                                completionHandler: completionHandler)
                     } else {
@@ -95,18 +95,18 @@ class FetchCloudChangesOperation: Operation {
         var error: NSError?
         
         do {
-            print("****** \(self.name!) processFetchResults changedRecords: \(results.changedRecords.count)")
+            DDLogInfo("****** \(self.name!) processFetchResults changedRecords: \(results.changedRecords.count)")
             for record in results.changedRecords {
                 try changeLocalRecord(record)
             }
 
-            print("****** \(self.name!) processFetchResults deletedRecordIDs: \(results.deletedRecordIDs.count)")
+            DDLogInfo("****** \(self.name!) processFetchResults deletedRecordIDs: \(results.deletedRecordIDs.count)")
             for recordID in results.deletedRecordIDs {
                 try deleteLocalRecord(recordID)
             }
         } catch let realmError as NSError {
             error = realmError
-            print("****** \(self.name!) processFetchResults error: \(error)")
+            DDLogError("****** \(self.name!) processFetchResults error: \(error)")
         }
 
         return error
@@ -125,7 +125,6 @@ class FetchCloudChangesOperation: Operation {
     
     // After `maximumRetryAttempts` this function will return an error
     func retryFetch(error: NSError, retryAfter: Double, completionHandler: (NSError!) -> ()) {
-        
         if self.retryAttempts < self.maximumRetryAttempts {
             self.retryAttempts += 1
             
@@ -146,7 +145,6 @@ class FetchCloudChangesOperation: Operation {
      Implement custom logic here for handling CloudKit fetch errors.
      */
     func handleCloudKitFetchError(error: NSError, completionHandler: (NSError!) -> ()) {
-        
         let ckErrorCode: CKErrorCode = CKErrorCode(rawValue: error.code)!
         
         switch ckErrorCode {

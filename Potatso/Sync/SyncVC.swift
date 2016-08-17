@@ -52,24 +52,35 @@ class SyncVC: FormViewController {
                         self?.hideHUD()
                         if let error = error {
                             if let vc = self {
-                                Alert.show(vc, title: "Setup Failed", message: "\((error as NSError).localizedDescription)")
+                                Alert.show(vc, title: "Sync Service Setup Failed", message: "\(error)")
                             }
                         } else {
                             SyncManager.shared.currentSyncServiceType = type
-                            SyncManager.shared.sync(true)
+                            self?.forceSync()
                         }
                     })
                 }
             })
         section
             <<< ButtonRow {
-                $0.title = "Sync Manually"
+                $0.title = SyncManager.shared.syncing ? "Syncing..." : "Sync Manually"
                 $0.hidden = Condition.Function([""]) { form in
                     return SyncManager.shared.currentSyncServiceType == .None
                 }
-            }.onCellSelection({ (cell, row) in
-                SyncManager.shared.sync(true)
+            }.onCellSelection({ [weak self] (cell, row) in
+                self?.forceSync()
             })
         return section
     }
+
+    func forceSync() {
+        SyncManager.shared.sync(true, completion: { (error) in
+            if let error = error {
+                Alert.show(self, title: "Sync Failed", message:  "\(error)")
+            } else {
+                Alert.show(self, title: "Sync Success")
+            }
+        })
+    }
+
 }

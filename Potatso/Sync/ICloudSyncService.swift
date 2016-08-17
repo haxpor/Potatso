@@ -10,6 +10,7 @@ import Foundation
 import CloudKit
 import PSOperations
 import PotatsoModel
+import Async
 
 class ICloudSyncService: SyncServiceProtocol {
 
@@ -20,35 +21,70 @@ class ICloudSyncService: SyncServiceProtocol {
     }
 
     func setup(completion: (ErrorType? -> Void)?) {
-        DDLogInfo("Setuping iCloud sync service")
-        let setupOp = ICloudSetupOperation(completion: completion)
-        let subscribeOp = BlockOperation { [weak self] in
-            self?.subscribeNotification()
+        DDLogInfo(">>>>>> Setuping iCloud sync service")
+        let setupOp = ICloudSetupOperation { [weak self] (error) in
+            if let e = error {
+                DDLogError(">>>>>> Setuping iCloud sync service with error: \(e)")
+            } else {
+                DDLogInfo(">>>>>> Setuping iCloud sync service with success")
+                self?.subscribeNotification()
+            }
+            completion?(error)
         }
-        subscribeOp.addDependency(setupOp)
         operationQueue.addOperation(setupOp)
-        operationQueue.addOperation(subscribeOp)
     }
 
-    func sync(manually: Bool = false) {
-        print("====== iCloud sync start")
+    func sync(manually: Bool = false, completion: (ErrorType? -> Void)?) {
+        DDLogInfo(">>>>>>>>>> iCloud sync start")
         if manually {
-            DDLogInfo("manually sync: clear zone token and mark all as not synced")
+            DDLogWarn("Manually sync: clear token and mark all as not synced")
             setZoneChangeToken(potatsoZoneId, changeToken: nil)
             _ = try? DBUtils.markAll(syncd: false)
         }
-        let setupOp = ICloudSetupOperation(completion: nil)
-        let subscribeOp = BlockOperation { [weak self] in
-            self?.subscribeNotification()
-        }
-        let syncOp = SyncOperation(zoneID: potatsoZoneId, syncType: SyncType.FetchCloudChangesAndThenPushLocalChanges) {
-            print("====== iCloud sync completed")
-        }
 
-        subscribeOp.addDependency(setupOp)
-        operationQueue.addOperation(subscribeOp)
-        operationQueue.addOperation(setupOp)
-        operationQueue.addOperation(syncOp)
+        let pushLocalChangesOperation = PushLocalChangesOperation(zoneID: potatsoZoneId)
+        let pushLocalChangesObserver = BlockObserver { [weak self] operation, error in
+            if let _ = error.first {
+                DDLogError("<<< pushLocalChangesOperation finished with error: \(error)")
+            } else {
+                DDLogInfo("<<< pushLocalChangesOperation finished with success")
+            }
+            self?.finishSync(error.first, completion: completion)
+        }
+        pushLocalChangesOperation.addObserver(pushLocalChangesObserver)
+
+        let fetchCloudChangesOperation = FetchCloudChangesOperation(zoneID: potatsoZoneId)
+        let fetchCloudChangesObserver = BlockObserver { [weak self] operation, error in
+            if let error = error.first {
+                DDLogError("<<< fetchCloudChangesOperation finished with error: \(error)")
+                self?.finishSync(error, completion: completion)
+                return
+            } else {
+                DDLogInfo("<<< fetchCloudChangesOperation finished with success")
+            }
+            self?.operationQueue.addOperation(pushLocalChangesOperation)
+        }
+        fetchCloudChangesOperation.addObserver(fetchCloudChangesObserver)
+
+        setup { [weak self] (error) in
+            if let error = error {
+                self?.finishSync(error, completion: completion)
+                return
+            } else {
+                self?.operationQueue.addOperation(fetchCloudChangesOperation)
+            }
+        }
+    }
+
+    func finishSync(error: ErrorType?, completion: (ErrorType? -> Void)?) {
+        if let error = error {
+            DDLogInfo("<<<<<<<<<< iCloud sync finished with error: \(error)")
+        } else {
+            DDLogInfo("<<<<<<<<<< iCloud sync finished with success")
+        }
+        Async.main {
+            completion?(error)
+        }
     }
 
     func subscribeNotification() {

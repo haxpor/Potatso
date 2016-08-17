@@ -12,12 +12,14 @@ import CloudKit
 
 class PushLocalChangesOperation: Operation {
 
+    let zoneID: CKRecordZoneID
     private let internalQueue = OperationQueue()
     var toSaveRecords: [CKRecord] = []
     var toDeleteRecordIDs: [CKRecordID] = []
     var maxRecordsPerRequest = 400
 
-    override init() {
+    init(zoneID: CKRecordZoneID) {
+        self.zoneID = zoneID
         super.init()
         internalQueue.maxConcurrentOperationCount = 15
     }

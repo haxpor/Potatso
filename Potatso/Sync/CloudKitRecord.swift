@@ -173,16 +173,14 @@ func changeLocalRecord(record: CKRecord) throws {
     switch record.recordType {
     case "Proxy":
         realmObject = Proxy.fromCloudKitRecord(record)
-        realmObject.synced = true
     case "RuleSet":
         realmObject = RuleSet.fromCloudKitRecord(record)
-        realmObject.synced = true
     case "ConfigurationGroup":
         realmObject = ConfigurationGroup.fromCloudKitRecord(record)
-        realmObject.synced = true
     default:
         return
     }
+    realmObject.synced = true
     if let local = local, type = record.realmClassType {
         if local.updatedAt > realmObject.updatedAt {
             try DBUtils.mark(local.uuid, type: type, synced: false)
@@ -192,7 +190,7 @@ func changeLocalRecord(record: CKRecord) throws {
             return
         }
     }
-    try DBUtils.add(realmObject)
+    try DBUtils.add(realmObject, setModified: false)
 }
 
 func deleteLocalRecord(recordID: CKRecordID) throws {

@@ -193,7 +193,6 @@
 		B8A09D7E1D51B9A900A9A989 /* PrepareZoneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A09D771D51B9A900A9A989 /* PrepareZoneOperation.swift */; };
 		B8A09D7F1D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A09D781D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift */; };
 		B8A09D801D51B9A900A9A989 /* RealmCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A09D791D51B9A900A9A989 /* RealmCloud.swift */; };
-		B8A09D811D51B9A900A9A989 /* SyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A09D7A1D51B9A900A9A989 /* SyncOperation.swift */; };
 		B8AD81681D4AF9FB00C12FC1 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88559EA1D21319D00B1243E /* YAML.framework */; };
 		B8C0FE0F1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0FE0E1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift */; };
 		B8C0FE131D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0FE121D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift */; };
@@ -893,7 +892,6 @@
 		B8A09D771D51B9A900A9A989 /* PrepareZoneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareZoneOperation.swift; sourceTree = "<group>"; };
 		B8A09D781D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalChangesBaseOperation.swift; sourceTree = "<group>"; };
 		B8A09D791D51B9A900A9A989 /* RealmCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCloud.swift; sourceTree = "<group>"; };
-		B8A09D7A1D51B9A900A9A989 /* SyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncOperation.swift; sourceTree = "<group>"; };
 		B8C0FE0E1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalModifiedChangesOperation.swift; sourceTree = "<group>"; };
 		B8C0FE121D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalDeletedChangesOperation.swift; sourceTree = "<group>"; };
 		B8C0FE141D5E0A9400737454 /* PushLocalChangesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalChangesOperation.swift; sourceTree = "<group>"; };
@@ -1994,14 +1992,13 @@
 				B896A83F1D548AAC009E4BF5 /* ICloudSetupOperation.swift */,
 				B8A09D681D51B42B00A9A989 /* CloudKitRecord.swift */,
 				B8A09D741D51B9A900A9A989 /* AlertOperation.swift */,
-				B8A09D751D51B9A900A9A989 /* FetchCloudChangesOperation.swift */,
 				B8A09D771D51B9A900A9A989 /* PrepareZoneOperation.swift */,
+				B8A09D751D51B9A900A9A989 /* FetchCloudChangesOperation.swift */,
 				B8C0FE141D5E0A9400737454 /* PushLocalChangesOperation.swift */,
 				B8A09D781D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift */,
 				B8C0FE0E1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift */,
 				B8C0FE121D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift */,
 				B8A09D791D51B9A900A9A989 /* RealmCloud.swift */,
-				B8A09D7A1D51B9A900A9A989 /* SyncOperation.swift */,
 			);
 			name = iCloud;
 			sourceTree = "<group>";
@@ -2039,8 +2036,8 @@
 		B8D8CC0F1D50D5B700CE6C0D /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				B8D8CC101D50D5CD00CE6C0D /* SyncManager.swift */,
 				B821B0F61D539CFD0061E7B9 /* SyncVC.swift */,
+				B8D8CC101D50D5CD00CE6C0D /* SyncManager.swift */,
 				B821B0F11D5318F80061E7B9 /* iCloud */,
 			);
 			path = Sync;
@@ -2950,7 +2947,6 @@
 				B83AA5741D38E728007905B4 /* SegmentPageVC.swift in Sources */,
 				9BB3F74F1CC6308000C2DD05 /* RecentRequestsVC.swift in Sources */,
 				B821B0F71D539CFD0061E7B9 /* SyncVC.swift in Sources */,
-				B8A09D811D51B9A900A9A989 /* SyncOperation.swift in Sources */,
 				9B8285481CE20DE40027D15C /* HMScanner.m in Sources */,
 				B8A09D7C1D51B9A900A9A989 /* FetchCloudChangesOperation.swift in Sources */,
 				B896A8401D548AAC009E4BF5 /* ICloudSetupOperation.swift in Sources */,

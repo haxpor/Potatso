@@ -20,13 +20,11 @@ class ICloudSetupOperation: GroupOperation {
         let container = CKContainer.defaultContainer()
         let iCloudCapability = Capability(iCloudContainer(container: container))
 
-        let dummyOp = BlockOperation(block: nil)
-
         let finishObserver = BlockObserver { operation, error in
             if let _ = error.first {
                 DDLogError("ICloudSetupOperation finished with error: \(error)")
             } else {
-                DDLogInfo("ICloudSetupOperation finished")
+                DDLogInfo("ICloudSetupOperation finished with success")
             }
             Async.main {
                 completion?(error.first)
@@ -38,9 +36,7 @@ class ICloudSetupOperation: GroupOperation {
         prepareZoneOperation.addCondition(iCloudCapability)
         prepareZoneOperation.addObserver(finishObserver)
 
-        dummyOp.addDependency(prepareZoneOperation)
-
-        super.init(operations: [prepareZoneOperation, dummyOp])
+        super.init(operations: [prepareZoneOperation])
     }
 
 }

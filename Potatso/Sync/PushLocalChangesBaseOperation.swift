@@ -29,7 +29,7 @@ class PushLocalChangesBaseOperation: Operation {
     }
     
     override func execute() {
-        print(">>>>>> \(self.name!) starting...")
+        DDLogInfo(">>>>>> \(self.name!) starting...")
         pushRecords { [weak self] (error) in
             self?.finishWithError(error)
             return

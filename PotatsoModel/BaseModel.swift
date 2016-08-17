@@ -26,7 +26,7 @@ public func setupDefaultReaml() {
     config.migrationBlock = { migration, oldSchemaVersion in
         if oldSchemaVersion < 18 {
             // Migrating old rules list to json
-            migrateRulesList(migration)
+            migrateRulesList(migration, oldSchemaVersion: oldSchemaVersion)
         }
     }
     Realm.Configuration.defaultConfiguration = config
@@ -58,18 +58,22 @@ public class BaseModel: Object {
 }
 
 // MARK: - Migration
-func migrateRulesList(migration: Migration) {
+func migrateRulesList(migration: Migration, oldSchemaVersion: UInt64) {
     migration.enumerate(RuleSet.className(), { (oldObject, newObject) in
-        guard let deleted = oldObject!["deleted"] as? Bool where !deleted else {
-            return
+        if oldSchemaVersion > 11 {
+            guard let deleted = oldObject!["deleted"] as? Bool where !deleted else {
+                return
+            }
         }
         guard let rules = oldObject!["rules"] as? List<DynamicObject> else {
             return
         }
         var rulesJSONArray: [[NSObject: AnyObject]] = []
         for rule in rules {
-            guard let deleted = rule["deleted"] as? Bool where !deleted else {
-                return
+            if oldSchemaVersion > 11 {
+                guard let deleted = rule["deleted"] as? Bool where !deleted else {
+                    return
+                }
             }
             guard let typeRaw = rule["typeRaw"]as? String, contentJSONString = rule["content"] as? String, contentJSON = contentJSONString.jsonDictionary() else {
                 return

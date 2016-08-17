@@ -21,6 +21,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
     var chooseCallback: (RuleSet? -> Void)?
     // Observe Realm Notifications
     var token: RLMNotificationToken?
+    var heightAtIndex: [Int: CGFloat] = [:]
 
     init(chooseCallback: (RuleSet? -> Void)? = nil) {
         self.chooseCallback = chooseCallback
@@ -85,6 +86,10 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
 
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        heightAtIndex[indexPath.row] = cell.frame.size.height
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let ruleSet = ruleSets[indexPath.row]
@@ -93,6 +98,14 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
             close()
         }else {
             showRuleSetConfiguration(ruleSet)
+        }
+    }
+
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let height = heightAtIndex[indexPath.row] {
+            return height
+        } else {
+            return UITableViewAutomaticDimension
         }
     }
 
@@ -139,7 +152,6 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         v.tableHeaderView = UIView()
         v.separatorStyle = .SingleLine
         v.rowHeight = UITableViewAutomaticDimension
-        v.estimatedRowHeight = rowHeight
         return v
     }()
 
