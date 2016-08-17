@@ -120,9 +120,7 @@ extension RuleSet {
         guard let rulesStr = dictionary["rules"] as? [String] else {
             throw RuleSetError.InvalidRuleSet
         }
-        for ruleStr in rulesStr {
-            addRule(try Rule(str: ruleStr))
-        }
+        rules = try rulesStr.map({ try Rule(str: $0) })
     }
     
 }
