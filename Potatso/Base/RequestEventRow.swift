@@ -28,6 +28,10 @@ class RequestEventRowCell: Cell<RequestEvent>, CellType {
         return f
     }()
 
+    var copyContent: String? {
+        return contentLabel.text
+    }
+
     required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -35,6 +39,7 @@ class RequestEventRowCell: Cell<RequestEvent>, CellType {
 
     override func setup() {
         super.setup()
+        selectionStyle = .None
         preservesSuperviewLayoutMargins = false
         layoutMargins = UIEdgeInsetsZero
         separatorInset = UIEdgeInsetsZero
