@@ -263,6 +263,6 @@ extension Alamofire.Request {
     }
 
     private static func logError(error: NSError, request: NSURLRequest?, response: NSURLResponse?) {
-        DDLogError("ObjectMapperSerializer failure: \(error.localizedDescription), request: \(request?.debugDescription), response: \(response.debugDescription)")
+        DDLogError("ObjectMapperSerializer failure: \(error), request: \(request?.debugDescription), response: \(response.debugDescription)")
     }
 }

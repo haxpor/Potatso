@@ -7,4 +7,6 @@
 #define HELPSHIFT_DOMAIN @""
 #define HELPSHIFT_ID     @""
 
+#define LOGGY_KEY    @""
+
 #endif

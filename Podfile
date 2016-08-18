@@ -46,6 +46,7 @@ target "Potatso" do
     pod 'CocoaLumberjack/Swift'
     pod 'Helpshift', '5.6.1'
     pod 'PSOperations', '~> 2.3'
+    pod 'LogglyLogger-CocoaLumberjack', '~> 2.0'
     tunnel
     library
     fabric

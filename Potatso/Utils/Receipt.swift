@@ -13,7 +13,6 @@ class Receipt: NSObject, SKRequestDelegate {
 
     static let shared = Receipt()
 
-
     private override init() {}
 
     func validate() {

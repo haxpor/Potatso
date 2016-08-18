@@ -8,6 +8,7 @@
 
 import Foundation
 import ICSMainFramework
+import LogglyLogger_CocoaLumberjack
 
 class FeedbackManager {
     static let shared = FeedbackManager()
@@ -27,6 +28,8 @@ class FeedbackManager {
         } else if AppEnv.isAppStore {
             tags.append("store")
         }
+        NSNotificationCenter.defaultCenter().postNotificationName(LogglyLoggerForceUploadNotification, object: nil)
+        HelpshiftSupport.setUserIdentifier(User.currentUser.id)
         HelpshiftSupport.setMetadataBlock { () -> [NSObject : AnyObject]! in
             return [
                 "Full Version": AppEnv.fullVersion,

@@ -194,6 +194,7 @@
 		B8A09D7F1D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A09D781D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift */; };
 		B8A09D801D51B9A900A9A989 /* RealmCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A09D791D51B9A900A9A989 /* RealmCloud.swift */; };
 		B8AD81681D4AF9FB00C12FC1 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88559EA1D21319D00B1243E /* YAML.framework */; };
+		B8B1E4A61D6584DC003F8530 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B1E4A51D6584DC003F8530 /* User.swift */; };
 		B8C0FE0F1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0FE0E1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift */; };
 		B8C0FE131D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0FE121D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift */; };
 		B8C0FE151D5E0A9400737454 /* PushLocalChangesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0FE141D5E0A9400737454 /* PushLocalChangesOperation.swift */; };
@@ -892,6 +893,7 @@
 		B8A09D771D51B9A900A9A989 /* PrepareZoneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareZoneOperation.swift; sourceTree = "<group>"; };
 		B8A09D781D51B9A900A9A989 /* PushLocalChangesBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalChangesBaseOperation.swift; sourceTree = "<group>"; };
 		B8A09D791D51B9A900A9A989 /* RealmCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCloud.swift; sourceTree = "<group>"; };
+		B8B1E4A51D6584DC003F8530 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B8C0FE0E1D5DF96500737454 /* PushLocalModifiedChangesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalModifiedChangesOperation.swift; sourceTree = "<group>"; };
 		B8C0FE121D5DFDB500737454 /* PushLocalDeletedChangesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalDeletedChangesOperation.swift; sourceTree = "<group>"; };
 		B8C0FE141D5E0A9400737454 /* PushLocalChangesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushLocalChangesOperation.swift; sourceTree = "<group>"; };
@@ -1317,6 +1319,7 @@
 				B803A6971D02B768003EA9AA /* API.swift */,
 				B821B0F41D5335DA0061E7B9 /* FeedbackManager.swift */,
 				B8F7AE3D1D5F178A005CA41E /* CloudSetManager.swift */,
+				B8B1E4A51D6584DC003F8530 /* User.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2904,6 +2907,7 @@
 				B8CCC6EB1CFF1501000E7E2E /* ProxyRow.swift in Sources */,
 				9B32478A1CC0F1D200A3BAFF /* Importer.swift in Sources */,
 				9B1F74621C2F85540028C1A6 /* UIManager.swift in Sources */,
+				B8B1E4A61D6584DC003F8530 /* User.swift in Sources */,
 				B8C256B01D1A957A0074D3B1 /* HomePresenter.swift in Sources */,
 				9B1F74601C2F84250028C1A6 /* AppInitializer.swift in Sources */,
 				9B54CC441C1C266C00DDEEBB /* UIViewControllerExtensions.swift in Sources */,
