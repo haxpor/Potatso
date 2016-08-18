@@ -43,6 +43,7 @@ class CloudDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func loadData() {
         activityIndicator.startAnimating()
         activityIndicator.hidden = false
+        subscribeButton.hidden = true
         API.getRuleSetDetail(ruleSet.uuid) { (response) in
             defer {
                 self.activityIndicator.stopAnimating()
@@ -57,6 +58,7 @@ class CloudDetailViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 self.ruleSet = result
                 self.tableView.reloadData()
+                self.subscribeButton.hidden = false
             }
         }
     }
