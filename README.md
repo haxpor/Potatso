@@ -84,7 +84,7 @@ Thanks again!
 
 ## License
 
-**You can't submit the app to Apple Store.**
+**You can't submit the app to App Store.**
 
 To be compatible with those libraries using GPL, we're distributing with GPLv3 license.
 
