@@ -84,6 +84,8 @@ Thanks again!
 
 ## License
 
+**You can't submit the app to Apple Store.**
+
 To be compatible with those libraries using GPL, we're distributing with GPLv3 license.
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
