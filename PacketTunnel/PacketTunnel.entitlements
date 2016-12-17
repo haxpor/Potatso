@@ -8,7 +8,7 @@
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)io.wasin.potatso.todaywidget</string>
+		<string>$(AppIdentifierPrefix)io.wasin.potatso.tunnel</string>
 	</array>
 </dict>
 </plist>

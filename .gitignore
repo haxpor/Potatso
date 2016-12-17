@@ -42,7 +42,8 @@ DerivedData
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 Pods/
-Podfile.lock
+# Add Podfile.lock for future maintenance reason
+#Podfile.lock
 
 # Carthage
 Carthage/Build
