@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E74CF051E05A5C700B9D3EE /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E74CF041E05A5C700B9D3EE /* GameKit.framework */; };
-		1E74CF071E05A60200B9D3EE /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E74CF041E05A5C700B9D3EE /* GameKit.framework */; };
 		1EB5EF2F1E031488000C7748 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88559EA1D21319D00B1243E /* YAML.framework */; };
 		1ED659011E05C73100D4BEE3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED659001E05C73100D4BEE3 /* CloudKit.framework */; };
+		1ED659061E05E88C00D4BEE3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED659051E05E88C00D4BEE3 /* GameKit.framework */; };
 		1ED66DEE1E05A72300638808 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED66DED1E05A72300638808 /* StoreKit.framework */; };
-		1ED66DF01E05A73F00638808 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E74CF041E05A5C700B9D3EE /* GameKit.framework */; };
 		234575943B38F4EAD3E2B481 /* Pods_Potatso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E558CCABD311741F0CF9DD9 /* Pods_Potatso.framework */; };
 		671F4F760B4AA48CEDC1B834 /* Pods_TodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8D7B7274BAF6E28C980D9 /* Pods_TodayWidget.framework */; };
 		6BF89D48551DF9EC9D65F0BA /* Pods_PotatsoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 972ACD00F18B9E461F9D38B1 /* Pods_PotatsoModel.framework */; };
@@ -338,12 +336,12 @@
 /* Begin PBXFileReference section */
 		13357BD365CD7C295F1BA3C0 /* Pods-PotatsoModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoModel/Pods-PotatsoModel.release.xcconfig"; sourceTree = "<group>"; };
 		1E558CCABD311741F0CF9DD9 /* Pods_Potatso.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Potatso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E74CF041E05A5C700B9D3EE /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		1ECA215E1E05E8C700B32187 /* Potatso.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Potatso.entitlements; sourceTree = "<group>"; };
+		1ECA21631E05EA6D00B32187 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
+		1ECA21641E05EADD00B32187 /* TodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayWidget.entitlements; sourceTree = "<group>"; };
 		1ED659001E05C73100D4BEE3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		1ED66DEB1E05A6E400638808 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
-		1ED66DEC1E05A70700638808 /* TodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayWidget.entitlements; sourceTree = "<group>"; };
+		1ED659051E05E88C00D4BEE3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		1ED66DED1E05A72300638808 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		1ED66DEF1E05A73300638808 /* Potatso.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Potatso.entitlements; sourceTree = "<group>"; };
 		310645853592796E08924EB3 /* Pods_PacketProcessor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PacketProcessor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50F18DE964A0791935D07268 /* Pods-PacketTunnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.release.xcconfig"; sourceTree = "<group>"; };
 		5230B5D70A0595F06A9F15F8 /* Pods-PotatsoLibraryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibraryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -943,7 +941,7 @@
 				B86B08ED1D17FB9B00613014 /* ShadowPath.framework in Frameworks */,
 				9BC600241CB2921C00E5EA61 /* PotatsoBase.framework in Frameworks */,
 				9BDA62621CAE2576007F2581 /* PacketProcessor.framework in Frameworks */,
-				1ED66DF01E05A73F00638808 /* GameKit.framework in Frameworks */,
+				1ED659061E05E88C00D4BEE3 /* GameKit.framework in Frameworks */,
 				9B9B15C41C21595B000B6541 /* PotatsoLibrary.framework in Frameworks */,
 				9BC6FFF11CB28B4B00E5EA61 /* PotatsoModel.framework in Frameworks */,
 				B88559EB1D21319D00B1243E /* YAML.framework in Frameworks */,
@@ -969,7 +967,6 @@
 				B88559F01D21371A00B1243E /* PotatsoModel.framework in Frameworks */,
 				9B8193DC1CBDE68100BE320D /* PotatsoBase.framework in Frameworks */,
 				9B8193DD1CBDE68100BE320D /* PotatsoLibrary.framework in Frameworks */,
-				1E74CF051E05A5C700B9D3EE /* GameKit.framework in Frameworks */,
 				9B8193B41CBCFEE700BE320D /* NotificationCenter.framework in Frameworks */,
 				671F4F760B4AA48CEDC1B834 /* Pods_TodayWidget.framework in Frameworks */,
 			);
@@ -981,7 +978,6 @@
 			files = (
 				B86B08EC1D17F85800613014 /* ShadowPath.framework in Frameworks */,
 				9BC600361CB29AFF00E5EA61 /* PotatsoBase.framework in Frameworks */,
-				1E74CF071E05A60200B9D3EE /* GameKit.framework in Frameworks */,
 				9BCE27AF1CAE535800B1E561 /* PacketProcessor.framework in Frameworks */,
 				9B87060D1C1DBDD400651424 /* libresolv.tbd in Frameworks */,
 				A4564DF27925368D6CA67F7D /* Pods_PacketTunnel.framework in Frameworks */,
@@ -1095,7 +1091,7 @@
 		9B0CFA0D1C1C0B1B007BD7C6 /* Potatso */ = {
 			isa = PBXGroup;
 			children = (
-				1ED66DEF1E05A73300638808 /* Potatso.entitlements */,
+				1ECA215E1E05E8C700B32187 /* Potatso.entitlements */,
 				9BC8589F1C33B00200992032 /* Potatso-Bridge-Header.h */,
 				9B0CFA0E1C1C0B1B007BD7C6 /* AppDelegate.swift */,
 				9B1F745F1C2F84250028C1A6 /* AppInitializer.swift */,
@@ -1184,7 +1180,7 @@
 		9B8193B51CBCFEE700BE320D /* TodayWidget */ = {
 			isa = PBXGroup;
 			children = (
-				1ED66DEC1E05A70700638808 /* TodayWidget.entitlements */,
+				1ECA21641E05EADD00B32187 /* TodayWidget.entitlements */,
 				9B8193B61CBCFEE700BE320D /* TodayViewController.swift */,
 				9B8193E11CBDF27000BE320D /* CurrentGroupCell.swift */,
 				9B8193B81CBCFEE700BE320D /* MainInterface.storyboard */,
@@ -1209,7 +1205,7 @@
 		9B8705FB1C1D788F00651424 /* PacketTunnel */ = {
 			isa = PBXGroup;
 			children = (
-				1ED66DEB1E05A6E400638808 /* PacketTunnel.entitlements */,
+				1ECA21631E05EA6D00B32187 /* PacketTunnel.entitlements */,
 				9B8705FE1C1D788F00651424 /* PacketTunnelProvider.h */,
 				9B8705FF1C1D788F00651424 /* PacketTunnelProvider.m */,
 				9B2D8C891C7C3F5B00CC65B3 /* ProxyManager.h */,
@@ -2058,9 +2054,9 @@
 		C8B2149E8757C44C469576D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1ED659051E05E88C00D4BEE3 /* GameKit.framework */,
 				1ED659001E05C73100D4BEE3 /* CloudKit.framework */,
 				1ED66DED1E05A72300638808 /* StoreKit.framework */,
-				1E74CF041E05A5C700B9D3EE /* GameKit.framework */,
 				B8822CD11D2B81C400AD252C /* libcrypto.a */,
 				B8822CD21D2B81C400AD252C /* libssl.a */,
 				B88559EA1D21319D00B1243E /* YAML.framework */,
@@ -2331,7 +2327,7 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = XGKHW634KL;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2351,6 +2347,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.VPNLite = {
+								enabled = 0;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -2365,7 +2364,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = XGKHW634KL;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2381,7 +2380,7 @@
 					9B8705F91C1D788F00651424 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = XGKHW634KL;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3361,7 +3360,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XGKHW634KL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3394,8 +3393,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4990b4d1-c101-40b1-8bd4-799140d79f70";
+				PROVISIONING_PROFILE_SPECIFIER = "Potatso - Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "Potatso/Potatso-Bridge-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3412,7 +3411,7 @@
 				CODE_SIGN_ENTITLEMENTS = Potatso/Potatso.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XGKHW634KL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3440,8 +3439,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "4990b4d1-c101-40b1-8bd4-799140d79f70";
+				PROVISIONING_PROFILE_SPECIFIER = "Potatso - Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "Potatso/Potatso-Bridge-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3495,8 +3494,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.todaywidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "91c61c81-9254-4d6b-b431-c3dc1d09b370";
+				PROVISIONING_PROFILE_SPECIFIER = "Potatso TodayWidget - Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -3521,8 +3520,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.todaywidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "91c61c81-9254-4d6b-b431-c3dc1d09b370";
+				PROVISIONING_PROFILE_SPECIFIER = "Potatso TodayWidget - Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -3567,8 +3566,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.tunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a02b0de7-d9f2-47a2-abd9-f9ee44914907";
+				PROVISIONING_PROFILE_SPECIFIER = "Potatso Tunnel - Dev";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -3610,8 +3609,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.tunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a02b0de7-d9f2-47a2-abd9-f9ee44914907";
+				PROVISIONING_PROFILE_SPECIFIER = "Potatso Tunnel - Dev";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

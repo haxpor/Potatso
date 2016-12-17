@@ -25,7 +25,7 @@ Potatso has in total 31 dependencies as following
 
 The project is tested with Xcode 8.2 beta (8C30a) on iOS 10.2 (14C92) device.
 
-## Guide
+## Set up Guide - Code
 
 Perform the following steps to be able to build the project.
 
@@ -35,30 +35,62 @@ Perform the following steps to be able to build the project.
 4. On application targets' "General" settings tab in the "Linked Frameworks and Libraries" section of Potatso target, drag and drop `YAML.framework` file from `Carthage/Build/iOS` into it.
 5. On application targets' "Build Phases" settings tab, click the "+" icon and choose "New Run Script Phase". Create a Run Script in which has `bin/sh` as shell with following content  
      
-   ```shell
+   ```json
    /usr/local/bin/carthage copy-frameworks  
    ```
      
    and add the paths to added framework under "Input Files" as follows  
      
-   ```
+   ```json
    $(SRCROOT)/Carthage/Build/iOS/YAML.framework  
    ```
    
 6. Search for `io.wasin.potatso` for project-wide, and replace it with your own domain name. This is necessary as you need to create your own provisioning profile as it uses your domain name.
 7. Open file `CallbackURLKit.swift` by hitting cmd+shift+o then enter the name of file. Add @escaping in front of all function signature parameters in `ActionHandler` defined at the top of the file. Make it as follows  
      
-   ```
+   ```swift
    public typealias ActionHandler = (Parameters, @escaping SuccessCallback, @escaping FailureCallback, @escaping CancelCallback) -> Void  
    ```  
-     
-   At this point, you can try to build the project to your device. It should be successful. **Note** only build but its functionality is not complete yet as we need to proceed to next step.
-8. Send a request to Apple asking for permission to use core features of Network extension API that this project utilizes by heading to [https://developer.apple.com/contact/network-extension/](https://developer.apple.com/contact/network-extension/). Fill out the form, and send. This might take around 2 weeks as seen [here](http://www.jianshu.com/p/ee038189f373) (Chinese content).
-9. ... to be updated ...
+8. Build the project. Done.
 
+## Set up Guide - Apple Developer Website
+
+Note that it's better to not allow Xcode to automatically manage yoru provisioning profile for the application included Potatso (main app), PacketTunnel (extension), and TodayWidget (extension). Most of the time, such provisioning profile won't generate on developer page, or point to generic one which makes it not working!.
+
+So follow the following steps
+
+* Create 3 App IDs for `Potatso`, `PacketTunnel`, and `TodayWidget`. Make sure to name bundle id for each one matches the ones that use in code. In this case `io.wasin.potatso`, `io.wasin.potatso.tunnel`, and `io.wasin.potatso.todaywidget` respectively. Rename to be your domain name freely.
+   * **`Potatso`**  
+      Enable `App Groups`, `Game Center`, `iCloud`, `In-App Purchase`, `Network Extensions`, and `Push Notifications`.
+   * **`PacketTunnel`**  
+      Enable `App Groups`, `Game Center`, `In-App Purchase`, and `Network Extensions`.
+   * **`TodayWidget`**  
+      Enable `App Groups`, `Game Center`, `In-App Purchase`, and `Network Extensions`.
+
+* Create 3 corresponding provisioning profile for each created App ID.
+* Now go back to Xcode
+* Click on project -> click on General tap -> select `Potatso` target and uncheck "Automatically manage signing" -> select a proper provisioning profile in both "Signing (Debug)" and "Signing (Release)".
+* Do the same for `PacketTunnel` and `TodayWidget` target.
+
+## TODO
+
+There're a couple of issues that needed to look at, but at tested, it doens't effect the functionality of the app.
+
+* In file `Potatso/Core/API.swift`, it's the following code focusing on line with comment that I can't figure it out yet how to migrate it to Swift 3 code.  
+
+   ```swift
+   var JSONToMap: AnyObject?
+   if let keyPath = keyPath, keyPath.isEmpty == false {
+       //JSONToMap = (result.value? as AnyObject).value(forKeyPath: keyPath)
+       JSONToMap = nil
+   } else {
+       JSONToMap = result.value as AnyObject?
+   }
+   ```
+   
 ## How To Contribute
 
-// TODO
+...update later...
 
 ## Support Us
 
