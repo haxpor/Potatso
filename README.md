@@ -15,15 +15,50 @@ Currently, Potatso is compatible with following proxies:
 
 Author: [icodesign](https://twitter.com/icodesign_me)
 
+## Project Info
+
+Potatso has in total 31 dependencies as following
+
+* 28 Cocoapod dependencies
+* 1 Carthage dependency
+* 2 submodules dependencies
+
+The project is tested with Xcode 8.2 beta (8C30a) on iOS 10.2 (14C92) device.
+
 ## Guide
 
-See [Setup Guide](../../wiki/Setup-Guide) for details.
+Perform the following steps to be able to build the project.
 
+1. `git submodule update --init` to update git submodule
+2. `pod install` to pull down dependencies into our project
+3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
+4. On application targets' "General" settings tab in the "Linked Frameworks and Libraries" section of Potatso target, drag and drop `YAML.framework` file from `Carthage/Build/iOS` into it.
+5. On application targets' "Build Phases" settings tab, click the "+" icon and choose "New Run Script Phase". Create a Run Script in which has `bin/sh` as shell with following content  
+     
+   ```shell
+   /usr/local/bin/carthage copy-frameworks  
+   ```
+     
+   and add the paths to added framework under "Input Files" as follows  
+     
+   ```
+   $(SRCROOT)/Carthage/Build/iOS/YAML.framework  
+   ```
+   
+6. Search for `io.wasin.potatso` for project-wide, and replace it with your own domain name. This is necessary as you need to create your own provisioning profile as it uses your domain name.
+7. Open file `CallbackURLKit.swift` by hitting cmd+shift+o then enter the name of file. Add @escaping in front of all function signature parameters in `ActionHandler` defined at the top of the file. Make it as follows  
+     
+   ```
+   public typealias ActionHandler = (Parameters, @escaping SuccessCallback, @escaping FailureCallback, @escaping CancelCallback) -> Void  
+   ```  
+     
+   At this point, you can try to build the project to your device. It should be successful. **Note** only build but its functionality is not complete yet as we need to proceed to next step.
+8. Send a request to Apple asking for permission to use core features of Network extension API that this project utilizes by heading to [https://developer.apple.com/contact/network-extension/](https://developer.apple.com/contact/network-extension/). Fill out the form, and send. This might take around 2 weeks as seen [here](http://www.jianshu.com/p/ee038189f373) (Chinese content).
+9. ... to be updated ...
 
 ## How To Contribute
 
 // TODO
-
 
 ## Support Us
 
