@@ -90,7 +90,7 @@ There're a couple of issues that needed to look at, but at tested, it doens't ef
    
 ## How To Contribute
 
-...update later...
+Clone the project, make some changes or add a new feature, then make a pull request.
 
 ## Support Us
 
@@ -139,6 +139,7 @@ Also we'd like to thank people that helped with the project:
 
 - [@Blankwonder](https://twitter.com/Blankwonder)
 - [@龙七](#)
+- [@haxpor](https://twitter.com/haxpor)
 
 or donated us:
 - [@liqianyu](https://twitter.com/liqianyu)
