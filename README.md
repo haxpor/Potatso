@@ -23,7 +23,12 @@ Potatso has in total 31 dependencies as following
 * 1 Carthage dependency
 * 2 submodules dependencies
 
-The project is tested with Xcode 8.2 beta (8C30a) on iOS 10.2 (14C92) device.
+The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.0.1`.
+If you experience error in building the project, it's good idea to proceed with cocoapod version `1.0.1` first by doing the following steps
+
+* `sudo gem uninstall cocoapods` - to uninstall the current version first
+* `sudo gem install cocoapods -v 1.0.1` - to specifically install cocoapods version `1.0.1`
+* `pod --version` - to check version of current installed cocoapods. It should output `1.0.1`.
 
 ## Set up Guide - Code
 
@@ -32,8 +37,8 @@ Perform the following steps to be able to build the project.
 1. `git submodule update --init` to update git submodule
 2. `pod install` to pull down dependencies into our project
 3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
-4. On application targets' "General" settings tab in the "Linked Frameworks and Libraries" section of Potatso target, drag and drop `YAML.framework` file from `Carthage/Build/iOS` into it.
-5. On application targets' "Build Phases" settings tab, click the "+" icon and choose "New Run Script Phase". Create a Run Script in which has `bin/sh` as shell with following content  
+4. If **not** yet have "YAML.framework" as part of "Linked Frameworks and Libraries" section in "General" tab of Potatso target, then drag and drop `YAML.framework` file from `Carthage/Build/iOS` into it.
+5. If **not** yet have "Carthage" run script inside "Build Phases" of Potato target, then click the "+" icon and choose "New Run Script Phase". Create a Run Script with name "Carthage" in which has `bin/sh` as shell with following content  
      
    ```json
    /usr/local/bin/carthage copy-frameworks  
