@@ -17,7 +17,7 @@ class PaddingLabel: UILabel {
         super.drawText(in: newRect)
     }
 
-    override public var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         get {
             var s = super.intrinsicContentSize
             s.height += padding.top + padding.bottom

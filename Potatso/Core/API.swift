@@ -69,7 +69,7 @@ extension RuleSet: Mappable {
     }
 
     // Mappable
-    public func mapping(map: Map) {
+    public func mapping(_ map: Map) {
         uuid      <- map["id"]
         name      <- map["name"]
         createAt  <- (map["created_at"], DateTransform())
@@ -121,7 +121,7 @@ extension Rule: Mappable {
     }
 
     // Mappable
-    public func mapping(map: Map) {
+    public func mapping(_ map: Map) {
     }
 }
 
@@ -210,7 +210,7 @@ extension Alamofire.DataRequest {
      - returns: The request.
      */
 
-    public func responseObject<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, mapToObject object: T? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
+    public func responseObject<T: Mappable>(_ queue: DispatchQueue? = nil, keyPath: String? = nil, mapToObject object: T? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
         return response(queue: queue, responseSerializer: Alamofire.DataRequest.ObjectMapperSerializer(keyPath, mapToObject: object), completionHandler: completionHandler)
     }
 
@@ -272,7 +272,7 @@ extension Alamofire.DataRequest {
 
      - returns: The request.
      */
-    public func responseArray<T: Mappable>(queue: DispatchQueue? = nil, keyPath: String? = nil, completionHandler: @escaping (DataResponse<[T]>) -> Void) -> Self {
+    public func responseArray<T: Mappable>(_ queue: DispatchQueue? = nil, keyPath: String? = nil, completionHandler: @escaping (DataResponse<[T]>) -> Void) -> Self {
         return response(queue: queue, responseSerializer: Alamofire.DataRequest.ObjectMapperArraySerializer(keyPath), completionHandler: completionHandler)
     }
 
