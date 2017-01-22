@@ -15,16 +15,16 @@ private let kRuleSetFormName = "name"
 
 class RuleSetConfigurationViewController: FormViewController {
 
-    var ruleSet: RuleSet
+    var ruleSet: PotatsoModel.RuleSet
     var rules: [Rule]
     let isEdit: Bool
     var editable: Bool {
         return ruleSet.editable && !ruleSet.isSubscribe
     }
-    var callback: ((RuleSet?) -> Void)?
+    var callback: ((PotatsoModel.RuleSet?) -> Void)?
     var editSection: Section = Section()
 
-    init(ruleSet: RuleSet? = nil, callback: ((RuleSet?) -> Void)? = nil) {
+    init(ruleSet: PotatsoModel.RuleSet? = nil, callback: ((PotatsoModel.RuleSet?) -> Void)? = nil) {
         self.callback = callback
         if let ruleSet = ruleSet {
             self.ruleSet = RuleSet(value: ruleSet)

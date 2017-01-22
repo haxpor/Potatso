@@ -23,16 +23,12 @@ Potatso has in total 31 dependencies as following
 * 1 Carthage dependency
 * 2 submodules dependencies
 
-The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.0.1`.
-If you experience error in building the project, it's good idea to proceed with cocoapod version `1.0.1` first by doing the following steps
-
-* `sudo gem uninstall cocoapods` - to uninstall the current version first
-* `sudo gem install cocoapods -v 1.0.1` - to specifically install cocoapods version `1.0.1`
-* `pod --version` - to check version of current installed cocoapods. It should output `1.0.1`.
+The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.1.1`.
 
 ## Set up Guide - Code
 
 Perform the following steps to be able to build the project.
+Be warned that you **should not** call `pod update` as newer version of pod frameworks that Potatso depends on might break building process and there will be errors.
 
 1. `git submodule update --init` to update git submodule
 2. `pod install` to pull down dependencies into our project
@@ -51,12 +47,7 @@ Perform the following steps to be able to build the project.
    ```
    
 6. Search for `io.wasin.potatso` for project-wide, and replace it with your own domain name. This is necessary as you need to create your own provisioning profile as it uses your domain name.
-7. Open file `CallbackURLKit.swift` by hitting cmd+shift+o then enter the name of file. Add @escaping in front of all function signature parameters in `ActionHandler` defined at the top of the file. Make it as follows  
-     
-   ```swift
-   public typealias ActionHandler = (Parameters, @escaping SuccessCallback, @escaping FailureCallback, @escaping CancelCallback) -> Void  
-   ```  
-8. Build the project. Done.
+7. Build the project. Done.
 
 ## Set up Guide - Apple Developer Website
 

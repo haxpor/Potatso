@@ -69,7 +69,7 @@ extension RuleSet: Mappable {
     }
 
     // Mappable
-    public func mapping(_ map: Map) {
+    public func mapping(map: Map) {
         uuid      <- map["id"]
         name      <- map["name"]
         createAt  <- (map["created_at"], DateTransform())
@@ -121,7 +121,7 @@ extension Rule: Mappable {
     }
 
     // Mappable
-    public func mapping(_ map: Map) {
+    public func mapping(map: Map) {
     }
 }
 

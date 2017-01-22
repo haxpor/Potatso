@@ -85,7 +85,7 @@ class CloudViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = CloudDetailViewController(coder: ruleSets[indexPath.row])
+        let vc = CloudDetailViewController(ruleSet: ruleSets[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
 
