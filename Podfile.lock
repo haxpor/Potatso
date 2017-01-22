@@ -14,15 +14,15 @@ PODS:
     - CocoaAsyncSocket/RunLoop
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
+  - CocoaLumberjack (3.0.0):
+    - CocoaLumberjack/Default (= 3.0.0)
+    - CocoaLumberjack/Extensions (= 3.0.0)
+  - CocoaLumberjack/Core (3.0.0)
+  - CocoaLumberjack/Default (3.0.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
+  - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
-  - CocoaLumberjack/Swift (2.3.0):
+  - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
   - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
@@ -41,14 +41,14 @@ PODS:
     - KissXML/SwiftNSXML
   - KissXML/SwiftNSXML (5.1.2):
     - KissXML/Core
-  - LogglyLogger-CocoaLumberjack (2.3.1):
-    - CocoaLumberjack (~> 2.0)
-    - LogglyLogger-CocoaLumberjack/Formatter (= 2.3.1)
-    - LogglyLogger-CocoaLumberjack/Logger (= 2.3.1)
-  - LogglyLogger-CocoaLumberjack/Formatter (2.3.1):
-    - CocoaLumberjack (~> 2.0)
-  - LogglyLogger-CocoaLumberjack/Logger (2.3.1):
-    - CocoaLumberjack (~> 2.0)
+  - LogglyLogger-CocoaLumberjack (3.0.0):
+    - CocoaLumberjack (~> 3.0)
+    - LogglyLogger-CocoaLumberjack/Formatter (= 3.0.0)
+    - LogglyLogger-CocoaLumberjack/Logger (= 3.0.0)
+  - LogglyLogger-CocoaLumberjack/Formatter (3.0.0):
+    - CocoaLumberjack (~> 3.0)
+  - LogglyLogger-CocoaLumberjack/Logger (3.0.0):
+    - CocoaLumberjack (~> 3.0)
   - MBProgressHUD (1.0.0)
   - MMWormhole (2.0.0):
     - MMWormhole/Core (= 2.0.0)
@@ -69,7 +69,7 @@ PODS:
   - RealmSwift (2.1.1):
     - Realm (= 2.1.1)
   - Reveal-iOS-SDK (1.6.2)
-  - SwiftColor (0.3.8)
+  - SwiftColor (0.4.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -79,7 +79,7 @@ DEPENDENCIES:
   - CallbackURLKit
   - Cartography
   - CocoaAsyncSocket (~> 7.4.3)
-  - CocoaLumberjack/Swift
+  - CocoaLumberjack/Swift (~> 3.0.0)
   - Crashlytics
   - Eureka
   - Fabric
@@ -91,7 +91,7 @@ DEPENDENCIES:
   - KeychainAccess
   - KissXML
   - KissXML/libxml_module
-  - LogglyLogger-CocoaLumberjack (~> 2.0)
+  - LogglyLogger-CocoaLumberjack (~> 3.0)
   - MBProgressHUD
   - MMWormhole (~> 2.0.0)
   - ObjectMapper
@@ -99,7 +99,6 @@ DEPENDENCIES:
   - RealmSwift
   - Reveal-iOS-SDK (~> 1.6.2)
   - SwiftColor
-  - SwiftColor (~> 0.3.7)
 
 EXTERNAL SOURCES:
   Aspects:
@@ -115,7 +114,7 @@ SPEC CHECKSUMS:
   CallbackURLKit: 1a56181ef8d6a1491865041b2192dd8c9a364669
   Cartography: c1460e99395b824d9d75360b0382faeb0b33dcd7
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
   Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   Eureka: 2020d9faeef7b7e9adeb9e3d8af779e5931c1897
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
@@ -126,7 +125,7 @@ SPEC CHECKSUMS:
   ISO8601DateFormatter: 4551b6ce4f83185425f583b0b3feb3c7b59b942c
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   KissXML: 246c842586bb77110e04fb88e19376d96245c856
-  LogglyLogger-CocoaLumberjack: 9d84459e8377408e845ecef7a20ac0e15a4578e0
+  LogglyLogger-CocoaLumberjack: 16afad0a63fb70179fda1db85e03aeb3ded7fb02
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
@@ -134,8 +133,8 @@ SPEC CHECKSUMS:
   Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
   RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
-  SwiftColor: 491ce84c6f6eb09bf5b0a00630f5db927306dca5
+  SwiftColor: c240d8cb2e1a29d731ae8deca8739eac6b9c56bd
 
-PODFILE CHECKSUM: 9a019b9652cd41ace1e7dea715f6a37630945c3b
+PODFILE CHECKSUM: 78d220285830bda82f7e7fc2a7f5b2e8993c7e9f
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

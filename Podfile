@@ -32,7 +32,7 @@ target "Potatso" do
     pod 'Aspects', :path => "./Library/Aspects/"
     pod 'Cartography'
     pod 'AsyncSwift'
-    pod 'SwiftColor', '~> 0.3.7'
+    pod 'SwiftColor'
     pod 'Appirater'
     pod 'Eureka'
     pod 'MBProgressHUD'
@@ -43,10 +43,10 @@ target "Potatso" do
     pod 'ISO8601DateFormatter', '~> 0.8'
     pod 'Alamofire'
     pod 'ObjectMapper'
-    pod 'CocoaLumberjack/Swift'
+    pod 'CocoaLumberjack/Swift', '~> 3.0.0'
     pod 'Helpshift', '5.6.1'
     pod 'PSOperations', '~> 2.3'
-    pod 'LogglyLogger-CocoaLumberjack', '~> 2.0'
+    pod 'LogglyLogger-CocoaLumberjack', '~> 3.0'
     tunnel
     library
     fabric
@@ -65,7 +65,7 @@ end
 
 target "TodayWidget" do
     pod 'Cartography'
-    pod 'SwiftColor', '~> 0.3.7'
+    pod 'SwiftColor'
     library
     socket
     model
