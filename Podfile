@@ -34,7 +34,7 @@ target "Potatso" do
     pod 'AsyncSwift'
     pod 'SwiftColor'
     pod 'Appirater'
-    pod 'Eureka'
+    pod 'Eureka', '2.0.0-beta.1'
     pod 'MBProgressHUD'
     pod 'CallbackURLKit'
     pod 'ICDMaterialActivityIndicatorView', '~> 0.1.0'

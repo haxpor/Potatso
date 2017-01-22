@@ -26,7 +26,7 @@ PODS:
     - CocoaLumberjack/Extensions
   - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
-  - Eureka (1.7.0)
+  - Eureka (2.0.0-beta.1)
   - Fabric (1.6.8)
   - Helpshift (5.6.1)
   - ICDMaterialActivityIndicatorView (0.1.2)
@@ -81,7 +81,7 @@ DEPENDENCIES:
   - CocoaAsyncSocket (~> 7.4.3)
   - CocoaLumberjack/Swift (~> 3.0.0)
   - Crashlytics
-  - Eureka
+  - Eureka (= 2.0.0-beta.1)
   - Fabric
   - Helpshift (= 5.6.1)
   - ICDMaterialActivityIndicatorView (~> 0.1.0)
@@ -116,7 +116,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
   Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
-  Eureka: 2020d9faeef7b7e9adeb9e3d8af779e5931c1897
+  Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Helpshift: b48366299844f119acf5e91d02a2e89288494fe6
   ICDMaterialActivityIndicatorView: 3f02a9dc9e52417023a98385d631c93d3f95c465
@@ -135,6 +135,6 @@ SPEC CHECKSUMS:
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SwiftColor: c240d8cb2e1a29d731ae8deca8739eac6b9c56bd
 
-PODFILE CHECKSUM: 78d220285830bda82f7e7fc2a7f5b2e8993c7e9f
+PODFILE CHECKSUM: 6cc67f57d877a36e38fab6e27a5d66af2dbb8b3d
 
 COCOAPODS: 1.1.1
