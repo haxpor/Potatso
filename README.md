@@ -33,21 +33,9 @@ Be warned that you **should not** call `pod update` as newer version of pod fram
 1. `git submodule update --init` to update git submodule
 2. `pod install` to pull down dependencies into our project
 3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
-4. If **not** yet have "YAML.framework" as part of "Linked Frameworks and Libraries" section in "General" tab of Potatso target, then drag and drop `YAML.framework` file from `Carthage/Build/iOS` into it.
-5. If **not** yet have "Carthage" run script inside "Build Phases" of Potato target, then click the "+" icon and choose "New Run Script Phase". Create a Run Script with name "Carthage" in which has `bin/sh` as shell with following content  
-     
-   ```json
-   /usr/local/bin/carthage copy-frameworks  
-   ```
-     
-   and add the paths to added framework under "Input Files" as follows  
-     
-   ```json
-   $(SRCROOT)/Carthage/Build/iOS/YAML.framework  
-   ```
-   
-6. Search for `io.wasin.potatso` for project-wide, and replace it with your own domain name. This is necessary as you need to create your own provisioning profile as it uses your domain name.
-7. Build the project. Done.
+4. Search for `io.wasin.potatso` for project-wide, and replace it with your own domain name. This is necessary as you need to create your own provisioning profile as it uses your domain name.
+5. Follow the guide in *Set up Guide - Apple Developer Website* section.
+6. Build and Run the project. Done.
 
 ## Set up Guide - Apple Developer Website
 
@@ -83,6 +71,7 @@ There're a couple of issues that needed to look at, but at tested, it doens't ef
        JSONToMap = result.value as AnyObject?
    }
    ```
+* Potatso core code depends on version `1.7.0` of Eureka with manual migration to Swift 3. It's already done and linked to project. But you will see `observeValue()` function in `Eureka/Source/Rows/PostalAddressRow.swift` that has been commented for all of its function code due to Eureka's newer version `2.0.0-beta.1` doesn't include such file in the project anymore, but it still works with no problem. This note is meant to mark that there is going to be a lot of effort if we decide to depend on Eureka version `2.0.0-beta.1` as we need to change a lot of Potatso core code.
    
 ## How To Contribute
 
