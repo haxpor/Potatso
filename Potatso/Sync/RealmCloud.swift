@@ -66,7 +66,7 @@ public func resolveConflicts(_ error: NSError,
         as? [CKRecordID : NSError] {
         
         for (_, partialError) in errorDict {
-            let errorCode = CKError(_nsError: NSError(domain: "io.wasin.potatso", code: partialError.code))
+            let errorCode = CKError(_nsError: NSError(domain: Bundle.main.bundleIdentifier!, code: partialError.code))
             if errorCode.code == CKError.Code.serverRecordChanged {
                 let userInfo = partialError.userInfo
                 
@@ -153,7 +153,7 @@ public func createAlertOperation(_ error: NSError) -> AlertOperation {
             "Error Code: RLMError.\(errorString) (\(error.localizedDescription))"
         
     case CKErrorDomain:
-        let ckErrorCode: CKError = CKError(_nsError: NSError(domain: "io.wasin.potatso", code: error.code))
+        let ckErrorCode: CKError = CKError(_nsError: NSError(domain: Bundle.main.bundleIdentifier!, code: error.code))
         
         alert.title = "Cloud Error"
         alert.message =

@@ -76,7 +76,7 @@ class PushLocalChangesBaseOperation: PSOperations.Operation {
      Implement custom logic here for handling CloudKit push errors.
      */
     func handleCloudKitPushError(_ savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: NSError, completionHandler: @escaping (NSError?) -> ()) {
-        let ckErrorCode: CKError = CKError(_nsError: NSError(domain: "io.wasin.potatso", code: error.code))
+        let ckErrorCode: CKError = CKError(_nsError: NSError(domain: Bundle.main.bundleIdentifier!, code: error.code))
         switch ckErrorCode.code {
         case .partialFailure:
             resolvePushConflictsAndRetry(savedRecords, deletedRecordIDs: deletedRecordIDs, error: error, completionHandler: completionHandler)

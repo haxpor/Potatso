@@ -145,7 +145,7 @@ class FetchCloudChangesOperation: PSOperations.Operation {
      Implement custom logic here for handling CloudKit fetch errors.
      */
     func handleCloudKitFetchError(_ error: NSError, completionHandler: @escaping (NSError!) -> ()) {
-        let ckErrorCode: CKError = CKError(_nsError: NSError(domain: "io.wasin.potatso", code: error.code))
+        let ckErrorCode: CKError = CKError(_nsError: NSError(domain: Bundle.main.bundleIdentifier!, code: error.code))
         
         switch ckErrorCode.code {
         case .zoneBusy, .requestRateLimited, .serviceUnavailable, .networkFailure, .networkUnavailable, .resultsTruncated:

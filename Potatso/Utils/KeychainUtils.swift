@@ -9,4 +9,4 @@
 import Foundation
 import KeychainAccess
 
-let keychain = Keychain(service: "io.wasin.potatso")
+let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
