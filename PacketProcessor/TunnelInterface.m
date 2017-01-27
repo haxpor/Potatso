@@ -16,7 +16,7 @@
 #import "tun2socks/tun2socks.h"
 @import CocoaAsyncSocket;
 
-#define kTunnelInterfaceErrorDomain @"io.wasin.potatso.TunnelInterface"
+#define kTunnelInterfaceErrorDomain [NSString stringWithFormat:@"%@.TunnelInterface", [[NSBundle mainBundle] bundleIdentifier]]
 
 @interface TunnelInterface () <GCDAsyncUdpSocketDelegate>
 @property (nonatomic) NEPacketTunnelFlow *tunnelPacketFlow;

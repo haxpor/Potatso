@@ -6,6 +6,7 @@
 //  Copyright © 2016 TouchingApp. All rights reserved.
 //
 
+
 import PotatsoBase
 import PotatsoModel
 import RealmSwift
@@ -42,7 +43,7 @@ open class Manager {
         }
     }
     
-    open let wormhole = MMWormhole(applicationGroupIdentifier: sharedGroupIdentifier, optionalDirectory: "wormhole")
+    open let wormhole = MMWormhole(applicationGroupIdentifier: Potatso.sharedGroupIdentifier(), optionalDirectory: "wormhole")
 
     var observerAdded: Bool = false
     

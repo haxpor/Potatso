@@ -160,7 +160,7 @@ extension Alamofire.DataRequest {
                 let failureReason = "Data could not be serialized. Input data was nil."
                 //let error = Alamofire.Error.errorWithCode(.dataSerializationFailed, failureReason: failureReason)
                 let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
-                let error = NSError(domain: "io.wasin.potatso", code: 9999, userInfo: userInfo)
+                let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 9999, userInfo: userInfo)
                 logError(error, request: request, response: response)
                 return .failure(error)
             }
@@ -170,7 +170,7 @@ extension Alamofire.DataRequest {
             if let errorMessage = (result.value as AnyObject).value(forKeyPath: "error_message") as? String {
                 //let error = Alamofire.Error.errorWithCode(.statusCodeValidationFailed, failureReason: errorMessage)
                 let userInfo = [NSLocalizedFailureReasonErrorKey: errorMessage]
-                let error = NSError(domain: "io.wasin.potatso", code: 9999, userInfo: userInfo)
+                let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 9999, userInfo: userInfo)
                 logError(error, request: request, response: response)
                 return .failure(error)
             }
@@ -193,7 +193,7 @@ extension Alamofire.DataRequest {
             let failureReason = "ObjectMapper failed to serialize response"
             //let error = Alamofire.Error.errorWithCode(.dataSerializationFailed, failureReason: failureReason)
             let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
-            let error = NSError(domain: "io.wasin.potatso", code: 9999, userInfo: userInfo)
+            let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 9999, userInfo: userInfo)
             logError(error, request: request, response: response)
             return .failure(error)
         }
@@ -226,7 +226,7 @@ extension Alamofire.DataRequest {
                 let failureReason = "Data could not be serialized. Input data was nil."
                 //let error = Alamofire.Error.errorWithCode(.dataSerializationFailed, failureReason: failureReason)
                 let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
-                let error = NSError(domain: "io.wasin.potatso", code: 9999, userInfo: userInfo)
+                let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 9999, userInfo: userInfo)
                 logError(error, request: request, response: response)
                 return .failure(error)
             }
@@ -237,7 +237,7 @@ extension Alamofire.DataRequest {
             if let errorMessage = (result.value as AnyObject).value(forKeyPath: "error_message") as? String {
                 //let error = Alamofire.Error.errorWithCode(.statusCodeValidationFailed, failureReason: errorMessage)
                 let userInfo = [NSLocalizedFailureReasonErrorKey: errorMessage]
-                let error = NSError(domain: "io.wasin.potatso", code: 9999, userInfo: userInfo)
+                let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 9999, userInfo: userInfo)
                 logError(error, request: request, response: response)
                 return .failure(error)
             }
@@ -257,7 +257,7 @@ extension Alamofire.DataRequest {
             let failureReason = "ObjectMapper failed to serialize response."
             //let error = Alamofire.Error.errorWithCode(.dataSerializationFailed, failureReason: failureReason)
             let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
-            let error = NSError(domain: "io.wasin.potatso", code: 9999, userInfo: userInfo)
+            let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 9999, userInfo: userInfo)
             logError(error, request: request, response: response)
             return .failure(error)
         }
