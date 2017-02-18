@@ -35,6 +35,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 xcshareddata/**
+Potatso.xcworkspace/xcshareddata/
 
 # CocoaPods
 #
