@@ -1,6 +1,13 @@
 # Potatso ![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
-<a href="https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8">![](https://cdn.rawgit.com/shadowsocks/Potatso/master/Download.svg)</a>
+## Important
+
+Please read [this](https://github.com/haxpor/Potatso/blob/master/ADHERE_LICENSE.md) first before you do anything with this project.  
+In short, you need to respect to license of the project. You cannot copy the source code and publish to App Store.
+
+---
+
+## What is it?
 
 Potatso is an iOS client that implements custom proxies with the leverage of Network Extension framework introduced by Apple since iOS 9.
 
@@ -9,11 +16,11 @@ Currently, Potatso is compatible with following proxies:
 - [Shadowsocks](https://shadowsocks.org)
 - [ShadowsocksR](https://github.com/breakwa11/shadowsocks-rss)
 
-[Subscribe Telegram Channel](https://telegram.me/potatso) to get updates of Potatso. 
-
+[Subscribe Telegram Channel](https://telegram.me/potatso) to get updates of Potatso.  
 [Join Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) to chat with users.
 
-Author: [icodesign](https://twitter.com/icodesign_me)
+Original Author: [@icodesign](https://twitter.com/icodesign_me)
+Swift 3 Maintainer: [@haxpor](https://twitter.com/haxpor)
 
 ## Project Info
 
@@ -87,28 +94,18 @@ There're a couple of issues that needed to look at, but at tested, it doen **not
 
 Clone the project, make some changes or add a new feature, then make a pull request.
 
-## Support Us
-
-The development covers a lot of complicated work, costing not only money but also time.
-
-There're two ways you can support us:
-
-- [Download Potatso from Apple Store](https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8). (**Recommended**) 
-
-- Donate with Alipay. (Account: **leewongstudio.com@gmail.com**)
-
 ## Acknowlegements
 
 We use the following services or open-source libraries. So we'd like show them highest respect and thank for bringing those great projects:
 
-Services:
+### Services
 
 - [Fabric](https://get.fabric.io/)
 - [Reveal](http://revealapp.com/)
 - [realm](https://realm.io/)
 - [HelpShift](https://www.helpshift.com)
 
-Open-source Libraries:
+### Open-source Libraries
 
 - [KissXML](https://github.com/robbiehanson/KissXML)
 - [MMWormhole](https://github.com/mutualmobile/MMWormhole)
@@ -130,24 +127,38 @@ Open-source Libraries:
 - [Antinat](http://antinat.sourceforge.net/)
 - [Privoxy](https://www.privoxy.org/)
 
-Also we'd like to thank people that helped with the project:
+### Also we'd like to thank people that helped with the project
 
 - [@Blankwonder](https://twitter.com/Blankwonder)
 - [@龙七](#)
 - [@haxpor](https://twitter.com/haxpor)
+- TestFlight Users and [Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) users.
 
-or donated us:
+### Donate
 - [@liqianyu](https://twitter.com/liqianyu)
 - [@anonymous](#) x2
 
-And also thank all TestFlight Users and [Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) Users.
+## Notice
 
+Potatso 2 is in beta and likely to come out not too long in the future.  
+You can wait to purchase Potatso 2 from App Store, or still use Potatso by building it and installing to your device from this project.
 
-Thanks again!
+Please note that Potatso 2 will be closed-source as stated from original author's reason. Read more from [here](https://github.com/haxpor/Potatso/blob/master/ADHERE_LICENSE.md).
+
+## Support Us
+
+The development covers a lot of complicated work, costing not only money but also time.
+These are the way to support
+
+- [Download Potatso from Apple Store](https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8). (**Recommended**) 
+- Donate with Alipay to original author. (Account: **leewongstudio.com@gmail.com**)
+- Donate to swift3 maintainer (WeChat: http://imgur.com/lsAao62, or PayPal: haxpor@gmail.com)
 
 ## License
 
-**You can't submit the app to App Store.**
+**You cannot just copy the project, and publish to App Store.**  Please read [this](https://github.com/haxpor/Potatso/blob/master/ADHERE_LICENSE.md) first.
+
+--
 
 To be compatible with those libraries using GPL, we're distributing with GPLv3 license.
 
@@ -156,5 +167,4 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
-
 
