@@ -1,4 +1,4 @@
-## Adhere License
+## Adhere To License
 
 [@icodesign](https://github.com/icodesign) which is original author of Potatso has deleted all project source code from original project [repository](https://github.com/icodesign/Potatso) on Github.
 
@@ -21,5 +21,5 @@ Please keep in mind that you cannot just copy and publish the project to App Sto
 
 Let's together make open source community better but still respect intention of authors.
 
-Wasin
+Wasin Thonkaew  
 Thanks
