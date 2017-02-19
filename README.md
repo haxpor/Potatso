@@ -19,16 +19,16 @@ Currently, Potatso is compatible with following proxies:
 [Subscribe Telegram Channel](https://telegram.me/potatso) to get updates of Potatso.  
 [Join Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) to chat with users.
 
-Original Author: [@icodesign](https://twitter.com/icodesign_me)
+Original Author: [@icodesign](https://twitter.com/icodesign_me)  
 Swift 3 Maintainer: [@haxpor](https://twitter.com/haxpor)
 
 ## Project Info
 
-Potatso has in total 31 dependencies as following
+Potatso has in total 33 (2 as submodules dependencies as used as local file in Cocoapod) dependencies as following
 
 * 28 Cocoapod dependencies
 * 1 Carthage dependency
-* 2 submodules dependencies
+* 4 submodules dependencies
 
 The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.1.1`.
 
