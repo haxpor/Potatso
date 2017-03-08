@@ -30,9 +30,9 @@ Potatso has in total 33 (2 as submodules dependencies as used as local file in C
 * 1 Carthage dependency
 * 4 submodules dependencies
 
-The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.1.1`.
+The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.1.1`+.
 
-## Set up Guide - Code
+## How to Build Project
 
 Perform the following steps to be able to build the project.
 Be warned that you **should not** call `pod update` as newer version of pod frameworks that Potatso depends on might break building process and there will be errors.
@@ -40,38 +40,7 @@ Be warned that you **should not** call `pod update` as newer version of pod fram
 1. `git submodule update --init` to update git submodule
 2. `pod install` to pull down dependencies into our project
 3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
-4. Open Xcode **workspace** project (`Potatso.xcworkspace`).
-   1. Click on Potatso project, then click on `General` tap.
-   2. Click on `Potatso` target at Targets section.
-   3. Change its `Bundle Identifier` to match with your desire domain name for example `com.yourdomain.potatso`.
-   4. For the following targets, you change `io.wasin.potatso` to match your domain name. This means if you see `io.wasin.potatso.tunnel`, you change it to `com.yourdomain.potatso.tunnel`.
-      * `PacketTunnel`
-      * `TodayWidget`
-      * `PotatsoLibrary`
-      * `PacketProcessor`
-      * `PotatsoModel`
-      * `PotatsoBase`
-5. Follow the guide in *Set up Guide - Apple Developer Website* section.
-6. Build and Run the project. Done.
-
-## Set up Guide - Apple Developer Website
-
-Note that it's better to not allow Xcode to automatically manage your provisioning profile for the application included Potatso (main app), PacketTunnel (extension), and TodayWidget (extension). Most of the time, such provisioning profile won't generate on developer page, or point to generic one which makes it not working!.
-
-So follow the following steps
-
-* Create 3 App IDs for `Potatso`, `PacketTunnel`, and `TodayWidget` on Apple Developer website. Make sure to name bundle id for each one matches bundle identifier you used when setting up with Xcode. In this case `io.wasin.potatso`, `io.wasin.potatso.tunnel`, and `io.wasin.potatso.todaywidget` respectively. Rename to be your domain name freely.
-   * **`Potatso`**  
-      Enable `App Groups`, `Game Center`, `iCloud`, `In-App Purchase`, `Network Extensions`, and `Push Notifications`.
-   * **`PacketTunnel`**  
-      Enable `App Groups`, `Game Center`, `In-App Purchase`, and `Network Extensions`.
-   * **`TodayWidget`**  
-      Enable `App Groups`, `Game Center`, `In-App Purchase`, and `Network Extensions`.
-
-* Create 3 corresponding provisioning profile for each created App ID on Apple Developer website.
-* Now go back to Xcode
-* Click on project -> click on General tap -> select `Potatso` target and uncheck "Automatically manage signing" -> select a proper provisioning profile in both "Signing (Debug)" and "Signing (Release)".
-* Do the same for `PacketTunnel` and `TodayWidget` target.
+4. Open `Potatso.xcworkspace` then Build and Run the project. Done.
 
 ## Code Notices
 

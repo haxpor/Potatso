@@ -11,8 +11,8 @@
 @implementation Potatso
 
 + (NSString *) sharedGroupIdentifier {
-    // this will return the main application's bundle identifier, not the target that this source file lives under
-    return [NSString stringWithFormat:@"group.%@", [[NSBundle mainBundle] bundleIdentifier]];
+    // fixed issue 13: if value isn't fixed, but use value from [[NSBundle mainBundle] bundleIdentifier], occasionally the app will fail to connect. So we fixed it via harded-code value as users dont have to customize this value anyway.
+    return @"group.io.wasin.potatso";
 }
 
 + (NSURL *)sharedUrl {
