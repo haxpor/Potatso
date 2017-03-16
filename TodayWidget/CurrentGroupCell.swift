@@ -42,12 +42,12 @@ class CurrentGroupCell: UITableViewCell {
     
     func setupLayout() {
         constrain(nameLabel, switchButton, contentView) { nameLabel, switchButton, superView in
-            nameLabel.leading == superView.leading
+            nameLabel.leading == superView.leading + 20
             nameLabel.centerY == superView.centerY
             nameLabel.trailing == switchButton.leading - 15
             
             switchButton.centerY == superView.centerY
-            switchButton.trailing == superView.trailing - 10
+            switchButton.trailing == superView.trailing - 20
             switchButton.width == 70
             switchButton.height == 27
         }
