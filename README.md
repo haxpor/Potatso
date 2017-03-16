@@ -32,6 +32,10 @@ Potatso has in total 33 (2 as submodules dependencies as used as local file in C
 
 The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.1.1`+.
 
+## Change log
+
+You can take a look at [Change log](https://github.com/haxpor/Potatso/wiki/Change-log) for changes that has made for specific commit that has significant updates. Thus you can freely decide whether you want to rebuild Potatso to include such update or not.
+
 ## How to Build Project
 
 Perform the following steps to be able to build the project.
