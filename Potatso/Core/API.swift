@@ -244,14 +244,17 @@ extension Alamofire.DataRequest {
 
             let JSONToMap: AnyObject?
             if let keyPath = keyPath, keyPath.isEmpty == false {
+                // issue: see Code Notices at Github's front page, still no time to pay attention to this issue yet...
                 //JSONToMap = (result.value? as AnyObject).value(forKeyPath: keyPath)
                 JSONToMap = nil
             } else {
                 JSONToMap = result.value as AnyObject?
             }
 
-            if let parsedObject = Mapper<T>().mapArray(JSONArray: JSONToMap as! [[String : Any]]){
-                return .success(parsedObject)
+            if (JSONToMap != nil) {
+                if let parsedObject = Mapper<T>().mapArray(JSONArray: JSONToMap as! [[String : Any]]){
+                    return .success(parsedObject)
+                }
             }
 
             let failureReason = "ObjectMapper failed to serialize response."
