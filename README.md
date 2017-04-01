@@ -46,6 +46,10 @@ Be warned that you **should not** call `pod update` as newer version of pod fram
 3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
 4. Open `Potatso.xcworkspace` then Build and Run the project. Done.
 
+## Build Notices
+
+If you try to build for iOS 10.3, please try to use XCode Version 8.3 (8E162) onwards and only for release version.
+
 ## Code Notices
 
 There're a couple of issues that needed to look at, but at tested, it doen **not** effect the functionality of the app.
