@@ -52,7 +52,7 @@ If you try to build for iOS 10.3, please try to use XCode Version 8.3 (8E162) on
 
 ## Code Notices
 
-There're a couple of issues that needed to look at, but at tested, it doen **not** effect the functionality of the app.
+There're a couple of issues that needed to look at, but after testing, it does **not** affect the functionality of the app.
 
 * In file `Potatso/Core/API.swift`, it's the following code focusing on line with comment that I can't figure it out yet how to migrate it to Swift 3 code.  
 
