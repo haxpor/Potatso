@@ -30,7 +30,8 @@ Potatso has in total 33 (2 as submodules dependencies as used as local file in C
 * 1 Carthage dependency
 * 4 submodules dependencies
 
-The project is tested with Xcode 8.2 (8C38) on iOS 10.2 (14C92) device with cocoapod version `1.1.1`+.
+The project is tested with Xcode `8.2 (8C38)` on iOS `10.2 (14C92)` device with cocoapod version `1.1.1`+, and carthage version `0.18.1`.  
+If you experienced an expected issue, try to use those versions.
 
 ## Change log
 
