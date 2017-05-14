@@ -135,7 +135,7 @@ static btime_t btime_gettime (void)
         return ((int64_t)tv.tv_sec * 1000 + (int64_t)tv.tv_usec/1000);
     } else {
         struct timespec ts;
-        ASSERT_FORCE(clock_gettime(CLOCK_MONOTONIC, &ts) == 0)
+        ASSERT_FORCE(clock_gettime_ex(CLOCK_MONOTONIC, &ts) == 0)
         return (((int64_t)ts.tv_sec * 1000 + (int64_t)ts.tv_nsec/1000000) - btime_global.start_time);
     }
     
