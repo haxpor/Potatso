@@ -3369,7 +3369,11 @@ static void add_log_csp(struct client_state *csp) {
 
     if (log_clients_count > max_log_clients_count) {
         log_clients->csp->flags &= ~CSP_FLAG_LOG_REQUEST;
+        struct log_client_states *tmp = log_clients;
         log_clients = log_clients->next;
+        tmp->csp = NULL;
+        tmp->next = NULL;
+        freez(tmp);
         log_clients_count --;
     }
     unlock_log_request();
