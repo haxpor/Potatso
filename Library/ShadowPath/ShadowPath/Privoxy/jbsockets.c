@@ -373,9 +373,11 @@ static jb_socket rfc2553_connect_to(const char *host, int portnum, struct client
                     }else if (csp->routing == ROUTE_BLOCK) {
                         log_error(LOG_LEVEL_CONNECT,
                                   "Block request to ip: %s", csp->http->host_ip_addr_str);
+                        freeaddrinfo(result);
                         return JB_INVALID_SOCKET;
                     }else {
                         if (fwd) {
+                            freeaddrinfo(result);
                             return connect_to_forward(csp, fwd, 1);
                         }else {
                             // No proxy provided.
