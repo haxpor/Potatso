@@ -16,7 +16,6 @@ class CollectionViewController: SegmentPageVC {
     let pageVCs = [
         RuleSetListViewController(),
         ProxyListViewController(),
-        CloudViewController(),
     ]
 
     override func pageViewControllersForSegmentPageVC() -> [UIViewController] {
@@ -24,7 +23,7 @@ class CollectionViewController: SegmentPageVC {
     }
 
     override func segmentsForSegmentPageVC() -> [String] {
-        return ["Rule Set".localized(), "Proxy".localized(), "Cloud Set".localized()]
+        return ["Rule Set".localized(), "Proxy".localized()]
     }
 
     override func showPage(_ index: Int) {
