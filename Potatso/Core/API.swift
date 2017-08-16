@@ -15,9 +15,9 @@ typealias waDateFormatter = ISO8601DateFormatter
 
 struct API {
 
-//    static let URL = "http://192.168.2.217:8000/api/"
-    static let URL = "https://api.potatso.com/"
-
+    // Use your own API
+    static let URL = "http://192.168.2.217:8000/api/"
+    
     enum Path {
         case ruleSets
         case ruleSet(String)
