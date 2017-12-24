@@ -32,12 +32,8 @@ Potatso has in total 33 (2 as submodules dependencies as used as local file in C
 * 1 Carthage dependency
 * 4 submodules dependencies
 
-The project is tested with Xcode `8.2 (8C38)` on iOS `10.2 (14C92)` device with cocoapod version `1.1.1`+, and carthage version `0.18.1`.  
-If you experienced an expected issue, try to use those versions.
-
-## Change log
-
-You can take a look at [Change log](https://github.com/haxpor/Potatso/wiki/Change-log) for changes that has made for specific commit that has significant updates. Thus you can freely decide whether you want to rebuild Potatso to include such update or not.
+The project is tested with Xcode `9.2 (9C40B)` on iOS `11.2 (15B92)` device with cocoapod version `1.3.1`+, and carthage version `0.18.1`.  
+If you experienced an expected issue, try to use those versions, if still experience the problem please file the issue.
 
 ## How to Build Project
 
@@ -49,11 +45,7 @@ Be warned that you **should not** call `pod update` as newer version of pod fram
 3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
 4. Open `Potatso.xcworkspace` then Build and Run the project. Done.
 
-## Build Notices
-
-If you try to build for iOS 10.3, please try to use XCode Version 8.3 (8E162) onwards and only for release version.
-
-## Code Notices
+## Code Notices (outdated, will review this part again)
 
 There're a couple of issues that needed to look at, but after testing, it does **not** affect the functionality of the app.
 
