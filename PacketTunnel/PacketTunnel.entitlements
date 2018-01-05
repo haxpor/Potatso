@@ -14,7 +14,7 @@
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)io.wasin.potatso.tunnel</string>
+		<string>$(AppIdentifierPrefix)io.wasin.potatso</string>
 	</array>
 </dict>
 </plist>

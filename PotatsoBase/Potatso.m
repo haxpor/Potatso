@@ -8,11 +8,29 @@
 
 #import "Potatso.h"
 
+static NSString* groupIdentifier = nil;
+
 @implementation Potatso
 
 + (NSString *) sharedGroupIdentifier {
-    // fixed issue 13: if value isn't fixed, but use value from [[NSBundle mainBundle] bundleIdentifier], occasionally the app will fail to connect. So we fixed it via harded-code value as users dont have to customize this value anyway.
-    return @"group.io.wasin.potatso";
+    // improved version for fix of issue 13
+    // if groupIdentifier is not set yet, then we grab value from key inside Info.plist of Potatso target
+    // cleaner way to get this than fixed code as before
+    if (groupIdentifier == nil) {
+        NSDictionary<NSString*, id> *infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSAssert(infoDict != nil, @"Dictionary get from NSBundle should not be null");
+        if (infoDict != nil) {
+            NSDictionary<NSString*, id> *potatsoInternalDict = infoDict[@"PotatsoInternal"];
+            NSAssert(potatsoInternalDict != nil, @"We should have PotatsoInternal inside Info.plist of Potatso main target. It needs to be existing.");
+            if (potatsoInternalDict != nil) {
+                NSString* pGroupIdentifier = potatsoInternalDict[@"GroupIdentifier"];
+                NSAssert(pGroupIdentifier != nil, @"Group identifier needs to have value");
+                groupIdentifier = [NSString stringWithString: pGroupIdentifier];
+            }
+        }
+    }
+
+    return groupIdentifier;
 }
 
 + (NSURL *)sharedUrl {
