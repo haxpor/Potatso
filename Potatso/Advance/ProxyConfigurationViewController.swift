@@ -188,7 +188,7 @@ class ProxyConfigurationViewController: FormViewController {
             guard let port = values[kProxyFormPort] as? Int else {
                 throw "Port can't be empty".localized()
             }
-            guard port > 0 && port < Int(UINT16_MAX) else {
+            guard port > 0 && port <= Int(UINT16_MAX) else {
                 throw "Invalid port".localized()
             }
             var authscheme: String?
