@@ -13,6 +13,7 @@
 		1ED659011E05C73100D4BEE3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED659001E05C73100D4BEE3 /* CloudKit.framework */; };
 		1ED659061E05E88C00D4BEE3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED659051E05E88C00D4BEE3 /* GameKit.framework */; };
 		1ED66DEE1E05A72300638808 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED66DED1E05A72300638808 /* StoreKit.framework */; };
+		1EE85E0C2000639700C5DB6C /* InfoInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE85E0B2000639700C5DB6C /* InfoInternal.swift */; };
 		1EEBB8771FFFD4B500EB33C3 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */; };
 		1EEBB8781FFFD52700EB33C3 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */; };
 		1EEBB8791FFFD8A700EB33C3 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */; };
@@ -345,6 +346,7 @@
 		1ED659001E05C73100D4BEE3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		1ED659051E05E88C00D4BEE3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		1ED66DED1E05A72300638808 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1EE85E0B2000639700C5DB6C /* InfoInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoInternal.swift; sourceTree = "<group>"; };
 		1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		1EF602941F113A660005E0C7 /* GeoLite2-Country.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-Country.mmdb"; sourceTree = "<group>"; };
 		217DDEB43D39CFD980088F46 /* Pods-PotatsoModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoModel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoModel/Pods-PotatsoModel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1294,6 +1296,7 @@
 				9BC6002F1CB299DE00E5EA61 /* NSError+Helper.h */,
 				9BC600301CB299DE00E5EA61 /* NSError+Helper.m */,
 				9BC600211CB2921C00E5EA61 /* Info.plist */,
+				1EE85E0B2000639700C5DB6C /* InfoInternal.swift */,
 			);
 			path = PotatsoBase;
 			sourceTree = "<group>";
@@ -3176,6 +3179,7 @@
 				9BC6002C1CB2922E00E5EA61 /* Potatso.m in Sources */,
 				9BC600341CB299DE00E5EA61 /* NSError+Helper.m in Sources */,
 				B8F784681D3678B400F02FF5 /* Settings.m in Sources */,
+				1EE85E0C2000639700C5DB6C /* InfoInternal.swift in Sources */,
 				9BC600321CB299DE00E5EA61 /* JSONUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

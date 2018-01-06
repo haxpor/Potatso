@@ -60,6 +60,8 @@
 	<dict>
 		<key>GroupIdentifier</key>
 		<string>group.io.wasin.potatso</string>
+		<key>LogglyAPIKey</key>
+		<string>488db635-457d-48f4-8818-ffcd489f588b</string>
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
