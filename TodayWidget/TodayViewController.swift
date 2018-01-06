@@ -35,7 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background))
+        socket = GCDAsyncSocket(delegate: self, delegateQueue: DispatchQueue.global(qos: DispatchQoS.QoSClass.background))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -95,7 +95,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         sock.disconnect()
     }
 
-    func socketDidDisconnect(_ sock: GCDAsyncSocket!, withError err: NSError!) {
+    func socketDidDisconnect(_ sock: GCDAsyncSocket!, withError err: Error!) {
         updateStatus(false)
     }
 
