@@ -8,29 +8,13 @@
 
 #import "Potatso.h"
 
-static NSString* groupIdentifier = nil;
-
 @implementation Potatso
 
 + (NSString *) sharedGroupIdentifier {
-    // improved version for fix of issue 13
-    // if groupIdentifier is not set yet, then we grab value from key inside Info.plist of Potatso target
-    // cleaner way to get this than fixed code as before
-    if (groupIdentifier == nil) {
-        NSDictionary<NSString*, id> *infoDict = [[NSBundle mainBundle] infoDictionary];
-        NSAssert(infoDict != nil, @"Dictionary get from NSBundle should not be null");
-        if (infoDict != nil) {
-            NSDictionary<NSString*, id> *potatsoInternalDict = infoDict[@"PotatsoInternal"];
-            NSAssert(potatsoInternalDict != nil, @"We should have PotatsoInternal inside Info.plist of Potatso main target. It needs to be existing.");
-            if (potatsoInternalDict != nil) {
-                NSString* pGroupIdentifier = potatsoInternalDict[@"GroupIdentifier"];
-                NSAssert(pGroupIdentifier != nil, @"Group identifier needs to have value");
-                groupIdentifier = [NSString stringWithString: pGroupIdentifier];
-            }
-        }
-    }
-
-    return groupIdentifier;
+    // reverted back
+    // very curious why grabbing value from Info.plist will result in cannot connect to VPN all the time
+    // it needs to be fixed like this as always
+    return @"group.io.wasin.potatso";
 }
 
 + (NSURL *)sharedUrl {
