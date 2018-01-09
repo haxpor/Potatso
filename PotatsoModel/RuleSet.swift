@@ -58,7 +58,7 @@ public final class RuleSet: BaseModel {
     }
 
     public override func validate(inRealm realm: Realm) throws {
-        guard name.characters.count > 0 else {
+        guard name.count > 0 else {
             throw RuleSetError.emptyName
         }
     }
@@ -114,7 +114,7 @@ extension RuleSet {
             throw RuleSetError.invalidRuleSet
         }
         self.name = name
-        if realm.objects(RuleSet).filter("name = '\(name)'").first != nil {
+        if realm.objects(RuleSet.self).filter("name = '\(name)'").first != nil {
             self.name = "\(name) \(RuleSet.dateFormatter.string(from: Date()))"
         }
         guard let rulesStr = dictionary["rules"] as? [String] else {

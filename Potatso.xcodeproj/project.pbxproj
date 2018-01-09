@@ -2329,7 +2329,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = TouchingApp;
 				TargetAttributes = {
 					9B07D6AF1CB7A6A900182C1B = {
@@ -2337,7 +2337,7 @@
 					};
 					9B0CFA0A1C1C0B1A007BD7C6 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = XGKHW634KL;
+						DevelopmentTeam = M5UW3GJJEM;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2374,7 +2374,7 @@
 					};
 					9B8193B11CBCFEE700BE320D = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = XGKHW634KL;
+						DevelopmentTeam = M5UW3GJJEM;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2394,7 +2394,7 @@
 					};
 					9B8705F91C1D788F00651424 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = XGKHW634KL;
+						DevelopmentTeam = M5UW3GJJEM;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -2972,7 +2972,6 @@
 				"${BUILT_PRODUCTS_DIR}/ISO8601DateFormatter/ISO8601DateFormatter.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
-				"${BUILT_PRODUCTS_DIR}/LogglyLogger-CocoaLumberjack/LogglyLogger_CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MMWormhole/MMWormhole.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -2998,7 +2997,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISO8601DateFormatter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LogglyLogger_CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMWormhole.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -3391,14 +3389,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -3439,14 +3443,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -3484,7 +3494,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = XGKHW634KL;
+				DEVELOPMENT_TEAM = M5UW3GJJEM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3515,7 +3525,7 @@
 					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aiyuangong.Aiyuangong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3536,7 +3546,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XGKHW634KL;
+				DEVELOPMENT_TEAM = M5UW3GJJEM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3562,7 +3572,7 @@
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
 					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aiyuangong.Aiyuangong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3610,7 +3620,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = XGKHW634KL;
+				DEVELOPMENT_TEAM = M5UW3GJJEM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -3618,7 +3628,7 @@
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.todaywidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aiyuangong.Aiyuangong.todaywidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3637,7 +3647,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XGKHW634KL;
+				DEVELOPMENT_TEAM = M5UW3GJJEM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -3645,7 +3655,7 @@
 				INFOPLIST_FILE = TodayWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.todaywidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aiyuangong.Aiyuangong.todaywidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3664,7 +3674,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = XGKHW634KL;
+				DEVELOPMENT_TEAM = M5UW3GJJEM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3692,7 +3702,7 @@
 					"$(PROJECT_DIR)/PacketTunnel/Shadowsocks/libsodium-ios/lib",
 					"$(PROJECT_DIR)/PacketTunnel",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.tunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aiyuangong.Aiyuangong.tunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3710,7 +3720,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XGKHW634KL;
+				DEVELOPMENT_TEAM = M5UW3GJJEM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3737,7 +3747,7 @@
 					"$(PROJECT_DIR)/PacketTunnel/Shadowsocks/libsodium-ios/lib",
 					"$(PROJECT_DIR)/PacketTunnel",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso.tunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aiyuangong.Aiyuangong.tunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

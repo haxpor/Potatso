@@ -28,7 +28,7 @@ typedef struct {
     size_t          size;
 } radix_tree_t;
 
-radix_tree_t *radix_tree_create();
+radix_tree_t *radix_tree_create(void);
 
 int radix32tree_insert(radix_tree_t *tree,
                        uint32_t key, uint32_t mask, char value);

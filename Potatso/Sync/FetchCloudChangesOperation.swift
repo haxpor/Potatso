@@ -30,7 +30,7 @@ class FetchCloudChangesOperation: PSOperations.Operation {
     
     override func execute() {
         changeToken = getZoneChangeToken(zoneID)
-        DDLogInfo(">>> \(self.name!) started with token: \(changeToken)")
+        DDLogInfo(">>> \(self.name!) started with token: \(String(describing: changeToken))")
         fetchCloudChanges(changeToken) {
             (nsError) in
             self.finishWithError(nsError)
@@ -106,7 +106,7 @@ class FetchCloudChangesOperation: PSOperations.Operation {
             }
         } catch let realmError as NSError {
             error = realmError
-            DDLogError("****** \(self.name!) processFetchResults error: \(error)")
+            DDLogError("****** \(self.name!) processFetchResults error: \(String(describing: error))")
         }
 
         return error

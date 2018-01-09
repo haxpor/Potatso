@@ -46,8 +46,8 @@ class LogDetailViewController: UIViewController {
         guard fd > 0 else {
             return
         }
-        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background)
-        source = DispatchSource.makeReadSource(fileDescriptor: fd, queue: queue) /*Migrator FIXME: Use DispatchSourceRead to avoid the cast*/ as! DispatchSource
+        let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
+        source = DispatchSource.makeReadSource(fileDescriptor: fd, queue: queue) /*Migrator FIXME: Use DispatchSourceRead to avoid the cast*/ as? DispatchSource
         guard let source = source else {
             return
         }

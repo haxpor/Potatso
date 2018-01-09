@@ -49,7 +49,7 @@ class Receipt: NSObject, SKRequestDelegate {
     }
 
     fileprivate func isStoreReceiptValidate() -> Bool {
-        NSLog("appStoreReceiptURL: \(Bundle.main.appStoreReceiptURL)")
+        NSLog("appStoreReceiptURL: \(String(describing: Bundle.main.appStoreReceiptURL))")
         guard let receiptPath = Bundle.main.appStoreReceiptURL?.path, FileManager.default.fileExists(atPath: receiptPath) else {
             NSLog("isStoreReceiptValidate can't find appStoreReceiptURL")
             return false
