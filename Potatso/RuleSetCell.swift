@@ -81,7 +81,7 @@ class RuleSetCell: UITableViewCell {
             bottomView = subscribeFlagLabel
         }else {
             subscribeFlagLabel.isHidden = true
-            if ruleSet.desc.characters.count > 0 {
+            if ruleSet.desc.count > 0 {
                 bottomView = descLabel
             }else{
                 bottomView = countLabel

@@ -90,7 +90,7 @@ class HomePresenter: NSObject {
 
     func addEmptyConfigGroup(_ name: String) throws {
         let trimmedName = name.trimmingCharacters(in: CharacterSet.whitespaces)
-        if trimmedName.characters.count == 0 {
+        if trimmedName.count == 0 {
             throw "Name can't be empty".localized()
         }
         let group = ConfigurationGroup()
@@ -101,7 +101,7 @@ class HomePresenter: NSObject {
 
     func addRuleSet() {
         let destVC: UIViewController
-        if defaultRealm.objects(RuleSet).count == 0 {
+        if defaultRealm.objects(RuleSet.self).count == 0 {
             destVC = RuleSetConfigurationViewController() { [unowned self] ruleSet in
                 self.appendRuleSet(ruleSet)
             }
@@ -128,8 +128,8 @@ class HomePresenter: NSObject {
     func updateDNS(_ dnsString: String) {
         var dns: String = ""
         let trimmedDNSString = dnsString.trimmingCharacters(in: CharacterSet.whitespaces)
-        if trimmedDNSString.characters.count > 0 {
-            let dnsArray = dnsString.components(separatedBy: ",").map({ $0.components(separatedBy: "，") }).flatMap({ $0 }).map({ $0.trimmingCharacters(in: CharacterSet.whitespaces)}).filter({ $0.characters.count > 0 })
+        if trimmedDNSString.count > 0 {
+            let dnsArray = dnsString.components(separatedBy: ",").map({ $0.components(separatedBy: "，") }).flatMap({ $0 }).map({ $0.trimmingCharacters(in: CharacterSet.whitespaces)}).filter({ $0.count > 0 })
             let ipRegex = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$";
             guard let regex = try? Regex(ipRegex) else {
                 fatalError()

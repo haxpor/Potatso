@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EEE4F312004F567002551E3 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE4F2F2004F566002551E3 /* base64.c */; };
+		3EEE4F322004F567002551E3 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EEE4F302004F567002551E3 /* base64.h */; };
+		3EEE4F352004F582002551E3 /* rule.c in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE4F332004F581002551E3 /* rule.c */; };
+		3EEE4F362004F582002551E3 /* rule.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EEE4F342004F581002551E3 /* rule.h */; };
 		B81887591D2BFC1B00E41C89 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B81887091D2BFC1B00E41C89 /* LICENSE */; };
 		B818875A1D2BFC1B00E41C89 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = B818870B1D2BFC1B00E41C89 /* aes.h */; };
 		B818875B1D2BFC1B00E41C89 /* asn1.h in Headers */ = {isa = PBXBuildFile; fileRef = B818870C1D2BFC1B00E41C89 /* asn1.h */; };
@@ -373,6 +377,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3EEE4F2F2004F566002551E3 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		3EEE4F302004F567002551E3 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		3EEE4F332004F581002551E3 /* rule.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rule.c; sourceTree = "<group>"; };
+		3EEE4F342004F581002551E3 /* rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rule.h; sourceTree = "<group>"; };
 		B81887091D2BFC1B00E41C89 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B818870B1D2BFC1B00E41C89 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		B818870C1D2BFC1B00E41C89 /* asn1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1.h; sourceTree = "<group>"; };
@@ -1284,6 +1292,8 @@
 				B86B04791D17DABB00613014 /* acl.h */,
 				B830CC661D2D69E300FA8E37 /* auth.c */,
 				B830CC671D2D69E300FA8E37 /* auth.h */,
+				3EEE4F2F2004F566002551E3 /* base64.c */,
+				3EEE4F302004F567002551E3 /* base64.h */,
 				B86B047B1D17DABB00613014 /* cache.c */,
 				B86B047C1D17DABB00613014 /* cache.h */,
 				B86B047D1D17DABB00613014 /* common.h */,
@@ -1306,6 +1316,8 @@
 				B830CC721D2D6A1700FA8E37 /* obfsutil.c */,
 				B86B048F1D17DABB00613014 /* resolv.c */,
 				B86B04901D17DABB00613014 /* resolv.h */,
+				3EEE4F332004F581002551E3 /* rule.c */,
+				3EEE4F342004F581002551E3 /* rule.h */,
 				B86B04931D17DABB00613014 /* shadowsocks.h */,
 				B86B04941D17DABB00613014 /* socks5.h */,
 				B830CC761D2D6A3400FA8E37 /* tls1.0_session.c */,
@@ -1521,6 +1533,7 @@
 				B818875A1D2BFC1B00E41C89 /* aes.h in Headers */,
 				B8DEFEFE1CEA1EB7003FC706 /* project.h in Headers */,
 				B81888921D2C09DA00E41C89 /* randombytes.h in Headers */,
+				3EEE4F362004F582002551E3 /* rule.h in Headers */,
 				B818887A1D2C09DA00E41C89 /* crypto_scalarmult.h in Headers */,
 				B818879E1D2BFC1B00E41C89 /* txt_db.h in Headers */,
 				B818875E1D2BFC1B00E41C89 /* bio.h in Headers */,
@@ -1599,6 +1612,7 @@
 				B81888881D2C09DA00E41C89 /* crypto_stream_salsa208.h in Headers */,
 				B81887911D2BFC1B00E41C89 /* safestack.h in Headers */,
 				B86B054E1D17DABB00613014 /* ev_wrap.h in Headers */,
+				3EEE4F322004F567002551E3 /* base64.h in Headers */,
 				B82D7D771CEC6BCE00357F5F /* expat.h in Headers */,
 				B86B084E1D17DABB00613014 /* json.h in Headers */,
 				B81887791D2BFC1B00E41C89 /* idea.h in Headers */,
@@ -1652,7 +1666,7 @@
 		B8DEFD721CE9C923003FC706 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = TouchingApp;
 				TargetAttributes = {
 					B82847B31CEB14B000820456 = {
@@ -1726,6 +1740,7 @@
 				B8D0CD691CF1AF60007282A7 /* radix.c in Sources */,
 				B86B07E51D17DABB00613014 /* udns_misc.c in Sources */,
 				B82847801CEB10B800820456 /* actions.m in Sources */,
+				3EEE4F352004F582002551E3 /* rule.c in Sources */,
 				B82847841CEB10BF00820456 /* cgi.c in Sources */,
 				B82D7D7F1CEC6BCE00357F5F /* AntinatServer.m in Sources */,
 				B82847881CEB10C900820456 /* deanimate.c in Sources */,
@@ -1777,6 +1792,7 @@
 				B830CC6E1D2D6A0000FA8E37 /* http_simple.c in Sources */,
 				B82D7D7A1CEC6BCE00357F5F /* addrinfo.m in Sources */,
 				B830CC7A1D2D6A3400FA8E37 /* tls1.0_session.c in Sources */,
+				3EEE4F312004F567002551E3 /* base64.c in Sources */,
 				B86B07E01D17DABB00613014 /* udns_codes.c in Sources */,
 				B86B05371D17DABB00613014 /* process.c in Sources */,
 				B86B05881D17DABB00613014 /* allocation.c in Sources */,
@@ -1912,13 +1928,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1960,13 +1984,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1996,6 +2028,7 @@
 		B8DEFD841CE9C923003FC706 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2033,6 +2066,7 @@
 		B8DEFD851CE9C923003FC706 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

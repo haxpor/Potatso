@@ -121,7 +121,7 @@ extension DBUtils {
             res = res.filter(filter)
         }
         if let sorted = sorted {
-            res = res.sorted(byProperty: sorted)
+            res = res.sorted(byKeyPath: sorted)
         }
         return res
     }
@@ -134,14 +134,14 @@ extension DBUtils {
         }
         var res = mRealm.objects(type).filter(mFilter)
         if let sorted = sorted {
-            res = res.sorted(byProperty: sorted)
+            res = res.sorted(byKeyPath: sorted)
         }
         return res.first
     }
 
     public static func modify<T: BaseModel>(_ type: T.Type, id: String, inRealm realm: Realm? = nil, modifyBlock: ((Realm, T) -> Error?)) throws {
         let mRealm = currentRealm(realm)
-        guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) as! T? else {
+        guard let object: T = DBUtils.get(id, type: type, inRealm: mRealm) else {
             return
         }
         mRealm.beginWrite()

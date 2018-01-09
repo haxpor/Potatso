@@ -51,7 +51,7 @@ class CloudDetailViewController: UIViewController, UITableViewDataSource, UITabl
             if response.result.isFailure {
                 // Fail
                 let errDesc = response.result.error?.localizedDescription ?? ""
-                self.showTextHUD((errDesc.characters.count > 0 ? "\(errDesc)" : "Unkown error".localized()), dismissAfterDelay: 1.5)
+                self.showTextHUD((errDesc.count > 0 ? "\(errDesc)" : "Unkown error".localized()), dismissAfterDelay: 1.5)
             }else {
                 guard let result = response.result.value else {
                     return
@@ -64,7 +64,7 @@ class CloudDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func isExist(_ uuid: String) -> Bool {
-        return defaultRealm.objects(RuleSet).filter("uuid == '\(uuid)' && deleted == false").count > 0
+        return defaultRealm.objects(RuleSet.self).filter("uuid == '\(uuid)' && deleted == false").count > 0
     }
 
     func subscribe() {

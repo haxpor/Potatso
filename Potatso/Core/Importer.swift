@@ -43,7 +43,7 @@ struct Importer {
         }
         vc?.errorBlock = { [weak vc] error in
             vc?.navigationController?.popViewController(animated: true)
-            self.viewController?.showTextHUD("\(error)", dismissAfterDelay: 1.5)
+            self.viewController?.showTextHUD("\(String(describing: error))", dismissAfterDelay: 1.5)
         }
         viewController?.navigationController?.pushViewController(vc!, animated: true)
     }

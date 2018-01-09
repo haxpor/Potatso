@@ -10,7 +10,7 @@
 
 typedef void (^CDZQRScanResultBlock)(NSString *scanResult);
 typedef void (^CDZQRScanErrorBlock)(NSError *error);
-typedef void (^CDZQRScanCancelBlock)();
+typedef void (^CDZQRScanCancelBlock)(void);
 
 extern NSString * const CDZQRScanningErrorDomain;
 

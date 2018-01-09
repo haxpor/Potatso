@@ -1,6 +1,6 @@
 [submodule "Library/ShadowPath/ShadowPath/shadowsocks-libev"]
 	path = Library/ShadowPath/ShadowPath/shadowsocks-libev
-	url = git@github.com:icodesign/shadowsocks-libev.git
+	url = Library/ShadowPath/ShadowPath/shadowsocks-libev.git
 [submodule "Library/ShadowPath/ShadowPath/libmaxminddb"]
 	path = Library/ShadowPath/ShadowPath/libmaxminddb
 	url = git@github.com:haxpor/libmaxminddb.git

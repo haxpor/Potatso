@@ -42,7 +42,7 @@ open class Config {
     }
     
     open func setup(string configString: String) throws {
-        guard configString.characters.count > 0, let object = try? YAMLSerialization.object(withYAMLString: configString, options: kYAMLReadOptionStringScalars), let yaml = object as? [String: AnyObject] else {
+        guard configString.count > 0, let object = try? YAMLSerialization.object(withYAMLString: configString, options: kYAMLReadOptionStringScalars), let yaml = object as? [String: AnyObject] else {
             throw ConfigError.syntaxError
         }
         self.configDict = yaml

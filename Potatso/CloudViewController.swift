@@ -42,7 +42,7 @@ class CloudViewController: UIViewController, UITableViewDataSource, UITableViewD
             if response.result.isFailure {
                 // Fail
                 let errDesc = response.result.error?.localizedDescription ?? ""
-                self.showTextHUD((errDesc.characters.count > 0 ? "\(errDesc)" : "Unkown error".localized()), dismissAfterDelay: 1.5)
+                self.showTextHUD((errDesc.count > 0 ? "\(errDesc)" : "Unkown error".localized()), dismissAfterDelay: 1.5)
             }else {
                 guard let result = response.result.value else {
                     return
@@ -54,7 +54,7 @@ class CloudViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if result.count > 0 {
                     self.page += 1
                 }
-                let data = result.filter({ $0.name.characters.count > 0})
+                let data = result.filter({ $0.name.count > 0})
                 if loadMore {
                     self.ruleSets.append(contentsOf: data)
                     if result.count < pageSize {

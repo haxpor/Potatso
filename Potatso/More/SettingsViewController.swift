@@ -61,7 +61,7 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
             <<< ActionRow {
                 $0.title = "Feedback".localized()
             }.onCellSelection({ (cell, row) in
-                FeedbackManager.shared.showFeedback()
+//                FeedbackManager.shared.showFeedback()
             })
         return section
     }

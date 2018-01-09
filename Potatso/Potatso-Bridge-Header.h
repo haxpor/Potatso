@@ -13,9 +13,9 @@
 #import <asl.h>
 #import "QRCodeScannerVC.h"
 #import "Receipt.h"
-#import "HelpshiftAll.h"
-#import "HelpshiftSupport.h"
-#import "HelpshiftCore.h"
+//#import "HelpshiftAll.h"
+//#import "HelpshiftSupport.h"
+//#import "HelpshiftCore.h"
 @import CocoaLumberjack;
 @import PotatsoLibrary;
 @import PotatsoModel;

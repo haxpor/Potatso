@@ -79,20 +79,20 @@ public func resolveConflicts(_ error: NSError,
                         return nil
                 }
                 
-                print("Client change tag: \(clientRecord.recordChangeTag)")
-                print("Server change tag: \(serverRecord.recordChangeTag)")
-                print("Ancestor change tag: \(ancestorRecord.recordChangeTag)")
+                print("Client change tag: \(String(describing: clientRecord.recordChangeTag))")
+                print("Server change tag: \(String(describing: serverRecord.recordChangeTag))")
+                print("Ancestor change tag: \(String(describing: ancestorRecord.recordChangeTag))")
                 
                 if serverRecord.recordChangeTag != clientRecord.recordChangeTag {
                     
-                    print("Client text: \(clientRecord["text"])")
-                    print("Server text: \(serverRecord["text"])")
+                    print("Client text: \(String(describing: clientRecord["text"]))")
+                    print("Server text: \(String(describing: serverRecord["text"]))")
                     
                     let adjustedRecord = resolver(
                         clientRecord,
                         serverRecord)
                     
-                    print("Adjusted text: \(adjustedRecord["text"])")
+                    print("Adjusted text: \(String(describing: adjustedRecord["text"]))")
                     
                     adjustedRecords.append(adjustedRecord)
                     

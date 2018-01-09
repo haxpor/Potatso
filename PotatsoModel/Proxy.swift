@@ -86,7 +86,12 @@ open class Proxy: BaseModel {
         "verify_simple",
         "auth_simple",
         "auth_sha1",
-        "auth_sha1_v2"
+        "auth_sha1_v2",
+        "auth_sha1_v4",
+        "auth_aes128_md5",
+        "auth_aes128_sha1",
+        "auth_chain_a",
+        "auth_chain_b"
     ]
 
     open static let ssrSupportedObfs = [
@@ -97,6 +102,7 @@ open class Proxy: BaseModel {
     ]
 
     open static let ssSupportedEncryption = [
+        "none",
         "table",
         "rc4",
         "rc4-md5",
@@ -125,10 +131,10 @@ open class Proxy: BaseModel {
         guard let _ = ProxyType(rawValue: typeRaw)else {
             throw ProxyError.invalidType
         }
-        guard name.characters.count > 0 else{
+        guard name.count > 0 else{
             throw ProxyError.invalidName
         }
-        guard host.characters.count > 0 else {
+        guard host.count > 0 else {
             throw ProxyError.invalidHost
         }
         guard port > 0 && port <= Int(UINT16_MAX) else {
@@ -194,7 +200,7 @@ extension Proxy {
             self.name = name
             if uriString.lowercased().hasPrefix(Proxy.ssUriPrefix) {
                 // Shadowsocks
-                let undecodedString = uriString.substring(from: uriString.characters.index(uriString.startIndex, offsetBy: Proxy.ssUriPrefix.characters.count))
+                let undecodedString = uriString.substring(from: uriString.index(uriString.startIndex, offsetBy: Proxy.ssUriPrefix.count))
                 guard let proxyString = base64DecodeIfNeeded(undecodedString), let _ = proxyString.range(of: ":")?.lowerBound else {
                     throw ProxyError.invalidUri
                 }
@@ -219,7 +225,7 @@ extension Proxy {
                 self.port = p
                 self.type = .Shadowsocks
             }else if uriString.lowercased().hasPrefix(Proxy.ssrUriPrefix) {
-                let undecodedString = uriString.substring(from: uriString.characters.index(uriString.startIndex, offsetBy: Proxy.ssrUriPrefix.characters.count))
+                let undecodedString = uriString.substring(from: uriString.index(uriString.startIndex, offsetBy: Proxy.ssrUriPrefix.count))
                 guard let proxyString = base64DecodeIfNeeded(undecodedString), let _ = proxyString.range(of: ":")?.lowerBound else {
                     throw ProxyError.invalidUri
                 }
@@ -290,7 +296,7 @@ extension Proxy {
             self.name = name
             self.type = type
         }
-        if realm.objects(Proxy).filter("name = '\(name)'").first != nil {
+        if realm.objects(Proxy.self.self).filter("name = '\(name)'").first != nil {
             self.name = "\(name) \(Proxy.dateFormatter.string(from: Date()))"
         }
         try validate(inRealm: realm)
@@ -301,7 +307,7 @@ extension Proxy {
             return proxyString
         }
         let base64String = proxyString.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/")
-        let padding = base64String.characters.count + (base64String.characters.count % 4 != 0 ? (4 - base64String.characters.count % 4) : 0)
+        let padding = base64String.count + (base64String.count % 4 != 0 ? (4 - base64String.count % 4) : 0)
         if let decodedData = Data(base64Encoded: base64String.padding(toLength: padding, withPad: "=", startingAt: 0), options: NSData.Base64DecodingOptions(rawValue: 0)), let decodedString = NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue) {
             return decodedString as String
         }

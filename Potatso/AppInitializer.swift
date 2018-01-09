@@ -10,7 +10,7 @@ import Foundation
 import ICSMainFramework
 import Appirater
 import Fabric
-import LogglyLogger_CocoaLumberjack
+//import LogglyLogger_CocoaLumberjack
 
 let appID = "1070901416"
 
@@ -22,7 +22,7 @@ class AppInitializer: NSObject, AppLifeCycleProtocol {
         #if !DEBUG
             Fabric.with([Answers.self, Crashlytics.self])
         #endif
-        configHelpShift()
+//        configHelpShift()
         return true
     }
 
@@ -36,15 +36,15 @@ class AppInitializer: NSObject, AppLifeCycleProtocol {
         fileLogger?.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
 
-        let logglyLogger = LogglyLogger() // Loggy Logger
-        logglyLogger.logglyKey = InfoInternal.shared.getLogglyAPIKey()
-        let fields = LogglyFields()
-        fields.userid = User.currentUser.id
-        fields.appversion = AppEnv.fullVersion
-        let formatter = LogglyFormatter(logglyFieldsDelegate: fields)
-        formatter?.alwaysIncludeRawMessage = false
-        logglyLogger.logFormatter = formatter
-        DDLog.add(logglyLogger)
+//        let logglyLogger = LogglyLogger() // Loggy Logger
+//        logglyLogger.logglyKey = "107d98a8-c275-4369-a881-b36d3564c9ef"
+//        let fields = LogglyFields()
+//        fields.userid = User.currentUser.id
+//        fields.appversion = AppEnv.fullVersion
+//        let formatter = LogglyFormatter(logglyFieldsDelegate: fields)
+//        formatter?.alwaysIncludeRawMessage = false
+//        logglyLogger.logFormatter = formatter
+//        DDLog.add(logglyLogger)
 
         #if DEBUG
             DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
@@ -56,9 +56,9 @@ class AppInitializer: NSObject, AppLifeCycleProtocol {
         #endif
     }
 
-    func configHelpShift() {
-        HelpshiftCore.initialize(with: HelpshiftAll.sharedInstance())
-        HelpshiftCore.install(forApiKey: HELPSHIFT_KEY, domainName: HELPSHIFT_DOMAIN, appID: HELPSHIFT_ID)
-    }
+//    func configHelpShift() {
+//        HelpshiftCore.initialize(with: HelpshiftAll.sharedInstance())
+//        HelpshiftCore.install(forApiKey: HELPSHIFT_KEY, domainName: HELPSHIFT_DOMAIN, appID: HELPSHIFT_ID)
+//    }
     
 }

@@ -38,7 +38,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         navigationItem.title = "Rule Set".localized()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
         reloadData()
-        token = ruleSets.addNotificationBlock { [unowned self] (changed) in
+        token = ruleSets.observe { [unowned self] (changed) in
             switch changed {
             case let .update(_, deletions: deletions, insertions: insertions, modifications: modifications):
                 self.tableView.beginUpdates()
@@ -58,7 +58,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        token?.stop()
+        token?.invalidate()
     }
 
     func reloadData() {

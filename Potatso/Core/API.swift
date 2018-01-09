@@ -62,7 +62,7 @@ extension RuleSet: Mappable {
             return
         }
         var rules: [Rule] = []
-        if let parsedObject = Mapper<Rule>().mapArray(JSONArray: rulesJSON as! [[String : Any]]){
+        if let parsedObject: [Rule] = Mapper<Rule>().mapArray(JSONArray: rulesJSON as! [[String : Any]]){
             rules.append(contentsOf: parsedObject)
         }
         self.rules = rules
@@ -252,7 +252,7 @@ extension Alamofire.DataRequest {
             }
 
             if (JSONToMap != nil) {
-                if let parsedObject = Mapper<T>().mapArray(JSONArray: JSONToMap as! [[String : Any]]){
+                if let parsedObject: [T] = Mapper<T>().mapArray(JSONArray: JSONToMap as! [[String : Any]]){
                     return .success(parsedObject)
                 }
             }
@@ -280,6 +280,6 @@ extension Alamofire.DataRequest {
     }
 
     fileprivate static func logError(_ error: NSError, request: URLRequest?, response: URLResponse?) {
-        DDLogError("ObjectMapperSerializer failure: \(error), request: \(request?.debugDescription), response: \(response.debugDescription)")
+        DDLogError("ObjectMapperSerializer failure: \(error), request: \(String(describing: request?.debugDescription)), response: \(response.debugDescription)")
     }
 }

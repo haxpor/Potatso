@@ -152,7 +152,7 @@ public final class Rule {
         let actionStr = parts[2].uppercased()
         let typeStr = parts[0].uppercased()
         let value = parts[1]
-        guard let type = RuleType(rawValue: typeStr), let action = RuleAction(rawValue: actionStr), value.characters.count > 0 else {
+        guard let type = RuleType(rawValue: typeStr), let action = RuleAction(rawValue: actionStr), value.count > 0 else {
             throw RuleError.invalidRule(str)
         }
         self.init(type: type, action: action, value: value)

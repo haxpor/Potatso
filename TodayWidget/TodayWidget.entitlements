@@ -10,11 +10,11 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.io.wasin.potatso</string>
+		<string>group.com.aiyuangong.Aiyuangong</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)io.wasin.potatso</string>
+		<string>$(AppIdentifierPrefix)com.aiyuangong.Aiyuangong</string>
 	</array>
 </dict>
 </plist>

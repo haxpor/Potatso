@@ -30,18 +30,18 @@ class CloudSetManager {
                 uuidsArray.append(tObj as String)
             })
             
-            API.updateRuleSetListDetail(uuidsArray) { (response) in
-                if let sets = response.result.value {
-                    do {
-                        try RuleSet.addRemoteArray(sets)
-                    }catch {
-                        error.log("Unable to save updated rulesets")
-                        return
-                    }
-                }else {
-                    response.result.error?.log("Fail to update ruleset details")
-                }
-            }
+//            API.updateRuleSetListDetail(uuidsArray) { (response) in
+//                if let sets = response.result.value {
+//                    do {
+//                        try RuleSet.addRemoteArray(sets)
+//                    }catch {
+//                        error.log("Unable to save updated rulesets")
+//                        return
+//                    }
+//                }else {
+//                    response.result.error?.log("Fail to update ruleset details")
+//                }
+//            }
         }
     }
 }

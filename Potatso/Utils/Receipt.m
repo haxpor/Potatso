@@ -60,7 +60,7 @@ NSString *kReceiptExpirationDate                = @"ExpDate";
 + (NSDictionary *)dictionaryWithAppStoreReceipt: (NSString *)receiptPath {
     NSData * rootCertData = [self appleRootCert];
 
-    NSLog(@"dictionaryWithAppStoreReceipt rootCertData len: %d", rootCertData.length);
+    NSLog(@"dictionaryWithAppStoreReceipt rootCertData len: %lu", (unsigned long)rootCertData.length);
 
     ERR_load_PKCS7_strings();
     ERR_load_X509_strings();
