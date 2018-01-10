@@ -22,4 +22,11 @@ before_script:
 script:
   - while sleep 540s; do echo "=== still running ($SECONDS seconds) ==="; done &  # peridiocally print something to console to trick Travis that build process is still running (10m is cut-out time for travis)
   - xcodebuild -workspace Potatso.xcworkspace -scheme Potatso -configuration "$XCODEBUILD_CONFIGURATION" -sdk "$XCODEBUILD_SDK" -arch arm64 > /dev/null
-  - kill %1 # kill our trick loop in background
+  - jobs -p # print out all job number
+  - kill -9 `jobs -p` # kill all jobs in this shell
+after_success:
+  - jobs -p # print out all job number
+  - kill -9 `jobs -p`
+after_failure:
+  - jobs -p # print out all job number
+  - kill -9 `jobs -p`

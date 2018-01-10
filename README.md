@@ -1,6 +1,9 @@
-<a href="https://github.com/haxpor/donate"><img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat" alt="donate"></a>
+[![donate button](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat)](https://github.com/haxpor/donate)
 
-# Potatso ![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
+[![travis-ci build status](https://travis-ci.org/haxpor/Potatso.svg?branch=master)](https://travis-ci.org/haxpor/Potatso/builds/327137522?utm_source=github_status&utm_medium=notification#)
+![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
+
+# Potatso 
 
 ## Important
 
