@@ -18,5 +18,5 @@ before_script:
   - openssl aes-256-cbc -k "$CERTS_PASSWORD" -in ci/profiles/ex-todaywidget-development.mobileprovision.enc -d -a -out ci/profiles/ex-todaywidget-development.mobileprovision
   - ./ci/scripts/add_key.sh
   - ./ci/scripts/install_profiles.sh
-scripts:
+script:
   - xcodebuild -workspace Potatso.xcworkspace -scheme Potatso -configuration "$XCODEBUILD_CONFIGURATION" -sdk "$XCODEBUILD_SDK" -arch arm64
