@@ -46,7 +46,7 @@ target "Potatso" do
     pod 'CocoaLumberjack/Swift', '~> 3.0.0'  #抓取crash日志上传
     #    pod 'Helpshift', '5.6.1'   #国外的客服系统
     pod 'PSOperations', '~> 3.0.0'  #线程管理工具
-    #    pod 'LogglyLogger-CocoaLumberjack', '~> 3.0'
+        pod 'LogglyLogger-CocoaLumberjack', '~> 3.0'
     tunnel
     library
     fabric
