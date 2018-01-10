@@ -1,6 +1,6 @@
 [![donate button](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat)](https://github.com/haxpor/donate)
 
-[![travis-ci build status](https://travis-ci.org/haxpor/Potatso.svg?branch=master)](https://travis-ci.org/haxpor/Potatso/builds/327137522?utm_source=github_status&utm_medium=notification#)
+[![Build Status](https://travis-ci.org/haxpor/Potatso.svg?branch=master)](https://travis-ci.org/haxpor/Potatso)
 ![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
 # Potatso 
