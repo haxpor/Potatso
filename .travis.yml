@@ -10,6 +10,7 @@ before_install:
   - git submodule update --init
   - pod install
   - carthage update
+  - ./ci/scripts/versions.sh
 before_script:
   - openssl aes-256-cbc -k "$CERTS_PASSWORD" -in ci/certs/potatso-development.cer.enc -d -a -out ci/certs/potatso-development.cer
   - openssl aes-256-cbc -k "$CERTS_PASSWORD" -in ci/certs/potatso-development.p12.enc -d -a -out ci/certs/potatso-development.p12
@@ -19,4 +20,4 @@ before_script:
   - ./ci/scripts/add_key.sh
   - ./ci/scripts/install_profiles.sh
 script:
-  - xcodebuild -workspace Potatso.xcworkspace -scheme Potatso -configuration "$XCODEBUILD_CONFIGURATION" -sdk "$XCODEBUILD_SDK" -arch arm64
+  - xcodebuild -workspace Potatso.xcworkspace -scheme Potatso -configuration "$XCODEBUILD_CONFIGURATION" -sdk "$XCODEBUILD_SDK" -arch arm64 > /dev/null
