@@ -9,8 +9,7 @@ def fabric
 end
 
 def library
-    pod 'KissXML'
-    pod 'KissXML/libxml_module'
+    pod 'KissXML', '~> 5.2.2'
     pod 'ICSMainFramework', :path => "./Library/ICSMainFramework/"
     pod 'MMWormhole', '~> 2.0.0'
     pod 'KeychainAccess'
@@ -34,7 +33,7 @@ target "Potatso" do
     pod 'AsyncSwift'
     pod 'SwiftColor'
     pod 'Appirater'
-    pod 'Eureka', :path => "./Library/Eureka/"
+    pod 'Eureka'
     pod 'MBProgressHUD'
     pod 'CallbackURLKit', :path => "./Library/CallbackURLKit"
     pod 'ICDMaterialActivityIndicatorView', '~> 0.1.0'

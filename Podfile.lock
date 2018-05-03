@@ -26,7 +26,7 @@ PODS:
     - CocoaLumberjack/Extensions
   - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
-  - Eureka (1.6.0)
+  - Eureka (4.1.1)
   - Fabric (1.6.8)
   - Helpshift (5.6.1)
   - ICDMaterialActivityIndicatorView (0.1.2)
@@ -34,13 +34,7 @@ PODS:
   - ICSPullToRefresh (0.6)
   - ISO8601DateFormatter (0.8)
   - KeychainAccess (3.0.1)
-  - KissXML (5.1.2):
-    - KissXML/Core (= 5.1.2)
-  - KissXML/Core (5.1.2)
-  - KissXML/libxml_module (5.1.2):
-    - KissXML/SwiftNSXML
-  - KissXML/SwiftNSXML (5.1.2):
-    - KissXML/Core
+  - KissXML (5.2.2)
   - LogglyLogger-CocoaLumberjack (3.0.0):
     - CocoaLumberjack (~> 3.0)
     - LogglyLogger-CocoaLumberjack/Formatter (= 3.0.0)
@@ -81,7 +75,7 @@ DEPENDENCIES:
   - CocoaAsyncSocket (~> 7.4.3)
   - CocoaLumberjack/Swift (~> 3.0.0)
   - Crashlytics
-  - Eureka (from `./Library/Eureka/`)
+  - Eureka
   - Fabric
   - Helpshift (= 5.6.1)
   - ICDMaterialActivityIndicatorView (~> 0.1.0)
@@ -89,8 +83,7 @@ DEPENDENCIES:
   - ICSPullToRefresh (~> 0.6)
   - ISO8601DateFormatter (~> 0.8)
   - KeychainAccess
-  - KissXML
-  - KissXML/libxml_module
+  - KissXML (~> 5.2.2)
   - LogglyLogger-CocoaLumberjack (~> 3.0)
   - MBProgressHUD
   - MMWormhole (~> 2.0.0)
@@ -105,30 +98,28 @@ EXTERNAL SOURCES:
     :path: ./Library/Aspects/
   CallbackURLKit:
     :path: ./Library/CallbackURLKit
-  Eureka:
-    :path: ./Library/Eureka/
   ICSMainFramework:
     :path: ./Library/ICSMainFramework/
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
-  Aspects: 35254a4a73948e7bc1118ce0554674f77467a80b
+  Aspects: 8ac2b7220e45929088e0c5330397540577e65e6a
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
-  CallbackURLKit: 1a56181ef8d6a1491865041b2192dd8c9a364669
+  CallbackURLKit: 160c6c5eac9bee66d31eb5b3dcfe31197c073946
   Cartography: c1460e99395b824d9d75360b0382faeb0b33dcd7
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
   Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
-  Eureka: 4c97c804b619c09ccc76b54857a23a1613d0b0ba
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Helpshift: b48366299844f119acf5e91d02a2e89288494fe6
   ICDMaterialActivityIndicatorView: 3f02a9dc9e52417023a98385d631c93d3f95c465
-  ICSMainFramework: 56240e9556d3b0755fc9c934a91ee8ebd09cb753
+  ICSMainFramework: e2cfdd3bac03573d48c890a70190e9bfac051ed8
   ICSPullToRefresh: a64f102c6558cc34270ea60e99df7c91d1f3d2c0
   ISO8601DateFormatter: 4551b6ce4f83185425f583b0b3feb3c7b59b942c
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  KissXML: 246c842586bb77110e04fb88e19376d96245c856
+  KissXML: 4418f32138aec43797891845d682b00fc8cd4677
   LogglyLogger-CocoaLumberjack: 16afad0a63fb70179fda1db85e03aeb3ded7fb02
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
@@ -139,6 +130,6 @@ SPEC CHECKSUMS:
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SwiftColor: c240d8cb2e1a29d731ae8deca8739eac6b9c56bd
 
-PODFILE CHECKSUM: 230718556c2c62276db3054b58ac2fb35755901c
+PODFILE CHECKSUM: ebd18fbca8ddce37361dbbb4e598f97838944364
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

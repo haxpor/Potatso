@@ -238,32 +238,32 @@ extension Manager {
     }
     
     func generateSocksConfig() throws {
-        let root = NSXMLElement.element(withName: "antinatconfig") as! NSXMLElement
-        let interface = NSXMLElement.element(withName: "interface", children: nil, attributes: [NSXMLNode.attribute(withName: "value", stringValue: "127.0.0.1") as! DDXMLNode]) as! NSXMLElement
+        let root = XMLElement.element(withName: "antinatconfig") as! XMLElement
+        let interface = XMLElement.element(withName: "interface", children: nil, attributes: [XMLElement.attribute(withName: "value", stringValue: "127.0.0.1") as! DDXMLNode]) as! XMLElement
         root.addChild(interface)
         
-        let port = NSXMLElement.element(withName: "port", children: nil, attributes: [NSXMLNode.attribute(withName: "value", stringValue: "0") as! DDXMLNode])  as! NSXMLElement
+        let port = XMLElement.element(withName: "port", children: nil, attributes: [XMLElement.attribute(withName: "value", stringValue: "0") as! DDXMLNode])  as! XMLElement
         root.addChild(port)
         
-        let maxbindwait = NSXMLElement.element(withName: "maxbindwait", children: nil, attributes: [NSXMLNode.attribute(withName: "value", stringValue: "10") as! DDXMLNode]) as! NSXMLElement
+        let maxbindwait = XMLElement.element(withName: "maxbindwait", children: nil, attributes: [XMLElement.attribute(withName: "value", stringValue: "10") as! DDXMLNode]) as! XMLElement
         root.addChild(maxbindwait)
         
         
-        let authchoice = NSXMLElement.element(withName: "authchoice") as! NSXMLElement
-        let select = NSXMLElement.element(withName: "select", children: nil, attributes: [NSXMLNode.attribute(withName: "mechanism", stringValue: "anonymous") as! DDXMLNode])  as! NSXMLElement
+        let authchoice = XMLElement.element(withName: "authchoice") as! XMLElement
+        let select = XMLElement.element(withName: "select", children: nil, attributes: [XMLElement.attribute(withName: "mechanism", stringValue: "anonymous") as! DDXMLNode])  as! XMLElement
         
         authchoice.addChild(select)
         root.addChild(authchoice)
         
-        let filter = NSXMLElement.element(withName: "filter") as! NSXMLElement
+        let filter = XMLElement.element(withName: "filter") as! XMLElement
         if let upstreamProxy = upstreamProxy {
-            let chain = NSXMLElement.element(withName: "chain", children: nil, attributes: [NSXMLNode.attribute(withName: "name", stringValue: upstreamProxy.name) as! DDXMLNode]) as! NSXMLElement
+            let chain = XMLElement.element(withName: "chain", children: nil, attributes: [XMLElement.attribute(withName: "name", stringValue: upstreamProxy.name) as! DDXMLNode]) as! XMLElement
             switch upstreamProxy.type {
             case .Shadowsocks:
                 let uriString = "socks5://127.0.0.1:${ssport}"
-                let uri = NSXMLElement.element(withName: "uri", children: nil, attributes: [NSXMLNode.attribute(withName: "value", stringValue: uriString) as! DDXMLNode]) as! NSXMLElement
+                let uri = XMLElement.element(withName: "uri", children: nil, attributes: [XMLElement.attribute(withName: "value", stringValue: uriString) as! DDXMLNode]) as! XMLElement
                 chain.addChild(uri)
-                let authscheme = NSXMLElement.element(withName: "authscheme", children: nil, attributes: [NSXMLNode.attribute(withName: "value", stringValue: "anonymous") as! DDXMLNode]) as! NSXMLElement
+                let authscheme = XMLElement.element(withName: "authscheme", children: nil, attributes: [XMLElement.attribute(withName: "value", stringValue: "anonymous") as! DDXMLNode]) as! XMLElement
                 chain.addChild(authscheme)
             default:
                 break
@@ -271,7 +271,7 @@ extension Manager {
             root.addChild(chain)
         }
         
-        let accept = NSXMLElement.element(withName: "accept") as! NSXMLElement
+        let accept = XMLElement.element(withName: "accept") as! XMLElement
         filter.addChild(accept)
         root.addChild(filter)
         
@@ -283,7 +283,7 @@ extension Manager {
         let confURL = Potatso.sharedProxyConfUrl()
         var content = ""
         if let upstreamProxy = upstreamProxy, upstreamProxy.type == .Shadowsocks || upstreamProxy.type == .ShadowsocksR {
-            var arr = ["host": upstreamProxy.host, "port": upstreamProxy.port, "password": upstreamProxy.password ?? "", "authscheme": upstreamProxy.authscheme ?? "", "ota": upstreamProxy.ota, "protocol": upstreamProxy.ssrProtocol ?? "", "obfs": upstreamProxy.ssrObfs ?? "", "obfs_param": upstreamProxy.ssrObfsParam ?? ""] as [String : Any]
+            let arr = ["host": upstreamProxy.host, "port": upstreamProxy.port, "password": upstreamProxy.password ?? "", "authscheme": upstreamProxy.authscheme ?? "", "ota": upstreamProxy.ota, "protocol": upstreamProxy.ssrProtocol ?? "", "obfs": upstreamProxy.ssrObfs ?? "", "obfs_param": upstreamProxy.ssrObfsParam ?? ""] as [String : Any]
             
             do {
                 //let data = try JSONSerialization.data(withJSONObject: arr, options: .prettyPrinted)
