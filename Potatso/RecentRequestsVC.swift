@@ -47,7 +47,7 @@ class RecentRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         onVPNStatusChanged()
     }
     
-    func refresh() {
+    @objc func refresh() {
         wormhole.passMessageObject("" as NSCoding?, identifier: "getTunnelConnectionRecords")
     }
     
@@ -60,7 +60,7 @@ class RecentRequestsVC: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.reloadData()
     }
     
-    func onVPNStatusChanged() {
+    @objc func onVPNStatusChanged() {
         let on = [VPNStatus.on, VPNStatus.connecting].contains(Manager.sharedManager.vpnStatus)
         hintLabel.isHidden = on
         if on {

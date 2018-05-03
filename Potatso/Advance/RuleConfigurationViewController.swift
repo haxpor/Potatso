@@ -93,7 +93,7 @@ class RuleConfigurationViewController: FormViewController {
                 })
     }
     
-    func save() {
+    @objc func save() {
         do {
             let values = form.values()
             guard let type = values[kRuleFormType] as? PotatsoModel.RuleType else {

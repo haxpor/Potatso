@@ -37,7 +37,7 @@ class ProxyListViewController: FormViewController {
         reloadData()
     }
 
-    func add() {
+    @objc func add() {
         let vc = ProxyConfigurationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

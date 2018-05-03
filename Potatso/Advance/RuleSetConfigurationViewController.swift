@@ -114,7 +114,7 @@ class RuleSetConfigurationViewController: FormViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func save() {
+    @objc func save() {
         do {
             let values = form.values()
             guard let name = (values[kRuleSetFormName] as? String)?.trimmingCharacters(in: CharacterSet.whitespaces), name.characters.count > 0 else {

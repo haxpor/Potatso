@@ -30,14 +30,14 @@ extension RuleSetError: CustomStringConvertible {
 }
 
 public final class RuleSet: BaseModel {
-    public dynamic var editable = true
-    public dynamic var name = ""
-    public dynamic var remoteUpdatedAt: TimeInterval = Date().timeIntervalSince1970
-    public dynamic var desc = ""
-    public dynamic var ruleCount = 0
-    public dynamic var rulesJSON = ""
-    public dynamic var isSubscribe = false
-    public dynamic var isOfficial = false
+    @objc public dynamic var editable = true
+    @objc public dynamic var name = ""
+    @objc public dynamic var remoteUpdatedAt: TimeInterval = Date().timeIntervalSince1970
+    @objc public dynamic var desc = ""
+    @objc public dynamic var ruleCount = 0
+    @objc public dynamic var rulesJSON = ""
+    @objc public dynamic var isSubscribe = false
+    @objc public dynamic var isOfficial = false
 
     fileprivate var cachedRules: [Rule]? = nil
 
@@ -58,7 +58,7 @@ public final class RuleSet: BaseModel {
     }
 
     public override func validate(inRealm realm: Realm) throws {
-        guard name.characters.count > 0 else {
+        guard !name.isEmpty else {
             throw RuleSetError.emptyName
         }
     }
@@ -68,7 +68,7 @@ public final class RuleSet: BaseModel {
             cachedRules = []
             return
         }
-        cachedRules = jsonArray.flatMap({ Rule(json: $0) })
+        cachedRules = jsonArray.compactMap({ Rule(json: $0) })
     }
 
     public func addRule(_ rule: Rule) {
@@ -96,14 +96,10 @@ public final class RuleSet: BaseModel {
         insertRule(rule, atIndex: toIndex)
         rules = newRules
     }
-}
-
-extension RuleSet {
     
     public override static func indexedProperties() -> [String] {
         return ["name"]
     }
-    
 }
 
 extension RuleSet {
@@ -114,7 +110,7 @@ extension RuleSet {
             throw RuleSetError.invalidRuleSet
         }
         self.name = name
-        if realm.objects(RuleSet).filter("name = '\(name)'").first != nil {
+        if realm.objects(RuleSet.self).filter("name = '\(name)'").first != nil {
             self.name = "\(name) \(RuleSet.dateFormatter.string(from: Date()))"
         }
         guard let rulesStr = dictionary["rules"] as? [String] else {

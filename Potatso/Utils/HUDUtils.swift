@@ -12,7 +12,7 @@ import Async
 
 private var hudKey = "hud"
 
-extension UIViewController {
+@objc extension UIViewController {
     
     func showProgreeHUD(_ text: String? = nil) {
         hideHUD()

@@ -181,7 +181,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
 
     // MARK: - Private Actions
 
-    func handleConnectButtonPressed() {
+    @objc func handleConnectButtonPressed() {
         if status == .on {
             status = .disconnecting
         }else {
@@ -190,7 +190,7 @@ class HomeVC: FormViewController, UINavigationControllerDelegate, HomePresenterP
         presenter.switchVPN()
     }
 
-    func handleTitleButtonPressed() {
+    @objc func handleTitleButtonPressed() {
         presenter.changeGroupName()
     }
 

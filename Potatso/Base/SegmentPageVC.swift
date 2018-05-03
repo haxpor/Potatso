@@ -25,7 +25,7 @@ class SegmentPageVC: UIViewController {
         fatalError()
     }
 
-    func onSegmentedChanged(_ seg: UISegmentedControl) {
+    @objc func onSegmentedChanged(_ seg: UISegmentedControl) {
         showPage(seg.selectedSegmentIndex)
     }
 

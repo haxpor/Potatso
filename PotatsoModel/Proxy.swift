@@ -66,17 +66,17 @@ extension ProxyError: CustomStringConvertible {
 }
 
 open class Proxy: BaseModel {
-    open dynamic var typeRaw = ProxyType.Shadowsocks.rawValue
-    open dynamic var name = ""
-    open dynamic var host = ""
-    open dynamic var port = 0
-    open dynamic var authscheme: String?  // method in SS
-    open dynamic var user: String?
-    open dynamic var password: String?
-    open dynamic var ota: Bool = false
-    open dynamic var ssrProtocol: String?
-    open dynamic var ssrObfs: String?
-    open dynamic var ssrObfsParam: String?
+    @objc open dynamic var typeRaw = ProxyType.Shadowsocks.rawValue
+    @objc open dynamic var name = ""
+    @objc open dynamic var host = ""
+    @objc open dynamic var port = 0
+    @objc open dynamic var authscheme: String?  // method in SS
+    @objc open dynamic var user: String?
+    @objc open dynamic var password: String?
+    @objc open dynamic var ota: Bool = false
+    @objc open dynamic var ssrProtocol: String?
+    @objc open dynamic var ssrObfs: String?
+    @objc open dynamic var ssrObfsParam: String?
 
     open static let ssUriPrefix = "ss://"
     open static let ssrUriPrefix = "ssr://"
@@ -125,10 +125,10 @@ open class Proxy: BaseModel {
         guard let _ = ProxyType(rawValue: typeRaw)else {
             throw ProxyError.invalidType
         }
-        guard name.characters.count > 0 else{
+        guard !name.isEmpty else{
             throw ProxyError.invalidName
         }
-        guard host.characters.count > 0 else {
+        guard !host.isEmpty else {
             throw ProxyError.invalidHost
         }
         guard port > 0 && port <= Int(UINT16_MAX) else {
@@ -194,7 +194,7 @@ extension Proxy {
             self.name = name
             if uriString.lowercased().hasPrefix(Proxy.ssUriPrefix) {
                 // Shadowsocks
-                let undecodedString = uriString.substring(from: uriString.characters.index(uriString.startIndex, offsetBy: Proxy.ssUriPrefix.characters.count))
+                let undecodedString = uriString.substring(from: uriString.index(uriString.startIndex, offsetBy: Proxy.ssUriPrefix.count))
                 guard let proxyString = base64DecodeIfNeeded(undecodedString), let _ = proxyString.range(of: ":")?.lowerBound else {
                     throw ProxyError.invalidUri
                 }
@@ -290,7 +290,7 @@ extension Proxy {
             self.name = name
             self.type = type
         }
-        if realm.objects(Proxy).filter("name = '\(name)'").first != nil {
+        if realm.objects(Proxy.self).filter("name = '\(name)'").first != nil {
             self.name = "\(name) \(Proxy.dateFormatter.string(from: Date()))"
         }
         try validate(inRealm: realm)
@@ -301,7 +301,7 @@ extension Proxy {
             return proxyString
         }
         let base64String = proxyString.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/")
-        let padding = base64String.characters.count + (base64String.characters.count % 4 != 0 ? (4 - base64String.characters.count % 4) : 0)
+        let padding = base64String.count + (base64String.count % 4 != 0 ? (4 - base64String.count % 4) : 0)
         if let decodedData = Data(base64Encoded: base64String.padding(toLength: padding, withPad: "=", startingAt: 0), options: NSData.Base64DecodingOptions(rawValue: 0)), let decodedString = NSString(data: decodedData, encoding: String.Encoding.utf8.rawValue) {
             return decodedString as String
         }

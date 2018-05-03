@@ -75,8 +75,8 @@ class RecentRequestsCell: UITableViewCell {
     }
     
     func setupLayout() {
-        timeLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        timeLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        timeLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        timeLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         constrain(contentView, self) { contentView, superview in
             contentView.edges == superview.edges
         }

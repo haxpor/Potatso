@@ -66,7 +66,7 @@ class RuleSetListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.reloadData()
     }
 
-    func add() {
+    @objc func add() {
         let vc = RuleSetConfigurationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

@@ -36,7 +36,7 @@ class CollectionViewController: SegmentPageVC {
         super.showPage(index)
     }
 
-    func add() {
+    @objc func add() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let vc = RuleSetConfigurationViewController()

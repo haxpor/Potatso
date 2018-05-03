@@ -62,7 +62,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDataS
         stopTimer()
     }
 
-    func tryConnectStatusSocket() {
+    @objc func tryConnectStatusSocket() {
         let port = Potatso.sharedUserDefaults().integer(forKey: "tunnelStatusPort")
         guard port > 0 else {
             updateStatus(false)

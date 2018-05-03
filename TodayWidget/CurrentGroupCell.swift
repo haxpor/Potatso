@@ -21,7 +21,7 @@ class CurrentGroupCell: UITableViewCell {
         setupLayout()
     }
     
-    func onSwitchValueChanged() {
+    @objc func onSwitchValueChanged() {
         switchVPN?()
     }
     

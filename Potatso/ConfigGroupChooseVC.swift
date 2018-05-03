@@ -64,7 +64,7 @@ class ConfigGroupChooseWindow: UIWindow {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func onStatusBarFrameChange() {
+    @objc func onStatusBarFrameChange() {
         frame = UIScreen.main.bounds
     }
 
@@ -116,7 +116,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
         token?.stop()
     }
 
-    func onVPNStatusChanged() {
+    @objc func onVPNStatusChanged() {
         updateUI()
     }
 
@@ -129,7 +129,7 @@ class ConfigGroupChooseVC: UIViewController, UITableViewDataSource, UITableViewD
         ConfigGroupChooseManager.shared.hide()
     }
 
-    func onTap() {
+    @objc func onTap() {
         ConfigGroupChooseManager.shared.hide()
     }
 

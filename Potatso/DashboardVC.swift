@@ -39,7 +39,7 @@ class DashboardVC: FormViewController {
         timer = nil
     }
 
-    func onTime() {
+    @objc func onTime() {
         handleRefreshUI()
     }
 

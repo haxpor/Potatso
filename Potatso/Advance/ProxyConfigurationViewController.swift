@@ -168,7 +168,7 @@ class ProxyConfigurationViewController: FormViewController {
 
     }
     
-    func save() {
+    @objc func save() {
         do {
             let values = form.values()
             guard let type = values[kProxyFormType] as? ProxyType else {

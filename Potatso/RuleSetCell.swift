@@ -30,8 +30,8 @@ class RuleSetCell: UITableViewCell {
         constrain(contentView, self) { contentView, superview in
             contentView.edges == superview.edges
         }
-        countLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        countLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        countLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        countLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         constrain(titleLabel, countLabel, contentView) { titleLabel, countLabel, contentView in
             titleLabel.leading == contentView.leading + 15
             titleLabel.top == contentView.top + 13
@@ -81,7 +81,7 @@ class RuleSetCell: UITableViewCell {
             bottomView = subscribeFlagLabel
         }else {
             subscribeFlagLabel.isHidden = true
-            if ruleSet.desc.characters.count > 0 {
+            if !ruleSet.desc.isEmpty {
                 bottomView = descLabel
             }else{
                 bottomView = countLabel
