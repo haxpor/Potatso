@@ -165,7 +165,6 @@
 		B803A6981D02B768003EA9AA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6971D02B768003EA9AA /* API.swift */; };
 		B821B0F01D51DD8F0061E7B9 /* KeychainUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B0EF1D51DD8F0061E7B9 /* KeychainUtils.swift */; };
 		B821B0F31D5334D50061E7B9 /* ActionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B0F21D5334D50061E7B9 /* ActionRow.swift */; };
-		B821B0F51D5335DA0061E7B9 /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B0F41D5335DA0061E7B9 /* FeedbackManager.swift */; };
 		B821B0F71D539CFD0061E7B9 /* SyncVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B0F61D539CFD0061E7B9 /* SyncVC.swift */; };
 		B82574A91D1D98CF007BAF40 /* Pollution.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82574A81D1D98CF007BAF40 /* Pollution.swift */; };
 		B829C1721D4395BC00C17B82 /* QRCodeScannerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B829C1711D4395BC00C17B82 /* QRCodeScannerVC.m */; };
@@ -869,7 +868,6 @@
 		B803A6971D02B768003EA9AA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = API.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B821B0EF1D51DD8F0061E7B9 /* KeychainUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = KeychainUtils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B821B0F21D5334D50061E7B9 /* ActionRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionRow.swift; sourceTree = "<group>"; };
-		B821B0F41D5335DA0061E7B9 /* FeedbackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		B821B0F61D539CFD0061E7B9 /* SyncVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncVC.swift; sourceTree = "<group>"; };
 		B82574A81D1D98CF007BAF40 /* Pollution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pollution.swift; sourceTree = "<group>"; };
 		B829C1701D4395BC00C17B82 /* QRCodeScannerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScannerVC.h; sourceTree = "<group>"; };
@@ -1335,7 +1333,6 @@
 				9B1F74751C3164AC0028C1A6 /* VPN.swift */,
 				9B3247891CC0F1D200A3BAFF /* Importer.swift */,
 				B803A6971D02B768003EA9AA /* API.swift */,
-				B821B0F41D5335DA0061E7B9 /* FeedbackManager.swift */,
 				B8F7AE3D1D5F178A005CA41E /* CloudSetManager.swift */,
 				B8B1E4A51D6584DC003F8530 /* User.swift */,
 			);
@@ -2655,107 +2652,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Potatso/Pods-Potatso-resources.sh",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HsUIResourceBundle.bundle",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ar.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/bg.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/bn.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ca.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/cs.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/da.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/de.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/el.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/en.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/es.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/fa.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/fi.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/fr.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/gu.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/he.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/hi.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/hr.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/hu.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/id.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/it.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ja.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/kn.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ko.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/lv.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ml.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/mr.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ms.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/nb-NO.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/nb.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/nl.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/pa.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/pl.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/pt.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ro.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ru.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/sk.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/sl.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/sv.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/ta.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/te.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/th.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/tr.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/uk.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/vi.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/zh-Hans.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSLocalization/zh-Hant.lproj",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSThemes/HelpshiftConfig.plist",
-				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v5.6.1/HSThemes/HelpshiftConfigDark.plist",
+				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v7.0.0/HsUIResources.bundle",
+				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v7.0.0/HsLocalization.bundle",
+				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v7.0.0/HSThemes/HelpshiftConfig.plist",
+				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v7.0.0/HSThemes/HelpshiftConfigDark.plist",
+				"${PODS_ROOT}/Helpshift/helpshift-sdk-ios-v7.0.0/HSThemes/HelpshiftConfigHighContrast.plist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HsUIResourceBundle.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ar.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bg.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bn.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ca.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/cs.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/da.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/de.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/el.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/es.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fa.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fi.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gu.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/he.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/hi.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/hr.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/hu.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/id.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/it.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ja.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/kn.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ko.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lv.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ml.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mr.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ms.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nb-NO.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nb.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nl.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pa.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pl.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pt.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ro.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ru.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/sk.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/sl.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/sv.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ta.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/te.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/th.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/tr.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/uk.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/vi.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hans.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hant.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HsUIResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HsLocalization.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HelpshiftConfig.plist",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HelpshiftConfigDark.plist",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HelpshiftConfigHighContrast.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3119,7 +3028,6 @@
 				B8C256AE1D1A93DA0074D3B1 /* FlatButton.swift in Sources */,
 				9B8193ED1CBE4DCA00BE320D /* UrlHandler.swift in Sources */,
 				9B1F74761C3164AD0028C1A6 /* VPN.swift in Sources */,
-				B821B0F51D5335DA0061E7B9 /* FeedbackManager.swift in Sources */,
 				B8A09D7B1D51B9A900A9A989 /* AlertOperation.swift in Sources */,
 				9B8750551CC761D000A11715 /* RequestModel.swift in Sources */,
 				B87A043A1D193ABC001132F2 /* LoggerUtils.swift in Sources */,
@@ -3558,10 +3466,7 @@
 				INFOPLIST_FILE = Potatso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @rpath/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
-					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3606,10 +3511,7 @@
 				INFOPLIST_FILE = Potatso/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @rpath/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
-					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = io.wasin.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

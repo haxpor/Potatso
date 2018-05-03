@@ -25,18 +25,20 @@ Currently, Potatso is compatible with following proxies:
 [Join Telegram Group](https://telegram.me/joinchat/BT0c4z49OGNZXwl9VsO0uQ) to chat with users.
 
 Original Author: [@icodesign](https://twitter.com/icodesign_me)  
-Swift 3 Maintainer: [@haxpor](https://twitter.com/haxpor)
+Swift 4 Maintainer: [@haxpor](https://twitter.com/haxpor)
 
 ## Project Info
 
-Potatso has in total 33 (2 as submodules dependencies as used as local file in Cocoapod) dependencies as following
+Potatso has in total 26 (from previously 33) dependencies as following
 
-* 28 Cocoapod dependencies
+* 23 Cocoapod dependencies (reduced from 28)
 * 1 Carthage dependency
-* 4 submodules dependencies
+* 2 submodules dependencies via local cocoapod (reduced from 3)
 
-The project is tested with Xcode `9.2 (9C40B)` on iOS `11.2 (15B92)` device with cocoapod version `1.3.1`+, and carthage version `0.18.1`.  
+The project is tested with Xcode `9.3 (9E145)` on iOS `11.3 (15E216)` device with cocoapod version `1.4.0`+, and carthage version `0.18.1`.  
 If you experienced an expected issue, try to use those versions, if still experience the problem please file the issue.
+
+The project will be further reduced for its dependencies.
 
 ## How to Build Project
 
@@ -47,23 +49,6 @@ Be warned that you **should not** call `pod update` as newer version of pod fram
 2. `pod install` to pull down dependencies into our project
 3. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
 4. Open `Potatso.xcworkspace` then Build and Run the project. Done.
-
-## Code Notices (outdated, will review this part again)
-
-There're a couple of issues that needed to look at, but after testing, it does **not** affect the functionality of the app.
-
-* In file `Potatso/Core/API.swift`, it's the following code focusing on line with comment that I can't figure it out yet how to migrate it to Swift 3 code.  
-
-   ```swift
-   var JSONToMap: AnyObject?
-   if let keyPath = keyPath, keyPath.isEmpty == false {
-       //JSONToMap = (result.value? as AnyObject).value(forKeyPath: keyPath)
-       JSONToMap = nil
-   } else {
-       JSONToMap = result.value as AnyObject?
-   }
-   ```
-* Potatso core code depends on version `1.7.0` of Eureka with manual migration to Swift 3. It's already done and linked to project. But you will see `observeValue()` function in `Eureka/Source/Rows/PostalAddressRow.swift` that has been commented for all of its function code due to Eureka's newer version `2.0.0-beta.1` doesn't include such file in the project anymore, but it still works with no problem. This note is meant to mark that there is going to be a lot of effort if we decide to depend on Eureka version `2.0.0-beta.1` as we need to change a lot of Potatso core code.
    
 ## How To Contribute
 
@@ -78,7 +63,6 @@ We use the following services or open-source libraries. So we'd like show them h
 - [Fabric](https://get.fabric.io/)
 - [Reveal](http://revealapp.com/)
 - [realm](https://realm.io/)
-- [HelpShift](https://www.helpshift.com)
 
 ### Open-source Libraries
 
@@ -125,9 +109,9 @@ Please note that Potatso 2 will be closed-source as stated from original author'
 The development covers a lot of complicated work, costing not only money but also time.
 These are the way to support
 
-- [Download Potatso from Apple Store](https://itunes.apple.com/app/apple-store/id1070901416?pt=2305194&ct=potatso.github&mt=8). (**Recommended**) 
+- [Download Potatso 2 from Apple Store](https://itunes.apple.com/us/app/id1162704202?mt=8). (**Recommended**) 
 - Donate with Alipay to original author. (Account: **leewongstudio.com@gmail.com**)
-- Donate to swift3 maintainer (WeChat: http://imgur.com/lsAao62, or PayPal: haxpor@gmail.com)
+- Donate to swift4 maintainer (WeChat: http://imgur.com/lsAao62, or PayPal: haxpor@gmail.com)
 
 ## License
 

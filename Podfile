@@ -43,8 +43,7 @@ target "Potatso" do
     pod 'Alamofire'
     pod 'ObjectMapper'
     pod 'CocoaLumberjack/Swift', '~> 3.0.0'
-    pod 'Helpshift', '5.6.1'
-    pod 'PSOperations', '~> 3.0.0'
+    pod 'PSOperations'
     pod 'LogglyLogger-CocoaLumberjack', '~> 3.0'
     tunnel
     library
@@ -81,16 +80,5 @@ end
 
 target "PotatsoLibraryTests" do
     library
-end
-
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['ENABLE_BITCODE'] = 'NO'
-            if target.name == "HelpShift"
-                config.build_settings["OTHER_LDFLAGS"] = '$(inherited) "-ObjC"'
-            end
-        end
-    end
 end
 
