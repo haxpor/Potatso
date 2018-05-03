@@ -29,9 +29,9 @@ Swift 4 Maintainer: [@haxpor](https://twitter.com/haxpor)
 
 ## Project Info
 
-Potatso has in total 26 (from previously 33) dependencies as following
+Potatso has in total 25 (from previously 33) dependencies as following
 
-* 23 Cocoapod dependencies (reduced from 28)
+* 22 Cocoapod dependencies (reduced from 28)
 * 1 Carthage dependency
 * 2 submodules dependencies via local cocoapod (reduced from 3)
 

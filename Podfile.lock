@@ -14,9 +14,6 @@ PODS:
     - CocoaAsyncSocket/RunLoop
   - CocoaAsyncSocket/GCD (7.4.3)
   - CocoaAsyncSocket/RunLoop (7.4.3)
-  - CocoaLumberjack (3.0.0):
-    - CocoaLumberjack/Default (= 3.0.0)
-    - CocoaLumberjack/Extensions (= 3.0.0)
   - CocoaLumberjack/Core (3.0.0)
   - CocoaLumberjack/Default (3.0.0):
     - CocoaLumberjack/Core
@@ -34,14 +31,6 @@ PODS:
   - ISO8601DateFormatter (0.8)
   - KeychainAccess (3.1.1)
   - KissXML (5.2.2)
-  - LogglyLogger-CocoaLumberjack (3.0.0):
-    - CocoaLumberjack (~> 3.0)
-    - LogglyLogger-CocoaLumberjack/Formatter (= 3.0.0)
-    - LogglyLogger-CocoaLumberjack/Logger (= 3.0.0)
-  - LogglyLogger-CocoaLumberjack/Formatter (3.0.0):
-    - CocoaLumberjack (~> 3.0)
-  - LogglyLogger-CocoaLumberjack/Logger (3.0.0):
-    - CocoaLumberjack (~> 3.0)
   - MBProgressHUD (1.0.0)
   - MMWormhole (2.0.0):
     - MMWormhole/Core (= 2.0.0)
@@ -88,7 +77,6 @@ DEPENDENCIES:
   - ISO8601DateFormatter (~> 0.8)
   - KeychainAccess
   - KissXML (~> 5.2.2)
-  - LogglyLogger-CocoaLumberjack (~> 3.0)
   - MBProgressHUD
   - MMWormhole (~> 2.0.0)
   - ObjectMapper
@@ -123,7 +111,6 @@ SPEC CHECKSUMS:
   ISO8601DateFormatter: 4551b6ce4f83185425f583b0b3feb3c7b59b942c
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   KissXML: 4418f32138aec43797891845d682b00fc8cd4677
-  LogglyLogger-CocoaLumberjack: 16afad0a63fb70179fda1db85e03aeb3ded7fb02
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
@@ -133,6 +120,6 @@ SPEC CHECKSUMS:
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SwiftColor: c240d8cb2e1a29d731ae8deca8739eac6b9c56bd
 
-PODFILE CHECKSUM: bc2d1eef8774b214f9692189d3c4c3ca1c78eb8a
+PODFILE CHECKSUM: 8698340c1951dc04bee8c6b48012497759e563fc
 
 COCOAPODS: 1.4.0
