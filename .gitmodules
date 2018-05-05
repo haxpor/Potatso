@@ -4,9 +4,6 @@
 [submodule "Library/ShadowPath/ShadowPath/libmaxminddb"]
 	path = Library/ShadowPath/ShadowPath/libmaxminddb
 	url = https://github.com/haxpor/libmaxminddb.git
-[submodule "Library/Eureka"]
-	path = Library/Eureka
-	url = https://github.com/haxpor/Eureka.git
 [submodule "Library/CallbackURLKit"]
 	path = Library/CallbackURLKit
 	url = https://github.com/phimage/CallbackURLKit.git
