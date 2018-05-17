@@ -8,10 +8,8 @@ before_install:
   - gem install xcpretty                      # to suppress build log from xcodebuild, workign with xcpretty-travis-formatter
   - gem install xcpretty-travis-formatter
   - gem install cocoapods -v '1.3.1'
-  - brew install carthage
   - git submodule update --init
   - pod install
-  - carthage update
   - ./ci/scripts/versions.sh
 before_script:
   - openssl aes-256-cbc -k "$CERTS_PASSWORD" -in ci/certs/potatso-development.cer.enc -d -a -out ci/certs/potatso-development.cer
@@ -23,3 +21,6 @@ before_script:
   - ./ci/scripts/install_profiles.sh
 script:
   - xcodebuild -workspace Potatso.xcworkspace -scheme Potatso -configuration "$XCODEBUILD_CONFIGURATION" -sdk "$XCODEBUILD_SDK" -arch arm64 -quiet | xcpretty -f `xcpretty-travis-formatter`
+addons:
+  ssh_known_hosts:
+  - github.com
