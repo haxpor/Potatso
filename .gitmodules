@@ -9,4 +9,4 @@
 	url = https://github.com/phimage/CallbackURLKit.git
 [submodule "Library/YAML-Framework"]
 	path = Library/YAML-Framework
-	url = git@github.com:mirek/YAML.framework.git
+	url = https://github.com/mirek/YAML.framework.git
