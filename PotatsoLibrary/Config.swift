@@ -8,7 +8,7 @@
 
 import RealmSwift
 import PotatsoModel
-import YAML
+import YAML_Framework
 
 public enum ConfigError: Error {
     case downloadFail

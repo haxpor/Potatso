@@ -71,6 +71,8 @@ end
 target "PotatsoLibrary" do
     library
     model
+    # YAML-Framework 0.0.3 is not available in cocoapods so we install it from local using git submodule
+    pod 'YAML-Framework', :path => "./Library/YAML-Framework"
 end
 
 target "PotatsoModel" do

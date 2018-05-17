@@ -1,2 +1,0 @@
-YAML is a superset of JSON: !!bool true
-Pluto is a planet: !!bool false

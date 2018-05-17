@@ -49,8 +49,7 @@ Be warned that you **should not** call `pod update` as newer version of pod fram
 2. `cd Potatso`
 3. `git submodule update --init` to update git submodule
 4. `pod install` to pull down dependencies into our project
-5. `carthage update` to pull down dependencies into `Carthage/Checkouts` folder and build each one
-6. Open `Potatso.xcworkspace` then Build and Run the project. Done.
+5. Open `Potatso.xcworkspace` then Build and Run the project. Done.
 
 > First two steps are clearly listed here as per [#89](https://github.com/haxpor/Potatso/issues/89); if you download project as zip via Github web interface it will not have enough information to pull down required gitsubmodule, and step 3 will have error. So make sure you clone via command line, or using any git client application before proceeding.
    

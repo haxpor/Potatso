@@ -1,3 +1,0 @@
-negative: !!int -12
-zero: !!int 0
-positive: !!int 34
