@@ -29,13 +29,12 @@ Swift 4 Maintainer: [@haxpor](https://twitter.com/haxpor)
 
 ## Project Info
 
-Potatso has in total 25 (from previously 33) dependencies as following
+Potatso has in total 26 dependencies as following
 
-* 22 Cocoapod dependencies (reduced from 28)
-* 1 Carthage dependency
-* 2 submodules dependencies via local cocoapod (reduced from 3)
+* 22 Cocoapod dependencies
+* 4 submodules dependencies via local cocoapod
 
-The project is tested with Xcode `9.3 (9E145)` on iOS `11.3 (15E216)` device with cocoapod version `1.4.0`+, and carthage version `0.18.1`.  
+The project is tested with Xcode `9.3 (9E145)` on iOS `11.3 (15E216)` device with cocoapod version `1.4.0`+.  
 If you experienced an expected issue, try to use those versions, if still experience the problem please file the issue.
 
 The project will be further reduced for its dependencies.
