@@ -1,4 +1,0 @@
-Block style: !!str |-
-  String: just a theory.
-
-Flow style: !!str "String: just a theory."

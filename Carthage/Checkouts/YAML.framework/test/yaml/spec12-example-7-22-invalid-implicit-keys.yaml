@@ -1,3 +1,0 @@
-[ foo
- bar: invalid,
- "foo...>1K characters...bar": invalid ]

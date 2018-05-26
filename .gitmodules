@@ -7,3 +7,6 @@
 [submodule "Library/CallbackURLKit"]
 	path = Library/CallbackURLKit
 	url = https://github.com/phimage/CallbackURLKit.git
+[submodule "Library/YAML-Framework"]
+	path = Library/YAML-Framework
+	url = https://github.com/mirek/YAML.framework.git

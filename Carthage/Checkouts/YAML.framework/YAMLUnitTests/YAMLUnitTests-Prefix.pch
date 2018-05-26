@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'YAMLUnitTests' target in the 'YAMLUnitTests' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif

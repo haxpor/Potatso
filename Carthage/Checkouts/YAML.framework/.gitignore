@@ -1,6 +1,0 @@
-.DS_Store
-build
-*.mode1v3
-*.pbxuser
-xcuserdata
-test/yaml/bigboy.yaml
