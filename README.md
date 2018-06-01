@@ -34,7 +34,7 @@ Potatso has in total 26 dependencies as following
 * 22 Cocoapod dependencies
 * 4 submodules dependencies via local cocoapod
 
-The project is tested with Xcode `9.3 (9E145)` on iOS `11.3 (15E216)` device with cocoapod version `1.4.0`+.  
+The project is tested with Xcode `9.4 (9F1027a)` on iOS `11.4 (15F79)` device with cocoapod version `1.4.0`+.  
 If you experienced an expected issue, try to use those versions, if still experience the problem please file the issue.
 
 The project will be further reduced for its dependencies.
