@@ -21,10 +21,7 @@ PODS:
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
-  - Crashlytics (3.7.3):
-    - Fabric (~> 1.6.3)
   - Eureka (4.1.1)
-  - Fabric (1.6.8)
   - ICDMaterialActivityIndicatorView (0.1.2)
   - ICSMainFramework (0.0.1)
   - ICSPullToRefresh (0.6)
@@ -71,9 +68,7 @@ DEPENDENCIES:
   - Cartography
   - CocoaAsyncSocket (~> 7.4.3)
   - CocoaLumberjack/Swift (~> 3.0.0)
-  - Crashlytics
   - Eureka
-  - Fabric
   - ICDMaterialActivityIndicatorView (~> 0.1.0)
   - ICSMainFramework (from `./Library/ICSMainFramework/`)
   - ICSPullToRefresh (~> 0.6)
@@ -90,16 +85,14 @@ DEPENDENCIES:
   - YAML-Framework (from `./Library/YAML-Framework`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Appirater
     - AsyncSwift
     - Cartography
     - CocoaAsyncSocket
     - CocoaLumberjack
-    - Crashlytics
     - Eureka
-    - Fabric
     - ICDMaterialActivityIndicatorView
     - ICSPullToRefresh
     - ISO8601DateFormatter
@@ -134,9 +127,7 @@ SPEC CHECKSUMS:
   Cartography: c1460e99395b824d9d75360b0382faeb0b33dcd7
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
-  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   ICDMaterialActivityIndicatorView: 3f02a9dc9e52417023a98385d631c93d3f95c465
   ICSMainFramework: e2cfdd3bac03573d48c890a70190e9bfac051ed8
   ICSPullToRefresh: a64f102c6558cc34270ea60e99df7c91d1f3d2c0
@@ -154,6 +145,6 @@ SPEC CHECKSUMS:
   SwiftColor: c240d8cb2e1a29d731ae8deca8739eac6b9c56bd
   YAML-Framework: e63ac91e0494f10022bd311fa3f12d963f6233e7
 
-PODFILE CHECKSUM: 773204542ef8ad11dc8205a2dc85e91ab2b3cb1b
+PODFILE CHECKSUM: 921ef673d451a839701d3ce09dc389de8b72fbf3
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.0.beta.1

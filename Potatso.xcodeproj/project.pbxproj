@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10305058CF9183AA66172BEC /* Pods_Potatso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C82CD7437FBA5F74EB08670 /* Pods_Potatso.framework */; };
-		12AD9C79E2C246F3D21B814E /* Pods_PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5494FBA89E140F817CCF2ACA /* Pods_PotatsoLibrary.framework */; };
+		1AAC61E76574642AD2BF3E5E /* Pods_TodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946F065271ABB55B741DA5E5 /* Pods_TodayWidget.framework */; };
 		1ED659011E05C73100D4BEE3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED659001E05C73100D4BEE3 /* CloudKit.framework */; };
 		1ED659061E05E88C00D4BEE3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED659051E05E88C00D4BEE3 /* GameKit.framework */; };
 		1ED66DEE1E05A72300638808 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED66DED1E05A72300638808 /* StoreKit.framework */; };
@@ -17,10 +16,9 @@
 		1EEBB8781FFFD52700EB33C3 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */; };
 		1EEBB8791FFFD8A700EB33C3 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */; };
 		1EF602951F113A660005E0C7 /* GeoLite2-Country.mmdb in Resources */ = {isa = PBXBuildFile; fileRef = 1EF602941F113A660005E0C7 /* GeoLite2-Country.mmdb */; };
-		2BB44917A69FF1B2710678D2 /* Pods_PacketTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A478ADBAAA1661B3FB51E4D3 /* Pods_PacketTunnel.framework */; };
-		479C711B68EF0702C9F65B5B /* Pods_TodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A692B80DC5DB316AA1DED8CB /* Pods_TodayWidget.framework */; };
-		8A1FADF61B82B8A8F3895B04 /* Pods_PacketProcessor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD3EA9ACD870481D4DBB6FB /* Pods_PacketProcessor.framework */; };
-		939649B7FCC9A0C8AFB317B8 /* Pods_PotatsoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2589D04E6C48F30ED63BA84F /* Pods_PotatsoModel.framework */; };
+		49AFCAB8A7A7C95E61767328 /* Pods_PacketProcessor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075A0EDC2AD266124CA24078 /* Pods_PacketProcessor.framework */; };
+		73AC1EAA0D7C41952F34CF14 /* Pods_PotatsoLibraryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A646ACF237B032E4A2016FC /* Pods_PotatsoLibraryTests.framework */; };
+		82F0934D24F9F56921AF0EE0 /* Pods_PotatsoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD33A4FF6B8E224B4FF4A210 /* Pods_PotatsoModel.framework */; };
 		9B07D6B31CB7A6A900182C1B /* PotatsoLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B07D6B21CB7A6A900182C1B /* PotatsoLibraryTests.swift */; };
 		9B07D6B51CB7A6A900182C1B /* PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9B15BD1C21595B000B6541 /* PotatsoLibrary.framework */; };
 		9B07D6BE1CB7AF0000182C1B /* PotatsoModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC6FFEA1CB28B4B00E5EA61 /* PotatsoModel.framework */; };
@@ -160,6 +158,7 @@
 		9BF303461CC8A1F60096588E /* LogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF303451CC8A1F60096588E /* LogDetailViewController.swift */; };
 		9BF3034B1CCA1B060096588E /* BaseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3034A1CCA1B060096588E /* BaseEmptyView.swift */; };
 		9BF3034D1CCA20D80096588E /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3034C1CCA20D80096588E /* Logging.swift */; };
+		A19186A9C01BD2F3698C660B /* Pods_PacketTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F418F761ED5A1D6D44F6B978 /* Pods_PacketTunnel.framework */; };
 		B803A6961D0165EA003EA9AA /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6951D0165EA003EA9AA /* CloudViewController.swift */; };
 		B803A6981D02B768003EA9AA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6971D02B768003EA9AA /* API.swift */; };
 		B821B0F01D51DD8F0061E7B9 /* KeychainUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B0EF1D51DD8F0061E7B9 /* KeychainUtils.swift */; };
@@ -217,7 +216,8 @@
 		B8F784671D3678B400F02FF5 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = B8F784651D3678B400F02FF5 /* Settings.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8F784681D3678B400F02FF5 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F784661D3678B400F02FF5 /* Settings.m */; };
 		B8F7AE3E1D5F178A005CA41E /* CloudSetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7AE3D1D5F178A005CA41E /* CloudSetManager.swift */; };
-		C5AC2DD700711D678EE97B8E /* Pods_PotatsoLibraryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA787CDCD42A827F8E72947 /* Pods_PotatsoLibraryTests.framework */; };
+		BEC06AF748B92B7443F82556 /* Pods_PotatsoLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF9F2A6320F1AC7B894EFB9 /* Pods_PotatsoLibrary.framework */; };
+		D9840AAFF707D5FEE15E786F /* Pods_Potatso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A90249DDE27A9D618C3640 /* Pods_Potatso.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,7 +333,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		16E45A00C4849FC6D582F28E /* Pods-PotatsoLibraryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibraryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests.release.xcconfig"; sourceTree = "<group>"; };
+		075A0EDC2AD266124CA24078 /* Pods_PacketProcessor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PacketProcessor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09342A48F0EEF2F3F6AD64A8 /* Pods-PacketProcessor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketProcessor.debug.xcconfig"; path = "Target Support Files/Pods-PacketProcessor/Pods-PacketProcessor.debug.xcconfig"; sourceTree = "<group>"; };
 		1ECA215E1E05E8C700B32187 /* Potatso.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Potatso.entitlements; sourceTree = "<group>"; };
 		1ECA21631E05EA6D00B32187 /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
 		1ECA21641E05EADD00B32187 /* TodayWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayWidget.entitlements; sourceTree = "<group>"; };
@@ -343,18 +344,13 @@
 		1EE85E0B2000639700C5DB6C /* InfoInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoInternal.swift; sourceTree = "<group>"; };
 		1EEBB8761FFFD4B500EB33C3 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		1EF602941F113A660005E0C7 /* GeoLite2-Country.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-Country.mmdb"; sourceTree = "<group>"; };
-		217DDEB43D39CFD980088F46 /* Pods-PotatsoModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoModel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoModel/Pods-PotatsoModel.debug.xcconfig"; sourceTree = "<group>"; };
-		2589D04E6C48F30ED63BA84F /* Pods_PotatsoModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		534B69172D50947634710149 /* Pods-PacketTunnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.release.xcconfig"; sourceTree = "<group>"; };
-		5494FBA89E140F817CCF2ACA /* Pods_PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5509E684B48A8007AADADA51 /* Pods-PotatsoModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoModel.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoModel/Pods-PotatsoModel.release.xcconfig"; sourceTree = "<group>"; };
-		61F603707715DCFA28936BB5 /* Pods-PotatsoLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.release.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.release.xcconfig"; sourceTree = "<group>"; };
-		69CCED68685D929177A42E2A /* Pods-PacketProcessor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketProcessor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PacketProcessor/Pods-PacketProcessor.debug.xcconfig"; sourceTree = "<group>"; };
-		6C82CD7437FBA5F74EB08670 /* Pods_Potatso.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Potatso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		721750A5B5C0DCACE5C63317 /* Pods-Potatso.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Potatso.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Potatso/Pods-Potatso.debug.xcconfig"; sourceTree = "<group>"; };
-		83DE540D7DA7E719057D8E51 /* Pods-Potatso.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Potatso.release.xcconfig"; path = "Pods/Target Support Files/Pods-Potatso/Pods-Potatso.release.xcconfig"; sourceTree = "<group>"; };
-		8591A0DF3C64D6376B09D429 /* Pods-PotatsoLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.debug.xcconfig"; sourceTree = "<group>"; };
-		8AD3EA9ACD870481D4DBB6FB /* Pods_PacketProcessor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PacketProcessor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C9A6823014EF76FB5F7725A /* Pods-PotatsoLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.debug.xcconfig"; path = "Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.debug.xcconfig"; sourceTree = "<group>"; };
+		4A646ACF237B032E4A2016FC /* Pods_PotatsoLibraryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibraryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD84123306F4F6D572556EB /* Pods-PacketTunnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.release.xcconfig"; path = "Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.release.xcconfig"; sourceTree = "<group>"; };
+		570BF2420B2759837DB12503 /* Pods-PotatsoModel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoModel.release.xcconfig"; path = "Target Support Files/Pods-PotatsoModel/Pods-PotatsoModel.release.xcconfig"; sourceTree = "<group>"; };
+		580482A21595A1FD951E8265 /* Pods-PotatsoModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoModel.debug.xcconfig"; path = "Target Support Files/Pods-PotatsoModel/Pods-PotatsoModel.debug.xcconfig"; sourceTree = "<group>"; };
+		718C633B665D19AFC7FD3401 /* Pods-PacketProcessor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketProcessor.release.xcconfig"; path = "Target Support Files/Pods-PacketProcessor/Pods-PacketProcessor.release.xcconfig"; sourceTree = "<group>"; };
+		946F065271ABB55B741DA5E5 /* Pods_TodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B07D6B01CB7A6A900182C1B /* PotatsoLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PotatsoLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B07D6B21CB7A6A900182C1B /* PotatsoLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotatsoLibraryTests.swift; sourceTree = "<group>"; };
 		9B07D6B41CB7A6A900182C1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -404,7 +400,6 @@
 		9B9B15BD1C21595B000B6541 /* PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9B15BF1C21595B000B6541 /* PotatsoLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PotatsoLibrary.h; sourceTree = "<group>"; };
 		9B9B15C11C21595B000B6541 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BAB9F5C037C991150984F50 /* Pods-PacketTunnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.debug.xcconfig"; sourceTree = "<group>"; };
 		9BB3F73B1CC3D3DE00C2DD05 /* RecentRequestsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentRequestsCell.swift; sourceTree = "<group>"; };
 		9BB3F73E1CC60B5300C2DD05 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		9BB3F7431CC60B6F00C2DD05 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -855,10 +850,8 @@
 		9BF303451CC8A1F60096588E /* LogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDetailViewController.swift; sourceTree = "<group>"; };
 		9BF3034A1CCA1B060096588E /* BaseEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEmptyView.swift; sourceTree = "<group>"; };
 		9BF3034C1CCA20D80096588E /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
-		A478ADBAAA1661B3FB51E4D3 /* Pods_PacketTunnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PacketTunnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A692B80DC5DB316AA1DED8CB /* Pods_TodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6C3522CED51B0487ECEE41F /* Pods-TodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget.release.xcconfig"; sourceTree = "<group>"; };
-		ADA787CDCD42A827F8E72947 /* Pods_PotatsoLibraryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibraryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8756F00E05A3B83B41D4315 /* Pods-Potatso.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Potatso.debug.xcconfig"; path = "Target Support Files/Pods-Potatso/Pods-Potatso.debug.xcconfig"; sourceTree = "<group>"; };
+		B4A7BF23B2FD5F5F35EC36C2 /* Pods-TodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.debug.xcconfig"; path = "Target Support Files/Pods-TodayWidget/Pods-TodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		B803A6951D0165EA003EA9AA /* CloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		B803A6971D02B768003EA9AA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = API.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B821B0EF1D51DD8F0061E7B9 /* KeychainUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = KeychainUtils.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -919,11 +912,18 @@
 		B8F784651D3678B400F02FF5 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		B8F784661D3678B400F02FF5 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		B8F7AE3D1D5F178A005CA41E /* CloudSetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudSetManager.swift; sourceTree = "<group>"; };
-		C2456CC9E4E07FDB51C7E8E6 /* Pods-PotatsoLibraryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibraryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C3DA979DAA60D5650FCCD000 /* Pods-PotatsoLibraryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibraryTests.release.xcconfig"; path = "Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests.release.xcconfig"; sourceTree = "<group>"; };
+		C6A90249DDE27A9D618C3640 /* Pods_Potatso.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Potatso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C87F5CD87CD25ABAAD4B68EC /* Pods-Potatso.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Potatso.release.xcconfig"; path = "Target Support Files/Pods-Potatso/Pods-Potatso.release.xcconfig"; sourceTree = "<group>"; };
+		CDF9F2A6320F1AC7B894EFB9 /* Pods_PotatsoLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBA0F5ED794D8E9E7D42AD50 /* Pods-TodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.release.xcconfig"; path = "Target Support Files/Pods-TodayWidget/Pods-TodayWidget.release.xcconfig"; sourceTree = "<group>"; };
+		DD33A4FF6B8E224B4FF4A210 /* Pods_PotatsoModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PotatsoModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2550FC545818CB214BF11E7 /* Pods-PacketTunnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.debug.xcconfig"; path = "Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.debug.xcconfig"; sourceTree = "<group>"; };
 		E46E159320A9755C00E89AF1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E46E159620A9755D00E89AF1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		E78608059F51BBF6180C1843 /* Pods-PacketProcessor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketProcessor.release.xcconfig"; path = "Pods/Target Support Files/Pods-PacketProcessor/Pods-PacketProcessor.release.xcconfig"; sourceTree = "<group>"; };
-		F2765FE72409B9E2FA7F81BB /* Pods-TodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		E7FC33EE698C6FD2B3180AB4 /* Pods-PotatsoLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibrary.release.xcconfig"; path = "Target Support Files/Pods-PotatsoLibrary/Pods-PotatsoLibrary.release.xcconfig"; sourceTree = "<group>"; };
+		F418F761ED5A1D6D44F6B978 /* Pods_PacketTunnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PacketTunnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F972382A1FDCA6E6CAF074AD /* Pods-PotatsoLibraryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PotatsoLibraryTests.debug.xcconfig"; path = "Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -933,7 +933,7 @@
 			files = (
 				9B07D6BE1CB7AF0000182C1B /* PotatsoModel.framework in Frameworks */,
 				9B07D6B51CB7A6A900182C1B /* PotatsoLibrary.framework in Frameworks */,
-				C5AC2DD700711D678EE97B8E /* Pods_PotatsoLibraryTests.framework in Frameworks */,
+				73AC1EAA0D7C41952F34CF14 /* Pods_PotatsoLibraryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +952,7 @@
 				1ED659011E05C73100D4BEE3 /* CloudKit.framework in Frameworks */,
 				B8822CD41D2B81C400AD252C /* libssl.a in Frameworks */,
 				1ED66DEE1E05A72300638808 /* StoreKit.framework in Frameworks */,
-				10305058CF9183AA66172BEC /* Pods_Potatso.framework in Frameworks */,
+				D9840AAFF707D5FEE15E786F /* Pods_Potatso.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,7 +972,7 @@
 				9B8193DC1CBDE68100BE320D /* PotatsoBase.framework in Frameworks */,
 				9B8193DD1CBDE68100BE320D /* PotatsoLibrary.framework in Frameworks */,
 				9B8193B41CBCFEE700BE320D /* NotificationCenter.framework in Frameworks */,
-				479C711B68EF0702C9F65B5B /* Pods_TodayWidget.framework in Frameworks */,
+				1AAC61E76574642AD2BF3E5E /* Pods_TodayWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,8 +984,8 @@
 				9BC600361CB29AFF00E5EA61 /* PotatsoBase.framework in Frameworks */,
 				9BCE27AF1CAE535800B1E561 /* PacketProcessor.framework in Frameworks */,
 				9B87060D1C1DBDD400651424 /* libresolv.tbd in Frameworks */,
-				2BB44917A69FF1B2710678D2 /* Pods_PacketTunnel.framework in Frameworks */,
 				1EEBB8791FFFD8A700EB33C3 /* NetworkExtension.framework in Frameworks */,
+				A19186A9C01BD2F3698C660B /* Pods_PacketTunnel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,7 +995,7 @@
 			files = (
 				9BC600351CB29AEE00E5EA61 /* PotatsoBase.framework in Frameworks */,
 				9BC6FFF61CB28C4500E5EA61 /* PotatsoModel.framework in Frameworks */,
-				12AD9C79E2C246F3D21B814E /* Pods_PotatsoLibrary.framework in Frameworks */,
+				BEC06AF748B92B7443F82556 /* Pods_PotatsoLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,7 +1011,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B32477B1CC091CF00A3BAFF /* PotatsoBase.framework in Frameworks */,
-				939649B7FCC9A0C8AFB317B8 /* Pods_PotatsoModel.framework in Frameworks */,
+				82F0934D24F9F56921AF0EE0 /* Pods_PotatsoModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,34 +1020,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BCE27A51CAE412E00B1E561 /* libresolv.tbd in Frameworks */,
-				8A1FADF61B82B8A8F3895B04 /* Pods_PacketProcessor.framework in Frameworks */,
+				49AFCAB8A7A7C95E61767328 /* Pods_PacketProcessor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		360FC4CAA2A2878A46E847E5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				69CCED68685D929177A42E2A /* Pods-PacketProcessor.debug.xcconfig */,
-				E78608059F51BBF6180C1843 /* Pods-PacketProcessor.release.xcconfig */,
-				9BAB9F5C037C991150984F50 /* Pods-PacketTunnel.debug.xcconfig */,
-				534B69172D50947634710149 /* Pods-PacketTunnel.release.xcconfig */,
-				721750A5B5C0DCACE5C63317 /* Pods-Potatso.debug.xcconfig */,
-				83DE540D7DA7E719057D8E51 /* Pods-Potatso.release.xcconfig */,
-				8591A0DF3C64D6376B09D429 /* Pods-PotatsoLibrary.debug.xcconfig */,
-				61F603707715DCFA28936BB5 /* Pods-PotatsoLibrary.release.xcconfig */,
-				C2456CC9E4E07FDB51C7E8E6 /* Pods-PotatsoLibraryTests.debug.xcconfig */,
-				16E45A00C4849FC6D582F28E /* Pods-PotatsoLibraryTests.release.xcconfig */,
-				217DDEB43D39CFD980088F46 /* Pods-PotatsoModel.debug.xcconfig */,
-				5509E684B48A8007AADADA51 /* Pods-PotatsoModel.release.xcconfig */,
-				F2765FE72409B9E2FA7F81BB /* Pods-TodayWidget.debug.xcconfig */,
-				A6C3522CED51B0487ECEE41F /* Pods-TodayWidget.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9B07D6B11CB7A6A900182C1B /* PotatsoLibraryTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1071,7 +1050,7 @@
 				9BC6001E1CB2921C00E5EA61 /* PotatsoBase */,
 				9B0CFA0C1C1C0B1B007BD7C6 /* Products */,
 				C8B2149E8757C44C469576D2 /* Frameworks */,
-				360FC4CAA2A2878A46E847E5 /* Pods */,
+				D1DC81895BDA8D1315435055 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2067,15 +2046,36 @@
 				B88559EA1D21319D00B1243E /* YAML.framework */,
 				9B87060C1C1DBDD400651424 /* libresolv.tbd */,
 				9B8193B31CBCFEE700BE320D /* NotificationCenter.framework */,
-				8AD3EA9ACD870481D4DBB6FB /* Pods_PacketProcessor.framework */,
-				A478ADBAAA1661B3FB51E4D3 /* Pods_PacketTunnel.framework */,
-				6C82CD7437FBA5F74EB08670 /* Pods_Potatso.framework */,
-				5494FBA89E140F817CCF2ACA /* Pods_PotatsoLibrary.framework */,
-				ADA787CDCD42A827F8E72947 /* Pods_PotatsoLibraryTests.framework */,
-				2589D04E6C48F30ED63BA84F /* Pods_PotatsoModel.framework */,
-				A692B80DC5DB316AA1DED8CB /* Pods_TodayWidget.framework */,
+				075A0EDC2AD266124CA24078 /* Pods_PacketProcessor.framework */,
+				F418F761ED5A1D6D44F6B978 /* Pods_PacketTunnel.framework */,
+				C6A90249DDE27A9D618C3640 /* Pods_Potatso.framework */,
+				CDF9F2A6320F1AC7B894EFB9 /* Pods_PotatsoLibrary.framework */,
+				4A646ACF237B032E4A2016FC /* Pods_PotatsoLibraryTests.framework */,
+				DD33A4FF6B8E224B4FF4A210 /* Pods_PotatsoModel.framework */,
+				946F065271ABB55B741DA5E5 /* Pods_TodayWidget.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D1DC81895BDA8D1315435055 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09342A48F0EEF2F3F6AD64A8 /* Pods-PacketProcessor.debug.xcconfig */,
+				718C633B665D19AFC7FD3401 /* Pods-PacketProcessor.release.xcconfig */,
+				E2550FC545818CB214BF11E7 /* Pods-PacketTunnel.debug.xcconfig */,
+				4FD84123306F4F6D572556EB /* Pods-PacketTunnel.release.xcconfig */,
+				A8756F00E05A3B83B41D4315 /* Pods-Potatso.debug.xcconfig */,
+				C87F5CD87CD25ABAAD4B68EC /* Pods-Potatso.release.xcconfig */,
+				3C9A6823014EF76FB5F7725A /* Pods-PotatsoLibrary.debug.xcconfig */,
+				E7FC33EE698C6FD2B3180AB4 /* Pods-PotatsoLibrary.release.xcconfig */,
+				F972382A1FDCA6E6CAF074AD /* Pods-PotatsoLibraryTests.debug.xcconfig */,
+				C3DA979DAA60D5650FCCD000 /* Pods-PotatsoLibraryTests.release.xcconfig */,
+				580482A21595A1FD951E8265 /* Pods-PotatsoModel.debug.xcconfig */,
+				570BF2420B2759837DB12503 /* Pods-PotatsoModel.release.xcconfig */,
+				B4A7BF23B2FD5F5F35EC36C2 /* Pods-TodayWidget.debug.xcconfig */,
+				DBA0F5ED794D8E9E7D42AD50 /* Pods-TodayWidget.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2125,12 +2125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B07D6B81CB7A6A900182C1B /* Build configuration list for PBXNativeTarget "PotatsoLibraryTests" */;
 			buildPhases = (
-				D379A81661895793832464D4 /* [CP] Check Pods Manifest.lock */,
+				6606FD4B8BCBEB8891A7869A /* [CP] Check Pods Manifest.lock */,
 				9B07D6AC1CB7A6A900182C1B /* Sources */,
 				9B07D6AD1CB7A6A900182C1B /* Frameworks */,
 				9B07D6AE1CB7A6A900182C1B /* Resources */,
 				9B07D6BC1CB7AA7100182C1B /* CopyFiles */,
-				9E3CA0726A54201D3BE563DD /* [CP] Embed Pods Frameworks */,
+				7321B4CC1990339DDF84E798 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2146,7 +2146,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B0CFA281C1C0B1B007BD7C6 /* Build configuration list for PBXNativeTarget "Potatso" */;
 			buildPhases = (
-				D36E9F0177778530B0CF35C1 /* [CP] Check Pods Manifest.lock */,
+				BFCFE1170619AC9CB6FEB83F /* [CP] Check Pods Manifest.lock */,
 				B8CF2F9A1D3DF6C7009C9FF3 /* Confidential */,
 				9B0CFA071C1C0B1A007BD7C6 /* Sources */,
 				9B0CFA081C1C0B1A007BD7C6 /* Frameworks */,
@@ -2154,8 +2154,7 @@
 				B830CC631D2CF55A00FA8E37 /* Custom Data */,
 				9B8706081C1D788F00651424 /* Embed App Extensions */,
 				9B9B15821C1ECADF000B6541 /* Embed Frameworks */,
-				1EEBB8881FFFF1F800EB33C3 /* Fabric */,
-				DD684A5F98C89E3ABC84DE74 /* [CP] Embed Pods Frameworks */,
+				370EDA38A910ADE67C6422B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2194,7 +2193,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B8193C11CBCFEE800BE320D /* Build configuration list for PBXNativeTarget "TodayWidget" */;
 			buildPhases = (
-				94E145530A683F9CCD533308 /* [CP] Check Pods Manifest.lock */,
+				23B6A0A8E5A55D1275B65526 /* [CP] Check Pods Manifest.lock */,
 				9B8193AE1CBCFEE700BE320D /* Sources */,
 				9B8193AF1CBCFEE700BE320D /* Frameworks */,
 				9B8193B01CBCFEE700BE320D /* Resources */,
@@ -2213,7 +2212,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B8706051C1D788F00651424 /* Build configuration list for PBXNativeTarget "PacketTunnel" */;
 			buildPhases = (
-				65A45481A26326D12ED85DF7 /* [CP] Check Pods Manifest.lock */,
+				5C871C873E288B5BC5185BC3 /* [CP] Check Pods Manifest.lock */,
 				9B8705F61C1D788F00651424 /* Sources */,
 				9B8705F71C1D788F00651424 /* Frameworks */,
 				9B8705F81C1D788F00651424 /* Resources */,
@@ -2232,7 +2231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B9B15C61C21595C000B6541 /* Build configuration list for PBXNativeTarget "PotatsoLibrary" */;
 			buildPhases = (
-				A7D62E7156C0A4B69520AB24 /* [CP] Check Pods Manifest.lock */,
+				4716CBCE2A6129C1097DCB5D /* [CP] Check Pods Manifest.lock */,
 				9B9B15B91C21595B000B6541 /* Frameworks */,
 				9B9B15B81C21595B000B6541 /* Sources */,
 				9B9B15BA1C21595B000B6541 /* Headers */,
@@ -2269,7 +2268,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BC6FFF31CB28B4B00E5EA61 /* Build configuration list for PBXNativeTarget "PotatsoModel" */;
 			buildPhases = (
-				B3F9E02C5B4BEC781583F004 /* [CP] Check Pods Manifest.lock */,
+				5E7F2C1DD3AF0FE729105693 /* [CP] Check Pods Manifest.lock */,
 				9BC6FFE51CB28B4B00E5EA61 /* Sources */,
 				9BC6FFE61CB28B4B00E5EA61 /* Frameworks */,
 				9BC6FFE71CB28B4B00E5EA61 /* Headers */,
@@ -2289,7 +2288,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9BDA62661CAE2576007F2581 /* Build configuration list for PBXNativeTarget "PacketProcessor" */;
 			buildPhases = (
-				D9596EAADE114958AB86E57C /* [CP] Check Pods Manifest.lock */,
+				D178B190B027EEE683E22856 /* [CP] Check Pods Manifest.lock */,
 				9BDA62561CAE2576007F2581 /* Sources */,
 				9BDA62571CAE2576007F2581 /* Frameworks */,
 				9BDA62581CAE2576007F2581 /* Headers */,
@@ -2540,30 +2539,128 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1EEBB8881FFFF1F800EB33C3 /* Fabric */ = {
+		23B6A0A8E5A55D1275B65526 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 92326569315d2336cbe215eae2b015aef513ed3c 9136206d79749547fb6e401c8b288bdbe04cbf586e049bf7dd50030fb461ace2";
-		};
-		65A45481A26326D12ED85DF7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodayWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		370EDA38A910ADE67C6422B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Potatso/Pods-Potatso-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Appirater/Appirater.framework",
+				"${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework",
+				"${BUILT_PRODUCTS_DIR}/AsyncSwift/Async.framework",
+				"${BUILT_PRODUCTS_DIR}/CallbackURLKit/CallbackURLKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/ICDMaterialActivityIndicatorView/ICDMaterialActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ICSMainFramework/ICSMainFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/ICSPullToRefresh/ICSPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/ISO8601DateFormatter/ISO8601DateFormatter.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MMWormhole/MMWormhole.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PSOperations/PSOperations.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftColor/SwiftColor.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Appirater.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aspects.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CallbackURLKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICDMaterialActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICSMainFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICSPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISO8601DateFormatter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMWormhole.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSOperations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftColor.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Potatso/Pods-Potatso-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4716CBCE2A6129C1097DCB5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PotatsoLibrary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C871C873E288B5BC5185BC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PacketTunnel-checkManifestLockResult.txt",
 			);
@@ -2572,22 +2669,84 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94E145530A683F9CCD533308 /* [CP] Check Pods Manifest.lock */ = {
+		5E7F2C1DD3AF0FE729105693 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TodayWidget-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PotatsoModel-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6606FD4B8BCBEB8891A7869A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PotatsoLibraryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7321B4CC1990339DDF84E798 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ICSMainFramework/ICSMainFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
+				"${BUILT_PRODUCTS_DIR}/MMWormhole/MMWormhole.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/LibYAML/LibYAML.framework",
+				"${BUILT_PRODUCTS_DIR}/YAML-Framework/YAML_Framework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICSMainFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMWormhole.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LibYAML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YAML_Framework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B8193EB1CBE37BB00BE320D /* Framework Hack */ = {
@@ -2618,74 +2777,6 @@
 			shellPath = /bin/sh;
 			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\nrm -fr Frameworks\nfi";
 		};
-		9E3CA0726A54201D3BE563DD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ICSMainFramework/ICSMainFramework.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
-				"${BUILT_PRODUCTS_DIR}/MMWormhole/MMWormhole.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/LibYAML/LibYAML.framework",
-				"${BUILT_PRODUCTS_DIR}/YAML-Framework/YAML_Framework.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICSMainFramework.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMWormhole.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LibYAML.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YAML_Framework.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PotatsoLibraryTests/Pods-PotatsoLibraryTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7D62E7156C0A4B69520AB24 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PotatsoLibrary-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3F9E02C5B4BEC781583F004 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PotatsoModel-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B830CC631D2CF55A00FA8E37 /* Custom Data */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2698,7 +2789,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "src=\"${PROJECT_DIR}/Confidential/\"\nif [ -d $src ]\nthen\n    echo \"Confidential found.\"\n    fabric=\"env.plist\"\n    thirdKeys=\"ThirdKeys.h\"\n    BUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n    rsync -av --exclude .DS_Store --exclude $fabric --exclude $thirdKeys $src $BUILD_APP_DIR\nelse\n    echo \"Confidential not found.\"\nfi";
+			shellScript = "src=\"${PROJECT_DIR}/Confidential/\"\nif [ -d $src ]\nthen\n    echo \"Confidential found.\"\n    fabric=\"env.plist\"\n    thirdKeys=\"ThirdKeys.h\"\n    BUILD_APP_DIR=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n    rsync -av --exclude .DS_Store --exclude $fabric --exclude $thirdKeys $src $BUILD_APP_DIR\nelse\n    echo \"Confidential not found.\"\nfi\n";
 		};
 		B84B4E341D2176D6002B946A /* Framework Hack */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2726,18 +2817,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "file=\"${PROJECT_DIR}/Potatso/Confidential.h\"\nif [ -f $file ]\nthen\n    echo \"Confidential.h found.\"\nelse\n    echo \"Confidential.h not found.\"\n    src=\"${PROJECT_DIR}/Potatso/DefaultConfidential.h\"\n    rsync -av $src $file\nfi";
+			shellScript = "file=\"${PROJECT_DIR}/Potatso/Confidential.h\"\nif [ -f $file ]\nthen\n    echo \"Confidential.h found.\"\nelse\n    echo \"Confidential.h not found.\"\n    src=\"${PROJECT_DIR}/Potatso/DefaultConfidential.h\"\n    rsync -av $src $file\nfi\n";
 		};
-		D36E9F0177778530B0CF35C1 /* [CP] Check Pods Manifest.lock */ = {
+		BFCFE1170619AC9CB6FEB83F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Potatso-checkManifestLockResult.txt",
 			);
@@ -2746,104 +2841,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D379A81661895793832464D4 /* [CP] Check Pods Manifest.lock */ = {
+		D178B190B027EEE683E22856 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PotatsoLibraryTests-checkManifestLockResult.txt",
+			outputFileListPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D9596EAADE114958AB86E57C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PacketProcessor-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD684A5F98C89E3ABC84DE74 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Potatso/Pods-Potatso-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Appirater/Appirater.framework",
-				"${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework",
-				"${BUILT_PRODUCTS_DIR}/AsyncSwift/Async.framework",
-				"${BUILT_PRODUCTS_DIR}/CallbackURLKit/CallbackURLKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
-				"${BUILT_PRODUCTS_DIR}/ICDMaterialActivityIndicatorView/ICDMaterialActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/ICSMainFramework/ICSMainFramework.framework",
-				"${BUILT_PRODUCTS_DIR}/ICSPullToRefresh/ICSPullToRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/ISO8601DateFormatter/ISO8601DateFormatter.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/MMWormhole/MMWormhole.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PSOperations/PSOperations.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftColor/SwiftColor.framework",
-				"${BUILT_PRODUCTS_DIR}/LibYAML/LibYAML.framework",
-				"${BUILT_PRODUCTS_DIR}/YAML-Framework/YAML_Framework.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Appirater.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aspects.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CallbackURLKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICDMaterialActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICSMainFramework.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ICSPullToRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISO8601DateFormatter.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMWormhole.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSOperations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftColor.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LibYAML.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YAML_Framework.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Potatso/Pods-Potatso-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3150,7 +3167,7 @@
 /* Begin XCBuildConfiguration section */
 		9B07D6B91CB7A6A900182C1B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2456CC9E4E07FDB51C7E8E6 /* Pods-PotatsoLibraryTests.debug.xcconfig */;
+			baseConfigurationReference = F972382A1FDCA6E6CAF074AD /* Pods-PotatsoLibraryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3170,7 +3187,7 @@
 		};
 		9B07D6BA1CB7A6A900182C1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16E45A00C4849FC6D582F28E /* Pods-PotatsoLibraryTests.release.xcconfig */;
+			baseConfigurationReference = C3DA979DAA60D5650FCCD000 /* Pods-PotatsoLibraryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3282,7 +3299,7 @@
 		};
 		9B0CFA291C1C0B1B007BD7C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 721750A5B5C0DCACE5C63317 /* Pods-Potatso.debug.xcconfig */;
+			baseConfigurationReference = A8756F00E05A3B83B41D4315 /* Pods-Potatso.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3310,8 +3327,6 @@
 					"\"$(PODS_ROOT)/../../../libxml\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
 					"\"${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK\"",
 				);
 				INFOPLIST_FILE = Potatso/Info.plist;
@@ -3332,7 +3347,7 @@
 		};
 		9B0CFA2A1C1C0B1B007BD7C6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83DE540D7DA7E719057D8E51 /* Pods-Potatso.release.xcconfig */;
+			baseConfigurationReference = C87F5CD87CD25ABAAD4B68EC /* Pods-Potatso.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3355,8 +3370,6 @@
 					"\"$(PODS_ROOT)/../../../libxml\"",
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
 					"\"${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK\"",
 				);
 				INFOPLIST_FILE = Potatso/Info.plist;
@@ -3404,7 +3417,7 @@
 		};
 		9B8193BF1CBCFEE800BE320D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2765FE72409B9E2FA7F81BB /* Pods-TodayWidget.debug.xcconfig */;
+			baseConfigurationReference = B4A7BF23B2FD5F5F35EC36C2 /* Pods-TodayWidget.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3432,7 +3445,7 @@
 		};
 		9B8193C01CBCFEE800BE320D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6C3522CED51B0487ECEE41F /* Pods-TodayWidget.release.xcconfig */;
+			baseConfigurationReference = DBA0F5ED794D8E9E7D42AD50 /* Pods-TodayWidget.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3459,7 +3472,7 @@
 		};
 		9B8706061C1D788F00651424 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BAB9F5C037C991150984F50 /* Pods-PacketTunnel.debug.xcconfig */;
+			baseConfigurationReference = E2550FC545818CB214BF11E7 /* Pods-PacketTunnel.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
@@ -3505,7 +3518,7 @@
 		};
 		9B8706071C1D788F00651424 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 534B69172D50947634710149 /* Pods-PacketTunnel.release.xcconfig */;
+			baseConfigurationReference = 4FD84123306F4F6D572556EB /* Pods-PacketTunnel.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
@@ -3549,7 +3562,7 @@
 		};
 		9B9B15C71C21595C000B6541 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8591A0DF3C64D6376B09D429 /* Pods-PotatsoLibrary.debug.xcconfig */;
+			baseConfigurationReference = 3C9A6823014EF76FB5F7725A /* Pods-PotatsoLibrary.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3583,7 +3596,7 @@
 		};
 		9B9B15C81C21595C000B6541 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61F603707715DCFA28936BB5 /* Pods-PotatsoLibrary.release.xcconfig */;
+			baseConfigurationReference = E7FC33EE698C6FD2B3180AB4 /* Pods-PotatsoLibrary.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3672,7 +3685,7 @@
 		};
 		9BC6FFF41CB28B4B00E5EA61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 217DDEB43D39CFD980088F46 /* Pods-PotatsoModel.debug.xcconfig */;
+			baseConfigurationReference = 580482A21595A1FD951E8265 /* Pods-PotatsoModel.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3706,7 +3719,7 @@
 		};
 		9BC6FFF51CB28B4B00E5EA61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5509E684B48A8007AADADA51 /* Pods-PotatsoModel.release.xcconfig */;
+			baseConfigurationReference = 570BF2420B2759837DB12503 /* Pods-PotatsoModel.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3738,7 +3751,7 @@
 		};
 		9BDA62641CAE2576007F2581 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69CCED68685D929177A42E2A /* Pods-PacketProcessor.debug.xcconfig */;
+			baseConfigurationReference = 09342A48F0EEF2F3F6AD64A8 /* Pods-PacketProcessor.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -3780,7 +3793,7 @@
 		};
 		9BDA62651CAE2576007F2581 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E78608059F51BBF6180C1843 /* Pods-PacketProcessor.release.xcconfig */;
+			baseConfigurationReference = 718C633B665D19AFC7FD3401 /* Pods-PacketProcessor.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = YES;

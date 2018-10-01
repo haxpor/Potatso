@@ -3,11 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-def fabric
-    pod 'Fabric'
-    pod 'Crashlytics'
-end
-
 def library
     pod 'KissXML', '~> 5.2.2'
     pod 'ICSMainFramework', :path => "./Library/ICSMainFramework/"
@@ -46,7 +41,6 @@ target "Potatso" do
     pod 'PSOperations'
     tunnel
     library
-    fabric
     socket
     model
 end
