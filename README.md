@@ -61,7 +61,7 @@ We use the following services or open-source libraries. So we'd like show them h
 
 ### Services
 
-- [Fabric](https://get.fabric.io/)
+- [Fabric](https://get.fabric.io/) -- currently not use anymore
 - [Reveal](http://revealapp.com/)
 - [realm](https://realm.io/)
 
